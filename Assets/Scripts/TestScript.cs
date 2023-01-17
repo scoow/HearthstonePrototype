@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestScript : MonoBehaviour
+namespace Hearthstone
 {
-    public CardDeckCollections _cardDeckCollections;
-
-
-    private void Start()
+    public class TestScript : MonoBehaviour
     {
-        //_cardDeckCollections.SetCardInDeck("ПротоВар", new int[] {1,2,15,16});
-        //Debug.Log(_cardDeckCollections._collections.Count);
-        //Debug.Log(_cardDeckCollections._collections["ПротоВар"].Length);
+        public CardDeckCollections _cardDeckCollections;
+
+
+        private void Start()
+        {
+            //_cardDeckCollections.SetCardInDeck("ПротоВар", new int[] {1,2,15,16});
+            //Debug.Log(_cardDeckCollections._collections.Count);
+            //Debug.Log(_cardDeckCollections._collections["ПротоВар"].Length);
+        }
     }
 }

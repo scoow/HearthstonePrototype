@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class EmissionMarker : MonoBehaviour
+namespace Hearthstone
 {
-    private void Start()
+    public class EmissionMarker : MonoBehaviour
     {
-        gameObject.SetActive(false);
-    } 
+        private void Start()
+        {
+            gameObject.SetActive(false);
+        }
+    }
 }
