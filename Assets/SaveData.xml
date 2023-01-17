@@ -1,0 +1,20 @@
+<RootElement>
+  <DeckWarior CardCollection="Первая колода воина">
+    <AreyIDCard Колличество="30">
+      <id1 />
+      <id15 />
+      <id20 />
+      <id205 />
+      <id45 />
+      <id15 />
+      <id24 />
+      <id1 />
+      <id15 />
+      <id20 />
+      <id205 />
+      <id45 />
+      <id15 />
+      <id24 />
+    </AreyIDCard>
+  </DeckWarior>
+</RootElement>
