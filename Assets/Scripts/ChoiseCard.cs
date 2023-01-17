@@ -1,24 +1,27 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ChoiseCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler  
+namespace Hearthstone
 {
-    private Renderer _spriteRenderer;
-
-    private void Awake()
+    public class ChoiseCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        _spriteRenderer = GetComponentInChildren<EmissionMarker>().gameObject.GetComponent<Renderer>();
-    }
+        private Renderer _spriteRenderer;
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        _spriteRenderer.gameObject.SetActive(true);
-        Debug.Log("Произошло наведение");
-    }
+        private void Awake()
+        {
+            _spriteRenderer = GetComponentInChildren<EmissionMarker>().gameObject.GetComponent<Renderer>();
+        }
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        _spriteRenderer.gameObject.SetActive(false);
-        Debug.Log("Произошло отведение");
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            _spriteRenderer.gameObject.SetActive(true);
+            Debug.Log("Произошло наведение");
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            _spriteRenderer.gameObject.SetActive(false);
+            Debug.Log("Произошло отведение");
+        }
     }
 }

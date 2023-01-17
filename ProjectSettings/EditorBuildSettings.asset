@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: fe76b2bf53684dd4db704cee919282bd
+  - enabled: 1
+    path: Assets/Scenes/DeckColection.unity
+    guid: 60ec3c3b32232dc49a1b4308a45965c4
+  - enabled: 1
+    path: Assets/Scenes/ChooseHero.unity
+    guid: 3359ccae9d6e063489e63e95958601be
+  - enabled: 1
+    path: Assets/Scenes/BattleScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
