@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
+  m_Name: 500_BootyBayBodyguard
+  m_EditorClassIdentifier: 
+  _name: Booty Bay Bodyguard
+  _id: 500
+  _spriteCard: {fileID: 21300000, guid: 9f9e9b7cdf2b5b54ca240de752699bc7, type: 3}
+  _cardPrefab: {fileID: 0}
+  _description: "\u0441\u0443\u043F\u0435\u0440 \u0433\u043E\u0431\u043B\u0438\u043D"
+  _manaCost: 5
+  _atackDamage: 5
+  _healt: 4

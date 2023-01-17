@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
+  m_Name: 201_Raptor
+  m_EditorClassIdentifier: 
+  _name: Bloodfen Raptor
+  _id: 201
+  _spriteCard: {fileID: 21300000, guid: 872ced3cece64474fbe31e5bf5e8ba1a, type: 3}
+  _cardPrefab: {fileID: 1716541608145100750, guid: 6c0090209202f8f4e952d3086b62eba0, type: 3}
+  _description: "\u0421\u0443\u043F\u0435\u0440 \u0420\u0430\u043F\u0442\u043E\u0440"
+  _manaCost: 2
+  _atackDamage: 2
+  _healt: 3
