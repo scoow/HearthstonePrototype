@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: 402_GnomishInventor
   m_EditorClassIdentifier: 
   _name: Gnomish Inventor
+  _description: "\u0438\u043D\u0436\u0435\u043D\u0435\u0440"
   _id: 402
   _spriteCard: {fileID: 21300000, guid: e70c2607a19f0c348a349a6a647832b4, type: 3}
-  _cardPrefab: {fileID: 0}
-  _description: 
   _manaCost: 4
   _atackDamage: 2
   _healt: 4

@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: 500_BootyBayBodyguard
   m_EditorClassIdentifier: 
   _name: Booty Bay Bodyguard
+  _description: "\u0413\u043E\u0431\u043B\u0438\u043D \u0442\u0430\u043D\u043A"
   _id: 500
-  _spriteCard: {fileID: 21300000, guid: 9f9e9b7cdf2b5b54ca240de752699bc7, type: 3}
-  _cardPrefab: {fileID: 0}
-  _description: "\u0441\u0443\u043F\u0435\u0440 \u0433\u043E\u0431\u043B\u0438\u043D"
+  _spriteCard: {fileID: 21300000, guid: 3428492c2e4ebd9458da2213e1851423, type: 3}
   _manaCost: 5
   _atackDamage: 5
   _healt: 4

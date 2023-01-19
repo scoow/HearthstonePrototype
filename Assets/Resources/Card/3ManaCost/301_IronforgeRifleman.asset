@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
   m_Name: 301_IronforgeRifleman
   m_EditorClassIdentifier: 
-  _name: IronforgeRifleman
+  _name: Ironforge Rifleman
+  _description: "\u0411\u0440\u0430\u0442\u0443\u0445\u0430 \u0443\u0441\u0430\u0442\u043E\u0433\u043E
+    \u043C\u0430\u0433\u0430"
   _id: 301
   _spriteCard: {fileID: 21300000, guid: dbf71b653bd7e154185008476e7e5166, type: 3}
-  _cardPrefab: {fileID: 0}
-  _description: 
   _manaCost: 3
   _atackDamage: 2
   _healt: 2

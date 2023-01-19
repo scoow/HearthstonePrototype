@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
   m_Name: 102_GrimscaleOracle
   m_EditorClassIdentifier: 
-  _name: GrimscaleOracle
+  _name: Grimscale Oracle
+  _description: "\u0412\u043E\u043D\u044E\u0447\u0438\u0439 \u043C\u0443\u0440\u043B\u043E\u043A"
   _id: 102
   _spriteCard: {fileID: 21300000, guid: 0be69a3b021a1f249b1d6e0a17f6139e, type: 3}
-  _cardPrefab: {fileID: 0}
-  _description: 
   _manaCost: 1
   _atackDamage: 1
   _healt: 1

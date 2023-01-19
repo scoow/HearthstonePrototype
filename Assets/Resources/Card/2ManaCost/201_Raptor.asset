@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: 201_Raptor
   m_EditorClassIdentifier: 
   _name: Bloodfen Raptor
+  _description: "\u0413\u043E\u043B\u043E\u0434\u043D\u044B\u0439 \u0420\u0430\u043F\u0442\u043E\u0440"
   _id: 201
   _spriteCard: {fileID: 21300000, guid: 872ced3cece64474fbe31e5bf5e8ba1a, type: 3}
-  _cardPrefab: {fileID: 1716541608145100750, guid: 6c0090209202f8f4e952d3086b62eba0, type: 3}
-  _description: "\u0421\u0443\u043F\u0435\u0440 \u0420\u0430\u043F\u0442\u043E\u0440"
   _manaCost: 2
   _atackDamage: 2
   _healt: 3

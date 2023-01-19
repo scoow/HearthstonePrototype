@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
   m_Name: 100_ElvenArcher
   m_EditorClassIdentifier: 
-  _name: ElvenArcher
+  _name: Elven Archer
+  _description: "\u0427\u0438\u0442\u0435\u0440\u0441\u043A\u0430\u044F \u043A\u0430\u0440\u0442\u0430"
   _id: 100
   _spriteCard: {fileID: 21300000, guid: edaa8792386538a42bd22c29887a6a9b, type: 3}
-  _cardPrefab: {fileID: 0}
-  _description: 
   _manaCost: 1
   _atackDamage: 1
   _healt: 1

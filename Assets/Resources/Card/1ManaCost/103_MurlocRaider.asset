@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
   m_Name: 103_MurlocRaider
   m_EditorClassIdentifier: 
-  _name: MurlocRaider
+  _name: Murloc Raider
+  _description: "\u041A\u043E\u043C\u043F\u0430\u0448\u043A\u0430 \u043C\u0443\u0440\u043B\u043E\u043A\u043E\u0432"
   _id: 103
   _spriteCard: {fileID: 21300000, guid: c12f333176cc1794d8eb6f21efc45024, type: 3}
-  _cardPrefab: {fileID: 0}
-  _description: 
   _manaCost: 1
   _atackDamage: 2
   _healt: 1

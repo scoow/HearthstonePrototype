@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
   m_Name: 300_DalaranMage
   m_EditorClassIdentifier: 
-  _name: DalaranMage
+  _name: Dalaran Mage
+  _description: "\u0423\u0441\u0430\u0442\u044B\u0439 \u043C\u0430\u0433"
   _id: 300
   _spriteCard: {fileID: 21300000, guid: 0a0a541b6e928db40ad4818dc4b15fc7, type: 3}
-  _cardPrefab: {fileID: 0}
-  _description: 
   _manaCost: 3
   _atackDamage: 1
   _healt: 4

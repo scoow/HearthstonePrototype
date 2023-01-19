@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: 403_OasisSnapjaw
   m_EditorClassIdentifier: 
   _name: Oasis Snapjaw
+  _description: "\u0427\u0435\u0440\u0435\u043F\u0430\u0445\u0430"
   _id: 403
   _spriteCard: {fileID: 21300000, guid: 49e38d76e0ddfc24f94134fef4709184, type: 3}
-  _cardPrefab: {fileID: 0}
-  _description: 
   _manaCost: 4
   _atackDamage: 2
   _healt: 7

@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: 504_Nightblade
   m_EditorClassIdentifier: 
   _name: Nightblade
+  _description: "\u042D\u043B\u044C\u0444\u0438\u0439\u043A\u0430"
   _id: 504
   _spriteCard: {fileID: 21300000, guid: a36ff43c3b195704da6d98fa388c7a5f, type: 3}
-  _cardPrefab: {fileID: 0}
-  _description: 
   _manaCost: 5
   _atackDamage: 4
   _healt: 4

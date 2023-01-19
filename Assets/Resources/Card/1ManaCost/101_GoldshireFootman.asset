@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
   m_Name: 101_GoldshireFootman
   m_EditorClassIdentifier: 
-  _name: GoldshireFootman
+  _name: Goldshire Footman
+  _description: "\u0412\u043E\u044F\u043A\u0430"
   _id: 101
   _spriteCard: {fileID: 21300000, guid: 5069b915490989244ac2d3a0200400b9, type: 3}
-  _cardPrefab: {fileID: 0}
-  _description: 
   _manaCost: 1
   _atackDamage: 1
   _healt: 2
