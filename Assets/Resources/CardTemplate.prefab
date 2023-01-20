@@ -549,6 +549,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836b0c5afbc0e8d448482332f73c770d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _zoomingCardTemplate: {fileID: 0}
+  _zoomingCardPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &7139192151810163284
 MonoBehaviour:
   m_ObjectHideFlags: 0
