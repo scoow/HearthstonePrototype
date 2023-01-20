@@ -27,7 +27,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816763838217627770}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.19}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -41,7 +41,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -1.383, y: -2.526}
+  m_AnchoredPosition: {x: -1.4, y: -2.49}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3581428110877527656
@@ -259,7 +259,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -406,7 +406,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 35f7b43dc36ba3a41aeafdf1d4395551, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -490,7 +490,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a060f8a9bdb8efc4098b1da975db64b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -549,8 +549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836b0c5afbc0e8d448482332f73c770d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _zoomingCardTemplate: {fileID: 0}
-  _zoomingCardPosition: {x: 0, y: 0, z: 0}
+  _zoomingCard: {fileID: 1716541608145100750}
 --- !u!114 &7139192151810163284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,7 +562,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d81fb05b06b1bb4fb3fcfedb7fa82ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cardSO_Prefab: {fileID: 0}
+  _name: {fileID: 70972351261278118}
+  _description: {fileID: 1684177610157930916}
+  _spriteCard: {fileID: 1716541606589815585}
+  _manaCost: {fileID: 313488179345975244}
+  _atackDamage: {fileID: 8410973821416728946}
+  _healt: {fileID: 3967998368240511001}
 --- !u!1 &1720805814630253066
 GameObject:
   m_ObjectHideFlags: 0

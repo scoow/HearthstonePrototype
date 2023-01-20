@@ -6,8 +6,7 @@ namespace Hearthstone
     public class CardSO : ScriptableObject
     {
         public string _name;
-        public string _description;
-        //public GameObject _cardPrefab; не нужное поле (скорее всего шаблон уже будет на сцене и мы будем подгруждать в него вариант SO по ID
+        public string _description;        
         public int _id;
         public Sprite _spriteCard;
         public int _manaCost;

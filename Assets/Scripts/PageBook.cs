@@ -10,9 +10,8 @@ namespace Hearthstone
 {
     public class PageBook : MonoBehaviour
     {        
-        public GameObject[] _cardTemplatePrefabs ;
-        public int _iterationStep;
-
+        public CardSettings[] _cardTemplatePrefabs ;
+        //public int _iterationStep;
         public List<CardSO> _1manaCostCard;
         public List<CardSO> _2manaCostCard;
         public List<CardSO> _3manaCostCard;
@@ -25,8 +24,7 @@ namespace Hearthstone
         public List<CardSO> _resultCollection = new List<CardSO>();
         private int _maxPageNumber;
         private int _minPageNumber = 0;
-        private int _pageCounter = 0;
-        
+        private int _pageCounter = 0;       
         
 
         private void Awake()
@@ -42,13 +40,21 @@ namespace Hearthstone
         private void СhangingСards()           
         { 
             for(int i = 0; i <= _cardTemplatePrefabs.Length + 1; i++)
-            {                
-                _cardTemplatePrefabs[i].GetComponentInChildren<SpriteRendererMarker>().GetComponent<SpriteRenderer>().sprite = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._spriteCard;                              
-                _cardTemplatePrefabs[i].GetComponentInChildren<TextAtackMarker>().GetComponent<Text>().text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._atackDamage.ToString();
+            {
+                _cardTemplatePrefabs[i].SpriteCard.sprite = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._spriteCard;
+                _cardTemplatePrefabs[i].ManaCost.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._manaCost.ToString();
+                _cardTemplatePrefabs[i].AtackDamage.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._atackDamage.ToString();
+                _cardTemplatePrefabs[i].Healt.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._healt.ToString();
+                _cardTemplatePrefabs[i].Name.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._name.ToString();
+                _cardTemplatePrefabs[i].Description.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._description.ToString();
+
+
+                ///убираем множественные вызовы геткомпонентов
+                /*_cardTemplatePrefabs[i].GetComponentInChildren<TextAtackMarker>().GetComponent<Text>().text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._atackDamage.ToString();
                 _cardTemplatePrefabs[i].GetComponentInChildren<TextManaCostMarker>().GetComponent<Text>().text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._manaCost.ToString();
                 _cardTemplatePrefabs[i].GetComponentInChildren<TextHealthMarker>().GetComponent<Text>().text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._healt.ToString();
                 _cardTemplatePrefabs[i].GetComponentInChildren<TextCardNameMarker>().GetComponent<Text>().text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._name.ToString();
-                _cardTemplatePrefabs[i].GetComponentInChildren<TextDiscriptionMarker>().GetComponent<Text>().text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._description.ToString();
+                _cardTemplatePrefabs[i].GetComponentInChildren<TextDiscriptionMarker>().GetComponent<Text>().text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._description.ToString();*/
             }
         }
 
