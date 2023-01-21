@@ -1,10 +1,8 @@
-using System.Linq;
 using UnityEngine;
 using System.Collections;
 
 namespace Hearthstone
 {
-    
     public class MulliganCard : MonoBehaviour
     {
         private Vector3 _startPosition;
@@ -17,12 +15,12 @@ namespace Hearthstone
 
         private void Start()
         {
-            _endPosition = new Vector3(-6.5f, 0.75f, -5f);
+/*            _endPosition = new Vector3(-6.5f, 0, -1f);
             _endRotation = Quaternion.Euler(0f, 0f, 0f);
 
-            StartCoroutine(StartMulligan(transform.position, _endPosition, transform.rotation, _endRotation, 4f));
+            StartCoroutine(StartMulligan(transform.position, _endPosition, transform.rotation, _endRotation, 4f));*/
         }
-        private IEnumerator StartMulligan(Vector3 startPosition, Vector3 endPosition, Quaternion startRotation, Quaternion endRotation, float time)
+        public IEnumerator StartMulligan(Vector3 startPosition, Vector3 endPosition, Quaternion startRotation, Quaternion endRotation, float time)
         {
             float currentTime = 0f;
 
