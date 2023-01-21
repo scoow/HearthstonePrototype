@@ -6,6 +6,8 @@ namespace Hearthstone
     {
         [SerializeField]
         private MulliganCardPositionEnum _position;
+        [SerializeField]
+        private bool _selected;
     }
 
     public enum MulliganCardPositionEnum
