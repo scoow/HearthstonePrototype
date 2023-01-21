@@ -17,7 +17,7 @@ namespace Hearthstone
             }
             transform.SetPositionAndRotation(endPosition, endRotation);
         }
-        public async void StartMulliganAsync(Vector3 startPosition, Vector3 endPosition, Quaternion startRotation, Quaternion endRotation, float time)
+        /*public async void StartMulliganAsync(Vector3 startPosition, Vector3 endPosition, Quaternion startRotation, Quaternion endRotation, float time)
         {
             float currentTime = 0f;
 
@@ -28,6 +28,6 @@ namespace Hearthstone
                 yield return null;
             }
             transform.SetPositionAndRotation(endPosition, endRotation);
-        }
+        }*/
     }
 }
