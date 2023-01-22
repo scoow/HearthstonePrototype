@@ -16,7 +16,7 @@ namespace Hearthstone
         XmlDocument _xmlDoc;
         XmlElement _elemDeck;
         XmlElement _elemAreyIDCard;
-        private int _id = 0;
+        //private int _id = 0;
 
         private string _path;
 

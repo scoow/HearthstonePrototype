@@ -8,10 +8,9 @@ using UnityEngine.UI;
 
 namespace Hearthstone
 {
-    public class PageBook : MonoBehaviour
+    public class PageBook : MonoBehaviour, IReadable
     {        
-        public CardSettings[] _cardTemplatePrefabs ;
-        //public int _iterationStep;
+        public CardSettings[] _cardTemplatePrefabs ;        
         public List<CardSO> _1manaCostCard;
         public List<CardSO> _2manaCostCard;
         public List<CardSO> _3manaCostCard;
@@ -22,6 +21,10 @@ namespace Hearthstone
         
 
         public List<CardSO> _resultCollection = new List<CardSO>();
+        /// <summary>
+        /// словарь карт по ключу = ID
+        /// </summary>
+        public Dictionary<int, CardSO> _cardsDictionary = new Dictionary<int, CardSO>();
         private int _maxPageNumber;
         private int _minPageNumber = 0;
         private int _pageCounter = 0;       
@@ -29,33 +32,42 @@ namespace Hearthstone
 
         private void Awake()
         {
-            _resultCollection = _1manaCostCard.Union(_2manaCostCard).Union(_3manaCostCard).Union(_4manaCostCard).Union(_5manaCostCard).Union(_6manaCostCard).Union(_7manaCostCard).ToList();            
+            _resultCollection = _1manaCostCard.
+                Union(_2manaCostCard).
+                Union(_3manaCostCard).
+                Union(_4manaCostCard).
+                Union(_5manaCostCard).
+                Union(_6manaCostCard).
+                Union(_7manaCostCard).ToList();
+            foreach(CardSO card in _resultCollection)
+            {
+                _cardsDictionary.Add(card._id, card);
+            }
         }
 
         private void Start()
-        {            
+        {
             СhangingСards();            
         }
 
         private void СhangingСards()           
         { 
-            for(int i = 0; i <= _cardTemplatePrefabs.Length + 1; i++)
+            for(int i = 0; i <= _cardTemplatePrefabs.Length-1; i++)
             {
                 _cardTemplatePrefabs[i].SpriteCard.sprite = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._spriteCard;
+                _cardTemplatePrefabs[i]._id = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._id;
                 _cardTemplatePrefabs[i].ManaCost.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._manaCost.ToString();
                 _cardTemplatePrefabs[i].AtackDamage.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._atackDamage.ToString();
                 _cardTemplatePrefabs[i].Healt.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._healt.ToString();
                 _cardTemplatePrefabs[i].Name.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._name.ToString();
                 _cardTemplatePrefabs[i].Description.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._description.ToString();
-
-
-                ///убираем множественные вызовы геткомпонентов
-                /*_cardTemplatePrefabs[i].GetComponentInChildren<TextAtackMarker>().GetComponent<Text>().text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._atackDamage.ToString();
-                _cardTemplatePrefabs[i].GetComponentInChildren<TextManaCostMarker>().GetComponent<Text>().text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._manaCost.ToString();
-                _cardTemplatePrefabs[i].GetComponentInChildren<TextHealthMarker>().GetComponent<Text>().text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._healt.ToString();
-                _cardTemplatePrefabs[i].GetComponentInChildren<TextCardNameMarker>().GetComponent<Text>().text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._name.ToString();
-                _cardTemplatePrefabs[i].GetComponentInChildren<TextDiscriptionMarker>().GetComponent<Text>().text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._description.ToString();*/
             }
+        }
+
+        public CardSO GetCardSettingsInCardsDictionary(int cardId)
+        {
+            CardSO cardSO_example = _cardsDictionary[cardId];            
+            return cardSO_example;
         }
 
         public void NextPage()
