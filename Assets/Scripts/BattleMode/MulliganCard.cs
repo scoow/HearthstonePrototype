@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Cysharp.Threading.Tasks;
 
 namespace Hearthstone
 {
@@ -17,7 +18,7 @@ namespace Hearthstone
             }
             transform.SetPositionAndRotation(endPosition, endRotation);
         }
-        /*public async void StartMulliganAsync(Vector3 startPosition, Vector3 endPosition, Quaternion startRotation, Quaternion endRotation, float time)
+        public async UniTaskVoid StartMulliganAsync(Vector3 startPosition, Vector3 endPosition, Quaternion startRotation, Quaternion endRotation, float time)
         {
             float currentTime = 0f;
 
@@ -25,9 +26,9 @@ namespace Hearthstone
             {
                 transform.SetPositionAndRotation(Vector3.Lerp(startPosition, endPosition, currentTime / time), Quaternion.Lerp(startRotation, endRotation, currentTime));
                 currentTime += Time.deltaTime;
-                yield return null;
+                await UniTask.Yield();
             }
             transform.SetPositionAndRotation(endPosition, endRotation);
-        }*/
+        }
     }
 }

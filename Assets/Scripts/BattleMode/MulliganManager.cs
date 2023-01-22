@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,14 +27,15 @@ namespace Hearthstone
             MulliganStage1();
         }
 
-        private void MulliganStage1()
+        private async void MulliganStage1()
         {
             MulliganCard _card;
             int i = 0;
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
                 _card = _mulliganCards[i];
-                StartCoroutine(_card.StartMulligan(_card.transform.position, position.transform.position, _card.transform.rotation, position.transform.rotation, _time));
+                _ = _card.StartMulliganAsync(_card.transform.position, position.transform.position, _card.transform.rotation, position.transform.rotation, _time);
+                await UniTask.Delay(TimeSpan.FromSeconds(0.5));
                 i++;
             }
         }
