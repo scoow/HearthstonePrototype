@@ -212,14 +212,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 103206867}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 13.88, y: -3.73, z: -1}
   m_LocalScale: {x: 1, y: 2.8875, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
 --- !u!1 &143047460
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,11 +560,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1716541608145100750, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
       propertyPath: m_Name
-      value: CardTemplateBattleMode (1)
+      value: CardTemplateBattleMode4
       objectReference: {fileID: 0}
     - target: {fileID: 1716541608145100751, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1716541608145100751, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
       propertyPath: m_LocalPosition.x
@@ -729,7 +729,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1716541608145100750, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
       propertyPath: m_Name
-      value: CardTemplateBattleMode (2)
+      value: CardTemplateBattleMode3
       objectReference: {fileID: 0}
     - target: {fileID: 1716541608145100751, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
       propertyPath: m_RootOrder
@@ -1061,7 +1061,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1716541608145100750, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
       propertyPath: m_Name
-      value: CardTemplateBattleMode
+      value: CardTemplateBattleMode1
       objectReference: {fileID: 0}
     - target: {fileID: 1716541608145100751, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
       propertyPath: m_RootOrder
@@ -1139,9 +1139,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 192953927}
-  - {fileID: 370433934}
-  - {fileID: 1780640101}
   - {fileID: 1783092709}
+  - {fileID: 1780640101}
+  - {fileID: 370433934}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1158,6 +1158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _time: 2
+  _playerDeck: {fileID: 103206867}
 --- !u!1 &1624223626
 GameObject:
   m_ObjectHideFlags: 0
@@ -1614,11 +1615,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1716541608145100750, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
       propertyPath: m_Name
-      value: CardTemplateBattleMode (3)
+      value: CardTemplateBattleMode2
       objectReference: {fileID: 0}
     - target: {fileID: 1716541608145100751, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1716541608145100751, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
       propertyPath: m_LocalPosition.x
