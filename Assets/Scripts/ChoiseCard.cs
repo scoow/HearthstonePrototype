@@ -74,7 +74,9 @@ namespace Hearthstone
         public void OnPointerClick(PointerEventData eventData)
         {
             if(gameObject.tag == "CardTemplate")
-            _creatingDeck.AddCardInDeck(_settingsChioseCard);
+                _creatingDeck.AddCardInDeck(_settingsChioseCard);
+            else
+                _creatingDeck.RemoveCardInDeck(_settingsChioseCard);
         }
     }
 }

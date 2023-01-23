@@ -22,21 +22,22 @@ namespace Hearthstone
             GameObject obj = Instantiate(_prefabChioseCardSettings, transform);
             obj.GetComponent<CardSettings>().Id = settingsChioseCard.Id;
             obj.GetComponent<CardSettings>().Name.text = settingsChioseCard.Name.text;
-            obj.GetComponent<CardSettings>().ManaCost.text = settingsChioseCard.ManaCost.text;
-            //obj.GetComponent<CardSettings>().Description.text = settingsChioseCard.Description.text;
-            //obj.GetComponent<CardSettings>().AtackDamage = settingsChioseCard.AtackDamage;
-            //obj.GetComponent<CardSettings>().Healt.text = settingsChioseCard.Healt.text;
+            obj.GetComponent<CardSettings>().ManaCost.text = settingsChioseCard.ManaCost.text;            
             _contentDeck.Add(settingsChioseCard);    
         }
         public void RemoveCardInDeck(CardSettings settingsChioseCard)
         {
+
+            //плохо работает удаление карты из колоды
             foreach(CardSettings cardSetting in _contentDeck)
             {
-
-            }
-
-            //contentDeck.Remove(settingsChioseCard);
-        }
-       
+                if(cardSetting.GetComponent<CardSettings>().Id == settingsChioseCard.Id)
+                {
+                    _contentDeck.Remove(cardSetting);
+                    Destroy(settingsChioseCard.gameObject);
+                    return;
+                }                
+            }           
+        }       
     }
 }
