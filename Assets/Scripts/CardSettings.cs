@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +7,7 @@ namespace Hearthstone
     {
         private Text _name;
         private Text _description;
-        public int _id;
+        private int _id;
         private SpriteRenderer _spriteCard;
         private Text _manaCost;
         private Text _atackDamage;
@@ -33,8 +32,6 @@ namespace Hearthstone
             }
             _name = GetComponentInChildren<TextCardNameMarker>().GetComponent<Text>();
             _manaCost = GetComponentInChildren<TextManaCostMarker>().GetComponent<Text>();
-
         }
-
     }
 }

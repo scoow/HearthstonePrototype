@@ -1,5 +1,3 @@
 <RootElement>
-  <DeckWarior CardCollection="Первая колода воина">
-    <AreyIDCard Колличество="30" />
-  </DeckWarior>
+  <DeckWarior Scene="Первая колода воина" />
 </RootElement>

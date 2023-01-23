@@ -1,8 +1,5 @@
-using Hearthstone;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Hearthstone
 {
@@ -13,28 +10,40 @@ namespace Hearthstone
         /// </summary>
         public GameObject _prefabChioseCardSettings;
         /// <summary>
-        /// список выбранных карт в колоде
+        /// список ID выбранных карт в колоде
         /// </summary>
-        public List<CardSettings> _contentDeck;
+        public List<int> _contentDeck;
+        public IReadable _readable;
+        private ISerialization _serialization;
 
-        public void AddCardInDeck(CardSettings settingsChioseCard)
+
+        private void Awake()
+        {
+            _readable = FindObjectOfType<PageBook>();
+            _serialization = FindObjectOfType<Storage>();
+        }
+
+        public void Save()
+        {
+            _serialization.SaveDeck(_contentDeck);
+        }
+        public void AddCardInDeck(int cardId)
         {
             GameObject obj = Instantiate(_prefabChioseCardSettings, transform);
-            obj.GetComponent<CardSettings>().Id = settingsChioseCard.Id;
-            obj.GetComponent<CardSettings>().Name.text = settingsChioseCard.Name.text;
-            obj.GetComponent<CardSettings>().ManaCost.text = settingsChioseCard.ManaCost.text;            
-            _contentDeck.Add(settingsChioseCard);    
+            CardSettings addCardSettings = obj.GetComponent<CardSettings>();
+            CardSO cardSettings = _readable.GetCard(cardId);
+            addCardSettings.Id = cardId;
+            addCardSettings.Name.text = cardSettings._name;
+            addCardSettings.ManaCost.text = cardSettings._manaCost.ToString();            
+            _contentDeck.Add(cardId);    
         }
-        public void RemoveCardInDeck(CardSettings settingsChioseCard)
-        {
-
-            //плохо работает удаление карты из колоды
-            foreach(CardSettings cardSetting in _contentDeck)
+        public void RemoveCardInDeck(int cardId)
+        {            
+            foreach(int id in _contentDeck)
             {
-                if(cardSetting.GetComponent<CardSettings>().Id == settingsChioseCard.Id)
+                if(id == cardId)
                 {
-                    _contentDeck.Remove(cardSetting);
-                    Destroy(settingsChioseCard.gameObject);
+                    _contentDeck.Remove(cardId);                    
                     return;
                 }                
             }           

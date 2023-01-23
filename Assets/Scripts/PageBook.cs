@@ -55,7 +55,7 @@ namespace Hearthstone
             for(int i = 0; i <= _cardTemplatePrefabs.Length-1; i++)
             {
                 _cardTemplatePrefabs[i].SpriteCard.sprite = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._spriteCard;
-                _cardTemplatePrefabs[i]._id = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._id;
+                _cardTemplatePrefabs[i].Id = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._id;
                 _cardTemplatePrefabs[i].ManaCost.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._manaCost.ToString();
                 _cardTemplatePrefabs[i].AtackDamage.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._atackDamage.ToString();
                 _cardTemplatePrefabs[i].Healt.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._healt.ToString();
@@ -64,9 +64,9 @@ namespace Hearthstone
             }
         }
 
-        public CardSO GetCardSettingsInCardsDictionary(int cardId)
+        public CardSO GetCard(int cardId)
         {
-            CardSO cardSO_example = _cardsDictionary[cardId];            
+            CardSO cardSO_example = _cardsDictionary[cardId];
             return cardSO_example;
         }
 

@@ -11,8 +11,7 @@ namespace Hearthstone
         private Renderer _spriteEmission;
         /// <summary>
         /// увеличенный вариант выбранной карты
-        /// </summary>
-        [SerializeField]
+        /// </summary>        
         private GameObject _zoomingCard;
         /// <summary>
         /// параметры увеличенной карты
@@ -26,7 +25,10 @@ namespace Hearthstone
         /// ссылка на обект с интерфейсом Icreating
         /// </summary>
         private ICreating _creatingDeck;
-        private IReadable _readableDictyonaryDeck;
+        /// <summary>
+        /// ссылка на объект с интерфейсом IReadable
+        /// </summary>
+        private IReadable _readable;
 
 
         private void Awake()
@@ -35,10 +37,10 @@ namespace Hearthstone
             {
                 _spriteEmission = GetComponentInChildren<EmissionMarker>().gameObject.GetComponent<Renderer>();
             }
-            _zoomingCard = FindObjectOfType<CardZoomingTemplateMarker>().gameObject;
+            _zoomingCard = FindObjectOfType<CardZoomingTemplateMarker>().GetComponentInChildren<CardSettings>().gameObject;
             _settingsChioseCard = GetComponent<CardSettings>();
             _settingsZoomingCard = _zoomingCard.GetComponent<CardSettings>();
-            _readableDictyonaryDeck = FindObjectOfType<PageBook>();
+            _readable = FindObjectOfType<PageBook>();
             _creatingDeck = FindObjectOfType<ContentDeck>();
         }
         private void Start()
@@ -48,18 +50,18 @@ namespace Hearthstone
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            
+            CardSO thisCardSettings = _readable.GetCard(_settingsChioseCard.Id);
 
             if (gameObject.tag == "CardTemplate")
             {
                 _spriteEmission.gameObject.SetActive(true);              
             }
-            _settingsZoomingCard.ManaCost.text = _readableDictyonaryDeck.GetCardSettingsInCardsDictionary(_settingsChioseCard.Id)._manaCost.ToString();
-            _settingsZoomingCard.AtackDamage.text = _readableDictyonaryDeck.GetCardSettingsInCardsDictionary(_settingsChioseCard.Id)._atackDamage.ToString();
-            _settingsZoomingCard.Healt.text = _readableDictyonaryDeck.GetCardSettingsInCardsDictionary(_settingsChioseCard.Id)._healt.ToString();
-            _settingsZoomingCard.Description.text = _readableDictyonaryDeck.GetCardSettingsInCardsDictionary(_settingsChioseCard.Id)._description;
-            _settingsZoomingCard.SpriteCard.sprite = _readableDictyonaryDeck.GetCardSettingsInCardsDictionary(_settingsChioseCard.Id)._spriteCard;  //_settingsChioseCard.SpriteCard.sprite;
-            _settingsZoomingCard.Name.text = _readableDictyonaryDeck.GetCardSettingsInCardsDictionary(_settingsChioseCard.Id)._name;
+            _settingsZoomingCard.ManaCost.text = thisCardSettings._manaCost.ToString();
+            _settingsZoomingCard.AtackDamage.text = thisCardSettings._atackDamage.ToString();
+            _settingsZoomingCard.Healt.text = thisCardSettings._healt.ToString();
+            _settingsZoomingCard.Description.text = thisCardSettings._description;
+            _settingsZoomingCard.SpriteCard.sprite = thisCardSettings._spriteCard;
+            _settingsZoomingCard.Name.text = thisCardSettings._name;
             
             _zoomingCard.gameObject.SetActive(true);            
         }
@@ -74,9 +76,13 @@ namespace Hearthstone
         public void OnPointerClick(PointerEventData eventData)
         {
             if(gameObject.tag == "CardTemplate")
-                _creatingDeck.AddCardInDeck(_settingsChioseCard);
-            else
-                _creatingDeck.RemoveCardInDeck(_settingsChioseCard);
+                _creatingDeck.AddCardInDeck(_settingsChioseCard.Id);
+            if(gameObject.tag == "ChoiseCard")
+            {
+                _creatingDeck.RemoveCardInDeck(_settingsChioseCard.Id);
+                Destroy(this.gameObject);
+                _zoomingCard.gameObject.SetActive(false);
+            }
         }
     }
 }
