@@ -1,41 +1,43 @@
 using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
-//using System.Xml.Linq;
+using System.Xml.Linq;
+using UnityEngine.UIElements;
 
 namespace Hearthstone
 {
     public class Storage : MonoBehaviour, ISerialization
-    {         
-        private string _cardName = "DeckWarior";
-        XmlDocument _xmlDoc;
-        XmlElement _elemDeck;
-        XmlElement _elemAreyIDCard;  
+    {
+        private string _pathSaveDocument;
+        XDocument _xDocument;
+        XElement _xElementRoote;
+        
+          
 
-        private string _path;
+        
 
 
         private void Start()
         {
-            _path = Application.dataPath + "/SaveData.xml";
-            _xmlDoc = new XmlDocument();
-            XmlNode rootNode = _xmlDoc.CreateElement("RootElement");
-            _xmlDoc.AppendChild(rootNode);
-            _elemDeck = _xmlDoc.CreateElement(_cardName);
-            _elemDeck.SetAttribute(name, "Первая колода воина");
-            rootNode.AppendChild(_elemDeck);
+            _pathSaveDocument = Application.dataPath + "/SaveData.xml";
+            _xDocument = new XDocument();
+            _xElementRoote = new XElement("SaveDeck");
+            _xDocument.Add(_xElementRoote);
         }
 
         public void SaveDeck(List<int> _contentDeck)
         {
+            XElement newDeckElement = new XElement("NameDeck");
+            XAttribute nameDeckElement = new XAttribute("Название", "Воин_Пират");
+            newDeckElement.Add(nameDeckElement);
+            _xElementRoote.Add(newDeckElement);
             for (int i = 0; i < _contentDeck.Count; i++)
             {
-                //XmlElement elemIdCard = _xmlDoc.CreateElement($"id{_contentDeck[i]}");
-                //_elemAreyIDCard.AppendChild(elemIdCard);
-                Debug.Log($"Добавлена новая карта в колоду c ID{_contentDeck[i]}");
-            }
-            _xmlDoc.Save(_path);
-
+                XElement idElement = new XElement("IdCard", _contentDeck[i].ToString());
+                newDeckElement.Add(idElement);
+                //Debug.Log($"Добавлена новая карта в колоду c ID{_contentDeck[i]}");
+            }                      
+            _xDocument.Save(_pathSaveDocument);
         }
         public List<int> LoadDeck()
         {
