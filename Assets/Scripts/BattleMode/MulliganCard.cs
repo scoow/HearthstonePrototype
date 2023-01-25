@@ -1,12 +1,13 @@
 using UnityEngine;
 using System.Collections;
 using Cysharp.Threading.Tasks;
-using System;
 
 namespace Hearthstone
 {
     public class MulliganCard : MonoBehaviour
     {
+        public bool Selected { get; private set; }
+
         public IEnumerator StartMulligan(Vector3 startPosition, Vector3 endPosition, Quaternion startRotation, Quaternion endRotation, float time)
         {
             float currentTime = 0f;

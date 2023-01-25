@@ -48,6 +48,11 @@ namespace Hearthstone
             }
         }
 
+        private async void MulliganStage2()
+        {
+
+        }
+
         private async void MulliganStage3()
         {
             MulliganCard _card;
