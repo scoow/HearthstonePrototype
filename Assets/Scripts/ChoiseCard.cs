@@ -56,12 +56,12 @@ namespace Hearthstone
             {
                 _spriteEmission.gameObject.SetActive(true);              
             }
-            _settingsZoomingCard.ManaCost.text = thisCardSettings._manaCost.ToString();
-            _settingsZoomingCard.AtackDamage.text = thisCardSettings._atackDamage.ToString();
-            _settingsZoomingCard.Healt.text = thisCardSettings._healt.ToString();
-            _settingsZoomingCard.Description.text = thisCardSettings._description;
+            _settingsZoomingCard.ManaCost.text = thisCardSettings._manaCostCard.ToString();
+            _settingsZoomingCard.AtackDamage.text = thisCardSettings._atackDamageCard.ToString();
+            _settingsZoomingCard.Healt.text = thisCardSettings._healtCard.ToString();
+            _settingsZoomingCard.Description.text = thisCardSettings._descriptionCard;
             _settingsZoomingCard.SpriteCard.sprite = thisCardSettings._spriteCard;
-            _settingsZoomingCard.Name.text = thisCardSettings._name;
+            _settingsZoomingCard.Name.text = thisCardSettings._nameCard;
             
             _zoomingCard.gameObject.SetActive(true);            
         }
@@ -76,12 +76,12 @@ namespace Hearthstone
         public void OnPointerClick(PointerEventData eventData)
         {
             if(gameObject.tag == "CardTemplate")
-                _creatingDeck.AddCardInDeck(_settingsChioseCard.Id);
+                _creatingDeck.AddContent(_settingsChioseCard.Id);
             if(gameObject.tag == "ChoiseCard")
             {
-                _creatingDeck.RemoveCardInDeck(_settingsChioseCard.Id);
+                _creatingDeck.RemoveContent(_settingsChioseCard.Id);
                 Destroy(this.gameObject);
-                _zoomingCard.gameObject.SetActive(false);
+                //_zoomingCard.gameObject.SetActive(false);
             }
         }
     }

@@ -41,7 +41,7 @@ namespace Hearthstone
                 Union(_7manaCostCard).ToList();
             foreach(CardSO card in _resultCollection)
             {
-                _cardsDictionary.Add(card._id, card);
+                _cardsDictionary.Add(card._idCard, card);
             }
         }
 
@@ -55,12 +55,12 @@ namespace Hearthstone
             for(int i = 0; i <= _cardTemplatePrefabs.Length-1; i++)
             {
                 _cardTemplatePrefabs[i].SpriteCard.sprite = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._spriteCard;
-                _cardTemplatePrefabs[i].Id = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._id;
-                _cardTemplatePrefabs[i].ManaCost.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._manaCost.ToString();
-                _cardTemplatePrefabs[i].AtackDamage.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._atackDamage.ToString();
-                _cardTemplatePrefabs[i].Healt.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._healt.ToString();
-                _cardTemplatePrefabs[i].Name.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._name.ToString();
-                _cardTemplatePrefabs[i].Description.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._description.ToString();
+                _cardTemplatePrefabs[i].Id = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._idCard;
+                _cardTemplatePrefabs[i].ManaCost.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._manaCostCard.ToString();
+                _cardTemplatePrefabs[i].AtackDamage.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._atackDamageCard.ToString();
+                _cardTemplatePrefabs[i].Healt.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._healtCard.ToString();
+                _cardTemplatePrefabs[i].Name.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._nameCard.ToString();
+                _cardTemplatePrefabs[i].Description.text = _resultCollection[i + (_pageCounter * _cardTemplatePrefabs.Length)]._descriptionCard.ToString();
             }
         }
 

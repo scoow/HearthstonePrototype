@@ -2,8 +2,7 @@
 namespace Hearthstone
 {    public interface ICreating
     {
-        void AddCardInDeck(int cardId);
-        void RemoveCardInDeck(int cardId);
-
+        void AddContent(int value);
+        void RemoveContent(int value);
     }
 }

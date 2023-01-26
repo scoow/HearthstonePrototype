@@ -10,9 +10,15 @@ namespace Hearthstone
         /// </summary>
         public GameObject _prefabChioseCardSettings;
         /// <summary>
+        /// префаб шаблона созданной колоды
+        /// </summary>
+        public GameObject _prefabTemplateDeck;
+        /// <summary>
         /// список ID выбранных карт в колоде
         /// </summary>
         public List<int> _contentDeck;
+
+        private HeroType _heroType;
         public IReadable _readable;
         private ISerialization _serialization;
 
@@ -27,17 +33,17 @@ namespace Hearthstone
         {
             _serialization.SaveDeck(_contentDeck);
         }
-        public void AddCardInDeck(int cardId)
+        public void AddContent(int cardId)
         {
             GameObject obj = Instantiate(_prefabChioseCardSettings, transform);
             CardSettings addCardSettings = obj.GetComponent<CardSettings>();
             CardSO cardSettings = _readable.GetCard(cardId);
             addCardSettings.Id = cardId;
-            addCardSettings.Name.text = cardSettings._name;
-            addCardSettings.ManaCost.text = cardSettings._manaCost.ToString();            
+            addCardSettings.Name.text = cardSettings._nameCard;
+            addCardSettings.ManaCost.text = cardSettings._manaCostCard.ToString();            
             _contentDeck.Add(cardId);    
         }
-        public void RemoveCardInDeck(int cardId)
+        public void RemoveContent(int cardId)
         {            
             foreach(int id in _contentDeck)
             {
