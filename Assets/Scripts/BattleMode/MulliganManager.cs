@@ -5,6 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/*
+ * Описание стадий муллигана:
+1. 3 или 4 карты вылетают из колоды
+2. игрок выбирает, какие хочет убрать
+3. выбранные карты уходят, на их место приходят случайные из колоды
+4. оставшиеся карты попадают в руку
+ */
+
 namespace Hearthstone
 {
     public class MulliganManager : MonoBehaviour
@@ -32,7 +40,9 @@ namespace Hearthstone
 
             MulliganStage1();
             await UniTask.Delay(TimeSpan.FromSeconds(5));
-            MulliganStage3();
+
+
+            //MulliganStage3();
         }
 
         private async void MulliganStage1()

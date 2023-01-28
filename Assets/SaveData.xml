@@ -1,18 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <SaveDeck>
   <NameDeck Название="Воин_Пират">
-    <IdCard>201</IdCard>
     <IdCard>103</IdCard>
-    <IdCard>104</IdCard>
-    <IdCard>301</IdCard>
-    <IdCard>302</IdCard>
+    <IdCard>102</IdCard>
   </NameDeck>
   <NameDeck Название="Воин_Пират">
-    <IdCard>400</IdCard>
-    <IdCard>401</IdCard>
-    <IdCard>403</IdCard>
-    <IdCard>404</IdCard>
-    <IdCard>502</IdCard>
-    <IdCard>504</IdCard>
+    <IdCard>103</IdCard>
+    <IdCard>102</IdCard>
+  </NameDeck>
+  <NameDeck Название="Воин_Пират">
+    <IdCard>103</IdCard>
+    <IdCard>102</IdCard>
+  </NameDeck>
+  <NameDeck Название="Воин_Пират">
+    <IdCard>103</IdCard>
+    <IdCard>102</IdCard>
   </NameDeck>
 </SaveDeck>

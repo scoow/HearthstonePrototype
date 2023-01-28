@@ -30,4 +30,11 @@ namespace Hearthstone
         DeckBuilder,
         MainMenu
     }
+    public enum MulliganCardPositionEnum
+    {
+        First,
+        Second,
+        Third,
+        Fourth
+    }
 }
