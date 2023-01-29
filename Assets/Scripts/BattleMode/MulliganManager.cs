@@ -22,16 +22,22 @@ namespace Hearthstone
         [SerializeField]
         private GameObject _playerDeck;
 
-
         private List<MulliganCardPosition> _mulliganCardsPositions;//якори дл€ вылетающих карт
         private List<MulliganCard> _mulliganCards;//—ами карты
         private MulliganConfirmButton _mulliganConfirmButton;
+
+        private List<Hand> _hands;
+        private Hand _firstPlayerHand;
         private async void Start()
         {
             _mulliganConfirmButton = FindObjectOfType<MulliganConfirmButton>();
             _mulliganConfirmButton.Init();
             _mulliganConfirmButton.HideButton();
             _mulliganConfirmButton.onClick.AddListener(MulliganStage3);
+
+            _hands = new List<Hand>();
+            _hands = FindObjectsOfType<Hand>().ToList();
+            _firstPlayerHand = _hands.Where(hand => hand._side == Players.First).FirstOrDefault();
 
             _mulliganCardsPositions = new List<MulliganCardPosition>();
             _mulliganCardsPositions = FindObjectsOfType<MulliganCardPosition>().ToList();
@@ -71,6 +77,7 @@ namespace Hearthstone
 
         private async void MulliganStage3()
         {
+            _mulliganConfirmButton.HideButton();
             MulliganCard _card;
             int i = 0;
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
@@ -83,6 +90,33 @@ namespace Hearthstone
                 }
                 i++;
             }
+            await UniTask.Delay(TimeSpan.FromSeconds(3));
+            MulliganStage4();
         }
+        private async void MulliganStage4()
+        {
+            MulliganCard _card;
+            int i = 0;
+            foreach (MulliganCardPosition position in _mulliganCardsPositions)
+            {
+                _card = _mulliganCards[i];
+                if (_card.Selected)
+                {
+                    _ = _card.StartMulliganAsync(_card.transform.position, position.transform.position, _card.transform.rotation, position.transform.rotation, _time);
+                    await UniTask.Delay(TimeSpan.FromSeconds(0.5));
+                }
+                i++;
+            }
+            i = 0;
+            foreach (MulliganCardPosition position in _mulliganCardsPositions)
+            {
+                _card = _mulliganCards[i];
+                _ = _card.StartMulliganAsync(position.transform.position, _firstPlayerHand.transform.position, position.transform.rotation, _firstPlayerHand.transform.rotation, _time);
+                await UniTask.Delay(TimeSpan.FromSeconds(0.5));
+                i++;
+            }
+
+        }
+
     }
 }

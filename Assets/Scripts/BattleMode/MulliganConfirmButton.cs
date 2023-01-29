@@ -6,13 +6,10 @@ namespace Hearthstone
     public class MulliganConfirmButton : Button
     {
         private Image _image;
-        //private Button _button;
 
         public void Init()
         {
-           
             _image = GetComponent<Image>();
-            //_button = GetComponent<Button>();
         }
         public void ShowButton()
         {
