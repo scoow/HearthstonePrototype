@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
   m_Name: 302_IronfurGrizzly
   m_EditorClassIdentifier: 
-  _name: Ironfur Grizzly
-  _description: "\u0413\u0440\u0438\u0437\u043B\u0438 \u043F\u043E\u0436\u0438\u0440\u0430\u0442\u0435\u043B\u044C
-    \u0443\u0441\u0430\u0442\u044B\u0445 \u043C\u0430\u0433\u043E\u0432"
-  _id: 302
+  _nameCard: "\u0413\u0440\u0438\u0437\u043B\u0438-\u0441\u0442\u0430\u043B\u0435\u043C\u0435\u0445"
+  _descriptionCard: "\u041F\u0440\u043E\u0432\u043E\u043A\u0430\u0446\u0438\u044F"
+  _idCard: 302
   _spriteCard: {fileID: 21300000, guid: a06af4ea5295c4747813211da51e3f8f, type: 3}
-  _manaCost: 3
-  _atackDamage: 3
-  _healt: 3
+  _manaCostCard: 3
+  _atackDamageCard: 3
+  _healtCard: 3

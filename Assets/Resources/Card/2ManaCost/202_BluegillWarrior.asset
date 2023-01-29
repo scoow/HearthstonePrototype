@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
   m_Name: 202_BluegillWarrior
   m_EditorClassIdentifier: 
-  _name: Bluegill Warrior
-  _description: "\u0421\u0443\u043F\u0435\u0440 \u043C\u0443\u0440\u043B\u043E\u043A"
-  _id: 202
+  _nameCard: "\u0412\u043E\u0438\u043D \u0421\u0438\u043D\u0435\u0436\u0430\u0431\u0440\u044B\u0445"
+  _descriptionCard: "\u0420\u044B\u0432\u043E\u043A"
+  _idCard: 202
   _spriteCard: {fileID: 21300000, guid: 7ccb249ec8a0c4a49b0d2b6a61d43185, type: 3}
-  _manaCost: 2
-  _atackDamage: 2
-  _healt: 1
+  _manaCostCard: 2
+  _atackDamageCard: 2
+  _healtCard: 1

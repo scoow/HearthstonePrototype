@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
   m_Name: 304_RaidLeader
   m_EditorClassIdentifier: 
-  _name: Raid Leader
-  _description: "\u0441\u0430\u043C\u044B\u0439 \u0433\u043B\u0430\u0432\u043D\u044B\u0439
-    \u043E\u0440\u043A"
-  _id: 304
+  _nameCard: "\u041B\u0438\u0434\u0435\u0440 \u0440\u0435\u0439\u0434\u0430"
+  _descriptionCard: "\u0414\u0440\u0443\u0433\u0438\u0435 \u0432\u0430\u0448\u0438
+    \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0430 \u043F\u043E\u043B\u0443\u0447\u0430\u044E\u0442
+    +1 \u043A \u0430\u0442\u0430\u043A\u0435."
+  _idCard: 304
   _spriteCard: {fileID: 21300000, guid: c9d1393842953294886c255ad6e5a0a2, type: 3}
-  _manaCost: 3
-  _atackDamage: 2
-  _healt: 3
+  _manaCostCard: 2
+  _atackDamageCard: 2
+  _healtCard: 2

@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
   m_Name: 204_KoboldGeomancer
   m_EditorClassIdentifier: 
-  _name: Kobold Geomancer
-  _description: "\u0421\u0432\u0435\u0447\u0435\u043D\u043E\u0441\u0435\u0446"
-  _id: 204
+  _nameCard: "\u041A\u043E\u0431\u043E\u043B\u044C\u0434-\u0433\u0435\u043E\u043C\u0430\u043D\u0442"
+  _descriptionCard: "\u0423\u0440\u043E\u043D \u043E\u0442 \u0437\u0430\u043A\u043B\u0438\u043D\u0430\u043D\u0438\u0439
+    +1"
+  _idCard: 204
   _spriteCard: {fileID: 21300000, guid: 0db8cd11a075eca45b3cfb873a17e8cc, type: 3}
-  _manaCost: 2
-  _atackDamage: 2
-  _healt: 2
+  _manaCostCard: 2
+  _atackDamageCard: 2
+  _healtCard: 2

@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
   m_Name: 201_Raptor
   m_EditorClassIdentifier: 
-  _name: Bloodfen Raptor
-  _description: "\u0413\u043E\u043B\u043E\u0434\u043D\u044B\u0439 \u0420\u0430\u043F\u0442\u043E\u0440"
-  _id: 201
-  _spriteCard: {fileID: 21300000, guid: 872ced3cece64474fbe31e5bf5e8ba1a, type: 3}
-  _manaCost: 2
-  _atackDamage: 2
-  _healt: 3
+  _nameCard: "\u042F\u0449\u0435\u0440 \u041A\u0440\u043E\u0432\u0430\u0432\u043E\u0439
+    \u0422\u043E\u043F\u0438"
+  _descriptionCard: 
+  _idCard: 201
+  _spriteCard: {fileID: 21300000, guid: 33a5ebd55da385744809cf70d541ab1e, type: 3}
+  _manaCostCard: 2
+  _atackDamageCard: 3
+  _healtCard: 2

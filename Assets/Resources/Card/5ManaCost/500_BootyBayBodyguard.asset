@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
   m_Name: 500_BootyBayBodyguard
   m_EditorClassIdentifier: 
-  _name: Booty Bay Bodyguard
-  _description: "\u0413\u043E\u0431\u043B\u0438\u043D \u0442\u0430\u043D\u043A"
-  _id: 500
+  _nameCard: "\u0413\u043E\u0431\u043B\u0438\u043D-\u0442\u0435\u043B\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u0435\u043B\u044C"
+  _descriptionCard: "\u041F\u0440\u043E\u0432\u043E\u043A\u0430\u0446\u0438\u044F"
+  _idCard: 500
   _spriteCard: {fileID: 21300000, guid: 3428492c2e4ebd9458da2213e1851423, type: 3}
-  _manaCost: 5
-  _atackDamage: 5
-  _healt: 4
+  _manaCostCard: 5
+  _atackDamageCard: 5
+  _healtCard: 4

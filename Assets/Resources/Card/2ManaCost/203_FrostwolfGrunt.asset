@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
   m_Name: 203_FrostwolfGrunt
   m_EditorClassIdentifier: 
-  _name: Frostwolf Grunt
-  _description: "\u041F\u0440\u043E\u0441\u0442\u043E \u043E\u0440\u043A"
-  _id: 203
+  _nameCard: "\u0411\u043E\u0435\u0446 \u0421\u0435\u0432\u0435\u0440\u043D\u043E\u0433\u043E
+    \u0412\u043E\u043B\u043A\u0430"
+  _descriptionCard: "\u041F\u0440\u043E\u0432\u043E\u043A\u0430\u0446\u0438\u044F"
+  _idCard: 203
   _spriteCard: {fileID: 21300000, guid: 05c8af509bd17d547bb8dea39d10bbf2, type: 3}
-  _manaCost: 2
-  _atackDamage: 2
-  _healt: 2
+  _manaCostCard: 2
+  _atackDamageCard: 2
+  _healtCard: 2

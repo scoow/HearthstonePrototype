@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
   m_Name: 305_RazorfenHunter
   m_EditorClassIdentifier: 
-  _name: RazorfenHunter
-  _id: 305
+  _nameCard: "\u041E\u0445\u043E\u0442\u043D\u0438\u0446\u0430 \u043D\u0430 \u0418\u0433\u043B\u043E\u0448\u043A\u0443\u0440\u044B\u0445"
+  _descriptionCard: "\u0411\u043E\u0435\u0432\u043E\u0439 \u043A\u043B\u0438\u0447:
+    \u043F\u0440\u0438\u0437\u044B\u0432\u0430\u0435\u0442 \u0432\u0435\u043F\u0440\u044F
+    1/1."
+  _idCard: 305
   _spriteCard: {fileID: 21300000, guid: 9b8b1a17da8d092478a415d0eaa433d5, type: 3}
-  _description: 
-  _manaCost: 3
-  _atackDamage: 2
-  _healt: 3
+  _manaCostCard: 3
+  _atackDamageCard: 2
+  _healtCard: 3

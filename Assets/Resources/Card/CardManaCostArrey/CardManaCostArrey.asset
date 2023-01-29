@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f695880ef46cf894b8f713dfa51895cd, type: 3}
+  m_Name: CardManaCostArrey
+  m_EditorClassIdentifier: 
+  _1manaCostCard:
+  - {fileID: 11400000, guid: 5d27859f41a414d4d87b60ffd68eeaea, type: 2}
+  - {fileID: 11400000, guid: 14cf26ddc7c6bf847b5537ce34427455, type: 2}
+  - {fileID: 11400000, guid: 8792891d1a1281a40a7afdc1c6624932, type: 2}
+  - {fileID: 11400000, guid: afb6ce3480492d1418e8d1806a8734b8, type: 2}
+  - {fileID: 11400000, guid: a0825f393cbd68943bf1ff2e21e388b9, type: 2}
+  _2manaCostCard:
+  - {fileID: 11400000, guid: 3b7aa1da868791842aba3b097f4a88a4, type: 2}
+  - {fileID: 11400000, guid: fa794e343e55c7849afb1bda2ffe48b3, type: 2}
+  - {fileID: 11400000, guid: 81b66fc080fe8b84a9f8e2b0b59bc82b, type: 2}
+  - {fileID: 11400000, guid: 67029cdb499cbae4888acb39894758e2, type: 2}
+  - {fileID: 11400000, guid: ba8a05cb7d9be8d42a2f9f62d14b58a0, type: 2}
+  - {fileID: 11400000, guid: ad02a2ce4dce0474a813026ff4563f85, type: 2}
+  - {fileID: 11400000, guid: 30d8a0d9d456b6e4bb9680b5e0e63f03, type: 2}
+  - {fileID: 11400000, guid: 646a79884e0c123498fffd247a5e2361, type: 2}
+  _3manaCostCard:
+  - {fileID: 11400000, guid: ab3bdbf15068cd44684cc75d8151e82b, type: 2}
+  - {fileID: 11400000, guid: 7377d90a9fcecbd45b2142512a5233c8, type: 2}
+  - {fileID: 11400000, guid: c047afca561dcdb4886948447176359e, type: 2}
+  - {fileID: 11400000, guid: cb69831a6794c9e48b06ef54fd123e72, type: 2}
+  - {fileID: 11400000, guid: df93998eaec65f446bf7e04eb4f6b9f4, type: 2}
+  - {fileID: 11400000, guid: 8d1995f9d9f270145877ab2d843efb85, type: 2}
+  - {fileID: 11400000, guid: 1a050837a0613e046b1d75158ff62083, type: 2}
+  - {fileID: 11400000, guid: 60e7c09b4896b6946bdbf36cccceb524, type: 2}
+  _4manaCostCard:
+  - {fileID: 11400000, guid: a40b2b9f4bee8cb488090ce416efb338, type: 2}
+  - {fileID: 11400000, guid: 8d0d8d47796e9774299668a943ecbd09, type: 2}
+  - {fileID: 11400000, guid: 7f59ef948bde7a7449a6441bbb51f644, type: 2}
+  - {fileID: 11400000, guid: 2b87d1f6c266dd6458e66fa101cc1ba8, type: 2}
+  - {fileID: 11400000, guid: 866e2a77c31e02b4d809bee55b0a0d2b, type: 2}
+  _5manaCostCard:
+  - {fileID: 11400000, guid: ab69ea6a258bf0542ad20f16f6f73298, type: 2}
+  - {fileID: 11400000, guid: ebb4a2e5353388e488a8e286a6bbc165, type: 2}
+  - {fileID: 11400000, guid: 68bd764c065558e4bb17c1d64d8b4c20, type: 2}
+  - {fileID: 11400000, guid: d31b37df3f7e4b34bbd417a89531f518, type: 2}
+  - {fileID: 11400000, guid: cb4b1bf7decfaee4e9ce1c2e0cbf17b7, type: 2}
+  _6manaCostCard:
+  - {fileID: 11400000, guid: 05a43f8ec14b26846b66f7ddce87bb59, type: 2}
+  - {fileID: 11400000, guid: ba0e7b8447c714d4291691bcdf85859e, type: 2}
+  - {fileID: 11400000, guid: fcff624bacd7ea246a6be201ee77bd10, type: 2}
+  _7manaCostCard:
+  - {fileID: 11400000, guid: 8b974bd8d69088048a19bee107299f04, type: 2}
+  _heroCollection:
+  - {fileID: 11400000, guid: 0bfc4b4b051b8e64fa0f310d7e7c4ca0, type: 2}
+  - {fileID: 11400000, guid: d0ec4fc3bc0fc384cbe8f267ccc95d9d, type: 2}
+  - {fileID: 11400000, guid: 130c2fbb024068340bcb5ccf5c652983, type: 2}
+  - {fileID: 11400000, guid: 204592dbc5508de418185b1ca9cbed8f, type: 2}
+  - {fileID: 11400000, guid: e715dc3a2e6a26d4f84bd70f1baacd96, type: 2}
+  - {fileID: 11400000, guid: 439abbe50aff4d14eadc540b3c53e24f, type: 2}
+  - {fileID: 11400000, guid: c97d126f89e583c44849b9a363a1d167, type: 2}
+  - {fileID: 11400000, guid: 88a157bb72a1a8b42ad79edb4311a53a, type: 2}

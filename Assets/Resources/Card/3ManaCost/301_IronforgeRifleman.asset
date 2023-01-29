@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
   m_Name: 301_IronforgeRifleman
   m_EditorClassIdentifier: 
-  _name: Ironforge Rifleman
-  _description: "\u0411\u0440\u0430\u0442\u0443\u0445\u0430 \u0443\u0441\u0430\u0442\u043E\u0433\u043E
-    \u043C\u0430\u0433\u0430"
-  _id: 301
+  _nameCard: "\u0420\u0443\u0436\u0435\u0439\u043D\u0438\u043A \u0421\u0442\u0430\u043B\u044C\u0433\u043E\u0440\u043D\u0430"
+  _descriptionCard: "\u0411\u043E\u0435\u0432\u043E\u0439 \u043A\u043B\u0438\u0447:
+    \u043D\u0430\u043D\u043E\u0441\u0438\u0442 1 \u0435\u0434. \u0443\u0440\u043E\u043D\u0430."
+  _idCard: 301
   _spriteCard: {fileID: 21300000, guid: dbf71b653bd7e154185008476e7e5166, type: 3}
-  _manaCost: 3
-  _atackDamage: 2
-  _healt: 2
+  _manaCostCard: 3
+  _atackDamageCard: 2
+  _healtCard: 2
