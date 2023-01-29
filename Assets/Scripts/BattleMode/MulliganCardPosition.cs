@@ -11,6 +11,7 @@ namespace Hearthstone
         private bool _selected = false;
 
         private SpriteRenderer _spriteRenderer;
+        private MulliganCard _mulliganCard;
 
         private void Awake()
         {
@@ -24,6 +25,11 @@ namespace Hearthstone
         private void SwitchRenderer(bool selected)
         {
             _spriteRenderer.enabled = selected;
+            _mulliganCard.Selected = selected;
+        }
+        public void SetCurrentCard(MulliganCard card)
+        {
+            _mulliganCard = card;
         }
     }
 }
