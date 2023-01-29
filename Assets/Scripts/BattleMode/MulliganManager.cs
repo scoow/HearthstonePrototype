@@ -76,7 +76,7 @@ namespace Hearthstone
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
                 _card = _mulliganCards[i];
-                if (!_card.Selected)
+                if (_card.Selected)
                 {
                     _ = _card.StartMulliganAsync(position.transform.position, _playerDeck.transform.position, position.transform.rotation, _playerDeck.transform.rotation, _time);
                     await UniTask.Delay(TimeSpan.FromSeconds(0.5));
