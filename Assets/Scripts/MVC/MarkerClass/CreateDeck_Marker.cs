@@ -1,18 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CreateDeck_Marker : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private InputField _inputField;    
+    public string _currentDeckName;
+    /// <summary>
+    /// префаб шаблона созданной колоды
+    /// </summary>
+    public GameObject _prefabTemplateDeck;
+
+
+    private void Awake()
     {
-        
+        _inputField = FindObjectOfType<InputTextMarker>().GetComponent<InputField>();
+        _inputField.onEndEdit.AddListener(ToText);
+    }
+    public void ToText(string inputText)
+    {        
+        _currentDeckName = inputText;
+        Debug.Log(_currentDeckName);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

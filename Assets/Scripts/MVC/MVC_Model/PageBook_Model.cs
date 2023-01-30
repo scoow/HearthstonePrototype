@@ -42,7 +42,8 @@ namespace Hearthstone
 
     public enum CreateDeckState
     {
+        ChoiseHero,
         ChoiseDeck,
-        CreateDeck
+        CreateDeck,
     }
 }

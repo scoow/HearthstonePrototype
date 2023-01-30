@@ -8,17 +8,12 @@ namespace Hearthstone
         /// <summary>
         /// префаб шаблона отображающего краткие настройки выбранной карты
         /// </summary>
-        public GameObject _prefabChioseCardSettings;
-        /// <summary>
-        /// префаб шаблона созданной колоды
-        /// </summary>
-        public GameObject _prefabTemplateDeck;
+        public GameObject _prefabChioseCardSettings;        
         /// <summary>
         /// список ID выбранных карт в колоде
         /// </summary>
         public List<int>  _contentDeck;
-
-        private HeroType _heroType;
+        
         public IReadable _readable;
         private ISerialization _serialization;
 

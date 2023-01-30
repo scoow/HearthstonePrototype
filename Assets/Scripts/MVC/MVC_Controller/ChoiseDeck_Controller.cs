@@ -21,29 +21,37 @@ public class ChoiseDeck_Controller : MonoBehaviour
 
     private void Start()
     {
-        ChangeWiew();
+        ChoiseDeck();        
     }
 
-    public void ChangeWiew()
+    public void ChoiseDeck() => ChangeOFState(CreateDeckState.ChoiseDeck);   
+    public void CreateDeck() => ChangeOFState(CreateDeckState.CreateDeck);
+    public void ChoiseHero() => ChangeOFState(CreateDeckState.ChoiseHero);  
+
+    private void ChangeOFState(CreateDeckState createDeckState)
     {
-        if(_choiseHero_Marker.gameObject.activeInHierarchy)
+        switch (createDeckState)
         {
-            _createDeck_Marker.gameObject.SetActive(true);
-            _deckCreateController.gameObject.SetActive(true);
-            //_deckCollectionController.gameObject.SetActive(false);
-            _choiseHero_Marker.gameObject.SetActive(false);
-            
-            return;
+            case CreateDeckState.ChoiseHero://
+                _choiseHero_Marker.gameObject.SetActive(true);                
+                _createDeck_Marker.gameObject.SetActive(false);
+                break;
+            case CreateDeckState.ChoiseDeck://
+                _choiseHero_Marker.gameObject.SetActive(false);
+                _createDeck_Marker.gameObject.SetActive(true);
+                _deckCreateController.gameObject.SetActive(false);
+                _deckCollectionController.gameObject.SetActive(true);                
+                break;
+            case CreateDeckState.CreateDeck://
+                _choiseHero_Marker.gameObject.SetActive(false);
+                _createDeck_Marker.gameObject.SetActive(true);
+                _deckCreateController.gameObject.SetActive(true);
+                _deckCollectionController.gameObject.SetActive(false);                
+                break;
+            default:
+                break;
         }
-        if(_createDeck_Marker.gameObject.activeInHierarchy)
-        {
-            _choiseHero_Marker.gameObject.SetActive(true);
-            _deckCreateController.gameObject.SetActive(true);
-            _createDeck_Marker.gameObject.SetActive(false);
-            _deckCollectionController.gameObject.SetActive(false);
-            
-            _pageBookModel._createDeckState = CreateDeckState.CreateDeck;
-            return ;
-        }
+
+
     }
 }
