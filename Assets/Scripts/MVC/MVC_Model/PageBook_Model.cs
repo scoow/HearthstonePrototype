@@ -18,14 +18,16 @@ namespace Hearthstone
         /// SO сборник всех карт
         /// </summary>
         public CardCollectionSO_Model cardCollectionSO_Model;
+        /// <summary>
+        /// общий список всех карт по ID по возрастающей
+        /// </summary>
         [HideInInspector]
         public List<CardSO_Model> _resultCollection = new List<CardSO_Model>();
-
-        public CreateDeckState _createDeckState = CreateDeckState.ChoiseDeck;       
+        public CreateDeckState _createDeckState ;       
 
 
         private void Awake()
-        {            
+        {                
             _resultCollection =   cardCollectionSO_Model._1manaCostCard.
                             Union(cardCollectionSO_Model._2manaCostCard).
                             Union(cardCollectionSO_Model._3manaCostCard).
@@ -40,6 +42,9 @@ namespace Hearthstone
         }
     }
 
+    /// <summary>
+    /// Состояния выбора
+    /// </summary>
     public enum CreateDeckState
     {
         ChoiseHero,

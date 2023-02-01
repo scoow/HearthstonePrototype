@@ -1,21 +1,46 @@
 using Hearthstone;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class DeckCollection_Controller : MonoBehaviour
+namespace Hearthstone
 {
-    
-    public void AddContent(int cardId)
+    public class DeckCollection_Controller : MonoBehaviour
     {
-        /*GameObject obj = Instantiate(_prefabChioseCardSettings, transform);
-        CardSettings_Model addCardSettings = obj.GetComponent<CardSettings_Model>();
-        CardSO_Model cardSettings = _readable.GetCard(cardId);
-        addCardSettings.Id = cardId;
-        addCardSettings.Name.text = cardSettings._nameCard;
-        addCardSettings.ManaCost.text = cardSettings._manaCostCard.ToString();
-        _contentDeck.Add(cardId);
-        Debug.Log($"В колоду добавленна карта с ID = {cardId}");*/
+        private Text _nameDeck;
+        public Text Name { get => _nameDeck; set => _nameDeck = value; }
+
+        public Transform _deckCollection;
+        /// <summary>
+        /// префаб шаблона созданной колоды
+        /// </summary>
+        public GameObject _prefabTemplateDeck;
+        private ContentDeck_Model _contentDeck_Model;
+
+        private void Start()
+        {
+            _contentDeck_Model = GetComponent<ContentDeck_Model>();
+        }
+
+        public void AddDeckInCollection()
+        {
+            GameObject obj = Instantiate(_prefabTemplateDeck, _deckCollection);
+            obj.GetComponentInChildren<TextCardNameMarker>().GetComponent<Text>().text = _contentDeck_Model._currentDeckName;
+            //_nameDeck.text = _contentDeck_Model._currentDeckName;
+            Debug.Log($"Назовём колоду {_nameDeck}");
+            /*addCardSettings.Name.text = cardSettings._nameCard;
+            addCardSettings.ManaCost.text = cardSettings._manaCostCard.ToString();
+            _contentDeck_Model._contentDeck.Add(cardId);
+            Debug.Log($"В колоду добавленна карта с ID = {cardId}");*/
+
+        }
+
+        public void RemoveContent(int value)
+        {
+
+        }
     }
 
 }

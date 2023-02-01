@@ -20,5 +20,4 @@ namespace Hearthstone
             cardCollectionSO_Model._deckSO_Collection.Add(nameDeck, _contentDeck_Model._contentDeck);
         }
     }
-
 }

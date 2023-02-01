@@ -12,7 +12,8 @@ namespace Hearthstone
         /// <summary>
         /// ссылка на обект с интерфейсом Icreating
         /// </summary>
-        private ICreating _creatingDeck;
+        private ICreating _contentDeckController;
+        private ICreating _cardController;
         /// <summary>
         /// параметры выбранной карты
         /// </summary>
@@ -44,20 +45,20 @@ namespace Hearthstone
                 _spriteEmission = GetComponentInChildren<EmissionMarker>().gameObject.GetComponent<Renderer>();           
             
             
-            _creatingDeck = FindObjectOfType<ContentDeck_Model>();
+            _contentDeckController = FindObjectOfType<ContentDeck_Controller>();
         }
 
         private void Start()
-        {
+        {           
             _zoomingCard.gameObject.SetActive(false);
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
             
-                if (gameObject.tag == "CardTemplate")
-                    _spriteEmission.gameObject.SetActive(true);
-                _choiseCardView.ChangeViewCard(_settingsZoomingCard, _settingsChioseCard.Id);
+            if (gameObject.tag == "CardTemplate")
+                _spriteEmission.gameObject.SetActive(true);
+                _choiseCardView.ChangeViewCard(_settingsZoomingCard, _settingsChioseCard.Id);            
                 _zoomingCard.gameObject.SetActive(true);
                                   
         }
@@ -67,8 +68,8 @@ namespace Hearthstone
             if(eventData.pointerEnter != null)
             {
                 if (gameObject.tag == "CardTemplate")
-                    _spriteEmission.gameObject.SetActive(false);
-                _zoomingCard.gameObject.SetActive(false);
+                    _spriteEmission.gameObject.SetActive(false);                
+                    _zoomingCard.gameObject.SetActive(false);
             }                        
         }
 
@@ -77,11 +78,11 @@ namespace Hearthstone
             if(_pageBookModel._createDeckState == CreateDeckState.CreateDeck)
             {
                 if (gameObject.tag == "CardTemplate")
-                    _creatingDeck.AddContent(_settingsChioseCard.Id);
+                    _contentDeckController.AddContent(_settingsChioseCard.Id);
                 if (gameObject.tag == "ChoiseCard")
                 {
-                    _creatingDeck.RemoveContent(_settingsChioseCard.Id);
-                    Destroy(this.gameObject);
+                    _contentDeckController.RemoveContent(_settingsChioseCard.Id);
+                    Destroy(this.gameObject);                    
                     _zoomingCard.gameObject.SetActive(false);
                 }
             }            
