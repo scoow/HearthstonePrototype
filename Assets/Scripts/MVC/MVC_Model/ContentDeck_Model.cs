@@ -6,15 +6,11 @@ namespace Hearthstone
 {
     public class ContentDeck_Model : MonoBehaviour
     {
-        private InputField _inputField;
+        public InputField _inputField;
         /// <summary>
         /// текущее название колоды
         /// </summary>
-        public string _currentDeckName;
-        /// <summary>
-        /// префаб шаблона созданной колоды
-        /// </summary>
-        //public GameObject _prefabTemplateDeck;
+        public string _currentDeckName;        
         /// <summary>
         /// префаб шаблона отображающего краткие настройки выбранной карты
         /// </summary>

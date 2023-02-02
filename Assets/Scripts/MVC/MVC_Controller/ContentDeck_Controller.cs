@@ -7,12 +7,14 @@ namespace Hearthstone
     {
         private IReadable _readable;      
         private ContentDeck_Model _contentDeck_Model;
-        public Transform _contentDeckTransform;        
+        public Transform _contentDeckTransform;
+        
 
         private void Start()
         {
-            _contentDeck_Model = GetComponent<ContentDeck_Model>();
-            _readable = FindObjectOfType<PageBook_Controller>();    
+            _contentDeck_Model = GetComponent<ContentDeck_Model>();            
+            _readable = FindObjectOfType<PageBook_Controller>();
+            
         }
 
         public void AddContent(int cardId) 
@@ -38,6 +40,14 @@ namespace Hearthstone
                     return;
                 }
             }
+        }
+
+        /// <summary>
+        /// очищение списка префабов выбранных карт
+        /// </summary>
+        public void ClearContent()
+        {
+            foreach (Transform child in _contentDeckTransform) Destroy(child.gameObject);
         }
 
         public string GetNameDeck()
