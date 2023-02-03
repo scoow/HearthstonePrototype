@@ -88,6 +88,7 @@ namespace Hearthstone
                     _ = _card.StartMulliganAsync(position.transform.position, _playerDeck.transform.position, position.transform.rotation, _playerDeck.transform.rotation, _time);
                     await UniTask.Delay(TimeSpan.FromSeconds(0.5));
                 }
+                
                 i++;
             }
             await UniTask.Delay(TimeSpan.FromSeconds(5));
@@ -100,20 +101,21 @@ namespace Hearthstone
             int i = 0;
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
-                position.SwitchRenderer(false);
                 _card = _mulliganCards[i];
                 if (_card.Selected)
                 {
                     _ = _card.StartMulliganAsync(_card.transform.position, position.transform.position, _card.transform.rotation, position.transform.rotation, _time);
                     await UniTask.Delay(TimeSpan.FromSeconds(0.5));
                 }
+                position.SwitchRenderer(false);
                 i++;
             }
             i = 0;
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
                 _card = _mulliganCards[i];
-                _ = _card.StartMulliganAsync(position.transform.position, _firstPlayerHand.transform.position, position.transform.rotation, _firstPlayerHand.transform.rotation, _time);
+                _ = _card.StartMulliganAsync(position.transform.position, _firstPlayerHand.GetLastCardPosition(), position.transform.rotation, _firstPlayerHand.transform.rotation, _time);
+                _firstPlayerHand.AddCardToHand();
                 await UniTask.Delay(TimeSpan.FromSeconds(0.5));
                 i++;
             }
