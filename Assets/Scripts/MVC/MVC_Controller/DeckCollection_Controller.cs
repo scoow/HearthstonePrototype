@@ -31,12 +31,13 @@ namespace Hearthstone
         {
             //if (nameDeck == null) nameDeck = _contentDeck_Model._currentDeckName;
             GameObject obj = Instantiate(_prefabTemplateDeck, _deckCollection);  
-            obj.name = obj.GetComponentInChildren<TextCardNameMarker>().GetComponent<Text>().text;           
-            obj.name = _contentDeck_Model._currentDeckName;
-            _memory_Controller.SaveDeck();
+            obj.GetComponentInChildren<TextCardNameMarker>().GetComponent<Text>().text = _contentDeck_Model._currentDeckName;                   
             _contentDeck_Model._inputField.text = "";
             _contentDeck_Controller.ClearContent();
-                      
+            if(_pageBookModel._createDeckState == CreateDeckState.CreateDeck)
+            {
+                _memory_Controller.SaveDeck();
+            }
             
         }       
 
