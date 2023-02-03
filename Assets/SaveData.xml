@@ -1,15 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<SaveDeck>
-  <NameDeck Название="Воин_Пират">
-    <IdCard>200</IdCard>
-    <IdCard>201</IdCard>
-    <IdCard>202</IdCard>
-    <IdCard>103</IdCard>
-    <IdCard>102</IdCard>
-    <IdCard>101</IdCard>
-    <IdCard>100</IdCard>
-    <IdCard>104</IdCard>
-    <IdCard>201</IdCard>
-    <IdCard>202</IdCard>
-  </NameDeck>
-</SaveDeck>
+<SaveDeckCollection>
+  <DeckName NameValue="Шаман">
+    <CardId>8000</CardId>
+    <CardId>102</CardId>
+    <CardId>200</CardId>
+    <CardId>104</CardId>
+    <CardId>206</CardId>
+    <CardId>205</CardId>
+  </DeckName>
+</SaveDeckCollection>
