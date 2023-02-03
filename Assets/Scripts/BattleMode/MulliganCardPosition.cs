@@ -22,7 +22,7 @@ namespace Hearthstone
             _selected = !_selected;
             SwitchRenderer(_selected);
         }
-        private void SwitchRenderer(bool selected)
+        public void SwitchRenderer(bool selected)
         {
             _spriteRenderer.enabled = selected;
             _mulliganCard.Selected = selected;

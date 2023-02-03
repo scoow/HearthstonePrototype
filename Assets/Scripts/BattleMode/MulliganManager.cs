@@ -90,15 +90,17 @@ namespace Hearthstone
                 }
                 i++;
             }
-            await UniTask.Delay(TimeSpan.FromSeconds(3));
+            await UniTask.Delay(TimeSpan.FromSeconds(5));
             MulliganStage4();
         }
         private async void MulliganStage4()
         {
+            _mulliganConfirmButton.HideButton();
             MulliganCard _card;
             int i = 0;
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
+                position.SwitchRenderer(false);
                 _card = _mulliganCards[i];
                 if (_card.Selected)
                 {
@@ -115,7 +117,6 @@ namespace Hearthstone
                 await UniTask.Delay(TimeSpan.FromSeconds(0.5));
                 i++;
             }
-
         }
 
     }
