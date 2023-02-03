@@ -50,7 +50,7 @@ namespace Hearthstone
                 card.gameObject.SetActive(true);
 
             MulliganStage1();
-            await UniTask.Delay(TimeSpan.FromSeconds(5));
+            await UniTask.Delay(TimeSpan.FromSeconds(3));
 
 
             MulliganStage2();
@@ -88,10 +88,9 @@ namespace Hearthstone
                     _ = _card.StartMulliganAsync(position.transform.position, _playerDeck.transform.position, position.transform.rotation, _playerDeck.transform.rotation, _time);
                     await UniTask.Delay(TimeSpan.FromSeconds(0.5));
                 }
-                
                 i++;
             }
-            await UniTask.Delay(TimeSpan.FromSeconds(5));
+            await UniTask.Delay(TimeSpan.FromSeconds(4));
             MulliganStage4();
         }
         private async void MulliganStage4()
@@ -110,6 +109,7 @@ namespace Hearthstone
                 position.SwitchRenderer(false);
                 i++;
             }
+            await UniTask.Delay(TimeSpan.FromSeconds(4));
             i = 0;
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
