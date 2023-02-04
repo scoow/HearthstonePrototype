@@ -4,6 +4,6 @@ namespace Hearthstone
 {
     public class TextCardNameMarker : MonoBehaviour
     {
-
+ 
     }
 }

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hearthstone
@@ -7,8 +6,7 @@ namespace Hearthstone
     public class PageBook_Controller : MonoBehaviour, IReadable
     {         
         private PageBook_Model _pageBook_Model;
-        private PageBook_View _pageBook_View;
-        //private IUpdate _pageBook_View;
+        private PageBook_View _pageBook_View;        
         private int _maxPageNumber;
         private int _minPageNumber = 0;
         private int _pageCounter = 0;

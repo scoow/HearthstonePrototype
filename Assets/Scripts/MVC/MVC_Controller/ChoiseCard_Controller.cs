@@ -44,7 +44,6 @@ namespace Hearthstone
             if(gameObject.tag == "CardTemplate")            
                 _spriteEmission = GetComponentInChildren<EmissionMarker>().gameObject.GetComponent<Renderer>();           
             
-            
             _contentDeckController = FindObjectOfType<ContentDeck_Controller>();
         }
 
@@ -54,13 +53,11 @@ namespace Hearthstone
         }
 
         public void OnPointerEnter(PointerEventData eventData)
-        {
-            
+        {            
             if (gameObject.tag == "CardTemplate")
                 _spriteEmission.gameObject.SetActive(true);
                 _choiseCardView.ChangeViewCard(_settingsZoomingCard, _settingsChioseCard.Id);            
-                _zoomingCard.gameObject.SetActive(true);
-                                  
+                _zoomingCard.gameObject.SetActive(true);                                 
         }
 
         public void OnPointerExit(PointerEventData eventData)

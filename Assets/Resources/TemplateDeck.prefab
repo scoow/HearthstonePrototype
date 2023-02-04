@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7016263328137091317}
   - component: {fileID: 7016263328137091307}
   - component: {fileID: 7016263328137091306}
-  - component: {fileID: 5996393877189494752}
+  - component: {fileID: 3016588681552457389}
+  - component: {fileID: 1252050348037111542}
   m_Layer: 0
   m_Name: TextNameDeck
   m_TagString: Untagged
@@ -81,7 +82,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Name Deck
---- !u!114 &5996393877189494752
+--- !u!114 &3016588681552457389
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,9 +91,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 7016263328137091316}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 131785a686f214740a80c5278323c120, type: 3}
+  m_Script: {fileID: 11500000, guid: 33c5f2cb815e37a48a4206e34b75fd9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _deckName: {fileID: 7016263328137091306}
+  _emisionImage: {fileID: 7016263328677344890}
+--- !u!114 &1252050348037111542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7016263328137091316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3016588681552457389}
+          m_TargetAssemblyTypeName: TextDeckNameMarker, Assembly-CSharp
+          m_MethodName: ChangeState
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &7016263328677344900
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,6 +136,7 @@ GameObject:
   - component: {fileID: 7016263328677344901}
   - component: {fileID: 7016263328677344891}
   - component: {fileID: 7016263328677344890}
+  - component: {fileID: 1783471559879418325}
   m_Layer: 0
   m_Name: BackgroundDeck
   m_TagString: Untagged
@@ -152,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7169812, g: 0.7061588, b: 0.7061588, a: 1}
+  m_Color: {r: 0.6745098, g: 0.6745098, b: 0.6745098, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -169,6 +202,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1783471559879418325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7016263328677344900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9f5dd6f3b9af334da4f904878b02378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7016263328785076269
 GameObject:
   m_ObjectHideFlags: 0

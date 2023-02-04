@@ -25,8 +25,7 @@ namespace Hearthstone
             addCardSettings.Id = cardId;
             addCardSettings.Name.text = cardSettings._nameCard;
             addCardSettings.ManaCost.text = cardSettings._manaCostCard.ToString();
-            _contentDeck_Model._contentDeck.Add(cardId);
-            Debug.Log($"В колоду добавленна карта с ID = {cardId}");
+            _contentDeck_Model._contentDeck.Add(cardId);            
         }
 
         public void RemoveContent(int cardId)
@@ -36,7 +35,6 @@ namespace Hearthstone
                 if (id == cardId)
                 {
                     _contentDeck_Model._contentDeck.Remove(cardId);
-                    Debug.Log($"Из колоды убранна карта с ID = {cardId}");
                     return;
                 }
             }

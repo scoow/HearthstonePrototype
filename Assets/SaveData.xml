@@ -1,27 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <SaveDeckCollection>
-  <DeckName NameValue="Шаман3">
-    <CardId>2000</CardId>
+  <DeckName NameValue="ПалПрот" StateValue="Неактивная колода">
+    <CardId>4000</CardId>
+    <CardId>102</CardId>
     <CardId>200</CardId>
     <CardId>104</CardId>
     <CardId>205</CardId>
-    <CardId>206</CardId>
-  </DeckName>
-  <DeckName NameValue="Друид-бревно">
-    <CardId>6000</CardId>
-    <CardId>302</CardId>
-    <CardId>300</CardId>
-    <CardId>304</CardId>
-    <CardId>401</CardId>
-    <CardId>306</CardId>
-    <CardId>402</CardId>
-  </DeckName>
-  <DeckName NameValue="Фокусник">
-    <CardId>8000</CardId>
-    <CardId>104</CardId>
-    <CardId>205</CardId>
     <CardId>301</CardId>
-    <CardId>306</CardId>
+    <CardId>402</CardId>
     <CardId>401</CardId>
+  </DeckName>
+  <DeckName NameValue="Жрец-Хил" StateValue="Неактивная колода">
+    <CardId>9000</CardId>
+    <CardId>304</CardId>
+    <CardId>501</CardId>
+    <CardId>306</CardId>
+    <CardId>600</CardId>
+    <CardId>600</CardId>
+    <CardId>504</CardId>
+  </DeckName>
+  <DeckName NameValue="Шаман" StateValue="Неактивная колода">
+    <CardId>2000</CardId>
+    <CardId>104</CardId>
+    <CardId>200</CardId>
+    <CardId>201</CardId>
+    <CardId>202</CardId>
+    <CardId>205</CardId>
+    <CardId>300</CardId>
+    <CardId>301</CardId>
+  </DeckName>
+  <DeckName NameValue="Маггг" StateValue="Выбранная колода">
+    <CardId>8000</CardId>
+    <CardId>102</CardId>
+    <CardId>200</CardId>
+    <CardId>204</CardId>
+    <CardId>301</CardId>
+    <CardId>300</CardId>
+    <CardId>307</CardId>
   </DeckName>
 </SaveDeckCollection>

@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,20 +27,15 @@ namespace Hearthstone
         }
 
         public void AddDeckInCollection()
-        {
-            //if (nameDeck == null) nameDeck = _contentDeck_Model._currentDeckName;
+        {            
             GameObject obj = Instantiate(_prefabTemplateDeck, _deckCollection);  
-            obj.GetComponentInChildren<TextCardNameMarker>().GetComponent<Text>().text = _contentDeck_Model._currentDeckName;                   
+            obj.GetComponentInChildren<TextDeckNameMarker>().GetComponent<Text>().text = _contentDeck_Model._currentDeckName;                   
             _contentDeck_Model._inputField.text = "";
             _contentDeck_Controller.ClearContent();
             if(_pageBookModel._createDeckState == CreateDeckState.CreateDeck)
             {
                 _memory_Controller.SaveDeck();
-            }
-            
-        }       
-
-        
+            }            
+        }
     }
-
 }

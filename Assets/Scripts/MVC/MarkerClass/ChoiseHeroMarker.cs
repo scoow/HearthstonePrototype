@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class ChoiseHeroMarker : MonoBehaviour
+namespace Hearthstone
 {
+    public class ChoiseHeroMarker : MonoBehaviour
+    {
 
+    }
 }

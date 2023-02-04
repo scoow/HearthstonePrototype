@@ -27,9 +27,7 @@ namespace Hearthstone
         }
         public void ToText(string inputText)
         {
-            _currentDeckName = inputText;
-            Debug.Log($"Назовём колоду {_currentDeckName}");
+            _currentDeckName = inputText;            
         }
-
     }
 }

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Hearthstone
 {
@@ -8,7 +7,6 @@ namespace Hearthstone
     {       
         public HeroType _heroType;      
     }
-
    
     public enum HeroType
     {

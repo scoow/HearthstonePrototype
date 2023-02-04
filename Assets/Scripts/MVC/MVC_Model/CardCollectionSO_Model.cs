@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 namespace Hearthstone
 {
     [CreateAssetMenu(fileName = "New CardManaCostArrey", menuName = "Card/CardManaCostArrey", order = 51)]

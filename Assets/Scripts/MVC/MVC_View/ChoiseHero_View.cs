@@ -33,13 +33,11 @@ namespace Hearthstone
             if (_contentDeck_Model._contentDeck.Count > 0)
             {
                 _contentDeck_Model._contentDeck.Clear();
-                _contentDeck_Model._contentDeck.Add(_cerrentIDHero);
-                Debug.Log($"Во главе колоды будет {_heroSO._nameCard} ");                
+                _contentDeck_Model._contentDeck.Add(_cerrentIDHero);                         
             }
             else
             {
-                _contentDeck_Model._contentDeck.Add(_cerrentIDHero);
-                Debug.Log($"Во главе колоды будет {_heroSO._nameCard} ");
+                _contentDeck_Model._contentDeck.Add(_cerrentIDHero);                
             }
         }
     }

@@ -6,6 +6,7 @@ namespace Hearthstone
     {
         private void Start()
         {
+            if(gameObject.name == "CardEmission")
             gameObject.SetActive(false);
         }
     }

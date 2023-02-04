@@ -1,20 +1,17 @@
 using System;
-using System.Collections.Generic;
 using System.Xml.Linq;
 using UnityEngine;
 
 
 namespace Hearthstone
 {
-    public class Memory_Controller : MonoBehaviour, ISave, IRemove
+    public class Memory_Controller : MonoBehaviour, ISave, IRemove , IActive
     {
         private ContentDeck_Model _contentDeck_Model;
         public CardCollectionSO_Model cardCollectionSO_Model;
         private DeckCollection_Controller _deckCollection_Controller;
 
-        private string _pathSaveDocument ;
-        XDocument _xDocument;
-        XElement _xElementRoote;
+        private string _pathSaveDocument ;        
 
         private void Awake()
         {
@@ -25,21 +22,20 @@ namespace Hearthstone
 
         private void Start()
         {
-            LoadDeckCollection();
-            //_xDocument = new XDocument();
-            //_xElementRoote = new XElement("SaveDeckCollection");
-            //_xDocument.Add(_xElementRoote);
+            LoadDeckCollection();            
         }
 
         public void SaveDeck()
         {
             XDocument xdoc = XDocument.Load(_pathSaveDocument);
-            XElement? saveDeckCollection = xdoc.Element("SaveDeckCollection");
+            XElement saveDeckCollection = xdoc.Element("SaveDeckCollection");
             XElement deckNameElement = new XElement("DeckName");
             XAttribute nameAtribute = new XAttribute("NameValue", $"{_contentDeck_Model._currentDeckName}");
+            XAttribute stateAtribute = new XAttribute("StateValue", "Неактивная колода");
             deckNameElement.Add(nameAtribute);
+            deckNameElement.Add(stateAtribute);
             saveDeckCollection.Add(deckNameElement);
-           // _xElementRoote.Add(deckNameElement);
+            
             for (int i = 0; i < _contentDeck_Model._contentDeck.Count; i++)
             {               
                 XElement idElement = new XElement("CardId",$"{_contentDeck_Model._contentDeck[i]}");
@@ -52,20 +48,17 @@ namespace Hearthstone
         public void LoadDeckCollection()
         {
             XDocument xdoc = XDocument.Load(_pathSaveDocument);
-            XElement? saveDeckCollection = xdoc.Element("SaveDeckCollection");
+            XElement saveDeckCollection = xdoc.Element("SaveDeckCollection");
             if (saveDeckCollection is not null)
             {
                 // проходим по всем элементам saveDeckCollection
                 foreach (XElement deck in saveDeckCollection.Elements("DeckName"))
                 {
-                    XAttribute? nameDeck = deck.Attribute("NameValue");
-                    _contentDeck_Model._currentDeckName = nameDeck.Value;
-                    Debug.Log(_contentDeck_Model._currentDeckName);
+                    XAttribute nameDeck = deck.Attribute("NameValue");
+                    _contentDeck_Model._currentDeckName = nameDeck.Value;                    
                     _deckCollection_Controller.AddDeckInCollection();
-
                 }
             }
-
         }
 
         public void DeleteDeckInCollection(string nameDeleteDeck)
@@ -77,12 +70,40 @@ namespace Hearthstone
                 // проходим по всем элементам saveDeckCollection
                 foreach (XElement deck in saveDeckCollection.Elements("DeckName"))
                 {
-                    XAttribute? nameDeck = deck.Attribute("NameValue");
+                    XAttribute nameDeck = deck.Attribute("NameValue");
                     if(nameDeck.Value == nameDeleteDeck)
                     {
-                        deck.Remove();
-                        Debug.Log($"Из коллекции удалена колода {nameDeck.Value}");
+                        deck.Remove();                       
                     }
+                }
+                xdoc.Save(_pathSaveDocument);
+            }
+        }
+
+        public void ChangeStateDeck(string nameActiveDeck)
+        {
+            XDocument xdoc = XDocument.Load(_pathSaveDocument);
+            XElement saveDeckCollection = xdoc.Element("SaveDeckCollection");
+            if (saveDeckCollection is not null)
+            {
+                // проходим по всем элементам saveDeckCollection и обнуляем состояние колод
+                foreach (XElement deck in saveDeckCollection.Elements("DeckName"))
+                {
+                    XAttribute stateDeck = deck.Attribute("StateValue");
+                    if (stateDeck.Value == "Выбранная колода")
+                    {
+                        stateDeck.Value = "Неактивная колода";
+                    }
+                }
+                // проходим по всем элементам saveDeckCollection и устанавливаем активный статус для выбранной колоды
+                foreach (XElement deck in saveDeckCollection.Elements("DeckName"))
+                {
+                    XAttribute nameDeck = deck.Attribute("NameValue");
+                    if (nameDeck.Value == nameActiveDeck)
+                    {
+                        XAttribute stateDeck = deck.Attribute("StateValue");
+                        stateDeck.Value = "Выбранная колода";
+                    }                 
                 }
                 xdoc.Save(_pathSaveDocument);
             }
