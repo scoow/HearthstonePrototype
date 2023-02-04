@@ -116,7 +116,7 @@ namespace Hearthstone
             {
                 _card = _mulliganCards[i];
                 _ = _card.MoveCardAsync(position.transform.position, _firstPlayerHand.GetLastCardPosition(), position.transform.rotation, _firstPlayerHand.transform.rotation, _time);
-                _firstPlayerHand.AddCardToHand(_card);
+                _firstPlayerHand.AddCard(_card);
                 await UniTask.Delay(TimeSpan.FromSeconds(0.5));
                 Destroy(position);
                 _card.AddComponent<CardInHand>();
