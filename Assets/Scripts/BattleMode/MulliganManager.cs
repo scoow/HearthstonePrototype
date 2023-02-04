@@ -118,7 +118,7 @@ namespace Hearthstone
                 _ = _card.MoveCardAsync(position.transform.position, _firstPlayerHand.GetLastCardPosition(), position.transform.rotation, _firstPlayerHand.transform.rotation, _time);
                 _firstPlayerHand.AddCardToHand(_card);
                 await UniTask.Delay(TimeSpan.FromSeconds(0.5));
-
+                Destroy(position);
                 _card.AddComponent<CardInHand>();
                 //Destroy(_card); добавить уничтожение при попадании в руку асинхронно
                 i++;
