@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /*
@@ -23,7 +24,7 @@ namespace Hearthstone
         private GameObject _playerDeck;
 
         private List<MulliganCardPosition> _mulliganCardsPositions;//якори дл€ вылетающих карт
-        private List<MulliganCard> _mulliganCards;//—ами карты
+        private List<BattleModeCard> _mulliganCards;//—ами карты
         private MulliganConfirmButton _mulliganConfirmButton;
 
         private List<Hand> _hands;
@@ -43,28 +44,28 @@ namespace Hearthstone
             _mulliganCardsPositions = FindObjectsOfType<MulliganCardPosition>().ToList();
             _mulliganCardsPositions.Sort((c1, c2) => string.Compare(c1.gameObject.name, c2.gameObject.name));//todo улучшить сортировку
 
-            _mulliganCards = new List<MulliganCard>();
-            _mulliganCards = FindObjectsOfType<MulliganCard>().ToList();
+            _mulliganCards = new List<BattleModeCard>();
+            _mulliganCards = FindObjectsOfType<BattleModeCard>().ToList();
             _mulliganCards.Sort((c1, c2) => string.Compare(c1.gameObject.name, c2.gameObject.name));
             foreach (var card in _mulliganCards)
                 card.gameObject.SetActive(true);
 
-            MulliganStage1();
+            /*MulliganStage1();
             await UniTask.Delay(TimeSpan.FromSeconds(3));
-
-
-            MulliganStage2();
+            MulliganStage2();*/
+            //test
+            MulliganStage4();
         }
 
         private async void MulliganStage1()
         {
-            MulliganCard _card;
+            BattleModeCard _card;
             int i = 0;
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
                 _card = _mulliganCards[i];
                 position.SetCurrentCard(_card);//
-                _ = _card.StartMulliganAsync(_card.transform.position, position.transform.position, _card.transform.rotation, position.transform.rotation, _time);
+                _ = _card.MoveCardAsync(_card.transform.position, position.transform.position, _card.transform.rotation, position.transform.rotation, _time);
                 await UniTask.Delay(TimeSpan.FromSeconds(0.5));
                 i++;
             }
@@ -78,14 +79,14 @@ namespace Hearthstone
         private async void MulliganStage3()
         {
             _mulliganConfirmButton.HideButton();
-            MulliganCard _card;
+            BattleModeCard _card;
             int i = 0;
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
                 _card = _mulliganCards[i];
                 if (_card.Selected)
                 {
-                    _ = _card.StartMulliganAsync(position.transform.position, _playerDeck.transform.position, position.transform.rotation, _playerDeck.transform.rotation, _time);
+                    _ = _card.MoveCardAsync(position.transform.position, _playerDeck.transform.position, position.transform.rotation, _playerDeck.transform.rotation, _time);
                     await UniTask.Delay(TimeSpan.FromSeconds(0.5));
                 }
                 i++;
@@ -96,27 +97,30 @@ namespace Hearthstone
         private async void MulliganStage4()
         {
             _mulliganConfirmButton.HideButton();
-            MulliganCard _card;
-            int i = 0;
+            BattleModeCard _card;
+/*            int i = 0;
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
                 _card = _mulliganCards[i];
                 if (_card.Selected)
                 {
-                    _ = _card.StartMulliganAsync(_card.transform.position, position.transform.position, _card.transform.rotation, position.transform.rotation, _time);
+                    _ = _card.MoveCardAsync(_card.transform.position, position.transform.position, _card.transform.rotation, position.transform.rotation, _time);
                     await UniTask.Delay(TimeSpan.FromSeconds(0.5));
                 }
                 position.SwitchRenderer(false);
                 i++;
             }
-            await UniTask.Delay(TimeSpan.FromSeconds(4));
-            i = 0;
+            await UniTask.Delay(TimeSpan.FromSeconds(3));*/
+            int i = 0;
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
                 _card = _mulliganCards[i];
-                _ = _card.StartMulliganAsync(position.transform.position, _firstPlayerHand.GetLastCardPosition(), position.transform.rotation, _firstPlayerHand.transform.rotation, _time);
-                _firstPlayerHand.AddCardToHand();
+                _ = _card.MoveCardAsync(position.transform.position, _firstPlayerHand.GetLastCardPosition(), position.transform.rotation, _firstPlayerHand.transform.rotation, _time);
+                _firstPlayerHand.AddCardToHand(_card);
                 await UniTask.Delay(TimeSpan.FromSeconds(0.5));
+
+                _card.AddComponent<CardInHand>();
+                //Destroy(_card); добавить уничтожение при попадании в руку асинхронно
                 i++;
             }
         }

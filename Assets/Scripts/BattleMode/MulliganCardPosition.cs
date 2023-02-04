@@ -11,7 +11,7 @@ namespace Hearthstone
         private bool _selected = false;
 
         private SpriteRenderer _spriteRenderer;
-        private MulliganCard _mulliganCard;
+        private BattleModeCard _mulliganCard;
 
         private void Awake()
         {
@@ -27,7 +27,7 @@ namespace Hearthstone
             _spriteRenderer.enabled = selected;
             _mulliganCard.Selected = selected;
         }
-        public void SetCurrentCard(MulliganCard card)
+        public void SetCurrentCard(BattleModeCard card)
         {
             _mulliganCard = card;
         }
