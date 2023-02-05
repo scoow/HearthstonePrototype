@@ -513,9 +513,12 @@ GameObject:
   - component: {fileID: 1716541608145100751}
   - component: {fileID: 7139192151810163284}
   - component: {fileID: -2857173228747400422}
+  - component: {fileID: 5782317851663640163}
+  - component: {fileID: 3753996020665545829}
+  - component: {fileID: 1203854779}
   m_Layer: 0
   m_Name: CardTemplateBattleMode
-  m_TagString: Untagged
+  m_TagString: CardTemplate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -549,12 +552,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d81fb05b06b1bb4fb3fcfedb7fa82ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: {fileID: 70972351261278118}
-  _description: {fileID: 1684177610157930916}
-  _spriteCard: {fileID: 1716541606589815585}
-  _manaCost: {fileID: 313488179345975244}
-  _atackDamage: {fileID: 8410973821416728946}
-  _healt: {fileID: 3967998368240511001}
 --- !u!114 &-2857173228747400422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,6 +564,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222e4e9c422b58d45a053af404d6c6bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5782317851663640163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716541608145100750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a367831517b294f892dda6f6ae5bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3753996020665545829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716541608145100750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1493bdf7fa75b5438d0ac6a740bfece, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteFront: {fileID: 1716541606833526623}
+  _canvas: {fileID: 3581428110877527656}
+  _spriteLastSprite: {fileID: 1716541606589815585}
+--- !u!225 &1203854779
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716541608145100750}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1720805814630253066
 GameObject:
   m_ObjectHideFlags: 0

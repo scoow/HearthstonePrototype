@@ -2337,6 +2337,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dea7883079ba114fb8462e70da199bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cardTemplatePrefabs:
+  - {fileID: 101493826}
+  - {fileID: 570530354}
+  - {fileID: 856057592}
+  - {fileID: 1733954240}
+  - {fileID: 582013757}
+  - {fileID: 275791052}
+  - {fileID: 630075597}
+  - {fileID: 914254387}
 --- !u!114 &829253548
 MonoBehaviour:
   m_ObjectHideFlags: 0

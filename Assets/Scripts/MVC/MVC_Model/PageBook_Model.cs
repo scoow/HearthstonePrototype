@@ -13,7 +13,7 @@ namespace Hearthstone
         /// <summary>
         /// шаблоны карт на странице книги
         /// </summary>
-        public CardSettings_Model[] _cardTemplatePrefabs ;
+        //public CardSettings_Model[] _cardTemplatePrefabs ;
         /// <summary>
         /// SO сборник всех карт
         /// </summary>
@@ -23,6 +23,7 @@ namespace Hearthstone
         /// </summary>
         [HideInInspector]
         public List<CardSO_Model> _resultCollection = new List<CardSO_Model>();
+        [HideInInspector]
         public CreateDeckState _createDeckState ;       
 
 

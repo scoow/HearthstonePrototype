@@ -8,7 +8,7 @@ namespace Hearthstone
     public class Memory_Controller : MonoBehaviour, ISave, IRemove , IActive
     {
         private ContentDeck_Model _contentDeck_Model;
-        public CardCollectionSO_Model cardCollectionSO_Model;
+        //public CardCollectionSO_Model cardCollectionSO_Model;
         private DeckCollection_Controller _deckCollection_Controller;
 
         private string _pathSaveDocument ;        
@@ -64,7 +64,7 @@ namespace Hearthstone
         public void DeleteDeckInCollection(string nameDeleteDeck)
         {
             XDocument xdoc = XDocument.Load(_pathSaveDocument);
-            XElement? saveDeckCollection = xdoc.Element("SaveDeckCollection");
+            XElement saveDeckCollection = xdoc.Element("SaveDeckCollection");
             if (saveDeckCollection is not null)
             {
                 // проходим по всем элементам saveDeckCollection

@@ -6,7 +6,11 @@ namespace Hearthstone
     public class PageBook_Controller : MonoBehaviour, IReadable
     {         
         private PageBook_Model _pageBook_Model;
-        private PageBook_View _pageBook_View;        
+        private PageBook_View _pageBook_View;
+        /// <summary>
+        /// шаблоны карт на странице книги
+        /// </summary>
+        public CardSettings_Model[] _cardTemplatePrefabs;
         private int _maxPageNumber;
         private int _minPageNumber = 0;
         private int _pageCounter = 0;
@@ -16,7 +20,7 @@ namespace Hearthstone
         {
             _pageBook_Model = GetComponent<PageBook_Model>();            
             _pageBook_View = GetComponent<PageBook_View>();
-            _pageBook_View.UpdatePageBook(_pageBook_Model._resultCollection , _pageBook_Model._cardTemplatePrefabs, _pageCounter);
+            _pageBook_View.UpdatePageBook(_pageBook_Model._resultCollection , _cardTemplatePrefabs, _pageCounter);
         }       
 
         /// <summary>
@@ -24,15 +28,15 @@ namespace Hearthstone
         /// </summary>
         public void NextPage()
         {
-            if ((_pageBook_Model._resultCollection.Count % _pageBook_Model._cardTemplatePrefabs.Length) == 0)
-                _maxPageNumber = _pageBook_Model._resultCollection.Count / _pageBook_Model._cardTemplatePrefabs.Length;
+            if ((_pageBook_Model._resultCollection.Count % _cardTemplatePrefabs.Length) == 0)
+                _maxPageNumber = _pageBook_Model._resultCollection.Count / _cardTemplatePrefabs.Length;
             else
-                _maxPageNumber = _pageBook_Model._resultCollection.Count / _pageBook_Model._cardTemplatePrefabs.Length + 1;
+                _maxPageNumber = _pageBook_Model._resultCollection.Count / _cardTemplatePrefabs.Length + 1;
 
             _pageCounter++;
             if (_pageCounter > _maxPageNumber)
                 _pageCounter = _maxPageNumber;
-            _pageBook_View.UpdatePageBook(_pageBook_Model._resultCollection, _pageBook_Model._cardTemplatePrefabs, _pageCounter);
+            _pageBook_View.UpdatePageBook(_pageBook_Model._resultCollection, _cardTemplatePrefabs, _pageCounter);
         }
 
         /// <summary>
@@ -43,7 +47,7 @@ namespace Hearthstone
             _pageCounter--;
             if (_pageCounter < _minPageNumber)
                 _pageCounter = _minPageNumber;
-            _pageBook_View.UpdatePageBook(_pageBook_Model._resultCollection, _pageBook_Model._cardTemplatePrefabs, _pageCounter);            
+            _pageBook_View.UpdatePageBook(_pageBook_Model._resultCollection, _cardTemplatePrefabs, _pageCounter);            
         }
 
         /// <summary>
