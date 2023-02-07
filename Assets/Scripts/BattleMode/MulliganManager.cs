@@ -116,10 +116,14 @@ namespace Hearthstone
             {
                 _card = _mulliganCards[i];
                 _ = _card.MoveCardAsync(position.transform.position, _firstPlayerHand.GetLastCardPosition(), position.transform.rotation, _firstPlayerHand.transform.rotation, _time);
-                _firstPlayerHand.AddCard(_card);
+                
+                
                 await UniTask.Delay(TimeSpan.FromSeconds(0.5));
                 Destroy(position);
-                _card.AddComponent<CardInHand>();
+                var _cardInHand = _card.AddComponent<CardInHand>();
+                _cardInHand.SetParent(_firstPlayerHand);
+                _firstPlayerHand.AddCard(_cardInHand);
+                _cardInHand.TellParentBeginDrag += _firstPlayerHand.RemoveCard;
                 //Destroy(_card); добавить уничтожение при попадании в руку асинхронно
                 i++;
             }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,15 +8,21 @@ namespace Hearthstone
     {
         [SerializeField]
         private Camera _camera;
-        //private Vector3 _offset;
+
+        public delegate void BeginDrag(CardInHand card);
+        public event BeginDrag TellParentBeginDrag;
+
         private void Awake()
         {
             _camera = Camera.main;
         }
         public void OnBeginDrag(PointerEventData eventData)
         {
-            //_offset = transform.position- _camera.ScreenToWorldPoint(eventData.position);
             GetComponent<CanvasGroup>().blocksRaycasts= false;
+            if (TellParentBeginDrag != null )
+            {
+                TellParentBeginDrag(this);
+            }
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -35,6 +42,10 @@ namespace Hearthstone
         {
             //Debug.Log("End drag");
             GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
+        public void SetParent(CardHolder cardHolder)
+        {
+            transform.parent = cardHolder.transform;
         }
     }
 }

@@ -6,10 +6,6 @@ namespace Hearthstone
 {
     public class Hand : CardHolder
     {
-        
-
-
-
 
     }
 }
