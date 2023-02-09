@@ -1,26 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace Hearthstone
 {
-    public class Mana_Controller : MonoBehaviour , IGrowing
+    public class Mana_Controller : MonoBehaviour, IGrowing
     {
         [SerializeField]
         private ManaCristal _manaCristalPrefab;
         [SerializeField]
-        private Transform _onePlayerMana , _twoPlayerMana;
+        private Transform _onePlayerMana, _twoPlayerMana;
         public Players _playersTurn;
+        public Action<int> ChangeManaValue;
 
 
-        public int _onePlayermanaCount;
-        public int _twoPlayermanaCount;
+        [HideInInspector] public int _onePlayermanaCount;
+        [HideInInspector] public int _twoPlayermanaCount;
 
         private int _playermanaMaxValue = 10;
 
         private void Start()
         {
-
             _playersTurn = Players.First;
             AddCristal(_playersTurn);
         }
@@ -32,6 +31,7 @@ namespace Hearthstone
             {
                 _playersTurn = Players.Second;
                 AddCristal(_playersTurn);
+                ChangeManaValue?.Invoke(_twoPlayermanaCount);
                 return;
             }           
             
@@ -39,6 +39,7 @@ namespace Hearthstone
             {
                 _playersTurn = Players.First;
                 AddCristal(_playersTurn);
+                ChangeManaValue?.Invoke(_onePlayermanaCount);
                 return;
             }           
         }
@@ -59,11 +60,6 @@ namespace Hearthstone
                 manaCounter++;
                 ManaCristal cristal = Instantiate(_manaCristalPrefab, parent);
             }            
-        }
-
-        void IGrowing.AddCristal(Players playersTurn)
-        {
-            throw new System.NotImplementedException();
-        }
+        }        
     }
 }
