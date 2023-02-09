@@ -28,5 +28,5 @@ public class ChoiseCard_View : MonoBehaviour , IChange
         settingsZoomingCard.Healt.text = chioseCardSettings._healtCard.ToString();
         settingsZoomingCard.Description.text = chioseCardSettings._descriptionCard;
         settingsZoomingCard.SpriteCard.sprite = chioseCardSettings._spriteCard;                
-    }   
+    }    
 }

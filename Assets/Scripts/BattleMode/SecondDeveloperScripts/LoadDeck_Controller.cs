@@ -16,6 +16,8 @@ namespace Hearthstone
         private string _pathSaveDocument;
         private PageBook_Model _pageBookModel;       
         private MulliganManager _mulliganManager;
+        public Action SetSettings;
+
 
         private void Awake()
         {
@@ -54,6 +56,7 @@ namespace Hearthstone
             settingsGameCard.Healt.text = cardSettings._healtCard.ToString();
             settingsGameCard.Description.text = cardSettings._descriptionCard;
             settingsGameCard.SpriteCard.sprite = cardSettings._spriteCard;
+            SetSettings?.Invoke();
         }
 
 

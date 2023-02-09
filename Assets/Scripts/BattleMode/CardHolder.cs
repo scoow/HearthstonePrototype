@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -14,6 +15,8 @@ namespace Hearthstone
         protected float _offset;
         [SerializeField]
         protected int _cardCount = 0;
+
+        public Action EndDragCard; ///событие для смены отображения карты
 
         private void Start()
         {
@@ -47,6 +50,7 @@ namespace Hearthstone
             card.TellParentBeginDrag += RemoveCard;//
             Debug.Log(_cardCount.ToString());
             card.SetParent(this);
+            EndDragCard?.Invoke(); ///событие для смены отображения карты
         }
         /// <summary>
         /// убрать карту из руки
@@ -71,7 +75,7 @@ namespace Hearthstone
                 _cardsList.Remove(card);
                 card.TellParentBeginDrag -= RemoveCard;//
                 Debug.Log(_cardCount.ToString());
-
+                
             }
         }
         public void OnDrop(PointerEventData eventData)//вынести в класс-родитель
@@ -82,7 +86,7 @@ namespace Hearthstone
             {
                 Debug.Log("drop card");
                 card.transform.position = GetLastCardPosition();
-                AddCard(card);
+                AddCard(card);                
             }
         }
     }

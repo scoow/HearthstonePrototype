@@ -748,11 +748,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207377241}
   m_CullTransparentMesh: 1
---- !u!1 &270111109 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1716541608145100750, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
-  m_PrefabInstance: {fileID: 1865043204}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &370433934 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1716541608145100751, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
@@ -1084,10 +1079,6 @@ PrefabInstance:
     - target: {fileID: 1716541608145100750, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
       propertyPath: m_Name
       value: CardTemplateBattleMode3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1716541608145100750, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
-      propertyPath: m_TagString
-      value: CardTemplate
       objectReference: {fileID: 0}
     - target: {fileID: 1716541608145100751, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
       propertyPath: m_RootOrder
@@ -1696,11 +1687,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textManaOnePlayer: {fileID: 2024084108}
   _textManaTwoPlayer: {fileID: 14607830}
---- !u!1 &739300566 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1716541608145100750, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
-  m_PrefabInstance: {fileID: 566281681}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &765384778
 GameObject:
   m_ObjectHideFlags: 0
@@ -2382,6 +2368,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1571649325}
     m_Modifications:
+    - target: {fileID: 1391922997, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
+      propertyPath: _parent
+      value: 
+      objectReference: {fileID: 671665860}
     - target: {fileID: 1716541608145100750, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
       propertyPath: m_Name
       value: CardTemplateBattleMode1
@@ -3221,35 +3211,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1716541608145100751, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
   m_PrefabInstance: {fileID: 566281681}
   m_PrefabAsset: {fileID: 0}
---- !u!225 &1780640104
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 739300566}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!4 &1783092709 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1716541608145100751, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
   m_PrefabInstance: {fileID: 1865043204}
   m_PrefabAsset: {fileID: 0}
---- !u!225 &1783092712
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270111109}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &1832462921
 GameObject:
   m_ObjectHideFlags: 0
@@ -3483,13 +3449,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1571649325}
     m_Modifications:
+    - target: {fileID: 1391922997, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
+      propertyPath: _parent
+      value: 
+      objectReference: {fileID: 1274440978}
     - target: {fileID: 1716541608145100750, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
       propertyPath: m_Name
       value: CardTemplateBattleMode2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1716541608145100750, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
-      propertyPath: m_TagString
-      value: CardTemplate
       objectReference: {fileID: 0}
     - target: {fileID: 1716541608145100751, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
       propertyPath: m_RootOrder
@@ -3534,10 +3500,6 @@ PrefabInstance:
     - target: {fileID: 1716541608145100751, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 3581428110877527656, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
