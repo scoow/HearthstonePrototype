@@ -60,5 +60,10 @@ namespace Hearthstone
                 ManaCristal cristal = Instantiate(_manaCristalPrefab, parent);
             }            
         }
+
+        void IGrowing.AddCristal(Players playersTurn)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

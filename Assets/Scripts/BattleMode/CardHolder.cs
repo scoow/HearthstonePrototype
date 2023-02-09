@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -14,11 +12,13 @@ namespace Hearthstone
 
         [SerializeField]
         protected float _offset;
+        [SerializeField]
         protected int _cardCount = 0;
 
         private void Start()
         {
             _cardsList = new();
+            _lastPosition= transform.position;
         }
         /// <summary>
         /// получить позицию последней карты в руке
@@ -44,6 +44,9 @@ namespace Hearthstone
             newPosition.x += _offset;
             _cardsList.Add(card);
             _cardCount++;
+            card.TellParentBeginDrag += RemoveCard;//
+            Debug.Log(_cardCount.ToString());
+            card.SetParent(this);
         }
         /// <summary>
         /// убрать карту из руки
@@ -55,7 +58,20 @@ namespace Hearthstone
             {
                 // _cardsList.Remove(,)//доделать удаление по значению
                 _cardCount--;
+                foreach (var c in _cardsList)
+                {
+                    if (c.transform.position.x > card.transform.position.x)
+                    {
+                        Vector3 newPosition = c.transform.position;
+                        newPosition.x -= _offset;
+                        c.transform.position = newPosition;
+                    }
+                        
+                }
                 _cardsList.Remove(card);
+                card.TellParentBeginDrag -= RemoveCard;//
+                Debug.Log(_cardCount.ToString());
+
             }
         }
         public void OnDrop(PointerEventData eventData)//вынести в класс-родитель

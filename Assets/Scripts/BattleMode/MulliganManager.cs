@@ -123,7 +123,7 @@ namespace Hearthstone
                 var _cardInHand = _card.AddComponent<CardInHand>();
                 _cardInHand.SetParent(_firstPlayerHand);
                 _firstPlayerHand.AddCard(_cardInHand);
-                _cardInHand.TellParentBeginDrag += _firstPlayerHand.RemoveCard;
+                //_cardInHand.TellParentBeginDrag += _firstPlayerHand.RemoveCard;
                 //Destroy(_card); добавить уничтожение при попадании в руку асинхронно
                 i++;
             }
