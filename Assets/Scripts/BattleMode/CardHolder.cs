@@ -41,16 +41,16 @@ namespace Hearthstone
         /// <summary>
         /// добавить карту в руку
         /// </summary>
-        public void AddCard(CardInHand card)
+        public virtual void AddCard(CardInHand card)
         {
             Vector3 newPosition = GetLastCardPosition();
             newPosition.x += _offset;
             _cardsList.Add(card);
             _cardCount++;
-            card.TellParentBeginDrag += RemoveCard;//
+            //card.TellParentBeginDrag += RemoveCard;//
             Debug.Log(_cardCount.ToString());
             card.SetParent(this);
-            EndDragCard?.Invoke(); ///событие для смены отображения карты
+            
         }
         /// <summary>
         /// убрать карту из руки
@@ -60,7 +60,6 @@ namespace Hearthstone
             Debug.Log("card dragged");
             if (_cardCount > 0)
             {
-                // _cardsList.Remove(,)//доделать удаление по значению
                 _cardCount--;
                 foreach (var c in _cardsList)
                 {
@@ -82,7 +81,7 @@ namespace Hearthstone
         {
             CardInHand card = eventData.pointerDrag.GetComponent<CardInHand>();
 
-            if (card != null)
+            if (card != null && card.transform.parent.GetComponent<CardHolder>() != this)
             {
                 Debug.Log("drop card");
                 card.transform.position = GetLastCardPosition();
