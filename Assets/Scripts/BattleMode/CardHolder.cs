@@ -80,10 +80,12 @@ namespace Hearthstone
         public void OnDrop(PointerEventData eventData)//вынести в класс-родитель
         {
             CardInHand card = eventData.pointerDrag.GetComponent<CardInHand>();
-
-            if (card != null && card.transform.parent.GetComponent<CardHolder>() != this)
+            if (card == null) return;
+            var _parent = card.transform.parent.GetComponent<CardHolder>();
+            if (_parent != this)
             {
                 Debug.Log("drop card");
+                _parent.RemoveCard(card);
                 card.transform.position = GetLastCardPosition();
                 AddCard(card);                
             }
