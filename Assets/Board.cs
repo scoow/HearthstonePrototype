@@ -15,6 +15,7 @@ namespace Hearthstone
             _camera = Camera.main;
             _tempMinionGO = GameObject.Find("TempMinion");
         }
+       // public void 
         public override void AddCard(CardInHand card)
         {
             base.AddCard(card);
@@ -56,6 +57,7 @@ namespace Hearthstone
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            //if (!_draggingCard) return;
             Vector3 newPosition = eventData.position;
             newPosition.z = _camera.transform.position.z;
             newPosition = -_camera.ScreenToWorldPoint(newPosition);

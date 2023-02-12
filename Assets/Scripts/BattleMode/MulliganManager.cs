@@ -18,7 +18,7 @@ namespace Hearthstone
     public class MulliganManager : MonoBehaviour
     {
         [SerializeField]
-        private float _time = 2f;
+        private float _time = 0.5f;
 
         [SerializeField]
         private GameObject _playerDeck;
@@ -50,12 +50,12 @@ namespace Hearthstone
             foreach (var card in _mulliganCards)
                 card.gameObject.SetActive(true);
 
-            /*MulliganStage1();
-            await UniTask.Delay(TimeSpan.FromSeconds(3));
-            MulliganStage2();*/
+            MulliganStage1();
+            await UniTask.Delay(TimeSpan.FromSeconds(0.5));
+            MulliganStage2();
             //test
-            MulliganStage4();
-            await UniTask.Delay(TimeSpan.FromSeconds(0));//заглушка
+            /*MulliganStage4();
+            await UniTask.Delay(TimeSpan.FromSeconds(0));//заглушка*/
         }
 
         private async void MulliganStage1()
@@ -92,14 +92,14 @@ namespace Hearthstone
                 }
                 i++;
             }
-            await UniTask.Delay(TimeSpan.FromSeconds(4));
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
             MulliganStage4();
         }
         private async void MulliganStage4()
         {
             _mulliganConfirmButton.HideButton();
             BattleModeCard _card;
-/*            int i = 0;
+            int i = 0;
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
                 _card = _mulliganCards[i];
@@ -111,8 +111,8 @@ namespace Hearthstone
                 position.SwitchRenderer(false);
                 i++;
             }
-            await UniTask.Delay(TimeSpan.FromSeconds(3));*/
-            int i = 0;
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
+            i = 0;
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
                 _card = _mulliganCards[i];

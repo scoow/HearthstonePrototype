@@ -55,7 +55,6 @@ namespace Hearthstone
         /// </summary>
         public void RemoveCard(CardInHand card)
         {
-            //Debug.Log("card dragged");
             if (_cardCount > 0)
             {
                 _cardCount--;
@@ -70,7 +69,7 @@ namespace Hearthstone
                         
                 }
                 _cardsList.Remove(card);
-                card.TellParentBeginDrag -= RemoveCard;//
+                //card.TellParentBeginDrag -= RemoveCard;//
             }
         }
         public virtual void OnDrop(PointerEventData eventData)//вынести в класс-родитель

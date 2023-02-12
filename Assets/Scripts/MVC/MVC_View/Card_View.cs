@@ -57,7 +57,7 @@ public class Card_View : MonoBehaviour, IChange
 
     private void Awake()
     {
-        if (gameObject.tag == "CardTemplate" || gameObject.tag == "CardZooming")
+        if (gameObject.CompareTag("CardTemplate") || gameObject.CompareTag("CardZooming"))
         {
             _descriptionText = GetComponentInChildren<TextDiscriptionMarker>().GetComponent<Text>();
             _atackDamageText = GetComponentInChildren<TextAtackMarker>().GetComponent<Text>();
@@ -72,7 +72,7 @@ public class Card_View : MonoBehaviour, IChange
 
     public void ChangeViewCard()
     {
-        if (gameObject.tag == "CardTemplate" )
+        if (gameObject.CompareTag("CardTemplate"))
         {
             _descriptionText.text = _card_Model._descriptionCard;
             _atackDamageText.text = _card_Model._atackDamageCard.ToString();
