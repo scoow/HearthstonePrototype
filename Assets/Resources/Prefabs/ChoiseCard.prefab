@@ -551,6 +551,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d81fb05b06b1bb4fb3fcfedb7fa82ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _abilityChangeHealth: 0
+  _abilityChangeAtackDamage: 0
+  _abilityChangeSpellDamage: 0
+  _abilityAddCard: 0
+  _isProvocation: 0
+  _isDivineShield: 0
+  _isPermanentEffect: 0
+  _isCharge: 0
+  _isBerserk: 0
+  _protectionImage: {fileID: 0}
+  _spriteCard: {fileID: 0}
+  _descriptionCard: 
+  _nameCard: 
+  _idCard: 0
+  _manaCostCard: 0
+  _atackDamageCard: 0
+  _healthCard: 0
 --- !u!114 &2478676348747590722
 MonoBehaviour:
   m_ObjectHideFlags: 0

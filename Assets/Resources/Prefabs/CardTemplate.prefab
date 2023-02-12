@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 1716541606589815586}
   - component: {fileID: 1716541606589815585}
   - component: {fileID: 1716541606589815584}
-  - component: {fileID: 4200311824658928178}
+  - component: {fileID: 4282400055567629506}
   m_Layer: 0
   m_Name: ImageCardTemplate
   m_TagString: Untagged
@@ -322,7 +322,7 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
---- !u!114 &4200311824658928178
+--- !u!114 &4282400055567629506
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -511,9 +511,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1716541608145100751}
-  - component: {fileID: 7139192151810163284}
-  - component: {fileID: 1530442527}
-  - component: {fileID: 1530442528}
+  - component: {fileID: 7030731836677047863}
+  - component: {fileID: 2158646479997419506}
+  - component: {fileID: 3129070633414119821}
+  - component: {fileID: 1159128891}
+  - component: {fileID: 6598869263396024576}
   m_Layer: 0
   m_Name: CardTemplate
   m_TagString: CardTemplate
@@ -530,7 +532,7 @@ Transform:
   m_GameObject: {fileID: 1716541608145100750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.5, y: 2.92, z: -5}
-  m_LocalScale: {x: 65, y: 65, z: 65}
+  m_LocalScale: {x: 0.025618052, y: 0.025618052, z: 0.025618052}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8518533782636531649}
@@ -538,7 +540,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7139192151810163284
+--- !u!114 &7030731836677047863
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -550,7 +552,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d81fb05b06b1bb4fb3fcfedb7fa82ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1530442527
+  _abilityChangeHealth: 0
+  _abilityChangeAtackDamage: 0
+  _abilityChangeSpellDamage: 0
+  _abilityAddCard: 0
+  _isProvocation: 0
+  _isDivineShield: 0
+  _isPermanentEffect: 0
+  _isCharge: 0
+  _isBerserk: 0
+  _protectionImage: {fileID: 21300000, guid: 863804e38f126a14fb74e1de305d308e, type: 3}
+  _spriteCard: {fileID: 0}
+  _descriptionCard: 
+  _nameCard: 
+  _idCard: 0
+  _manaCostCard: 0
+  _atackDamageCard: 0
+  _healthCard: 0
+--- !u!114 &2158646479997419506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716541608145100750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a367831517b294f892dda6f6ae5bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3129070633414119821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716541608145100750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9dd1be2f17ff85409e0a9305d01d5b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1159128891
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -562,7 +605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836b0c5afbc0e8d448482332f73c770d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1530442528
+--- !u!114 &6598869263396024576
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -571,7 +614,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1716541608145100750}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9a367831517b294f892dda6f6ae5bb1, type: 3}
+  m_Script: {fileID: 11500000, guid: 1625c1880eee5144f9aad1bd3e0626c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1720805814630253066
@@ -585,7 +628,7 @@ GameObject:
   - component: {fileID: 4497664162991069508}
   - component: {fileID: 8146026263761479675}
   - component: {fileID: 3967998368240511001}
-  - component: {fileID: 505955228}
+  - component: {fileID: 5518270165653367781}
   m_Layer: 5
   m_Name: TextHealth
   m_TagString: Untagged
@@ -655,7 +698,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 99
---- !u!114 &505955228
+--- !u!114 &5518270165653367781
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -678,7 +721,7 @@ GameObject:
   - component: {fileID: 8863025289732124070}
   - component: {fileID: 5777341001220579005}
   - component: {fileID: 70972351261278118}
-  - component: {fileID: 835075358298657496}
+  - component: {fileID: 4845066649167888755}
   m_Layer: 5
   m_Name: TextCardName
   m_TagString: Untagged
@@ -748,7 +791,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Name
---- !u!114 &835075358298657496
+--- !u!114 &4845066649167888755
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1176,7 +1219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7197990436323605909}
   - component: {fileID: 9122684252080428271}
-  - component: {fileID: 205860093471493010}
+  - component: {fileID: 4447982531169731414}
   m_Layer: 0
   m_Name: CardEmission
   m_TagString: Untagged
@@ -1251,7 +1294,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &205860093471493010
+--- !u!114 &4447982531169731414
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1354,7 +1397,7 @@ GameObject:
   - component: {fileID: 7874891608515359678}
   - component: {fileID: 3574411841422202222}
   - component: {fileID: 8410973821416728946}
-  - component: {fileID: 1516293094}
+  - component: {fileID: 8203844261091076467}
   m_Layer: 0
   m_Name: TextAtack
   m_TagString: Untagged
@@ -1424,7 +1467,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 99
---- !u!114 &1516293094
+--- !u!114 &8203844261091076467
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1447,7 +1490,7 @@ GameObject:
   - component: {fileID: 1655425844420349846}
   - component: {fileID: 8351242975047195420}
   - component: {fileID: 313488179345975244}
-  - component: {fileID: 978151345}
+  - component: {fileID: 4091473234416373024}
   m_Layer: 5
   m_Name: TextManaCost
   m_TagString: Untagged
@@ -1517,7 +1560,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 99
---- !u!114 &978151345
+--- !u!114 &4091473234416373024
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1540,7 +1583,7 @@ GameObject:
   - component: {fileID: 8666746513861884496}
   - component: {fileID: 5351333923031650539}
   - component: {fileID: 1684177610157930916}
-  - component: {fileID: 4034974048143500035}
+  - component: {fileID: 9103715876179211964}
   m_Layer: 5
   m_Name: TextDiscription
   m_TagString: Untagged
@@ -1610,7 +1653,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 0.7
   m_Text: "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435 \u043A\u0430\u0440\u0442\u044B"
---- !u!114 &4034974048143500035
+--- !u!114 &9103715876179211964
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1631,6 +1674,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8518533782636531649}
+  - component: {fileID: 5770308418624505555}
   m_Layer: 0
   m_Name: InHead
   m_TagString: Untagged
@@ -1658,6 +1702,18 @@ Transform:
   m_Father: {fileID: 1716541608145100751}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5770308418624505555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8518533782636531648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9bc0bdd215fa0d4e89faaad5a9e72c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8518533783991921930
 GameObject:
   m_ObjectHideFlags: 0
@@ -1667,6 +1723,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8518533783991921931}
+  - component: {fileID: 8698302458442389180}
   m_Layer: 0
   m_Name: InField
   m_TagString: Untagged
@@ -1693,3 +1750,15 @@ Transform:
   m_Father: {fileID: 1716541608145100751}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8698302458442389180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8518533783991921930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d85c5a0efbcfc44a8db6afc8d0cb855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

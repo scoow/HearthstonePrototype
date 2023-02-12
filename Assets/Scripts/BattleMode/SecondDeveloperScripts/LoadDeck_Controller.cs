@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Xml.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Windows;
+using Random = UnityEngine.Random;
 
 namespace Hearthstone
 {
@@ -12,6 +15,9 @@ namespace Hearthstone
         private int _heroId;
         [SerializeField]
         private Image _heroSprite;
+        /// <summary>
+        /// активная колода в игре
+        /// </summary>
         public List<int> _activeDeck = new List<int>();
         private string _pathSaveDocument;
         private PageBook_Model _pageBookModel;       
@@ -25,42 +31,45 @@ namespace Hearthstone
             _pageBookModel = GetComponent<PageBook_Model>();
             _pathSaveDocument = Application.dataPath + "/SaveData.xml";
         }
-        private void Start()
+        private void OnEnable()
         {           
-            LoadActiveDeck();
-            CardSettings_Model[] _temporaryArray = _mulliganManager.transform.GetComponentsInChildren<CardSettings_Model>();
+            LoadActiveDeck();            
+            ShuffleCardInDeck();
+            Card_Model[] _temporaryArray = _mulliganManager.transform.GetComponentsInChildren<Card_Model>();
             for(int i = 0; i <= _temporaryArray.Length-1; i++)
             {               
-                LoadCardSettings(_temporaryArray[i], _activeDeck[i]);
+                LoadCardSettings(_temporaryArray[i], _activeDeck[i]);                
+                _temporaryArray[i].SetCardSettings(_activeDeck[i]);                
                 LayerRenderUp layerRenderUp = _temporaryArray[i].GetComponent<LayerRenderUp>();
                 layerRenderUp.LayerUp(i);
-                if (i == _temporaryArray.Length - 1) layerRenderUp.LayerLastSpriteUp();
-                //_temporaryArray[i].GetComponent<ChoiseCard_View>().ChangeViewCard(_temporaryArray[i], _activeDeck[i]);
-                //_temporaryArray[i] = _pageBookModel._cardsDictionary[_activeDeck[i]] ;
-            }
-            /*foreach (CardSettings_Model child in _temporaryArray)
-            {
-                if (child.TryGetComponent(out EmissionMarker image))
-                {
-                    image.gameObject.GetComponent<Image>().color = new Color(172, 172, 172, 255);
-                }
-            }*/
+                if (i == _temporaryArray.Length - 1) layerRenderUp.LayerLastSpriteUp();               
+            }            
         }
 
-        public void LoadCardSettings(CardSettings_Model settingsGameCard, int cardId)
+        public void LoadCardSettings(Card_Model card_Model, int cardId)
         {
-            CardSO_Model cardSettings = _pageBookModel._cardsDictionary[cardId];
-            settingsGameCard.ManaCost.text = cardSettings._manaCostCard.ToString();
-            settingsGameCard.Name.text = cardSettings._nameCard;
-            settingsGameCard.AtackDamage.text = cardSettings._atackDamageCard.ToString();
-            settingsGameCard.Healt.text = cardSettings._healtCard.ToString();
-            settingsGameCard.Description.text = cardSettings._descriptionCard;
-            settingsGameCard.SpriteCard.sprite = cardSettings._spriteCard;
+            CardSO_Model cardSO_Model = _pageBookModel._cardsDictionary[cardId];
+            card_Model._atackDamageCard = cardSO_Model._atackDamageCard;
+            card_Model._descriptionCard = cardSO_Model._descriptionCard;
+            card_Model._manaCostCard = cardSO_Model._manaCostCard;
+            card_Model._healthCard = cardSO_Model._healthCard;
+            card_Model._spriteCard = cardSO_Model._spriteCard;
+            card_Model._nameCard = cardSO_Model._nameCard;       
+                       
             SetSettings?.Invoke();
         }
-
-
-
+        private void ShuffleCardInDeck()
+        {           
+            int maxIndex = _activeDeck.Count;
+            while (maxIndex > 1)
+            {
+                maxIndex--;
+                int randomIndex = UnityEngine.Random.Range(0,maxIndex);
+                int value = _activeDeck[randomIndex];
+                _activeDeck[randomIndex] = _activeDeck[maxIndex];
+                _activeDeck[maxIndex] = value;                
+            }            
+        }
         public void LoadActiveDeck()
         {
             XDocument xdoc = XDocument.Load(_pathSaveDocument);

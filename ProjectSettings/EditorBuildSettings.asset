@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/ChooseHero.unity
     guid: 3359ccae9d6e063489e63e95958601be
   - enabled: 1
-    path: Assets/Scenes/BattleScene.unity
+    path: Assets/Scenes/BattleScene1.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

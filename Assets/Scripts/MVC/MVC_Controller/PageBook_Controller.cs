@@ -10,7 +10,7 @@ namespace Hearthstone
         /// <summary>
         /// шаблоны карт на странице книги
         /// </summary>
-        public CardSettings_Model[] _cardTemplatePrefabs;
+        public Card_Model[] _cardTemplatePrefabs;
         private int _maxPageNumber;
         private int _minPageNumber = 0;
         private int _pageCounter = 0;

@@ -4,8 +4,8 @@ namespace Hearthstone
 {
     [RequireComponent(typeof(ContentDeck_Model))]
     public class ContentDeck_Controller : MonoBehaviour , ICreating
-    {
-        private IReadable _readable;      
+    {        
+        private PageBook_Model _pageBook_Model;
         private ContentDeck_Model _contentDeck_Model;
         public Transform _contentDeckTransform;
         
@@ -13,19 +13,20 @@ namespace Hearthstone
         private void Start()
         {
             _contentDeck_Model = GetComponent<ContentDeck_Model>();            
-            _readable = FindObjectOfType<PageBook_Controller>();
-            
+            _pageBook_Model = FindObjectOfType<PageBook_Model>();
         }
 
         public void AddContent(int cardId) 
         {
             GameObject obj = Instantiate(_contentDeck_Model._prefabChioseCardSettings, _contentDeckTransform);
-            CardSettings_Model addCardSettings = obj.GetComponent<CardSettings_Model>();
-            CardSO_Model cardSettings = _readable.GetCard(cardId);
-            addCardSettings.Id = cardId;
-            addCardSettings.Name.text = cardSettings._nameCard;
-            addCardSettings.ManaCost.text = cardSettings._manaCostCard.ToString();
-            _contentDeck_Model._contentDeck.Add(cardId);            
+            Card_Model addCardSettings = obj.GetComponent<Card_Model>();
+            CardSO_Model cardSO_Model = _pageBook_Model._cardsDictionary[cardId];
+            addCardSettings._idCard = cardSO_Model._idCard;
+            addCardSettings._nameCard = cardSO_Model._nameCard;
+            addCardSettings._manaCostCard = cardSO_Model._manaCostCard;
+            addCardSettings.gameObject.GetComponent<Card_View>().ChangeViewCard();
+            _contentDeck_Model._contentDeck.Add(cardId);
+            
         }
 
         public void RemoveContent(int cardId)

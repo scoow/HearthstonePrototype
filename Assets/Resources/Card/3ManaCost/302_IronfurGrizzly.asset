@@ -18,4 +18,13 @@ MonoBehaviour:
   _spriteCard: {fileID: 21300000, guid: a06af4ea5295c4747813211da51e3f8f, type: 3}
   _manaCostCard: 3
   _atackDamageCard: 3
-  _healtCard: 3
+  _healthCard: 3
+  _isProvocation: 1
+  _isDivineShield: 0
+  _isPermanentEffect: 0
+  _isCharge: 0
+  _isBerserk: 0
+  _abilityChangeHealth: 0
+  _abilityChangeAtackDamage: 0
+  _abilityChangeSpellDamage: 0
+  _abilityAddCard: 0

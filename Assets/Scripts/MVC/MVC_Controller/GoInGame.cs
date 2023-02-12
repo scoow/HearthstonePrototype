@@ -10,6 +10,6 @@ public class GoInGame : MonoBehaviour, IPointerClickHandler
     }
     private void StartBattleScene()
     {
-        SceneManager.LoadScene("BattleScene");
+        SceneManager.LoadScene("BattleScene1");
     }
 }

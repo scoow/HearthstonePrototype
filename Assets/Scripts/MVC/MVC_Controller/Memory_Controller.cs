@@ -8,7 +8,7 @@ namespace Hearthstone
     public class Memory_Controller : MonoBehaviour, ISave, IRemove , IActive
     {
         private ContentDeck_Model _contentDeck_Model;
-        //public CardCollectionSO_Model cardCollectionSO_Model;
+        private PageBook_Model _pageBook_Model;        
         private DeckCollection_Controller _deckCollection_Controller;
 
         private string _pathSaveDocument ;        
@@ -18,6 +18,7 @@ namespace Hearthstone
             _deckCollection_Controller = FindObjectOfType<DeckCollection_Controller>();
             _contentDeck_Model = FindObjectOfType<ContentDeck_Model>();
             _pathSaveDocument = Application.dataPath + "/SaveData.xml";
+            _pageBook_Model = FindObjectOfType<PageBook_Model>();
         }
 
         private void Start()
@@ -35,9 +36,9 @@ namespace Hearthstone
             deckNameElement.Add(nameAtribute);
             deckNameElement.Add(stateAtribute);
             saveDeckCollection.Add(deckNameElement);
-            
+
             for (int i = 0; i < _contentDeck_Model._contentDeck.Count; i++)
-            {               
+            {
                 XElement idElement = new XElement("CardId",$"{_contentDeck_Model._contentDeck[i]}");
                 deckNameElement.Add(idElement);
             }

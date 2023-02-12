@@ -9,11 +9,7 @@ namespace Hearthstone
         /// <summary>
         /// словарь карт по ключу = ID
         /// </summary>
-        public Dictionary<int, CardSO_Model> _cardsDictionary = new Dictionary<int, CardSO_Model>();
-        /// <summary>
-        /// шаблоны карт на странице книги
-        /// </summary>
-        //public CardSettings_Model[] _cardTemplatePrefabs ;
+        public Dictionary<int, CardSO_Model> _cardsDictionary = new Dictionary<int, CardSO_Model>();      
         /// <summary>
         /// SO сборник всех карт
         /// </summary>
