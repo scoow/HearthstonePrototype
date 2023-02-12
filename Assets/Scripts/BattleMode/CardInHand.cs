@@ -5,9 +5,7 @@ namespace Hearthstone
 {
     public class CardInHand : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
     {
-        [SerializeField]
         private Camera _camera;
-        private Transform _defaultTempCardParent;
         private GameObject _tempCardGO;
 
         public delegate void BeginDrag(CardInHand card);
@@ -22,10 +20,7 @@ namespace Hearthstone
         {
             _tempCardGO.transform.position = transform.position;//временная карта
             GetComponent<CanvasGroup>().blocksRaycasts = false;
-            if (TellParentBeginDrag != null)
-            {
-                TellParentBeginDrag(this);
-            }
+            TellParentBeginDrag?.Invoke(this);
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -43,24 +38,13 @@ namespace Hearthstone
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            //Debug.Log("End drag");
             GetComponent<CanvasGroup>().blocksRaycasts = true;
-            //
-            //_tempCardGO.transform.SetParent(GameObject.Find("PlayerDeck").transform);
             var _parent = transform.parent.GetComponent<CardHolder>();
             if (_parent is Hand)
             {
                 transform.position = _tempCardGO.transform.position;
             }
-            else
-            {
-               // _parent.RemoveCard(this);
-            }
-                
-
             _tempCardGO.transform.position = new Vector3(100, 0);
-            //
-
         }
         public void SetParent(CardHolder cardHolder)
         {

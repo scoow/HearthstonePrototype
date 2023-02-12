@@ -27,7 +27,7 @@ namespace Hearthstone
         /// получить позицию последней карты в руке
         /// </summary>
         /// <returns></returns>
-        public Vector3 GetLastCardPosition()
+        public virtual Vector3 GetLastCardPosition()
         {
             if (_cardCount == 0)
                 return transform.position;
@@ -48,9 +48,8 @@ namespace Hearthstone
             _cardsList.Add(card);
             _cardCount++;
             //card.TellParentBeginDrag += RemoveCard;//
-            Debug.Log(_cardCount.ToString());
+            //Debug.Log(_cardCount.ToString());
             card.SetParent(this);
-            
         }
         /// <summary>
         /// убрать карту из руки
@@ -73,11 +72,10 @@ namespace Hearthstone
                 }
                 _cardsList.Remove(card);
                 card.TellParentBeginDrag -= RemoveCard;//
-                Debug.Log(_cardCount.ToString());
-                
+                //Debug.Log(_cardCount.ToString());
             }
         }
-        public void OnDrop(PointerEventData eventData)//вынести в класс-родитель
+        public virtual void OnDrop(PointerEventData eventData)//вынести в класс-родитель
         {
             CardInHand card = eventData.pointerDrag.GetComponent<CardInHand>();
             if (card == null) return;
