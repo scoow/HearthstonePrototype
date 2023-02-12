@@ -2,14 +2,17 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class GoInGame : MonoBehaviour, IPointerClickHandler
+namespace Hearthstone
 {
-    public void OnPointerClick(PointerEventData eventData)
+    public class GoInGame : MonoBehaviour, IPointerClickHandler
     {
-        StartBattleScene();
-    }
-    private void StartBattleScene()
-    {
-        SceneManager.LoadScene("BattleScene1");
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            StartBattleScene();
+        }
+        private void StartBattleScene()
+        {
+            SceneManager.LoadScene("BattleScene1");
+        }
     }
 }

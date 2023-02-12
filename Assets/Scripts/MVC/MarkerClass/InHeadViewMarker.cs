@@ -1,18 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class InHeadViewMarker : MonoBehaviour
+namespace Hearthstone
 {
-    // Start is called before the first frame update
-    void Start()
+    public class InHeadViewMarker : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

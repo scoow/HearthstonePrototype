@@ -1,5 +1,3 @@
-using Heartstone;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 

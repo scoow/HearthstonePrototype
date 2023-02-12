@@ -14,7 +14,6 @@ namespace Hearthstone
         }
         private void EnterChooseHeroScreen()
         {
-            //SceneManager.LoadScene("ChooseHero");
             SceneManager.LoadScene("BattleScene");
             
             Time.timeScale = 1;

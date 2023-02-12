@@ -2,7 +2,6 @@ using System;
 using System.Xml.Linq;
 using UnityEngine;
 
-
 namespace Hearthstone
 {
     public class Memory_Controller : MonoBehaviour, ISave, IRemove , IActive

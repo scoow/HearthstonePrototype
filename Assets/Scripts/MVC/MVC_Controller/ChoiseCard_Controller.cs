@@ -30,7 +30,7 @@ namespace Hearthstone
             _pageBook_Model = FindObjectOfType<PageBook_Model>();            
             _card_Model = GetComponent<Card_Model>();
             _zommingCard_View = FindObjectOfType<CardZoomingTemplateMarker>().GetComponentInChildren<Card_View>();           
-            if (gameObject.tag == "CardTemplate")            
+            if (gameObject.CompareTag("CardTemplate"))            
                 _spriteEmission = GetComponentInChildren<EmissionMarker>().gameObject.GetComponent<Renderer>();           
             
             _contentDeckController = FindObjectOfType<ContentDeck_Controller>();
@@ -38,12 +38,12 @@ namespace Hearthstone
 
         private void Start()
         {
-            _zommingCard_View.gameObject.SetActive(false);
+            _zommingCard_View?.gameObject.SetActive(false);
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {            
-            if (gameObject.tag == "CardTemplate")
+            if (gameObject.CompareTag("CardTemplate"))
                 _spriteEmission.gameObject.SetActive(true);                 
             _zommingCard_View.gameObject.SetActive(true);
             _zommingCard_View.ChangeViewZomingCard(_card_Model._idCard);
@@ -53,7 +53,7 @@ namespace Hearthstone
         {       
             if(eventData.pointerEnter != null)
             {
-                if (gameObject.tag == "CardTemplate")
+                if (gameObject.CompareTag("CardTemplate"))
                     _spriteEmission.gameObject.SetActive(false);
 
                 _zommingCard_View.gameObject.SetActive(false);
@@ -64,9 +64,9 @@ namespace Hearthstone
         {
             if(_pageBook_Model._createDeckState == CreateDeckState.CreateDeck)
             {
-                if (gameObject.tag == "CardTemplate")
+                if (gameObject.CompareTag("CardTemplate"))
                     _contentDeckController.AddContent(_card_Model._idCard);
-                if (gameObject.tag == "ChoiseCard")
+                if (gameObject.CompareTag("ChoiseCard"))
                 {
                     _contentDeckController.RemoveContent(_card_Model._idCard);
                     Destroy(this.gameObject);

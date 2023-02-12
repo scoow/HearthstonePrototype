@@ -4,6 +4,5 @@ namespace Hearthstone
 {
     public class ManaCristal : MonoBehaviour
     {
-
     }
 }

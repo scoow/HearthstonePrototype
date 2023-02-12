@@ -1,6 +1,7 @@
-using Hearthstone;
-
-public interface IChange
+namespace Hearthstone
 {
-    void ChangeViewCard();
+    public interface IChange
+    {
+        void ChangeViewCard();
+    }
 }

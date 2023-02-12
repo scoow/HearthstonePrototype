@@ -1,7 +1,8 @@
-using Hearthstone;
 using System.Collections.Generic;
-
-public interface IUpdate
+namespace Hearthstone
 {
-    void UpdatePageBook(List<CardSO_Model> listSO, Card_Model[] arreyCardSettings, int id);
+    public interface IUpdate
+    {
+        void UpdatePageBook(List<CardSO_Model> listSO, Card_Model[] arreyCardSettings, int id);
+    }
 }
