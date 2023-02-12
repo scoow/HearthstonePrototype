@@ -1,7 +1,6 @@
-using Hearthstone;
 using UnityEngine;
 
-namespace Heartstone
+namespace Hearthstone
 {
     public class BattleCry_Controller : MonoBehaviour
     {
@@ -11,7 +10,6 @@ namespace Heartstone
         public int _currentValueChangeAtackDamage;
         private PageBook_Model _pageBook_Model;
         public int iD;
-
 
         private void OnEnable()
         {
@@ -33,11 +31,11 @@ namespace Heartstone
         }
 
 
-        /*public void BattleCryUpdate()
+        public void BattleCryUpdate()//раскомментировал - баг пропал
         {
             _isActiveCry = !_isActiveCry;
             _targetBattleCry.gameObject.SetActive(_isActiveCry);
-        }*/
+        }
 
         public void SaveCurrentValueBattleCry(int idCard)
         {
