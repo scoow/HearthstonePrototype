@@ -8,6 +8,8 @@ namespace Hearthstone
     {
         private Camera _camera;
         private GameObject _tempMinionGO;
+        private bool _draggingCard; //несём ли карту
+        private bool _rightCard; //добавление карты справа?
         private void Awake()
         {
             _camera = Camera.main;
@@ -33,7 +35,8 @@ namespace Hearthstone
             {
 
                 Vector3 newPosition = center;
-                newPosition.x += _cardCount * _offset;
+                newPosition.x = _rightCard ? _cardsList.Max(x => x.transform.position.x) : _cardsList.Min(x => x.transform.position.x);
+                newPosition.x += _rightCard ? _offset : -_offset;
                 return newPosition;
             }
         }
@@ -44,7 +47,7 @@ namespace Hearthstone
             var _parent = card.transform.parent.GetComponent<CardHolder>();
             if (_parent != this)
             {
-                Debug.Log("drop card");
+                //Debug.Log("drop card");
                 _parent.RemoveCard(card);
                 card.transform.position = GetLastCardPosition();
                 AddCard(card);
@@ -59,11 +62,13 @@ namespace Hearthstone
             newPosition.z = -1;
             if (newPosition.x < 0)
             {
-                _tempMinionGO.transform.position = GetLastCardPosition() + new Vector3(-_offset, 0, -1) * _cardCount;
+                _rightCard = false;
+                _tempMinionGO.transform.position = GetLastCardPosition();// + new Vector3(-_offset, 0, -1);
             }
             else
             {
-                _tempMinionGO.transform.position = GetLastCardPosition() + new Vector3(_offset, 0, -1) * _cardCount;
+                _rightCard = true;
+                _tempMinionGO.transform.position = GetLastCardPosition();// + new Vector3(_offset, 0, -1);
             }
         }
 

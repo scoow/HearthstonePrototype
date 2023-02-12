@@ -48,7 +48,6 @@ namespace Hearthstone
             _cardsList.Add(card);
             _cardCount++;
             //card.TellParentBeginDrag += RemoveCard;//
-            //Debug.Log(_cardCount.ToString());
             card.SetParent(this);
         }
         /// <summary>
@@ -56,11 +55,11 @@ namespace Hearthstone
         /// </summary>
         public void RemoveCard(CardInHand card)
         {
-            Debug.Log("card dragged");
+            //Debug.Log("card dragged");
             if (_cardCount > 0)
             {
                 _cardCount--;
-                foreach (var c in _cardsList)
+                foreach (var c in _cardsList)//почему не работает?
                 {
                     if (c.transform.position.x > card.transform.position.x)
                     {
@@ -72,13 +71,11 @@ namespace Hearthstone
                 }
                 _cardsList.Remove(card);
                 card.TellParentBeginDrag -= RemoveCard;//
-                //Debug.Log(_cardCount.ToString());
             }
         }
         public virtual void OnDrop(PointerEventData eventData)//вынести в класс-родитель
         {
-            CardInHand card = eventData.pointerDrag.GetComponent<CardInHand>();
-            if (card == null) return;
+            if (!eventData.pointerDrag.TryGetComponent<CardInHand>(out var card)) return;
             var _parent = card.transform.parent.GetComponent<CardHolder>();
             if (_parent != this)
             {

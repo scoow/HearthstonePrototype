@@ -32,20 +32,23 @@ namespace Hearthstone
 
             newPosition.z = -1;
             transform.position = newPosition;
-
             //разобраться почему надо умножать на -1
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
             GetComponent<CanvasGroup>().blocksRaycasts = true;
-            var _parent = transform.parent.GetComponent<CardHolder>();
+            CardHolder _parent = transform.parent.GetComponent<CardHolder>();
             if (_parent is Hand)
             {
                 transform.position = _tempCardGO.transform.position;
             }
-            _tempCardGO.transform.position = new Vector3(100, 0);
+            _tempCardGO.transform.position = new Vector3(100, 0);//Убираем временную карту за пределы экрана
         }
+        /// <summary>
+        /// Установить родителя
+        /// </summary>
+        /// <param name="cardHolder">родитель</param>
         public void SetParent(CardHolder cardHolder)
         {
             transform.parent = cardHolder.transform;

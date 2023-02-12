@@ -55,6 +55,7 @@ namespace Hearthstone
             MulliganStage2();*/
             //test
             MulliganStage4();
+            await UniTask.Delay(TimeSpan.FromSeconds(0));//заглушка
         }
 
         private async void MulliganStage1()
@@ -119,7 +120,7 @@ namespace Hearthstone
                 
                 
                 await UniTask.Delay(TimeSpan.FromSeconds(0.5));
-                Destroy(position);
+                position.gameObject.SetActive(false);
                 var _cardInHand = _card.AddComponent<CardInHand>();
                 _cardInHand.SetParent(_firstPlayerHand);
                 _firstPlayerHand.AddCard(_cardInHand);
