@@ -37,4 +37,14 @@ namespace Hearthstone
         Third,
         Fourth
     }
+
+    public enum BattleCryType : byte
+    {
+        No—ry,
+        DealDamage,
+        RaiseParametrs,
+        Heal,
+        SummonAssistant,
+        GetCardInDeck
+    }
 }

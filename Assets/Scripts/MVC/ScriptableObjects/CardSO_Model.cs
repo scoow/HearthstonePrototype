@@ -11,7 +11,9 @@ namespace Hearthstone
         public Sprite _spriteCard;
         public int _manaCostCard;
         public int _atackDamageCard;
-        public int _healthCard;     
+        public int _healthCard;
+        
+        public BattleCryType _battleCryType;
 
         
         public bool _isProvocation;
@@ -27,11 +29,4 @@ namespace Hearthstone
         public int _abilityAddCard;
 
     }
-
-    public enum Ability
-    {       
-        BattleCry,
-        DeathRattle,      
-    }
-
 }

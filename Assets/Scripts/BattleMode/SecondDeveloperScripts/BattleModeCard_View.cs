@@ -11,7 +11,7 @@ namespace Hearthstone
         private BattleCry_Controller _battleCryController;
         public Text _atackText;
         public Text _healthText;
-        public int _idCard;
+        //public int _idCard;
         [SerializeField] private SpriteRenderer _spriteCard;
         [SerializeField] private InFieldViewMarker _inFieldView;
         [SerializeField] private InHeadViewMarker _inHeadView;
@@ -44,7 +44,7 @@ namespace Hearthstone
 
         private void SetSettingsCardInBattle()
         {
-            _idCard = _card_Model._idCard;
+            //_idCard = _card_Model._idCard;
             _atackText.text = _card_Model._atackDamageCard.ToString();
             _healthText.text = _card_Model._healthCard.ToString();
             _spriteCard.sprite = _card_Model._spriteCard;
@@ -59,8 +59,7 @@ namespace Hearthstone
             {
                 _inFieldView.gameObject.SetActive(true);
                 _battleCryController.SaveCurrentValueBattleCry(_card_Model._idCard/*_idCard*/);
-                _inHeadView.gameObject.SetActive(false);
-                                
+                _inHeadView.gameObject.SetActive(false);                                
             }                            
         }
     }

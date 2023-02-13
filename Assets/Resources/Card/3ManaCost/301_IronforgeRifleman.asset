@@ -20,12 +20,13 @@ MonoBehaviour:
   _manaCostCard: 3
   _atackDamageCard: 2
   _healthCard: 2
+  _battleCryType: 1
   _isProvocation: 0
   _isDivineShield: 0
   _isPermanentEffect: 0
   _isCharge: 0
   _isBerserk: 0
-  _abilityChangeHealth: -1
+  _abilityChangeHealth: 1
   _abilityChangeAtackDamage: 0
   _abilityChangeSpellDamage: 0
   _abilityAddCard: 0

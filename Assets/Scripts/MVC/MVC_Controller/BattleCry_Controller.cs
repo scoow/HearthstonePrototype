@@ -9,7 +9,7 @@ namespace Hearthstone
         public int _currentValueChangeHealth;
         public int _currentValueChangeAtackDamage;
         private PageBook_Model _pageBook_Model;
-        public int iD;
+        public int _idBattleCry;
 
         private void OnEnable()
         {
@@ -39,7 +39,7 @@ namespace Hearthstone
 
         public void SaveCurrentValueBattleCry(int idCard)
         {
-            iD = idCard;
+            _idBattleCry = idCard;
             _currentValueChangeHealth = 0;
             _currentValueChangeAtackDamage = 0;
             CardSO_Model cardSO = _pageBook_Model._cardsDictionary[idCard];

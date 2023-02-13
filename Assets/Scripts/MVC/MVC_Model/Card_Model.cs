@@ -27,7 +27,8 @@ namespace Hearthstone
         public int _idCard;    
         public int _manaCostCard;
         public int _atackDamageCard;
-        public int _healthCard;      
+        public int _healthCard;
+        public BattleCryType _battleCryType;
 
 
         private void OnEnable()
@@ -47,7 +48,7 @@ namespace Hearthstone
             _isDivineShield = cardSOModel._isDivineShield;
             _isProvocation = cardSOModel._isProvocation;
             _isBerserk = cardSOModel._isBerserk;
-            _isCharge = cardSOModel._isCharge;            
+            _isCharge = cardSOModel._isCharge;
             _atackDamageCard = cardSOModel._atackDamageCard;
             _descriptionCard = cardSOModel._descriptionCard;
             _manaCostCard = cardSOModel._manaCostCard;
@@ -55,6 +56,7 @@ namespace Hearthstone
             _spriteCard = cardSOModel._spriteCard;
             _nameCard = cardSOModel._nameCard;
             _idCard = cardSOModel._idCard;
-        }    
+            _battleCryType = cardSOModel._battleCryType;
+        }
     }
 }
