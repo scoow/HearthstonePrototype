@@ -28,12 +28,23 @@ namespace Hearthstone
         public int _manaCostCard;
         public int _atackDamageCard;
         public int _healthCard;
+
+        public int _maxHealtValue;
+        public int _maxAtackValue;
+
         public BattleCryType _battleCryType;
 
 
         private void OnEnable()
         {            
             _pageBook_Model = FindObjectOfType<PageBook_Model>();
+           
+        }
+
+        private void Start()
+        {
+            _maxHealtValue = _healthCard;
+            _maxAtackValue = _atackDamageCard;
         }
 
 

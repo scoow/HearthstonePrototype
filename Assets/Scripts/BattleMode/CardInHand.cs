@@ -31,7 +31,7 @@ namespace Hearthstone
             newPosition = -_camera.ScreenToWorldPoint(newPosition);
 
             newPosition.z = -1;
-            transform.position = newPosition;
+            transform.position = newPosition;            
             //разобраться почему надо умножать на -1
         }
 
@@ -42,8 +42,8 @@ namespace Hearthstone
             if (_parent is Hand)
             {
                 transform.position = _tempCardGO.transform.position;
-            }
-            _tempCardGO.transform.position = new Vector3(100, 0);//Убираем временную карту за пределы экрана
+            }            
+            _tempCardGO.transform.position = new Vector3(100, 0);//Убираем временную карту за пределы экрана            
         }
         /// <summary>
         /// Установить родителя

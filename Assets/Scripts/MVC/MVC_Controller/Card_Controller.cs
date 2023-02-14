@@ -18,6 +18,11 @@ namespace Hearthstone
             ProvocationAbility();
         }
 
+        public void DiedCreature()
+        {
+            Debug.Log("Существо погибло");
+        }
+
         #region //Ability Сondition
         private void ProvocationAbility()
         {
@@ -52,22 +57,8 @@ namespace Hearthstone
         #endregion
 
         #region //Ability Action
-
-        //способность изменять здоровье
-        private void ChangeHealthAbility()
-        {
-            if (_card_Model._abilityChangeHealth != 0)
-            {
-                if (_card_Model._abilityChangeHealth > 0) //если способность увеличивает здоровье
-                {
-                    Debug.Log("Я увеличиваю здоровье");
-                }
-                if (_card_Model._abilityChangeHealth < 0) //если способность уменьшает здоровье
-                {
-                    Debug.Log("Я уменьшаю здоровье");
-                }
-            }
-        }
+               
+        
 
         //способность изменять атаку
         private void ChangeAtackDamageAbility()

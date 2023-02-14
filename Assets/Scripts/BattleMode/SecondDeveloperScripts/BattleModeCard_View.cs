@@ -44,12 +44,16 @@ namespace Hearthstone
 
         private void SetSettingsCardInBattle()
         {
-            //_idCard = _card_Model._idCard;
+            //_idCard = _card_Model._idCard;     
+            UpdateViewCard();
+            _spriteCard.sprite = _card_Model._spriteCard;            
+            _inFieldView.gameObject.SetActive(false);
+        }
+
+        public void UpdateViewCard()
+        {
             _atackText.text = _card_Model._atackDamageCard.ToString();
             _healthText.text = _card_Model._healthCard.ToString();
-            _spriteCard.sprite = _card_Model._spriteCard;
-            
-            _inFieldView.gameObject.SetActive(false);
         }
         
 
