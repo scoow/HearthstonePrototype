@@ -15,7 +15,10 @@ namespace Hearthstone
             _camera = Camera.main;
             _tempMinionGO = GameObject.Find("TempMinion");
         }
-       // public void 
+       public void ReactionToCardDragging(bool drag)//если несём карту - реагировать, иначе - нет
+        {
+            _draggingCard = drag;
+        }
         public override void AddCard(CardInHand card)
         {
             base.AddCard(card);

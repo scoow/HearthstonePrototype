@@ -20,7 +20,6 @@ namespace Hearthstone
         private MulliganManager _mulliganManager;
         public Action SetSettings;
 
-
         private void Awake()
         {
             _mulliganManager = FindObjectOfType<MulliganManager>();
