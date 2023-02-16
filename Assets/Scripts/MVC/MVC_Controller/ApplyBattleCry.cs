@@ -11,6 +11,7 @@ namespace Hearthstone
         private Card_Model _card_Model;
         private Card_Controller _card_Controller;
         private PageBook_Model _pageBook_Model;
+        public bool _isListen = true; //готов ли принять новый боевой клич
 
         private void OnEnable()
         {
@@ -23,11 +24,12 @@ namespace Hearthstone
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (transform.parent.gameObject.GetComponent<Board>())
+            if (transform.parent.gameObject.GetComponent<Board>() && _isListen && _battleCryController._isActiveCry)
             {                 
-                AplyNewValueCardProperty(_battleCryController._idBattleCry);                
-                _battleCryController._isActiveCry = false;
-                _battleCryController._targetBattleCry.gameObject.SetActive(false);                
+                AplyNewValueCardProperty(_battleCryController._idBattleCry);
+                _isListen = false;
+                _battleCryController._isActiveCry = false;                
+                _battleCryController.UpdateBattleCry();
             }
         }
 

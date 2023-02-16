@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2439,9 +2439,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isActiveCry: 0
   _targetBattleCry: {fileID: 195986248}
-  _currentValueChangeHealth: 0
-  _currentValueChangeAtackDamage: 0
-  iD: 0
+  _parentCardInBattle: {fileID: 671665860}
+  _idBattleCry: 0
 --- !u!4 &1234533176
 Transform:
   m_ObjectHideFlags: 0

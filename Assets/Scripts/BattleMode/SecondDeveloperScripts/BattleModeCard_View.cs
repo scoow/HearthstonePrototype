@@ -43,8 +43,7 @@ namespace Hearthstone
         }
 
         private void SetSettingsCardInBattle()
-        {
-            //_idCard = _card_Model._idCard;     
+        {                
             UpdateViewCard();
             _spriteCard.sprite = _card_Model._spriteCard;            
             _inFieldView.gameObject.SetActive(false);
@@ -62,7 +61,12 @@ namespace Hearthstone
             if (transform.parent.gameObject.GetComponent<Board>())
             {
                 _inFieldView.gameObject.SetActive(true);
-                _battleCryController.SaveCurrentValueBattleCry(_card_Model._idCard/*_idCard*/);
+                if(_card_Model._battleCryType != BattleCryType.No—ry)
+                {
+                    _battleCryController._idBattleCry = _card_Model._idCard;
+                    _battleCryController._isActiveCry = true;
+                    _battleCryController.UpdateBattleCry();
+                }                
                 _inHeadView.gameObject.SetActive(false);                                
             }                            
         }

@@ -6,14 +6,11 @@ namespace Hearthstone
     {
         public bool _isActiveCry = false;
         public Transform _targetBattleCry;
-        public int _currentValueChangeHealth;
-        public int _currentValueChangeAtackDamage;
-        private PageBook_Model _pageBook_Model;
+        public Transform _parentCardInBattle;        
         public int _idBattleCry;
 
         private void OnEnable()
-        {
-            _pageBook_Model =FindObjectOfType<PageBook_Model>();            
+        {                       
             _targetBattleCry.gameObject.SetActive(false);
         }      
 
@@ -30,26 +27,17 @@ namespace Hearthstone
             }          
         }
 
-
-        public void BattleCryUpdate()//раскомментировал - баг пропал
+        public void UpdateBattleCry() //при установке новой карты на стол , у всех появляется возмоджность принять боевой клич
         {
-            _isActiveCry = !_isActiveCry;
-            _targetBattleCry.gameObject.SetActive(_isActiveCry);
-        }
-
-        public void SaveCurrentValueBattleCry(int idCard)
-        {
-            _idBattleCry = idCard;
-            _currentValueChangeHealth = 0;
-            _currentValueChangeAtackDamage = 0;
-            CardSO_Model cardSO = _pageBook_Model._cardsDictionary[idCard];
-            _currentValueChangeHealth = cardSO._abilityChangeHealth;
-            _currentValueChangeAtackDamage = cardSO._abilityChangeAtackDamage;
-            if(_currentValueChangeAtackDamage != 0 || _currentValueChangeHealth != 0)
+            ApplyBattleCry[] _temporaryArray = _parentCardInBattle.GetComponentsInChildren<ApplyBattleCry>();
+            for (int i = 0; i <= _temporaryArray.Length - 1; i++)
             {
-                _targetBattleCry.gameObject.SetActive(true);
-                _isActiveCry = true;
-            }            
-        }
+                if(_isActiveCry)
+                    _temporaryArray[i]._isListen = true;
+                if(!_isActiveCry)
+                    _temporaryArray[i]._isListen = false;
+            }
+            _targetBattleCry.gameObject.SetActive(_isActiveCry);
+        }      
     }
 }
