@@ -23,8 +23,8 @@ namespace Hearthstone
         public CreateDeckState _createDeckState ;       
 
 
-        private void Awake()
-        {                
+        public void Awake()
+        {
             _resultCollection =   cardCollectionSO_Model._1manaCostCard.
                             Union(cardCollectionSO_Model._2manaCostCard).
                             Union(cardCollectionSO_Model._3manaCostCard).

@@ -25,7 +25,7 @@ namespace Hearthstone
             Debug.Log("1 : " + this);
             base.AddCard(card);
 
-            EndDragCard?.Invoke(); ///событие для смены отображения карты
+            EndDragCard?.Invoke(transform); ///событие для смены отображения карты
         }
 
         /// <summary>

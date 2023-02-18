@@ -13,7 +13,7 @@ namespace Hearthstone
         private MulliganManager _mulliganManager;
         private void Start()
         {
-            _pageBook_Model = FindObjectOfType<PageBook_Model>();
+            _pageBook_Model = FindObjectOfType<PageBook_Model>();//FindObjectOfType<PageBook_Model>();
             _loadDeckController = FindObjectOfType<LoadDeck_Controller>();
             _playerDeck = GameObject.Find("PlayerDeck").transform;
             _mulliganManager = FindObjectOfType<MulliganManager>();

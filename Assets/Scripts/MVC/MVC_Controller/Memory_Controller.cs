@@ -17,7 +17,7 @@ namespace Hearthstone
             _deckCollection_Controller = FindObjectOfType<DeckCollection_Controller>();
             _contentDeck_Model = FindObjectOfType<ContentDeck_Model>();
             _pathSaveDocument = Application.dataPath + "/SaveData.xml";
-            _pageBook_Model = FindObjectOfType<PageBook_Model>();
+            _pageBook_Model = FindObjectOfType<PageBook_Model>(); //FindObjectOfType<PageBook_Model>();
         }
 
         private void Start()

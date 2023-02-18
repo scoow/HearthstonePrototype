@@ -59,12 +59,12 @@ namespace Hearthstone
         }
         
 
-        public void ChangeViewCard() //изменение внешнего вида карты при установке на стол , активация боевых кличей
+        public void ChangeViewCard(Transform newParent) //изменение внешнего вида карты при установке на стол , активация боевых кличей
         {
             Debug.Log("2 : " + this);
-            _parent = gameObject.GetComponent<CardInHand>().GetComponent<Transform>();
+           // _parent = newParent;
 
-            if (_parent.GetComponent<Board>() != null)
+            if (newParent == transform.parent)
             {
                 _inFieldView.gameObject.SetActive(true);
                 if(_card_Model._battleCryType != BattleCryType.NoСry)

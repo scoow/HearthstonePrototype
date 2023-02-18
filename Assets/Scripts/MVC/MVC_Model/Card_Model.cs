@@ -37,7 +37,7 @@ namespace Hearthstone
 
         private void OnEnable()
         {            
-            _pageBook_Model = FindObjectOfType<PageBook_Model>();
+            _pageBook_Model = FindObjectOfType<PageBook_Model>(); //FindObjectOfType<PageBook_Model>();
            
         }
 

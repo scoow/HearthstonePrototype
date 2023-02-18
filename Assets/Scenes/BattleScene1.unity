@@ -2549,9 +2549,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1417789398}
-  - component: {fileID: 1417789399}
+  - component: {fileID: 1417789400}
   - component: {fileID: 1417789397}
-  - component: {fileID: 1417789396}
+  - component: {fileID: 1417789399}
+  - component: {fileID: 1417789401}
   m_Layer: 0
   m_Name: DeckController
   m_TagString: Untagged
@@ -2559,21 +2560,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1417789396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1417789395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7d5c549be0d6e343b91401757542fab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardCollectionSO_Model: {fileID: 11400000, guid: 91bad1177d8508e44aee5144ad1c09a8, type: 2}
-  _resultCollection: []
-  _createDeckState: 0
 --- !u!114 &1417789397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2581,7 +2567,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417789395}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 519d71fae23c0b7489f7e2f26fc1dc77, type: 3}
   m_Name: 
@@ -2610,12 +2596,40 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417789395}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4cf8755d60defa44fb8bed36c47fb958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _cardPrefab: {fileID: 1716541608145100750, guid: 9b6ce1c7bf1e580429a98268f98ba365, type: 3}
+--- !u!114 &1417789400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417789395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99366f1a1c66391448929fd7772b6453, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pageBook_Model: {fileID: 0}
+--- !u!114 &1417789401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417789395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d5c549be0d6e343b91401757542fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardCollectionSO_Model: {fileID: 11400000, guid: 91bad1177d8508e44aee5144ad1c09a8, type: 2}
+  _resultCollection: []
+  _createDeckState: 0
 --- !u!1 &1431015021
 GameObject:
   m_ObjectHideFlags: 0
@@ -3107,7 +3121,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1618656897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3120,6 +3134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99366f1a1c66391448929fd7772b6453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pageBook_Model: {fileID: 0}
 --- !u!4 &1618656898
 Transform:
   m_ObjectHideFlags: 0

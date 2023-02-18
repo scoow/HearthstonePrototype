@@ -23,7 +23,7 @@ namespace Hearthstone
             _contentDeck_Model = GetComponent<ContentDeck_Model>();
             _memory_Controller =FindObjectOfType<Memory_Controller>();
             _contentDeck_Controller = GetComponent<ContentDeck_Controller>();
-            _pageBookModel = FindObjectOfType<PageBook_Model>(); 
+            _pageBookModel = FindObjectOfType<PageBook_Model>(); //FindObjectOfType<PageBook_Model>(); 
         }
 
         public void AddDeckInCollection()

@@ -15,7 +15,7 @@ namespace Hearthstone
 
         private void OnEnable()
         {
-            _pageBook_Model = FindObjectOfType<PageBook_Model>();
+            _pageBook_Model = FindObjectOfType<PageBook_Model>(); //FindObjectOfType<PageBook_Model>();
             _card_Model = GetComponent<Card_Model>();
             _card_Controller = GetComponent<Card_Controller>();
             _battleCryController = FindObjectOfType<BattleCry_Controller>();
