@@ -24,7 +24,7 @@ namespace Hearthstone
         }
         public void InitCardList()
         {
-            _allCards = FindObjectsOfType<CardInHand>().ToList();
+             _allCards = FindObjectsOfType<CardInHand>().ToList();
             foreach (CardInHand card in _allCards)
             {
                 card.BeginDrag += ReactionToCardDragging;

@@ -19,6 +19,10 @@ MonoBehaviour:
   _manaCostCard: 2
   _atackDamageCard: 2
   _healthCard: 1
+  _battleCryType: 7
+  _battleCryTargets: 0
+  _battleCryTargetsType: 0
+  _minionType: 1
   _isProvocation: 0
   _isDivineShield: 0
   _isPermanentEffect: 0
