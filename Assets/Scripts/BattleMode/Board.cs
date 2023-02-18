@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Linq;
 using Unity.VisualScripting;
+using System.Collections.Generic;
 
 namespace Hearthstone
 {
@@ -11,12 +12,25 @@ namespace Hearthstone
         private GameObject _tempMinionGO;
         private bool _draggingCard; //несём ли карту
         private bool _rightCard; //добавление карты справа?
+
+        private List<CardInHand> _allCards;
+
         private void Awake()
         {
             _camera = Camera.main;
             _tempMinionGO = GameObject.Find("TempMinion");
+
+            
         }
-       public void ReactionToCardDragging(bool drag)//если несём карту - реагировать, иначе - нет
+        public void InitCardList()
+        {
+            _allCards = FindObjectsOfType<CardInHand>().ToList();
+            foreach (CardInHand card in _allCards)
+            {
+                card.BeginDrag += ReactionToCardDragging;
+            }
+        }
+        public void ReactionToCardDragging(bool drag)//если несём карту - реагировать, иначе - нет
         {
             _draggingCard = drag;
         }
@@ -27,7 +41,6 @@ namespace Hearthstone
 
             EndDragCard?.Invoke(transform); ///событие для смены отображения карты
         }
-
         /// <summary>
         /// получить позицию последней карты в руке
         /// </summary>
@@ -63,7 +76,8 @@ namespace Hearthstone
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            //if (!_draggingCard) return;
+            if (!_draggingCard) return;
+
             Vector3 newPosition = eventData.position;
             newPosition.z = _camera.transform.position.z;
             newPosition = -_camera.ScreenToWorldPoint(newPosition);
@@ -83,6 +97,13 @@ namespace Hearthstone
         public void OnPointerExit(PointerEventData eventData)
         {
             _tempMinionGO.transform.position = new Vector3(100, 0, 0);
+        }
+        private void OnDisable()
+        {
+            foreach (CardInHand card in _allCards)
+            {
+                card.BeginDrag -= ReactionToCardDragging;
+            }
         }
     }
 }

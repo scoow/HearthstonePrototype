@@ -26,7 +26,7 @@ namespace Hearthstone
                 
                 var newCardModel = newCard.GetComponent<Card_Model>();
                 var newCardView = newCard.GetComponent<Card_View>();
-                newCardModel.SetCardSettings(i);
+                newCardModel.SetCardSettings(i);//вынести в отд метод для создания минионов
                 battlemodeCardView.SetSettingsCardInBattle();
                 newCardView.ChangeViewCard();
             }

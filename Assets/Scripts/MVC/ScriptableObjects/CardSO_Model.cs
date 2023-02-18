@@ -14,6 +14,9 @@ namespace Hearthstone
         public int _healthCard;
         
         public BattleCryType _battleCryType;
+        public BattleCryTargets _battleCryTargets;
+        public MinionType _battleCryTargetsType;
+        public MinionType _minionType;
 
         
         public bool _isProvocation;

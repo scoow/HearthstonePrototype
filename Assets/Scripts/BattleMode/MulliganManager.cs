@@ -29,6 +29,7 @@ namespace Hearthstone
 
         private List<Hand> _hands;
         private Hand _firstPlayerHand;
+        private List<Board> _boards;
         private async void Start()
         {
             await UniTask.Delay(TimeSpan.FromSeconds(0.5));
@@ -36,6 +37,9 @@ namespace Hearthstone
             _mulliganConfirmButton.Init();
             _mulliganConfirmButton.HideButton();
             _mulliganConfirmButton.onClick.AddListener(MulliganStage3);
+
+            _boards = new();
+            _boards = FindObjectsOfType<Board>().ToList();
 
             _hands = new List<Hand>();
             _hands = FindObjectsOfType<Hand>().ToList();
@@ -57,6 +61,8 @@ namespace Hearthstone
             //test
             /*MulliganStage4();
             await UniTask.Delay(TimeSpan.FromSeconds(0));//заглушка*/
+            await UniTask.Delay(TimeSpan.FromSeconds(2));
+
         }
 
         private async void MulliganStage1()
@@ -123,9 +129,16 @@ namespace Hearthstone
                 await UniTask.Delay(TimeSpan.FromSeconds(0.5));
                 position.gameObject.SetActive(false);
                 var _cardInHand = _card.AddComponent<CardInHand>();
+                
+
+
                 _cardInHand.SetParent(_firstPlayerHand);
                 _firstPlayerHand.AddCard(_cardInHand);
                 i++;
+            }
+            foreach (var board in _boards)
+            {
+                board.InitCardList();
             }
         }
 

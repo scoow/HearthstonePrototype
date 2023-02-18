@@ -45,6 +45,25 @@ namespace Hearthstone
         RaiseParametrs,
         Heal,
         SummonAssistant,
-        GetCardInDeck
+        GetCardInDeck,
+        PermanentEffect,
+        HaveCharge
+    }
+    public enum BattleCryTargets : byte
+    {
+        None,
+        Self,
+        Single,
+        SingleFriend,
+        AllEnemies,
+        AllFriends,
+        All,
+        MinionType
+    }
+    public enum MinionType
+    {
+        None,
+        Murloc,
+        Beast
     }
 }

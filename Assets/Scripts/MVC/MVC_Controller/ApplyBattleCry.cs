@@ -33,7 +33,6 @@ namespace Hearthstone
             }
         }
 
-
         public void AplyNewValueCardProperty(int idCard)
         {            
             CardSO_Model card_SO = _pageBook_Model._cardsDictionary[idCard];

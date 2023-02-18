@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,19 +11,22 @@ namespace Hearthstone
 
         public Transform parent;
 
-        public delegate void BeginDrag(CardInHand card);
-        public event BeginDrag TellParentBeginDrag;
+        /*public delegate void BeginDrag(CardInHand card);
+        public event BeginDrag TellParentBeginDrag;*/
+        public Action<bool> BeginDrag;
 
         private void Awake()
         {
             _camera = Camera.main;
             _tempCardGO = GameObject.Find("TempCard");
+
         }
         public void OnBeginDrag(PointerEventData eventData)
         {
             _tempCardGO.transform.position = transform.position;//временная карта
             GetComponent<CanvasGroup>().blocksRaycasts = false;
-            TellParentBeginDrag?.Invoke(this);
+            //TellParentBeginDrag?.Invoke(this);
+            BeginDrag?.Invoke(true);
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -45,7 +49,8 @@ namespace Hearthstone
             {
                 transform.position = _tempCardGO.transform.position;
             }            
-            _tempCardGO.transform.position = new Vector3(100, 0);//Убираем временную карту за пределы экрана            
+            _tempCardGO.transform.position = new Vector3(100, 0);//Убираем временную карту за пределы экрана
+            BeginDrag?.Invoke(false);
         }
         /// <summary>
         /// Установить родителя
