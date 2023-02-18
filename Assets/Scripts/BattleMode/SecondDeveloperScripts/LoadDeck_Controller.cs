@@ -26,7 +26,8 @@ namespace Hearthstone
             _pageBookModel = GetComponent<PageBook_Model>();
             _pathSaveDocument = Application.dataPath + "/SaveData.xml";
         }
-        private void OnEnable()
+        //private void OnEnable()
+        private void Start()
         {           
             LoadActiveDeck();            
             ShuffleCardInDeck();

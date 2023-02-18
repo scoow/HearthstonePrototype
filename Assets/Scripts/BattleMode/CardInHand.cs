@@ -8,6 +8,8 @@ namespace Hearthstone
         private Camera _camera;
         private GameObject _tempCardGO;
 
+        public Transform parent;
+
         public delegate void BeginDrag(CardInHand card);
         public event BeginDrag TellParentBeginDrag;
 
@@ -51,7 +53,9 @@ namespace Hearthstone
         /// <param name="cardHolder">родитель</param>
         public void SetParent(CardHolder cardHolder)
         {
-            transform.parent = cardHolder.transform;
+            parent = transform.parent = cardHolder.transform;
+            BattleModeCard_View view = GetComponent<BattleModeCard_View>();
+            //view._pa
         }
     }
 }

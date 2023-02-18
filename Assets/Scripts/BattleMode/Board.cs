@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Linq;
+using Unity.VisualScripting;
 
 namespace Hearthstone
 {
@@ -21,7 +22,9 @@ namespace Hearthstone
         }
         public override void AddCard(CardInHand card)
         {
+            Debug.Log("1 : " + this);
             base.AddCard(card);
+
             EndDragCard?.Invoke(); ///событие для смены отображения карты
         }
 

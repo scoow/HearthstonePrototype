@@ -31,6 +31,7 @@ namespace Hearthstone
         private Hand _firstPlayerHand;
         private async void Start()
         {
+            await UniTask.Delay(TimeSpan.FromSeconds(0.5));
             _mulliganConfirmButton = FindObjectOfType<MulliganConfirmButton>();
             _mulliganConfirmButton.Init();
             _mulliganConfirmButton.HideButton();

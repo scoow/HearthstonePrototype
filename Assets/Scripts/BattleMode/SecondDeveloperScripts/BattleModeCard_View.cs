@@ -18,27 +18,31 @@ namespace Hearthstone
         /// <summary>
         /// события перетаскивания карты на стол
         /// </summary>
-        private CardHolder _cardHolder;
-        
-
+        //private CardHolder _cardHolder;
+        private Board _board;
 
         private void OnEnable()
         {
-            _parent = FindObjectOfType<Board>().GetComponent<Transform>();
+            // _parent = FindObjectOfType<Board>().GetComponent<Transform>();
+           // _parent = FindObjectOfType<Hand>().GetComponent<Transform>();
             _loadDeck_Controller = FindObjectOfType<LoadDeck_Controller>();
             _battleCryController = FindObjectOfType<BattleCry_Controller>();
-            _cardHolder = FindObjectOfType<CardHolder>();
-            _card_Model = GetComponent<Card_Model>();
+            // _cardHolder = FindObjectOfType<CardHolder>();
+            _board = FindObjectOfType<Board>();
+
+             _card_Model = GetComponent<Card_Model>();
             _card_Controller = GetComponent<Card_Controller>();            
             
             _loadDeck_Controller.SetSettings += SetSettingsCardInBattle;
-            
-            _cardHolder.EndDragCard += ChangeViewCard;
+
+            // _cardHolder.EndDragCard += ChangeViewCard;
+            _board.EndDragCard += ChangeViewCard;
         }
         private void OnDisable()
         {
             _loadDeck_Controller.SetSettings -= SetSettingsCardInBattle;
-            _cardHolder.EndDragCard -= ChangeViewCard;
+            // _cardHolder.EndDragCard -= ChangeViewCard;
+            _board.EndDragCard -= ChangeViewCard;
         }
 
         public void SetSettingsCardInBattle()
@@ -57,8 +61,10 @@ namespace Hearthstone
 
         public void ChangeViewCard() //изменение внешнего вида карты при установке на стол , активация боевых кличей
         {
-            _inFieldView.gameObject.SetActive(true);
-            /*if (transform.parent.gameObject.GetComponent<Board>())
+            Debug.Log("2 : " + this);
+            _parent = gameObject.GetComponent<CardInHand>().GetComponent<Transform>();
+
+            if (_parent.GetComponent<Board>() != null)
             {
                 _inFieldView.gameObject.SetActive(true);
                 if(_card_Model._battleCryType != BattleCryType.NoСry)
@@ -68,7 +74,7 @@ namespace Hearthstone
                     _battleCryController.UpdateBattleCry();
                 }                
                 _inHeadView.gameObject.SetActive(false);                                
-            }  */                          
+            }                     
         }
     }
 }
