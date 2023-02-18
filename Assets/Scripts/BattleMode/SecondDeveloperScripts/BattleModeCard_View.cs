@@ -41,7 +41,7 @@ namespace Hearthstone
             _cardHolder.EndDragCard -= ChangeViewCard;
         }
 
-        private void SetSettingsCardInBattle()
+        public void SetSettingsCardInBattle()
         {                
             UpdateViewCard();
             _spriteCard.sprite = _card_Model._spriteCard;            
@@ -57,7 +57,8 @@ namespace Hearthstone
 
         public void ChangeViewCard() //изменение внешнего вида карты при установке на стол , активация боевых кличей
         {
-            if (transform.parent.gameObject.GetComponent<Board>())
+            _inFieldView.gameObject.SetActive(true);
+            /*if (transform.parent.gameObject.GetComponent<Board>())
             {
                 _inFieldView.gameObject.SetActive(true);
                 if(_card_Model._battleCryType != BattleCryType.NoСry)
@@ -67,7 +68,7 @@ namespace Hearthstone
                     _battleCryController.UpdateBattleCry();
                 }                
                 _inHeadView.gameObject.SetActive(false);                                
-            }                            
+            }  */                          
         }
     }
 }
