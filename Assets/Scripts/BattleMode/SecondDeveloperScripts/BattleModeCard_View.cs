@@ -10,8 +10,7 @@ namespace Hearthstone
         private Card_Controller _card_Controller;
         private BattleCry_Controller _battleCryController;
         public Text _atackText;
-        public Text _healthText;
-        //public int _idCard;
+        public Text _healthText;        
         [SerializeField] private SpriteRenderer _spriteCard;
         [SerializeField] private InFieldViewMarker _inFieldView;
         [SerializeField] private InHeadViewMarker _inHeadView;
