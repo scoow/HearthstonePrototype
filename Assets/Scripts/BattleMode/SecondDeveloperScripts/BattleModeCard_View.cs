@@ -20,14 +20,12 @@ namespace Hearthstone
         /// <summary>
         /// события перетаскивания карты на стол
         /// </summary>
-        //private CardHolder _cardHolder;
         private Board _board;
 
         private void OnEnable()
         {
-            _loadDeckController = FindObjectOfType<LoadDeck_Controller>();//тест Zenject
+            _loadDeckController = FindObjectOfType<LoadDeck_Controller>();//тест Zenject (неудачный)
             _battleCryController = FindObjectOfType<BattleCry_Controller>();
-            // _cardHolder = FindObjectOfType<CardHolder>();
             _board = FindObjectOfType<Board>();
 
              _card_Model = GetComponent<Card_Model>();
@@ -35,13 +33,11 @@ namespace Hearthstone
 
             _loadDeckController.SetSettings += SetSettingsCardInBattle;
 
-            // _cardHolder.EndDragCard += ChangeViewCard;
             _board.EndDragCard += ChangeViewCard;
         }
         private void OnDisable()
         {
             _loadDeckController.SetSettings -= SetSettingsCardInBattle;
-            // _cardHolder.EndDragCard -= ChangeViewCard;
             _board.EndDragCard -= ChangeViewCard;
         }
 
@@ -57,7 +53,6 @@ namespace Hearthstone
             _atackText.text = _card_Model._atackDamageCard.ToString();
             _healthText.text = _card_Model._healthCard.ToString();
         }
-        
 
         public void ChangeViewCard(Transform newParent) //изменение внешнего вида карты при установке на стол , активация боевых кличей
         {

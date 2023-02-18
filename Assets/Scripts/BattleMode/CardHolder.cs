@@ -5,6 +5,9 @@ using UnityEngine.EventSystems;
 
 namespace Hearthstone
 {
+    /// <summary>
+    /// Родительский класс для классов Hand и Board
+    /// </summary>
     public class CardHolder : MonoBehaviour, IDropHandler
     {
         public Players _side;

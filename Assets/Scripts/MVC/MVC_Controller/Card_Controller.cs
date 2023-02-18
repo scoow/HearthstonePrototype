@@ -6,12 +6,10 @@ namespace Hearthstone
     {
         private Card_Model _card_Model;       
 
-
         private void OnEnable()
         {
             _card_Model = GetComponent<Card_Model>();
         }
-
 
         private void Start()
         {
@@ -83,7 +81,5 @@ namespace Hearthstone
         }
 
         #endregion
-
     }
-
 }

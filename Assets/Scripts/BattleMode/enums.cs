@@ -37,7 +37,6 @@ namespace Hearthstone
         Third,
         Fourth
     }
-
     public enum BattleCryType : byte
     {
         NoСry,
@@ -49,6 +48,9 @@ namespace Hearthstone
         PermanentEffect,
         HaveCharge
     }
+    /// <summary>
+    /// Тип целей для боевого клича
+    /// </summary>
     public enum BattleCryTargets : byte
     {
         None,

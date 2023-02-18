@@ -3,6 +3,9 @@ using Zenject;
 
 namespace Hearthstone
 {
+    /// <summary>
+    /// Создаёт на сцене игровые объекты карт для выбранной колоды
+    /// </summary>
     public class HandManager : MonoBehaviour
     {
         [Inject]
@@ -16,8 +19,6 @@ namespace Hearthstone
         private MulliganManager _mulliganManager;
         private void Start()
         {
-            //_pageBook_Model = FindObjectOfType<PageBook_Model>();//FindObjectOfType<PageBook_Model>();
-            //_loadDeckController = FindObjectOfType<LoadDeck_Controller>();
             _playerDeck = GameObject.Find("PlayerDeck").transform;
            // _mulliganManager = FindObjectOfType<MulliganManager>();zenject
             foreach (int i in _loadDeckController._activeDeck)
@@ -25,7 +26,6 @@ namespace Hearthstone
                 var newCard = Instantiate(_cardPrefab, _playerDeck.position, _playerDeck.rotation);
                 newCard.transform.parent = _mulliganManager.transform;
                 var battlemodeCardView = newCard.GetComponent<BattleModeCard_View>();
-               // battlemodeCardView
                 
                 var newCardModel = newCard.GetComponent<Card_Model>();
                 var newCardView = newCard.GetComponent<Card_View>();

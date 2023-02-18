@@ -19,9 +19,10 @@ namespace Hearthstone
         {
             _camera = Camera.main;
             _tempMinionGO = GameObject.Find("TempMinion");
-
-            
         }
+        /// <summary>
+        /// ѕодписка всех карт на событие. ≈сли вз€ли карту - отображать место дл€ сброса карты на поле
+        /// </summary>
         public void InitCardList()
         {
              _allCards = FindObjectsOfType<CardInHand>().ToList();
@@ -36,16 +37,14 @@ namespace Hearthstone
         }
         public override void AddCard(CardInHand card)
         {
-            Debug.Log("1 : " + this);
             base.AddCard(card);
-
             EndDragCard?.Invoke(transform); ///событие дл€ смены отображени€ карты
         }
         /// <summary>
         /// получить позицию последней карты в руке
         /// </summary>
         /// <returns></returns>
-        public override Vector3 GetLastCardPosition()//переделать
+        public override Vector3 GetLastCardPosition()
         {
             Vector3 center = transform.position;
             center.x = 0;
@@ -53,7 +52,6 @@ namespace Hearthstone
                 return center;
             else
             {
-
                 Vector3 newPosition = center;
                 newPosition.x = _rightCard ? _cardsList.Max(x => x.transform.position.x) : _cardsList.Min(x => x.transform.position.x);
                 newPosition.x += _rightCard ? _offset : -_offset;
@@ -67,13 +65,15 @@ namespace Hearthstone
             var _parent = card.transform.parent.GetComponent<CardHolder>();
             if (_parent != this)
             {
-                //Debug.Log("drop card");
                 _parent.RemoveCard(card);
                 card.transform.position = GetLastCardPosition();
                 AddCard(card);
             }
         }
-
+        /// <summary>
+        /// ѕри наведении курсора на поле рисует место дл€ выкладывани€ карты
+        /// </summary>
+        /// <param name="eventData"></param>
         public void OnPointerEnter(PointerEventData eventData)
         {
             if (!_draggingCard) return;
@@ -85,12 +85,12 @@ namespace Hearthstone
             if (newPosition.x < 0)
             {
                 _rightCard = false;
-                _tempMinionGO.transform.position = GetLastCardPosition();// + new Vector3(-_offset, 0, -1);
+                _tempMinionGO.transform.position = GetLastCardPosition();
             }
             else
             {
                 _rightCard = true;
-                _tempMinionGO.transform.position = GetLastCardPosition();// + new Vector3(_offset, 0, -1);
+                _tempMinionGO.transform.position = GetLastCardPosition();
             }
         }
 

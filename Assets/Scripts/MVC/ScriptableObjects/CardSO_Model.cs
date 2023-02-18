@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Hearthstone
 {
+    /// <summary>
+    /// ScriptableObject для хранения данных карты
+    /// </summary>
     [CreateAssetMenu(fileName = "New Card", menuName = "Card/CardExample", order = 51)]
     public class CardSO_Model : ScriptableObject
     {
@@ -17,7 +20,6 @@ namespace Hearthstone
         public BattleCryTargets _battleCryTargets;
         public MinionType _battleCryTargetsType;
         public MinionType _minionType;
-
         
         public bool _isProvocation;
         public bool _isDivineShield;
@@ -25,11 +27,9 @@ namespace Hearthstone
         public bool _isCharge;
         public bool _isBerserk;
 
-
         public int _abilityChangeHealth;
         public int _abilityChangeAtackDamage;
         public int _abilityChangeSpellDamage;
         public int _abilityAddCard;
-
     }
 }
