@@ -102,7 +102,8 @@ namespace Hearthstone
         {
             foreach (CardInHand card in _allCards)
             {
-                card.BeginDrag -= ReactionToCardDragging;
+                if (card != null)
+                    card.BeginDrag -= ReactionToCardDragging;
             }
         }
     }

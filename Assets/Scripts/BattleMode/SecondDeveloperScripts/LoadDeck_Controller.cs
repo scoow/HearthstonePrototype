@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Hearthstone
 {
@@ -16,13 +17,14 @@ namespace Hearthstone
         /// </summary>
         public List<int> _activeDeck = new List<int>();
         private string _pathSaveDocument;
-        private PageBook_Model _pageBookModel;       
+        private PageBook_Model _pageBookModel;
+        [Inject]
         private MulliganManager _mulliganManager;
         public Action SetSettings;
 
         private void Awake()
         {
-            _mulliganManager = FindObjectOfType<MulliganManager>();
+            //_mulliganManager = FindObjectOfType<MulliganManager>(); zenject
             _pageBookModel = GetComponent<PageBook_Model>();
             _pathSaveDocument = Application.dataPath + "/SaveData.xml";
         }

@@ -1,25 +1,38 @@
-using UnityEngine;
+using Zenject;
 
 namespace Hearthstone
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : MonoInstaller
     {
-        public static GameManager instance;
-
         private LoadDeck_Controller _loadDeck_Controller;
-        public PageBook_Model _pageBook_Model;
+        private PageBook_Model _pageBook_Model;
         private HandManager _handManager;
+        private MulliganManager _mulliganManager;
+
+        public override void InstallBindings()
+        {
+            /*_pageBook_Model = GetComponent<PageBook_Model>();
+            _loadDeck_Controller = GetComponent<LoadDeck_Controller>();
+            _handManager = GetComponent<HandManager>();*/
+            _pageBook_Model = FindObjectOfType<PageBook_Model>();
+            _loadDeck_Controller = FindObjectOfType<LoadDeck_Controller>();
+            _handManager = FindObjectOfType<HandManager>();
+            _mulliganManager = FindObjectOfType<MulliganManager>();
+
+            Container.BindInstance(_pageBook_Model).AsSingle();
+            Container.BindInstance(_loadDeck_Controller).AsSingle();
+            Container.BindInstance(_handManager).AsSingle();
+            Container.BindInstance(_mulliganManager).AsSingle();
+        }
 
         private void Awake()
         {
-            instance= this;
-
             /*_pageBook_Model = GetComponent<PageBook_Model>();*/
-            _pageBook_Model= GetComponent<PageBook_Model>();
+            
             _pageBook_Model.enabled=true;
-            _loadDeck_Controller = GetComponent<LoadDeck_Controller>();
+            
             _loadDeck_Controller.enabled= true;
-            _handManager = GetComponent<HandManager>();
+            
             _handManager.enabled= true;
 
         }

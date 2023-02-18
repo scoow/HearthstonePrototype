@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Hearthstone
 {
     public class BattleModeCard_View : MonoBehaviour
     {
-        private LoadDeck_Controller _loadDeck_Controller;
+        private LoadDeck_Controller _loadDeckController;
+        
         private Card_Model _card_Model;
         private Card_Controller _card_Controller;
         private BattleCry_Controller _battleCryController;
@@ -23,24 +25,22 @@ namespace Hearthstone
 
         private void OnEnable()
         {
-            // _parent = FindObjectOfType<Board>().GetComponent<Transform>();
-           // _parent = FindObjectOfType<Hand>().GetComponent<Transform>();
-            _loadDeck_Controller = FindObjectOfType<LoadDeck_Controller>();
+            _loadDeckController = FindObjectOfType<LoadDeck_Controller>();//тест Zenject
             _battleCryController = FindObjectOfType<BattleCry_Controller>();
             // _cardHolder = FindObjectOfType<CardHolder>();
             _board = FindObjectOfType<Board>();
 
              _card_Model = GetComponent<Card_Model>();
-            _card_Controller = GetComponent<Card_Controller>();            
-            
-            _loadDeck_Controller.SetSettings += SetSettingsCardInBattle;
+            _card_Controller = GetComponent<Card_Controller>();
+
+            _loadDeckController.SetSettings += SetSettingsCardInBattle;
 
             // _cardHolder.EndDragCard += ChangeViewCard;
             _board.EndDragCard += ChangeViewCard;
         }
         private void OnDisable()
         {
-            _loadDeck_Controller.SetSettings -= SetSettingsCardInBattle;
+            _loadDeckController.SetSettings -= SetSettingsCardInBattle;
             // _cardHolder.EndDragCard -= ChangeViewCard;
             _board.EndDragCard -= ChangeViewCard;
         }

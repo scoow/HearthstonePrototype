@@ -1,22 +1,25 @@
 using UnityEngine;
+using Zenject;
 
 namespace Hearthstone
 {
     public class HandManager : MonoBehaviour
     {
+        [Inject]
         private LoadDeck_Controller _loadDeckController;        
         private Transform _playerDeck;
         [SerializeField]
         private GameObject _cardPrefab;
+        [Inject]
         private PageBook_Model _pageBook_Model;
-
+        [Inject]
         private MulliganManager _mulliganManager;
         private void Start()
         {
-            _pageBook_Model = FindObjectOfType<PageBook_Model>();//FindObjectOfType<PageBook_Model>();
-            _loadDeckController = FindObjectOfType<LoadDeck_Controller>();
+            //_pageBook_Model = FindObjectOfType<PageBook_Model>();//FindObjectOfType<PageBook_Model>();
+            //_loadDeckController = FindObjectOfType<LoadDeck_Controller>();
             _playerDeck = GameObject.Find("PlayerDeck").transform;
-            _mulliganManager = FindObjectOfType<MulliganManager>();
+           // _mulliganManager = FindObjectOfType<MulliganManager>();zenject
             foreach (int i in _loadDeckController._activeDeck)
             {
                 var newCard = Instantiate(_cardPrefab, _playerDeck.position, _playerDeck.rotation);
