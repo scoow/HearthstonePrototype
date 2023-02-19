@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Linq;
-using Unity.VisualScripting;
 using System.Collections.Generic;
 
 namespace Hearthstone

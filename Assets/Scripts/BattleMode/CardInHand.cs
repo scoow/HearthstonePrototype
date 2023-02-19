@@ -19,7 +19,6 @@ namespace Hearthstone
         {
             _camera = Camera.main;
             _tempCardGO = GameObject.Find("TempCard");
-
         }
         public void OnBeginDrag(PointerEventData eventData)
         {
@@ -59,8 +58,6 @@ namespace Hearthstone
         public void SetParent(CardHolder cardHolder)
         {
             parent = transform.parent = cardHolder.transform;
-            BattleModeCard_View view = GetComponent<BattleModeCard_View>();
-            //view._pa
         }
     }
 }
