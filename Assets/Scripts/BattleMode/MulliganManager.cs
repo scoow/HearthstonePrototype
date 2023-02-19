@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 /*
  * Описание стадий муллигана:
@@ -30,6 +31,9 @@ namespace Hearthstone
         private List<Hand> _hands;
         private Hand _firstPlayerHand;
         private List<Board> _boards;
+
+        private int _nextCardInDeckNumber;
+
         private async void Start()
         {
             await UniTask.Delay(TimeSpan.FromSeconds(0.5));
@@ -61,8 +65,6 @@ namespace Hearthstone
             //test
             /*MulliganStage4();
             await UniTask.Delay(TimeSpan.FromSeconds(0));//заглушка*/
-            await UniTask.Delay(TimeSpan.FromSeconds(2));
-
         }
 
         private async void MulliganStage1()
@@ -136,11 +138,16 @@ namespace Hearthstone
                 _firstPlayerHand.AddCard(_cardInHand);
                 i++;
             }
+            _nextCardInDeckNumber = 5;
             foreach (var board in _boards)
             {
                 board.InitCardList();
             }
         }
-
+        public void TakeOneCard()
+        {
+            var card = _mulliganCards.ElementAt(_nextCardInDeckNumber);
+            _ = card.MoveCardAsync(card.transform.position, _firstPlayerHand.GetLastCardPosition(), card.transform.rotation, _firstPlayerHand.transform.rotation, _time);
+        }
     }
 }

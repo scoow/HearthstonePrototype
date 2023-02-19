@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Hearthstone
 {
@@ -7,13 +8,14 @@ namespace Hearthstone
     {
         [SerializeField] Text _textManaOnePlayer;
         [SerializeField] Text _textManaTwoPlayer;
+        [Inject]
         private Mana_Controller _controller;
 
         private void OnEnable()
         {
             _textManaOnePlayer.text = "1";
             _textManaTwoPlayer.text = "0";
-            _controller = GetComponent<Mana_Controller>();
+            //_controller = GetComponent<Mana_Controller>(); Zenject
             _controller.ChangeManaValue += UpdateTextManaValue;
         }
 

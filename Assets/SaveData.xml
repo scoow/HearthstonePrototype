@@ -33,6 +33,7 @@
   <DeckName NameValue="Берсерк" StateValue="Выбранная колода">
     <CardId>1000</CardId>
     <CardId>502</CardId>
+	<CardId>206</CardId>
     <CardId>503</CardId>
     <CardId>306</CardId>
     <CardId>301</CardId>

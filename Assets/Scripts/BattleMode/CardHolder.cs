@@ -14,6 +14,8 @@ namespace Hearthstone
         protected List<CardInHand> _cardsList;//сделать serializable
         protected Vector3 _lastPosition;
 
+        //todo добавить ссылку на временную карту для корректной обработки взятия из руки
+
         [SerializeField]
         protected float _offset;
         [SerializeField]

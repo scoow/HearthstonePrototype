@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace Hearthstone
 {
@@ -9,6 +10,8 @@ namespace Hearthstone
         private BattleModeCard_View _battleModeCardView;
         public bool _useBattleCray = false;
         private Board _board;
+        [Inject]
+        private MulliganManager _mulliganManager;
 
         private void OnEnable()
         {
@@ -131,6 +134,10 @@ namespace Hearthstone
         public void BerserkAbility()
         {
             ChangeAtackValue(_card_Model._abilityChangeAtackDamage);
+        }
+        public void TakeAdditionalCard()
+        {
+            _mulliganManager.TakeOneCard();
         }
 
         #endregion
