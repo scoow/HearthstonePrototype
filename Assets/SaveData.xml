@@ -30,14 +30,21 @@
     <CardId>307</CardId>
     <CardId>503</CardId>
   </DeckName>
-  <DeckName NameValue="Берсерк" StateValue="Выбранная колода">
+  <DeckName NameValue="Берсерк" StateValue="Неактивная колода">
     <CardId>1000</CardId>
     <CardId>502</CardId>
-	<CardId>206</CardId>
+    <CardId>206</CardId>
     <CardId>503</CardId>
     <CardId>306</CardId>
     <CardId>301</CardId>
     <CardId>302</CardId>
     <CardId>104</CardId>
+  </DeckName>
+  <DeckName NameValue="MassEffect" StateValue="Выбранная колода">
+    <CardId>4000</CardId>
+    <CardId>203</CardId>
+    <CardId>301</CardId>
+    <CardId>304</CardId>
+    <CardId>501</CardId>
   </DeckName>
 </SaveDeckCollection>

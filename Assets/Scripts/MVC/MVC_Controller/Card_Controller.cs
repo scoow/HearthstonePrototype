@@ -51,7 +51,13 @@ namespace Hearthstone
                     //применяем боевой клич на себя 
                     ApplyBattleCry[] _temporaryArray = newParent.GetComponentsInChildren<ApplyBattleCry>();
                     if (_card_Model._battleCryTargets == BattleCryTargets.Self)
-                        _card_Model.GetComponent<Card_Controller>().UpdateSelfParametrs(_temporaryArray.Length - 1);  
+                    {
+                        _card_Model.GetComponent<Card_Controller>().UpdateSelfParametrs(_temporaryArray.Length - 1);
+                        StartCoroutine(_battleModeCardView.EffectParticle(_battleModeCardView._scaleEffect));
+                    }
+                    if (_card_Model._battleCryType == BattleCryType.GetCardInDeck)
+                        TakeAdditionalCard();
+
                 }                
             }                      
         }
@@ -95,7 +101,7 @@ namespace Hearthstone
                
         
 
-        public void ChangeAtackValue(int incomingValue)
+        public void ChangeAtackValue(int incomingValue) //изменяем значение атаки
         {
             _card_Model._atackDamageCard += incomingValue;
             _card_Model._maxAtackValue = _card_Model._atackDamageCard;
@@ -131,12 +137,13 @@ namespace Hearthstone
             ChangeHealtValue(_card_Model._abilityChangeHealth * multiplicationFactor);            
         }
 
-        public void BerserkAbility()
+        public void BerserkAbility() //ярость берсерка
         {
             ChangeAtackValue(_card_Model._abilityChangeAtackDamage);
         }
-        public void TakeAdditionalCard()
+        public void TakeAdditionalCard() //добавление новой карты
         {
+            Debug.Log("Добавленна новая карта");
             _mulliganManager.TakeOneCard();
         }
 

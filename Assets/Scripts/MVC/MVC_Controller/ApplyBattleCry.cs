@@ -27,7 +27,8 @@ namespace Hearthstone
         {
             if (transform.parent.gameObject.GetComponent<Board>()
                 && _isListen && _battleCryController._isActiveCry
-                && (_battleCryController._battleCryTargets != BattleCryTargets.Self))//определяем цель боевого клича
+                && (_battleCryController._battleCryTargets != BattleCryTargets.Self)
+                && (_battleCryController._battleCryType != BattleCryType.GetCardInDeck))//определяем цель боевого клича
             {   
                 if(_battleCryController._idBattleCry != _card_Model._idCard) //исключаем применение боевого клича на себя
                 {
@@ -52,22 +53,15 @@ namespace Hearthstone
                     break;
                 case BattleCryType.RaiseParametrs: //повышаем параметры
                     _card_Controller.ChangeAtackValue(card_SO._abilityChangeAtackDamage);
-                    _card_Controller.ChangeHealtValue(card_SO._abilityChangeHealth);                   
+                    _card_Controller.ChangeHealtValue(card_SO._abilityChangeHealth);
+                    StartCoroutine(_battleModeCard_View.EffectParticle(_battleModeCard_View._scaleEffect));//эффект повышение параметров
                     break;
                 case BattleCryType.Heal://лечим существо                   
                     _card_Controller.ChangeHealtValue(card_SO._abilityChangeHealth);
-                    StartCoroutine(HealthEffect());
+                    StartCoroutine(_battleModeCard_View.EffectParticle(_battleModeCard_View._healtEffect));//эффект лечения
                     break;
             }
         }
-
-        IEnumerator HealthEffect()
-        {
-            _battleModeCard_View._healtEffect.gameObject.SetActive(true);
-            _battleModeCard_View._healtEffect.Play();
-            yield return new WaitForSeconds(2f);
-            _battleModeCard_View._healtEffect.gameObject.SetActive(false);
-            _battleModeCard_View._healtEffect.Stop();
-        }   
+          
     }
 }

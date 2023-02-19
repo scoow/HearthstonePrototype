@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -15,6 +16,7 @@ namespace Hearthstone
         public Text _healthText;
         
         public ParticleSystem _healtEffect; //ссылка на систему частиц HealthEffect
+        public ParticleSystem _scaleEffect; //ссылка на систему частиц HealthEffect
         
 
         private void OnEnable()
@@ -57,6 +59,15 @@ namespace Hearthstone
         {
             _inFieldView.gameObject.SetActive(true);
             _inHeadView.gameObject.SetActive(false);
+        }
+
+        public IEnumerator EffectParticle(ParticleSystem particleSystemExample)
+        {
+            particleSystemExample.gameObject.SetActive(true);
+            particleSystemExample.Play();
+            yield return new WaitForSeconds(2f);
+            particleSystemExample.gameObject.SetActive(false);
+            particleSystemExample.Stop();
         }
     }
 }
