@@ -31,8 +31,13 @@ namespace Hearthstone
 
         public int _maxHealtValue;
         public int _maxAtackValue;
+        public int _defaultHealtValue;
+        public int _defaultAtackValue;
 
-        public BattleCryType _battleCryType;
+        public BattleCryType _battleCryType;        
+        public BattleCryTargets _battleCryTargets;
+        public MinionType _battleCryTargetsType;
+        public MinionType _minionType;
 
 
         private void OnEnable()
@@ -43,8 +48,8 @@ namespace Hearthstone
 
         private void Start()
         {
-            _maxHealtValue = _healthCard;
-            _maxAtackValue = _atackDamageCard;
+            _defaultHealtValue = _maxHealtValue = _healthCard;
+            _defaultAtackValue = _maxAtackValue = _atackDamageCard;
         }
 
 
@@ -60,6 +65,7 @@ namespace Hearthstone
             _isProvocation = cardSOModel._isProvocation;
             _isBerserk = cardSOModel._isBerserk;
             _isCharge = cardSOModel._isCharge;
+
             _atackDamageCard = cardSOModel._atackDamageCard;
             _descriptionCard = cardSOModel._descriptionCard;
             _manaCostCard = cardSOModel._manaCostCard;
@@ -67,7 +73,11 @@ namespace Hearthstone
             _spriteCard = cardSOModel._spriteCard;
             _nameCard = cardSOModel._nameCard;
             _idCard = cardSOModel._idCard;
-            _battleCryType = cardSOModel._battleCryType;
+
+            _battleCryType = cardSOModel._battleCryType;            
+            _battleCryTargets = cardSOModel._battleCryTargets;
+            _battleCryTargetsType = cardSOModel._battleCryTargetsType;
+            _minionType = cardSOModel._minionType;
         }
     }
 }

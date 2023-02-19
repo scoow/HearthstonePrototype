@@ -24,12 +24,17 @@ namespace Hearthstone
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (transform.parent.gameObject.GetComponent<Board>() && _isListen && _battleCryController._isActiveCry)
-            {                 
-                AplyNewValueCardProperty(_battleCryController._idBattleCry);
-                _isListen = false;
-                _battleCryController._isActiveCry = false;                
-                _battleCryController.UpdateBattleCry();
+            if (transform.parent.gameObject.GetComponent<Board>()
+                && _isListen && _battleCryController._isActiveCry
+                && (_battleCryController._battleCryTargets != BattleCryTargets.Self))//определяем цель боевого клича
+            {   
+                if(_battleCryController._idBattleCry != _card_Model._idCard) //исключаем применение боевого клича на себя
+                {
+                    AplyNewValueCardProperty(_battleCryController._idBattleCry);
+                    _isListen = false;
+                    _battleCryController._isActiveCry = false;
+                    _battleCryController.UpdateBattleCry();
+                }                
             }
         }
 
@@ -40,23 +45,16 @@ namespace Hearthstone
             {
                 // сделать вызов событий и подписать методы 
                 case BattleCryType.DealDamage: //получаем урон
-                    _card_Model._healthCard -= card_SO._abilityChangeHealth;
-                    _battleModeCard_View.UpdateViewCard();
-                    if (_card_Model._healthCard <= 0) _card_Controller.DiedCreature(); //событие смерти
-                    
+                    _card_Controller.ChangeHealtValue(card_SO._abilityChangeHealth);
+                    if (_card_Model._isBerserk)//если карта берсерк , увеличиваем свой дамаг
+                        _card_Controller.BerserkAbility();
                     break;
                 case BattleCryType.RaiseParametrs: //повышаем параметры
-                    _card_Model._healthCard += card_SO._abilityChangeHealth;
-                    _card_Model._maxHealtValue = _card_Model._healthCard;                    
-                    _card_Model._atackDamageCard += card_SO._abilityChangeAtackDamage;
-                    _card_Model._maxAtackValue = _card_Model._atackDamageCard;
-                    _battleModeCard_View.UpdateViewCard();
+                    _card_Controller.ChangeAtackValue(card_SO._abilityChangeAtackDamage);
+                    _card_Controller.ChangeHealtValue(card_SO._abilityChangeHealth);                   
                     break;
-                case BattleCryType.Heal://лечим существо
-                    _card_Model._healthCard += card_SO._abilityChangeHealth;                    
-                    if (_card_Model._healthCard > _card_Model._maxHealtValue)
-                        _card_Model._maxHealtValue = _card_Model._healthCard;
-                    _battleModeCard_View.UpdateViewCard();
+                case BattleCryType.Heal://лечим существо                   
+                    _card_Controller.ChangeHealtValue(card_SO._abilityChangeHealth);
                     break;
             }
         }

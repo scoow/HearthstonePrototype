@@ -513,7 +513,6 @@ GameObject:
   - component: {fileID: 1716541608145100751}
   - component: {fileID: 7030731836677047863}
   - component: {fileID: 2158646479997419506}
-  - component: {fileID: 3129070633414119821}
   - component: {fileID: 1159128891}
   - component: {fileID: 6598869263396024576}
   m_Layer: 0
@@ -569,6 +568,12 @@ MonoBehaviour:
   _manaCostCard: 0
   _atackDamageCard: 0
   _healthCard: 0
+  _maxHealtValue: 0
+  _maxAtackValue: 0
+  _battleCryType: 0
+  _battleCryTargets: 0
+  _battleCryTargetsType: 0
+  _minionType: 0
 --- !u!114 &2158646479997419506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,18 +584,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9a367831517b294f892dda6f6ae5bb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3129070633414119821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1716541608145100750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9dd1be2f17ff85409e0a9305d01d5b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1159128891

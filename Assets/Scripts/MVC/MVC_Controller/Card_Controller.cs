@@ -4,17 +4,50 @@ namespace Hearthstone
 {
     public class Card_Controller : MonoBehaviour
     {
-        private Card_Model _card_Model;       
+        private Card_Model _card_Model;
+        private BattleCry_Controller _battleCryController;
+        private BattleModeCard_View _battleModeCardView;
+        public bool _useBattleCray = false;
+        private Board _board;
 
         private void OnEnable()
         {
+            _board = FindObjectOfType<Board>();
             _card_Model = GetComponent<Card_Model>();
+            _battleCryController = FindObjectOfType<BattleCry_Controller>();
+            _battleModeCardView = FindObjectOfType<BattleModeCard_View>();
+
+            _board.EndDragCard += ActivateBattleCry;
+
+        }
+        private void OnDisable()
+        {            
+            _board.EndDragCard -= ActivateBattleCry;
         }
 
         private void Start()
         {
             ProvocationAbility();
         }
+
+        public void ActivateBattleCry(Transform newParent) //активация боевых кличей
+        {
+            if (newParent == transform.parent && !_useBattleCray)
+            {
+                _battleModeCardView.ChangeCardViewMode();                
+                _useBattleCray = true;
+                if (_card_Model._battleCryType != BattleCryType.NoСry)
+                {
+                    _battleCryController._idBattleCry = _card_Model._idCard;
+                    _battleCryController._battleCryType = _card_Model._battleCryType;
+                    _battleCryController._battleCryTargets = _card_Model._battleCryTargets;
+                    _battleCryController._battleCryTargetsType = _card_Model._battleCryTargetsType;                    
+                    _battleCryController._isActiveCry = true;
+                    _battleCryController.UpdateBattleCry();
+                }                
+            }
+        }
+
 
         public void DiedCreature()
         {
@@ -47,37 +80,53 @@ namespace Hearthstone
         {
 
         }
-
-        private void BerserkAbility()
-        {
-
-        }
+        
         #endregion
 
         #region //Ability Action
                
         
 
-        //способность изменять атаку
-        private void ChangeAtackDamageAbility()
+        public void ChangeAtackValue(int incomingValue)
         {
-            if (_card_Model._abilityChangeAtackDamage != 0)
+            _card_Model._atackDamageCard += incomingValue;
+            _card_Model._maxAtackValue = _card_Model._atackDamageCard;
+            _battleModeCardView.UpdateViewCard();
+        }
+
+        public void ChangeHealtValue(int incomingValue) //изменяем значение здоровья
+        {
+            if(_battleCryController._battleCryType == BattleCryType.Heal) //лечимся
             {
-                if (_card_Model._abilityChangeAtackDamage > 0)//если способность увеличивает атаку
-                {
-                    if (_card_Model._isBerserk)
-                    {
-                        _card_Model._atackDamageCard += _card_Model._abilityChangeAtackDamage;
-                    }
-
-                    Debug.Log("Я увеличиваю атаку");
-                }
-
-                if (_card_Model._abilityChangeAtackDamage < 0)//если способность уменьшает атаку
-                {
-                    Debug.Log("Я меньшаю атаку");
-                }
+                _card_Model._healthCard += incomingValue;
+                if (_card_Model._healthCard > _card_Model._maxHealtValue)
+                    _card_Model._healthCard = _card_Model._maxHealtValue;
+                _battleModeCardView.UpdateViewCard();
             }
+            else if(_battleCryController._battleCryType == BattleCryType.DealDamage)//принимаем урон
+            {
+                _card_Model._healthCard -= incomingValue;
+                _battleModeCardView.UpdateViewCard();
+                if (_card_Model._healthCard <= 0) DiedCreature(); //событие смерти
+            }
+            else if(_battleCryController._battleCryType == BattleCryType.RaiseParametrs)//увеличиваем параметры
+            {
+                _card_Model._healthCard += incomingValue;
+                _card_Model._maxHealtValue = _card_Model._healthCard;
+                _battleModeCardView.UpdateViewCard();
+            }            
+        }
+
+        public void UpdateSelfParametrs(int multiplicationFactor) //увеличение своих параметров в зависимости от колличества дружеских карт на столе
+        {
+            ChangeAtackValue(_card_Model._abilityChangeAtackDamage* multiplicationFactor);
+            ChangeHealtValue(_card_Model._abilityChangeHealth * multiplicationFactor);
+
+        }
+
+        public void BerserkAbility()
+        {
+            ChangeAtackValue(_card_Model._abilityChangeAtackDamage);
         }
 
         #endregion
