@@ -44,8 +44,13 @@ namespace Hearthstone
                     _battleCryController._battleCryTargetsType = _card_Model._battleCryTargetsType;                    
                     _battleCryController._isActiveCry = true;
                     _battleCryController.UpdateBattleCry();
+
+                    //применяем боевой клич на себя 
+                    ApplyBattleCry[] _temporaryArray = newParent.GetComponentsInChildren<ApplyBattleCry>();
+                    if (_card_Model._battleCryTargets == BattleCryTargets.Self)
+                        _card_Model.GetComponent<Card_Controller>().UpdateSelfParametrs(_temporaryArray.Length - 1);  
                 }                
-            }
+            }                      
         }
 
 
@@ -120,8 +125,7 @@ namespace Hearthstone
         public void UpdateSelfParametrs(int multiplicationFactor) //увеличение своих параметров в зависимости от колличества дружеских карт на столе
         {
             ChangeAtackValue(_card_Model._abilityChangeAtackDamage* multiplicationFactor);
-            ChangeHealtValue(_card_Model._abilityChangeHealth * multiplicationFactor);
-
+            ChangeHealtValue(_card_Model._abilityChangeHealth * multiplicationFactor);            
         }
 
         public void BerserkAbility()

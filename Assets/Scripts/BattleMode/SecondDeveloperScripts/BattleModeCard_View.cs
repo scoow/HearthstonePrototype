@@ -12,11 +12,13 @@ namespace Hearthstone
         private LoadDeck_Controller _loadDeckController;        
         private Card_Model _card_Model;        
         public Text _atackText;
-        public Text _healthText;        
+        public Text _healthText;
+        
+        public ParticleSystem _healtEffect; //ссылка на систему частиц HealthEffect
         
 
         private void OnEnable()
-        {
+        {            
             _loadDeckController = FindObjectOfType<LoadDeck_Controller>();//тест Zenject (неудачный)
             _card_Model = GetComponent<Card_Model>();            
 

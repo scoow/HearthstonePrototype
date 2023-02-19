@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -55,8 +56,18 @@ namespace Hearthstone
                     break;
                 case BattleCryType.Heal://лечим существо                   
                     _card_Controller.ChangeHealtValue(card_SO._abilityChangeHealth);
+                    StartCoroutine(HealthEffect());
                     break;
             }
         }
+
+        IEnumerator HealthEffect()
+        {
+            _battleModeCard_View._healtEffect.gameObject.SetActive(true);
+            _battleModeCard_View._healtEffect.Play();
+            yield return new WaitForSeconds(2f);
+            _battleModeCard_View._healtEffect.gameObject.SetActive(false);
+            _battleModeCard_View._healtEffect.Stop();
+        }   
     }
 }

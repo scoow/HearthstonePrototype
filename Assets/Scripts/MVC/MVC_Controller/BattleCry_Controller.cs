@@ -44,9 +44,9 @@ namespace Hearthstone
                 if(!_isActiveCry)
                     _temporaryArray[i]._isListen = false;
 
-                Card_Model card_Model = _temporaryArray[i].GetComponent<Card_Model>();
+                /*Card_Model card_Model = _temporaryArray[i].GetComponent<Card_Model>();
                 if (card_Model._battleCryTargets == BattleCryTargets.Self)
-                    card_Model.GetComponent<Card_Controller>().UpdateSelfParametrs(_temporaryArray.Length -1); //применяем боевой клич на себя
+                    card_Model.GetComponent<Card_Controller>().UpdateSelfParametrs(_temporaryArray.Length -1); //применяем боевой клич на себя*/
             }
 
             if(_battleCryTargets != BattleCryTargets.Self) //условие появления пицела 
