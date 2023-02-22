@@ -104,31 +104,31 @@ namespace Hearthstone
         public void ChangeAtackValue(int incomingValue) //изменяем значение атаки
         {
             _card_Model._atackDamageCard += incomingValue;
-            _card_Model._maxAtackValue = _card_Model._atackDamageCard;
+            _card_Model._maxAtackValue += incomingValue;
             _battleModeCardView.UpdateViewCard();
         }
 
         public void ChangeHealtValue(int incomingValue) //изменяем значение здоровья
         {
-            if(_battleCryController._battleCryType == BattleCryType.Heal) //лечимся
+            if (_battleCryController._battleCryType == BattleCryType.Heal) //лечимся
             {
                 _card_Model._healthCard += incomingValue;
                 if (_card_Model._healthCard > _card_Model._maxHealtValue)
                     _card_Model._healthCard = _card_Model._maxHealtValue;
                 _battleModeCardView.UpdateViewCard();
             }
-            else if(_battleCryController._battleCryType == BattleCryType.DealDamage)//принимаем урон
+            else if (_battleCryController._battleCryType == BattleCryType.DealDamage)//принимаем урон
             {
                 _card_Model._healthCard -= incomingValue;
                 _battleModeCardView.UpdateViewCard();
                 if (_card_Model._healthCard <= 0) DiedCreature(); //событие смерти
             }
-            else if(_battleCryController._battleCryType == BattleCryType.RaiseParametrs)//увеличиваем параметры
+            else if (_battleCryController._battleCryType == BattleCryType.RaiseParametrs)//увеличиваем параметры
             {
                 _card_Model._healthCard += incomingValue;
-                _card_Model._maxHealtValue = _card_Model._healthCard;
+                _card_Model._maxHealtValue += incomingValue;
                 _battleModeCardView.UpdateViewCard();
-            }            
+            }
         }
 
         public void UpdateSelfParametrs(int multiplicationFactor) //увеличение своих параметров в зависимости от колличества дружеских карт на столе

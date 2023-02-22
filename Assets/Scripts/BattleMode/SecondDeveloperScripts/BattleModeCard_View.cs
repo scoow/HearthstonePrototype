@@ -46,12 +46,15 @@ namespace Hearthstone
             {
                 if (_card_Model._atackDamageCard > _card_Model._defaultAtackValue)//изменяем цвет текста атаки
                     _atackText.color = Color.green;
-                if (_card_Model._atackDamageCard < _card_Model._maxAtackValue)
-                    _atackText.color = Color.red;
+                if (_card_Model._atackDamageCard <= _card_Model._defaultAtackValue)
+                    _atackText.color = Color.white;
+                
                 if (_card_Model._healthCard > _card_Model._defaultHealtValue) //изменяем цвет текста здоровья
                     _healthText.color = Color.green;
                 if (_card_Model._healthCard < _card_Model._maxHealtValue)
                     _healthText.color = Color.red;
+                if (_card_Model._healthCard == _card_Model._defaultHealtValue)
+                    _healthText.color = Color.white;
             }           
         }
         
