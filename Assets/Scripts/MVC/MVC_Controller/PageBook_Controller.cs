@@ -28,15 +28,19 @@ namespace Hearthstone
         /// </summary>
         public void NextPage()
         {
-            if ((_pageBook_Model._resultCollection.Count % _cardTemplatePrefabs.Length) == 0)
+            //if ((_pageBook_Model._resultCollection.Count % _cardTemplatePrefabs.Length) == 0)
                 _maxPageNumber = _pageBook_Model._resultCollection.Count / _cardTemplatePrefabs.Length;
-            else
-                _maxPageNumber = _pageBook_Model._resultCollection.Count / _cardTemplatePrefabs.Length + 1;
+            //else
+            //    _maxPageNumber = _pageBook_Model._resultCollection.Count / _cardTemplatePrefabs.Length + 1;
 
             _pageCounter++;
-            if (_pageCounter > _maxPageNumber)
-                _pageCounter = _maxPageNumber;
+            if(_pageCounter < _maxPageNumber)
             _pageBook_View.UpdatePageBook(_pageBook_Model._resultCollection, _cardTemplatePrefabs, _pageCounter);
+            if (_pageCounter >= _maxPageNumber)
+            {
+                _pageCounter = _maxPageNumber-1;
+                return;
+            }            
         }
 
         /// <summary>
