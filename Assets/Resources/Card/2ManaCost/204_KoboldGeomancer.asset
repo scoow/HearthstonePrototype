@@ -16,10 +16,14 @@ MonoBehaviour:
   _descriptionCard: "\u0423\u0440\u043E\u043D \u043E\u0442 \u0437\u0430\u043A\u043B\u0438\u043D\u0430\u043D\u0438\u0439
     +1"
   _idCard: 204
-  _spriteCard: {fileID: 21300000, guid: 0db8cd11a075eca45b3cfb873a17e8cc, type: 3}
+  _spriteCard: {fileID: 21300000, guid: 6040ed51d4175d546a80bb2bb70d41f1, type: 3}
   _manaCostCard: 2
   _atackDamageCard: 2
   _healthCard: 2
+  _battleCryType: 0
+  _battleCryTargets: 0
+  _battleCryTargetsType: 0
+  _minionType: 0
   _isProvocation: 0
   _isDivineShield: 0
   _isPermanentEffect: 0

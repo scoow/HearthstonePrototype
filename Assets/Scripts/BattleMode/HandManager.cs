@@ -20,6 +20,7 @@ namespace Hearthstone
         private void Start()
         {
             _playerDeck = GameObject.Find("PlayerDeck").transform;
+            int layerStep = 0;
            // _mulliganManager = FindObjectOfType<MulliganManager>();zenject
             foreach (int i in _loadDeckController._activeDeck)
             {
@@ -28,10 +29,14 @@ namespace Hearthstone
                 var battlemodeCardView = newCard.GetComponent<BattleModeCard_View>();
                 
                 var newCardModel = newCard.GetComponent<Card_Model>();
+                var newlayerRenderUp = newCard.GetComponent<LayerRenderUp>();
+                newlayerRenderUp.LayerUp(layerStep);
+                layerStep--;
                 var newCardView = newCard.GetComponent<Card_View>();
                 newCardModel.SetCardSettings(i);//вынести в отд метод для создания минионов
                 battlemodeCardView.SetSettingsCardInBattle();
                 newCardView.ChangeViewCard();
+                
             }
         }
     }

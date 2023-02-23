@@ -19,10 +19,14 @@ MonoBehaviour:
     \u041F\u0438\u043A\u0430 \u0428\u0443\u0441\u0442\u0440\u0438\u043A\u0441\u0430
     3/3."
   _idCard: 700
-  _spriteCard: {fileID: 21300000, guid: fb3197f5fbe7d13448059d82c58eb52f, type: 3}
+  _spriteCard: {fileID: 21300000, guid: f5cfa54e27a2ba6479a74f877ddafe24, type: 3}
   _manaCostCard: 6
   _atackDamageCard: 9
   _healthCard: 7
+  _battleCryType: 0
+  _battleCryTargets: 0
+  _battleCryTargetsType: 0
+  _minionType: 0
   _isProvocation: 0
   _isDivineShield: 0
   _isPermanentEffect: 0

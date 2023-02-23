@@ -16,7 +16,7 @@ namespace Hearthstone
         public Text _healthText;
         
         public ParticleSystem _healtEffect; //ссылка на систему частиц HealthEffect
-        public ParticleSystem _scaleEffect; //ссылка на систему частиц HealthEffect
+        public ParticleSystem _scaleEffect; //ссылка на систему частиц ScalleEffect
         
 
         private void OnEnable()

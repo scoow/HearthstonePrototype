@@ -15,7 +15,7 @@ MonoBehaviour:
   _nameCard: "\u0420\u0435\u0447\u043D\u043E\u0439 \u043A\u0440\u043E\u043A\u043E\u043B\u0438\u0441\u043A"
   _descriptionCard: 
   _idCard: 207
-  _spriteCard: {fileID: 21300000, guid: 8a3d80e9a30f7f5418817af48e3e1abf, type: 3}
+  _spriteCard: {fileID: 21300000, guid: 5ee37c7bd7df10145a1cb0dff1f1a51c, type: 3}
   _manaCostCard: 2
   _atackDamageCard: 2
   _healthCard: 0

@@ -19,7 +19,7 @@ MonoBehaviour:
     \u0434\u0440\u0443\u0433\u043E\u0435 \u0432\u0430\u0448\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u043E
     \u0432 \u0438\u0433\u0440\u0435."
   _idCard: 503
-  _spriteCard: {fileID: 21300000, guid: fecc92c94814fb740bd535ab294c9920, type: 3}
+  _spriteCard: {fileID: 21300000, guid: 52e415d07fc8d75409aaf8f43a2877f3, type: 3}
   _manaCostCard: 5
   _atackDamageCard: 4
   _healthCard: 4

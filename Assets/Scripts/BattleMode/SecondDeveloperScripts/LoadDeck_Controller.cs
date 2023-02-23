@@ -40,7 +40,7 @@ namespace Hearthstone
                 _temporaryArray[i].SetCardSettings(_activeDeck[i]);                
                 LayerRenderUp layerRenderUp = _temporaryArray[i].GetComponent<LayerRenderUp>();
                 layerRenderUp.LayerUp(i);
-                if (i == _temporaryArray.Length - 1) layerRenderUp.LayerLastSpriteUp();               
+                //if (i == _temporaryArray.Length - 1) layerRenderUp.LayerLastSpriteUp();               
             }            
         }
 
