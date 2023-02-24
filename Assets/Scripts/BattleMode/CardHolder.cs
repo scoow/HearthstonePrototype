@@ -21,7 +21,7 @@ namespace Hearthstone
         [SerializeField]
         protected int _cardCount = 0;
 
-        public Action<Transform> EndDragCard; ///событие для смены отображения карты
+        //событие для смены отображения карты перенесено в дочерний класс Board
 
         private void Start()
         {

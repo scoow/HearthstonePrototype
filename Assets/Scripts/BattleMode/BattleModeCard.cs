@@ -35,5 +35,9 @@ namespace Hearthstone
         {
             this._side = side;
         }
+        public Players GetSide()
+        {
+            return this._side;
+        }
     }
 }

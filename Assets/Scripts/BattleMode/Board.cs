@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Linq;
 using System.Collections.Generic;
+using System;
 
 namespace Hearthstone
 {
@@ -11,6 +12,8 @@ namespace Hearthstone
         private GameObject _tempMinionGO;
         private bool _draggingCard; //несём ли карту
         private bool _rightCard; //добавление карты справа?
+
+        public Action<Transform> EndDragCard; ///событие для смены отображения карты
 
         private void Awake()
         {

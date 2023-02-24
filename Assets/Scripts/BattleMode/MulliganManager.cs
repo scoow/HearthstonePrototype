@@ -54,8 +54,8 @@ namespace Hearthstone
 
             _boards = new();
             _boards = FindObjectsOfType<Board>().ToList();
-            _firstPlayerBoard = _boards.Where(hand => hand._side == Players.First).FirstOrDefault();
-            _secondPlayerBoard = _boards.Where(hand => hand._side == Players.Second).FirstOrDefault();
+            _firstPlayerBoard = _boards.Where(board => board._side == Players.First).FirstOrDefault();
+            _secondPlayerBoard = _boards.Where(board => board._side == Players.Second).FirstOrDefault();
 
             _hands = new List<Hand>();
             _hands = FindObjectsOfType<Hand>().ToList();

@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using Zenject;
 
@@ -9,6 +10,7 @@ namespace Hearthstone
         private BattleCry_Controller _battleCryController;
         private BattleModeCard_View _battleModeCardView;
         public bool _useBattleCray = false;
+
         private Board _board;
         [Inject]
         private MulliganManager _mulliganManager;
@@ -17,12 +19,14 @@ namespace Hearthstone
 
         private void OnEnable()
         {
-            _board = FindObjectOfType<Board>();
+            //пока костыль. заменить на Zenject
+            
+
             _card_Model = GetComponent<Card_Model>();
             _battleCryController = FindObjectOfType<BattleCry_Controller>();
             _battleModeCardView = FindObjectOfType<BattleModeCard_View>();
 
-            _board.EndDragCard += ActivateBattleCry;
+           
 
         }
         private void OnDisable()
@@ -33,6 +37,10 @@ namespace Hearthstone
         private void Start()
         {
             ProvocationAbility();
+
+            Players side = GetComponent<BattleModeCard>().GetSide();
+            _board = FindObjectsOfType<Board>().Where(board => board._side == side).FirstOrDefault();
+            _board.EndDragCard += ActivateBattleCry;
         }
 
         public void ActivateBattleCry(Transform newParent) //активация боевых кличей
