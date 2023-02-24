@@ -2358,13 +2358,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1048441347}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f8d82237e2cb8141b8d034c4320dcbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _side: 0
-  _offset: 4
+  _side: 1
+  _offset: 3
   _cardCount: 0
 --- !u!65 &1048441351
 BoxCollider:
@@ -3064,7 +3064,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604529404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.16, y: 10.56, z: 0}
+  m_LocalPosition: {x: -13.66, y: 8.16, z: 0}
   m_LocalScale: {x: 20, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

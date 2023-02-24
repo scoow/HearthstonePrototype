@@ -12,8 +12,6 @@ namespace Hearthstone
         private bool _draggingCard; //несём ли карту
         private bool _rightCard; //добавление карты справа?
 
-        private List<CardInHand> _allCards;
-
         private void Awake()
         {
             _camera = Camera.main;
@@ -22,11 +20,11 @@ namespace Hearthstone
         /// <summary>
         /// Подписка всех карт на событие. Если взяли карту - отображать место для сброса карты на поле
         /// </summary>
-        public void InitCardList()
+        public void InitCardList(List<BattleModeCard> BattleModeCards)
         {
-             _allCards = FindObjectsOfType<CardInHand>().ToList();
-            foreach (CardInHand card in _allCards)
+            foreach (BattleModeCard BattleModeCard in BattleModeCards)
             {
+                CardInHand card = BattleModeCard.GetComponent<CardInHand>();
                 card.BeginDrag += ReactionToCardDragging;
             }
         }
@@ -99,6 +97,9 @@ namespace Hearthstone
         }
         private void OnDisable()
         {
+            List<CardInHand> _allCards;
+            _allCards = new List<CardInHand>();
+            _allCards = FindObjectsOfType<CardInHand>().ToList();
             foreach (CardInHand card in _allCards)
             {
                 if (card != null)

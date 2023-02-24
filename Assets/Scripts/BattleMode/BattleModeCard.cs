@@ -6,6 +6,9 @@ namespace Hearthstone
     public class BattleModeCard : MonoBehaviour
     {
         public bool Selected { get; set; }
+        /// <summary>
+        /// принадлежность карты к игроку
+        /// </summary>
         public Players _side;
         /// <summary>
         /// Асинхронное движение карты по игровому полю

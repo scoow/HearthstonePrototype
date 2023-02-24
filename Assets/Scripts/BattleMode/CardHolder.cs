@@ -52,7 +52,6 @@ namespace Hearthstone
             newPosition.x += _offset;
             _cardsList.Add(card);
             _cardCount++;
-            //card.TellParentBeginDrag += RemoveCard;//
             card.SetParent(this);
         }
         /// <summary>
@@ -74,10 +73,9 @@ namespace Hearthstone
                         
                 }
                 _cardsList.Remove(card);
-                //card.TellParentBeginDrag -= RemoveCard;//
             }
         }
-        public virtual void OnDrop(PointerEventData eventData)//вынести в класс-родитель
+        public virtual void OnDrop(PointerEventData eventData)
         {
             if (!eventData.pointerDrag.TryGetComponent<CardInHand>(out var card)) return;
             var _parent = card.transform.parent.GetComponent<CardHolder>();

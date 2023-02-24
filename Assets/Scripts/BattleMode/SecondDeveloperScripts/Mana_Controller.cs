@@ -23,7 +23,10 @@ namespace Hearthstone
             _playersTurn = Players.First;
             AddCristal(_playersTurn);
         }
-
+        public Players WhoMovesNow()
+        {
+            return _playersTurn;
+        }
 
         public void ChangeTurn()
         {

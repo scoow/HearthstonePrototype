@@ -12,6 +12,8 @@ namespace Hearthstone
         private Board _board;
         [Inject]
         private MulliganManager _mulliganManager;
+        [Inject]
+        private Mana_Controller _mana_Controller;
 
         private void OnEnable()
         {
@@ -144,7 +146,7 @@ namespace Hearthstone
         public void TakeAdditionalCard() //добавление новой карты
         {
             Debug.Log("ƒобавленна нова€ карта");
-            _mulliganManager.TakeOneCard();
+            _mulliganManager.TakeOneCard(_mana_Controller.WhoMovesNow());
         }
 
         #endregion

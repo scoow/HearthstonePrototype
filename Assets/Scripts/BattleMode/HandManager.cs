@@ -9,15 +9,15 @@ namespace Hearthstone
     public class HandManager : MonoBehaviour
     {
         [Inject]
-        private LoadDeck_Controller _loadDeckController;        
+        private readonly LoadDeck_Controller _loadDeckController;        
         private Transform _playerDeck;
         private Transform _enemyDeck;
         [SerializeField]
         private GameObject _cardPrefab;
         [Inject]
-        private PageBook_Model _pageBook_Model;
+        private readonly PageBook_Model _pageBook_Model;
         [Inject]
-        private MulliganManager _mulliganManager;
+        private readonly MulliganManager _mulliganManager;
         private void Start()
         {
             _playerDeck = GameObject.Find("PlayerDeck").transform;

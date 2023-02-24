@@ -37,7 +37,10 @@ namespace Hearthstone
         private List<Hand> _hands;
         private Hand _firstPlayerHand;
         private Hand _secondPlayerHand;
+
         private List<Board> _boards;
+        private Board _firstPlayerBoard;
+        private Board _secondPlayerBoard;
 
         private int _nextCardInDeckNumber;
 
@@ -51,6 +54,8 @@ namespace Hearthstone
 
             _boards = new();
             _boards = FindObjectsOfType<Board>().ToList();
+            _firstPlayerBoard = _boards.Where(hand => hand._side == Players.First).FirstOrDefault();
+            _secondPlayerBoard = _boards.Where(hand => hand._side == Players.Second).FirstOrDefault();
 
             _hands = new List<Hand>();
             _hands = FindObjectsOfType<Hand>().ToList();
@@ -143,17 +148,20 @@ namespace Hearthstone
             List<BattleModeCard> _currentCards;
             Transform _currentDeck;
             Hand _currentHand;
+            Board _currentBoard;
             if (side == Players.First)
             {
                 _currentCards = _mulliganCardsFirstPlayer;
                 _currentDeck = _playerDeck.transform;
                 _currentHand = _firstPlayerHand;
+                _currentBoard = _firstPlayerBoard;
             }
             else
             {
                 _currentCards = _mulliganCardsSecondPlayer;
                 _currentDeck = _enemyDeck.transform;
                 _currentHand = _secondPlayerHand;
+                _currentBoard = _secondPlayerBoard;
             }
 
             int i = 0;
@@ -186,11 +194,10 @@ namespace Hearthstone
                 _currentHand.AddCard(_cardInHand);
                 i++;
             }
-            _nextCardInDeckNumber = 5;
-            foreach (var board in _boards)
-            {
-                board.InitCardList();
-            }
+            _nextCardInDeckNumber = 5;//номер текущей карты в колоде после конца муллигана
+
+            _currentBoard.InitCardList(_currentCards);//привязка событий карт текущего игрока к текущему полю
+
             if (side == Players.First)//если первый муллиган
             {
                 MulliganStage1(Players.Second);
@@ -199,10 +206,23 @@ namespace Hearthstone
                 _mulliganConfirmButton.onClick.AddListener(delegate { MulliganStage3(Players.Second); });
             }
         }
-        public void TakeOneCard()
+        /// <summary>
+        /// Взятие одной карты из колоды в руку текущего игрока
+        /// </summary>
+        /// <param name="side">текущий игрок</param>
+        public void TakeOneCard(Players side)
         {
+            Hand _currentHand;
+            if (side == Players.First)
+            {
+                _currentHand = _firstPlayerHand;
+            }
+            else
+            {
+                _currentHand = _secondPlayerHand;
+            }
             var card = _mulliganCards.ElementAt(_nextCardInDeckNumber);
-            _ = card.MoveCardAsync(card.transform.position, _firstPlayerHand.GetLastCardPosition(), card.transform.rotation, _firstPlayerHand.transform.rotation, _time);
+            _ = card.MoveCardAsync(card.transform.position, _currentHand.GetLastCardPosition(), card.transform.rotation, _currentHand.transform.rotation, _time);
         }
     }
 }
