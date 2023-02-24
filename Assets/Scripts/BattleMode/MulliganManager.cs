@@ -23,6 +23,8 @@ namespace Hearthstone
 
         [SerializeField]
         private GameObject _playerDeck;
+        [SerializeField]
+        private GameObject _enemyDeck;
 
         [Inject]
         private Mana_Controller _manaController;
@@ -45,7 +47,7 @@ namespace Hearthstone
             _mulliganConfirmButton = FindObjectOfType<MulliganConfirmButton>();
             _mulliganConfirmButton.Init();
             _mulliganConfirmButton.HideButton();
-            _mulliganConfirmButton.onClick.AddListener(MulliganStage3);
+            _mulliganConfirmButton.onClick.AddListener(delegate { MulliganStage3(Players.First); });
 
             _boards = new();
             _boards = FindObjectsOfType<Board>().ToList();
@@ -61,8 +63,8 @@ namespace Hearthstone
 
             _mulliganCards = new List<BattleModeCard>();
             _mulliganCards = FindObjectsOfType<BattleModeCard>().ToList();
-           // _mulliganCards.Sort((c1, c2) => string.Compare(c1.gameObject.name, c2.gameObject.name));
-           _mulliganCardsFirstPlayer = _mulliganCards.Where(x => x._side == Players.First).ToList();
+            // _mulliganCards.Sort((c1, c2) => string.Compare(c1.gameObject.name, c2.gameObject.name));
+            _mulliganCardsFirstPlayer = _mulliganCards.Where(x => x._side == Players.First).ToList();
             _mulliganCardsSecondPlayer = _mulliganCards.Where(x => x._side == Players.Second).ToList();
             foreach (var card in _mulliganCards)
                 card.gameObject.SetActive(true);
@@ -77,16 +79,18 @@ namespace Hearthstone
 
         private async void MulliganStage1(Players side)
         {
-            BattleModeCard[] battleModeCards;
-            if (side == Players.First)
-                battleModeCards = _mulliganCardsFirstPlayer.ToArray();
-            else
-                battleModeCards = _mulliganCardsSecondPlayer.ToArray();
             BattleModeCard _card;
+            List<BattleModeCard> _currentDeck;
+            if (side == Players.First)
+                _currentDeck = _mulliganCardsFirstPlayer;
+            else
+                _currentDeck = _mulliganCardsSecondPlayer;
+
+
             int i = 0;
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
-                _card = battleModeCards[i];
+                _card = _currentDeck[i];
                 position.SetCurrentCard(_card);//
                 _ = _card.MoveCardAsync(_card.transform.position, position.transform.position, _card.transform.rotation, position.transform.rotation, _time);
                 await UniTask.Delay(TimeSpan.FromSeconds(0.5));
@@ -99,37 +103,69 @@ namespace Hearthstone
             _mulliganConfirmButton.ShowButton();
         }
 
-        private async void MulliganStage3()
+        private async void MulliganStage3(Players side)
         {
             _mulliganConfirmButton.HideButton();
             BattleModeCard _card;
+
+            List<BattleModeCard> _currentCards;
+            Transform _currentDeck;
+            if (side == Players.First)
+            {
+                _currentCards = _mulliganCardsFirstPlayer;
+                _currentDeck = _playerDeck.transform;
+            }
+            else
+            {
+                _currentCards = _mulliganCardsSecondPlayer;
+                _currentDeck = _enemyDeck.transform;
+            }
+
             int i = 0;
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
-                _card = _mulliganCards[i];
+                _card = _currentCards[i];
                 if (_card.Selected)
                 {
-                    _ = _card.MoveCardAsync(position.transform.position, _playerDeck.transform.position, position.transform.rotation, _playerDeck.transform.rotation, _time);
+                    _ = _card.MoveCardAsync(position.transform.position, _currentDeck.position, position.transform.rotation, _currentDeck.rotation, _time);
                     await UniTask.Delay(TimeSpan.FromSeconds(0.5));
                 }
                 i++;
             }
             await UniTask.Delay(TimeSpan.FromSeconds(1));
-            MulliganStage4();
+            MulliganStage4(side);
         }
-        private async void MulliganStage4()
+        private async void MulliganStage4(Players side)
         {
             _mulliganConfirmButton.HideButton();
             BattleModeCard _card;
+
+            List<BattleModeCard> _currentCards;
+            Transform _currentDeck;
+            Hand _currentHand;
+            if (side == Players.First)
+            {
+                _currentCards = _mulliganCardsFirstPlayer;
+                _currentDeck = _playerDeck.transform;
+                _currentHand = _firstPlayerHand;
+            }
+            else
+            {
+                _currentCards = _mulliganCardsSecondPlayer;
+                _currentDeck = _enemyDeck.transform;
+                _currentHand = _secondPlayerHand;
+            }
+
             int i = 0;
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
-                _card = _mulliganCards[i];
+                _card = _currentCards[i];
                 if (_card.Selected)
                 {
                     _ = _card.MoveCardAsync(_card.transform.position, position.transform.position, _card.transform.rotation, position.transform.rotation, _time);
                     await UniTask.Delay(TimeSpan.FromSeconds(0.5));
                 }
+
                 position.SwitchRenderer(false);
                 i++;
             }
@@ -137,24 +173,30 @@ namespace Hearthstone
             i = 0;
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
-                _card = _mulliganCards[i];
-                _ = _card.MoveCardAsync(position.transform.position, _firstPlayerHand.GetLastCardPosition(), position.transform.rotation, _firstPlayerHand.transform.rotation, _time);
-                
-                
+                _card = _currentCards[i];
+                _ = _card.MoveCardAsync(position.transform.position, _currentHand.GetLastCardPosition(), position.transform.rotation, _currentHand.transform.rotation, _time);
+
+
                 await UniTask.Delay(TimeSpan.FromSeconds(0.5));
-                position.gameObject.SetActive(false);
+                if (side == Players.Second)
+                    position.gameObject.SetActive(false);
                 var _cardInHand = _card.AddComponent<CardInHand>();
-                
 
-
-                _cardInHand.SetParent(_firstPlayerHand);
-                _firstPlayerHand.AddCard(_cardInHand);
+                _cardInHand.SetParent(_currentHand);
+                _currentHand.AddCard(_cardInHand);
                 i++;
             }
             _nextCardInDeckNumber = 5;
             foreach (var board in _boards)
             {
                 board.InitCardList();
+            }
+            if (side == Players.First)//если первый муллиган
+            {
+                MulliganStage1(Players.Second);
+                MulliganStage2();
+                _mulliganConfirmButton.onClick.RemoveAllListeners();
+                _mulliganConfirmButton.onClick.AddListener(delegate { MulliganStage3(Players.Second); });
             }
         }
         public void TakeOneCard()

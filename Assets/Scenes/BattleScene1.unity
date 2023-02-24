@@ -3034,6 +3034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _time: 2
   _playerDeck: {fileID: 103206867}
+  _enemyDeck: {fileID: 143047460}
 --- !u!1 &1604529404
 GameObject:
   m_ObjectHideFlags: 0
