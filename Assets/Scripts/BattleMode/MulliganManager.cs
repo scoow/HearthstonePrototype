@@ -34,12 +34,18 @@ namespace Hearthstone
         private List<BattleModeCard> _mulliganCardsSecondPlayer;
         private MulliganConfirmButton _mulliganConfirmButton;
 
+        [Inject]
         private List<Hand> _hands;
+        [Inject(Id = "First")]
         private Hand _firstPlayerHand;
+        [Inject(Id = "Second")]
         private Hand _secondPlayerHand;
 
+        [Inject]
         private List<Board> _boards;
+        [Inject(Id = "First")]
         private Board _firstPlayerBoard;
+        [Inject(Id = "Second")]
         private Board _secondPlayerBoard;
 
         private int _nextCardInDeckNumber;
@@ -51,16 +57,6 @@ namespace Hearthstone
             _mulliganConfirmButton.Init();
             _mulliganConfirmButton.HideButton();
             _mulliganConfirmButton.onClick.AddListener(delegate { MulliganStage3(Players.First); });
-
-            _boards = new();
-            _boards = FindObjectsOfType<Board>().ToList();
-            _firstPlayerBoard = _boards.Where(board => board._side == Players.First).FirstOrDefault();
-            _secondPlayerBoard = _boards.Where(board => board._side == Players.Second).FirstOrDefault();
-
-            _hands = new List<Hand>();
-            _hands = FindObjectsOfType<Hand>().ToList();
-            _firstPlayerHand = _hands.Where(hand => hand._side == Players.First).FirstOrDefault();
-            _secondPlayerHand = _hands.Where(hand => hand._side == Players.Second).FirstOrDefault();
 
             _mulliganCardsPositions = new List<MulliganCardPosition>();
             _mulliganCardsPositions = FindObjectsOfType<MulliganCardPosition>().ToList();
@@ -77,9 +73,6 @@ namespace Hearthstone
             MulliganStage1(Players.First);
             await UniTask.Delay(TimeSpan.FromSeconds(0.5));
             MulliganStage2();
-            //test
-            /*MulliganStage4();
-            await UniTask.Delay(TimeSpan.FromSeconds(0));//заглушка*/
         }
 
         private async void MulliganStage1(Players side)
