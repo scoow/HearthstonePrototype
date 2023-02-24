@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
+using Zenject;
 
 /*
  * ќписание стадий муллигана:
@@ -24,19 +24,24 @@ namespace Hearthstone
         [SerializeField]
         private GameObject _playerDeck;
 
+        [Inject]
+        private Mana_Controller _manaController;
         private List<MulliganCardPosition> _mulliganCardsPositions;//якори дл€ вылетающих карт
         private List<BattleModeCard> _mulliganCards;//—ами карты
+        private List<BattleModeCard> _mulliganCardsFirstPlayer;
+        private List<BattleModeCard> _mulliganCardsSecondPlayer;
         private MulliganConfirmButton _mulliganConfirmButton;
 
         private List<Hand> _hands;
         private Hand _firstPlayerHand;
+        private Hand _secondPlayerHand;
         private List<Board> _boards;
 
         private int _nextCardInDeckNumber;
 
         private async void Start()
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(0.5));
+            await UniTask.Delay(TimeSpan.FromSeconds(0.1));//ожидание, пока инициализируетс€ сцена
             _mulliganConfirmButton = FindObjectOfType<MulliganConfirmButton>();
             _mulliganConfirmButton.Init();
             _mulliganConfirmButton.HideButton();
@@ -48,6 +53,7 @@ namespace Hearthstone
             _hands = new List<Hand>();
             _hands = FindObjectsOfType<Hand>().ToList();
             _firstPlayerHand = _hands.Where(hand => hand._side == Players.First).FirstOrDefault();
+            _secondPlayerHand = _hands.Where(hand => hand._side == Players.Second).FirstOrDefault();
 
             _mulliganCardsPositions = new List<MulliganCardPosition>();
             _mulliganCardsPositions = FindObjectsOfType<MulliganCardPosition>().ToList();
@@ -55,11 +61,13 @@ namespace Hearthstone
 
             _mulliganCards = new List<BattleModeCard>();
             _mulliganCards = FindObjectsOfType<BattleModeCard>().ToList();
-            _mulliganCards.Sort((c1, c2) => string.Compare(c1.gameObject.name, c2.gameObject.name));
+           // _mulliganCards.Sort((c1, c2) => string.Compare(c1.gameObject.name, c2.gameObject.name));
+           _mulliganCardsFirstPlayer = _mulliganCards.Where(x => x._side == Players.First).ToList();
+            _mulliganCardsSecondPlayer = _mulliganCards.Where(x => x._side == Players.Second).ToList();
             foreach (var card in _mulliganCards)
                 card.gameObject.SetActive(true);
 
-            MulliganStage1();
+            MulliganStage1(Players.First);
             await UniTask.Delay(TimeSpan.FromSeconds(0.5));
             MulliganStage2();
             //test
@@ -67,13 +75,18 @@ namespace Hearthstone
             await UniTask.Delay(TimeSpan.FromSeconds(0));//заглушка*/
         }
 
-        private async void MulliganStage1()
+        private async void MulliganStage1(Players side)
         {
+            BattleModeCard[] battleModeCards;
+            if (side == Players.First)
+                battleModeCards = _mulliganCardsFirstPlayer.ToArray();
+            else
+                battleModeCards = _mulliganCardsSecondPlayer.ToArray();
             BattleModeCard _card;
             int i = 0;
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
-                _card = _mulliganCards[i];
+                _card = battleModeCards[i];
                 position.SetCurrentCard(_card);//
                 _ = _card.MoveCardAsync(_card.transform.position, position.transform.position, _card.transform.rotation, position.transform.rotation, _time);
                 await UniTask.Delay(TimeSpan.FromSeconds(0.5));

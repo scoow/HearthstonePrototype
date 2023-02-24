@@ -6,6 +6,7 @@ namespace Hearthstone
     public class BattleModeCard : MonoBehaviour
     {
         public bool Selected { get; set; }
+        public Players _side;
         /// <summary>
         /// Асинхронное движение карты по игровому полю
         /// </summary>
@@ -26,6 +27,10 @@ namespace Hearthstone
                 await UniTask.Yield();
             }
             transform.SetPositionAndRotation(endPosition, endRotation);
+        }
+        public void SetSide(Players side)
+        {
+            this._side = side;
         }
     }
 }

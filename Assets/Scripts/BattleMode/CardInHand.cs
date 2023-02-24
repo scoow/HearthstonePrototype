@@ -7,6 +7,7 @@ namespace Hearthstone
     public class CardInHand : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
     {
         private Camera _camera;
+        private LayerRenderUp _layersRenderUp;
         private GameObject _tempCardGO;
 
         public Transform parent;
@@ -19,12 +20,14 @@ namespace Hearthstone
         {
             _camera = Camera.main;
             _tempCardGO = GameObject.Find("TempCard");
+            _layersRenderUp = GetComponent<LayerRenderUp>();
         }
         public void OnBeginDrag(PointerEventData eventData)
         {
             _tempCardGO.transform.position = transform.position;//временная карта
             GetComponent<CanvasGroup>().blocksRaycasts = false;
-            //TellParentBeginDrag?.Invoke(this);
+            _layersRenderUp.LayerUp(50);
+
             BeginDrag?.Invoke(true);
         }
 
@@ -44,6 +47,7 @@ namespace Hearthstone
         {
             GetComponent<CanvasGroup>().blocksRaycasts = true;
             CardHolder _parent = transform.parent.GetComponent<CardHolder>();
+            _layersRenderUp.LayerUp(-50);
             if (_parent is Hand)
             {
                 transform.position = _tempCardGO.transform.position;
