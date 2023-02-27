@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Hearthstone
 {
@@ -11,6 +12,7 @@ namespace Hearthstone
         private Transform _onePlayerMana, _twoPlayerMana;
         public Players _playersTurn;
         public Action<int> ChangeManaValue;
+        private EndTurnButton _endTurnButton;//кнопка конца хода
 
 
         [HideInInspector] public int _onePlayermanaCount;
@@ -20,6 +22,8 @@ namespace Hearthstone
 
         private void Start()
         {
+            _endTurnButton = FindObjectOfType<EndTurnButton>();
+            _endTurnButton.GetComponent<Button>().onClick.AddListener(ChangeTurn);
             _playersTurn = Players.First;
             AddCristal(_playersTurn);
         }
