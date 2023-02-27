@@ -79,5 +79,7 @@ namespace Hearthstone
             _battleCryTargetsType = cardSOModel._battleCryTargetsType;
             _minionType = cardSOModel._minionType;
         }
+        public int GetManaCostCard()
+        { return _manaCostCard; }
     }
 }

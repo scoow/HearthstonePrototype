@@ -32,7 +32,7 @@ namespace Hearthstone
         }
         public void OnBeginDrag(PointerEventData eventData)
         {
-            _cancelDrag = _side != _mana_Controller.WhoMovesNow();
+            _cancelDrag = _side != _mana_Controller.WhoMovesNow() || _mana_Controller.GetManaCount(_side) < GetComponent<Card_Model>().GetManaCostCard();
             if (_cancelDrag)//Если не наш ход - нельзя схватить карту
             {
                 return;

@@ -40,33 +40,47 @@ namespace Hearthstone
                 AddCristal(_playersTurn);
                 ChangeManaValue?.Invoke(_twoPlayermanaCount);
                 return;
-            }           
-            
+            }
+
             if (_playersTurn == Players.Second)
             {
                 _playersTurn = Players.First;
                 AddCristal(_playersTurn);
                 ChangeManaValue?.Invoke(_onePlayermanaCount);
                 return;
-            }           
+            }
         }
 
         private void AddCristal(Players playersTurn)
         {
-            switch(playersTurn)
+            switch (playersTurn)
             {
                 case Players.First: CreateCristal(_onePlayerMana, ref _onePlayermanaCount); break;
                 case Players.Second: CreateCristal(_twoPlayerMana, ref _twoPlayermanaCount); break;
             }
         }
 
-        private void CreateCristal(Transform parent,ref int manaCounter)
+        private void CreateCristal(Transform parent, ref int manaCounter)
         {
-            if(manaCounter < _playermanaMaxValue)
+            if (manaCounter < _playermanaMaxValue)
             {
                 manaCounter++;
                 ManaCristal cristal = Instantiate(_manaCristalPrefab, parent);
-            }            
-        }        
+            }
+        }
+        public int GetManaCount(Players player)
+        {
+            int result = 0;
+            switch (player)
+            {
+                case Players.First:
+                    result = _onePlayermanaCount;
+                    break;
+                case Players.Second:
+                    result = _twoPlayermanaCount;
+                    break;
+            }
+            return result;
+        }
     }
 }
