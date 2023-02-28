@@ -10,29 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
-  m_Name: 207_RiverCrocolisk
+  m_Name: 207_River
   m_EditorClassIdentifier: 
-  _nameCard: "\u0420\u0435\u0447\u043D\u043E\u0439 \u043A\u0440\u043E\u043A\u043E\u043B\u0438\u0441\u043A"
+  _nameCard: 
   _descriptionCard: 
-  _idCard: 207
-  _spriteCard: {fileID: 21300000, guid: 5ee37c7bd7df10145a1cb0dff1f1a51c, type: 3}
-  _manaCostCard: 2
-  _atackDamageCard: 2
-<<<<<<< Updated upstream
+  _idCard: 0
+  _spriteCard: {fileID: 0}
+  _manaCostCard: 0
+  _atackDamageCard: 0
   _healthCard: 0
-  _cardClass: 9
-=======
-  _healthCard: 3
->>>>>>> Stashed changes
+  _cardClass: 0
   _battleCryType: 0
   _battleCryTargets: 0
   _battleCryTargetsType: 0
-  _minionType: 2
+  _minionType: 0
   _isProvocation: 0
   _isDivineShield: 0
   _isPermanentEffect: 0
   _isCharge: 0
   _isBerserk: 0
+  _isTakeCard: 0
   _abilityChangeHealth: 0
   _abilityChangeAtackDamage: 0
   _abilityChangeSpellDamage: 0
