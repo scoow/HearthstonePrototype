@@ -15,7 +15,8 @@ namespace Hearthstone
         public int _manaCostCard;
         public int _atackDamageCard;
         public int _healthCard;
-        
+
+        public Classes _cardClass;
         public BattleCryType _battleCryType;
         public BattleCryTargets _battleCryTargets;
         public MinionType _battleCryTargetsType;
@@ -26,6 +27,7 @@ namespace Hearthstone
         public bool _isPermanentEffect;
         public bool _isCharge;
         public bool _isBerserk;
+        public bool _isTakeCard;
 
         public int _abilityChangeHealth;
         public int _abilityChangeAtackDamage;

@@ -10,7 +10,11 @@ namespace Hearthstone
         /// <summary>
         /// текущее название колоды
         /// </summary>
-        public string _currentDeckName;        
+        public string _currentDeckName;
+        /// <summary>
+        /// тип классовых карт , которые можно добавлять в колоду
+        /// </summary>
+        public Classes _classHeroInDeck;
         /// <summary>
         /// префаб шаблона отображающего краткие настройки выбранной карты
         /// </summary>
@@ -22,6 +26,7 @@ namespace Hearthstone
 
         private void Awake()
         {
+            _classHeroInDeck = Classes.Universal;
             _inputField = FindObjectOfType<InputTextMarker>().GetComponent<InputField>();
             _inputField.onEndEdit.AddListener(ToText);
         }

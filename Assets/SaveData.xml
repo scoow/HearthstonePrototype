@@ -9,42 +9,26 @@
     <CardId>600</CardId>
     <CardId>504</CardId>
   </DeckName>
-  <DeckName NameValue="Паладинчик" StateValue="Неактивная колода">
-    <CardId>4000</CardId>
-    <CardId>503</CardId>
-    <CardId>502</CardId>
-    <CardId>501</CardId>
-    <CardId>306</CardId>
+  <DeckName NameValue="war+Card" StateValue="Неактивная колода">
+    <CardId>1000</CardId>
+    <CardId>100</CardId>
+    <CardId>206</CardId>
     <CardId>402</CardId>
-    <CardId>300</CardId>
-    <CardId>204</CardId>
+    <CardId>405</CardId>
+    <CardId>402</CardId>
+    <CardId>310</CardId>
+    <CardId>402</CardId>
+    <CardId>206</CardId>
+    <CardId>104</CardId>
+    <CardId>206</CardId>
+    <CardId>402</CardId>
   </DeckName>
-  <DeckName NameValue="ВарТест" StateValue="Неактивная колода">
+  <DeckName NameValue="Тест2" StateValue="Выбранная колода">
     <CardId>1000</CardId>
     <CardId>101</CardId>
-    <CardId>104</CardId>
     <CardId>100</CardId>
-    <CardId>302</CardId>
-    <CardId>301</CardId>
-    <CardId>306</CardId>
-    <CardId>307</CardId>
-    <CardId>503</CardId>
-  </DeckName>
-  <DeckName NameValue="Берсерк" StateValue="Неактивная колода">
-    <CardId>1000</CardId>
-    <CardId>502</CardId>
-    <CardId>206</CardId>
-    <CardId>503</CardId>
-    <CardId>306</CardId>
-    <CardId>301</CardId>
-    <CardId>302</CardId>
     <CardId>104</CardId>
-  </DeckName>
-  <DeckName NameValue="MassEffect" StateValue="Выбранная колода">
-    <CardId>4000</CardId>
     <CardId>203</CardId>
-    <CardId>301</CardId>
-    <CardId>304</CardId>
-    <CardId>501</CardId>
+    <CardId>208</CardId>
   </DeckName>
 </SaveDeckCollection>

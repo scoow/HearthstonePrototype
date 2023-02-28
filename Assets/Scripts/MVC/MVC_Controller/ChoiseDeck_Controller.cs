@@ -8,7 +8,9 @@ namespace Hearthstone
         private ChoiseHeroMarker _choiseHero_Marker;
         private DeckCollection_Marker _deckCollection_Marker;
         private DeckCreate_Controller _deckCreateController;
-        private PageBook_Model _pageBookModel;
+        private PageBook_Model _pageBook_Model;
+        private PageBook_View _pageBook_View;
+        private PageBook_Controller _pageBook_Controller;
 
         private void Awake()
         {
@@ -16,7 +18,9 @@ namespace Hearthstone
             _deckCreateController = FindObjectOfType<DeckCreate_Controller>();
             _createDeck_Marker = GetComponentInChildren<CreateDeck_Marker>();
             _choiseHero_Marker = GetComponentInChildren<ChoiseHeroMarker>();
-            _pageBookModel = GetComponent<PageBook_Model>();
+            _pageBook_Controller = GetComponent<PageBook_Controller>();
+            _pageBook_Model = GetComponent<PageBook_Model>();
+            _pageBook_View = GetComponent<PageBook_View>();
         }
 
         private void Start()
@@ -26,19 +30,21 @@ namespace Hearthstone
 
         public void ChoiseDeck()
         {
-            _pageBookModel._createDeckState = CreateDeckState.ChoiseDeck;
-            ChangeOFState(_pageBookModel._createDeckState);
+            _pageBook_Model._createDeckState = CreateDeckState.ChoiseDeck;
+            ChangeOFState(_pageBook_Model._createDeckState);
         }
         public void CreateDeck()
         {
-            _pageBookModel._createDeckState = CreateDeckState.CreateDeck;
-            ChangeOFState(_pageBookModel._createDeckState);
+            _pageBook_Model._createDeckState = CreateDeckState.CreateDeck;
+            ChangeOFState(_pageBook_Model._createDeckState);
+            _pageBook_View.UpdatePageBook(_pageBook_Model._resultCollection, _pageBook_Controller._cardTemplatePrefabs, _pageBook_Controller._pageCounter);
+
         }
 
         public void ChoiseHero()
         {
-            _pageBookModel._createDeckState = CreateDeckState.ChoiseHero;
-            ChangeOFState(_pageBookModel._createDeckState);
+            _pageBook_Model._createDeckState = CreateDeckState.ChoiseHero;
+            ChangeOFState(_pageBook_Model._createDeckState);
         }
 
 

@@ -22,11 +22,12 @@ namespace Hearthstone
         /// </summary>
         private Card_View _zommingCard_View;           
         private PageBook_Model _pageBook_Model;
-
+        private ContentDeck_Model _contentDeck_Model;
 
 
         private void Awake()
         {
+            _contentDeck_Model = FindObjectOfType<ContentDeck_Model>();
             _pageBook_Model = FindObjectOfType<PageBook_Model>();            
             _card_Model = GetComponent<Card_Model>();
             _zommingCard_View = FindObjectOfType<CardZoomingTemplateMarker>().GetComponentInChildren<Card_View>();           
@@ -64,7 +65,7 @@ namespace Hearthstone
         {
             if(_pageBook_Model._createDeckState == CreateDeckState.CreateDeck)
             {
-                if (gameObject.CompareTag("CardTemplate"))
+                if (gameObject.CompareTag("CardTemplate") && (_card_Model._cardClassInDeck == _contentDeck_Model._classHeroInDeck || _card_Model._cardClassInDeck == Classes.Universal))
                     _contentDeckController.AddContent(_card_Model._idCard);
                 if (gameObject.CompareTag("ChoiseCard"))
                 {

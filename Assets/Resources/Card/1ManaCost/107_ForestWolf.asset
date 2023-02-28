@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
+  m_Name: 107_ForestWolf
+  m_EditorClassIdentifier: 
+  _nameCard: "\u041B\u0435\u0441\u043D\u043E\u0439 \u0432\u043E\u043B\u043A"
+  _descriptionCard: "\u0414\u0440\u0443\u0433\u0438\u0435 \u0432\u0430\u0448\u0438
+    \u0437\u0432\u0435\u0440\u0438 \u043F\u043E\u043B\u0443\u0447\u0430\u044E\u0442
+    +1 \u043A \u0430\u0442\u0430\u043A\u0435."
+  _idCard: 107
+  _spriteCard: {fileID: 21300000, guid: c12487728008ba64e8af58bd5f2bf062, type: 3}
+  _manaCostCard: 1
+  _atackDamageCard: 1
+  _healthCard: 1
+  _cardClass: 1
+  _battleCryType: 2
+  _battleCryTargets: 5
+  _battleCryTargetsType: 2
+  _minionType: 0
+  _isProvocation: 0
+  _isDivineShield: 0
+  _isPermanentEffect: 0
+  _isCharge: 0
+  _isBerserk: 0
+  _abilityChangeHealth: 0
+  _abilityChangeAtackDamage: 1
+  _abilityChangeSpellDamage: 0
+  _abilityAddCard: 0

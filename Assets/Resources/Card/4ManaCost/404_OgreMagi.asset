@@ -20,6 +20,7 @@ MonoBehaviour:
   _manaCostCard: 4
   _atackDamageCard: 4
   _healthCard: 4
+  _cardClass: 9
   _battleCryType: 0
   _battleCryTargets: 0
   _battleCryTargetsType: 0

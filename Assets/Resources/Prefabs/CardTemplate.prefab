@@ -344,6 +344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1716541606833526608}
   - component: {fileID: 1716541606833526623}
+  - component: {fileID: 1237242934}
   m_Layer: 0
   m_Name: CardFront
   m_TagString: Untagged
@@ -418,6 +419,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1237242934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716541606833526622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a67e40c869652f499e9a855ae5a42c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1716541606904499588
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,10 +583,13 @@ MonoBehaviour:
   _healthCard: 0
   _maxHealtValue: 0
   _maxAtackValue: 0
+  _defaultHealtValue: 0
+  _defaultAtackValue: 0
   _battleCryType: 0
   _battleCryTargets: 0
   _battleCryTargetsType: 0
   _minionType: 0
+  _cardClassInDeck: 0
 --- !u!114 &2158646479997419506
 MonoBehaviour:
   m_ObjectHideFlags: 0

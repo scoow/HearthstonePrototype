@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 using Zenject;
@@ -10,6 +11,8 @@ namespace Hearthstone
         private BattleCry_Controller _battleCryController;
         private BattleModeCard_View _battleModeCardView;
         public bool _useBattleCray = false;
+
+        private Action OnActivateCard;
 
         private Board _board;
         [Inject]
@@ -25,18 +28,18 @@ namespace Hearthstone
             _card_Model = GetComponent<Card_Model>();
             _battleCryController = FindObjectOfType<BattleCry_Controller>();
             _battleModeCardView = FindObjectOfType<BattleModeCard_View>();
-
-           
+            OnActivateCard += ChoiseAbility;
 
         }
         private void OnDisable()
         {            
             _board.EndDragCard -= ActivateBattleCry;
+            OnActivateCard -= ChoiseAbility;
         }
 
         private void Start()
         {
-            ProvocationAbility();
+            //ProvocationAbility();
 
             Players side = GetComponent<BattleModeCard>().GetSide();
             _board = FindObjectsOfType<Board>().Where(board => board._side == side).FirstOrDefault();
@@ -58,28 +61,74 @@ namespace Hearthstone
                     _battleCryController._isActiveCry = true;
                     _battleCryController.UpdateBattleCry();
 
-                    //применяем боевой клич на себя 
-                    ApplyBattleCry[] _temporaryArray = newParent.GetComponentsInChildren<ApplyBattleCry>();
-                    if (_card_Model._battleCryTargets == BattleCryTargets.Self)
-                    {
-                        _card_Model.GetComponent<Card_Controller>().UpdateSelfParametrs(_temporaryArray.Length - 1);
-                        StartCoroutine(_battleModeCardView.EffectParticle(_battleModeCardView._scaleEffect));
-                    }
-                    if (_card_Model._battleCryType == BattleCryType.GetCardInDeck)
-                        TakeAdditionalCard();
-
+                    ApplyAbilityInSelf(newParent);
                 }                
-            }                      
+            }
+
+            OnActivateCard?.Invoke();
+            
+            //ApplyAbilityInSelf(newParent);
+        }
+
+
+        private void ApplyAbilityInSelf(Transform transformParent) //применяем боевой клич на себя 
+        {
+            ApplyBattleCry[] _temporaryArray = transformParent.GetComponentsInChildren<ApplyBattleCry>();
+            if (_card_Model._battleCryTargets == BattleCryTargets.Self)
+            {
+                _card_Model.GetComponent<Card_Controller>().UpdateSelfParametrs(_temporaryArray.Length - 1);
+                StartCoroutine(_battleModeCardView.EffectParticle(_battleModeCardView._scaleEffect));
+            }
+            if (_card_Model._battleCryType == BattleCryType.GetCardInDeck)
+                TakeAdditionalCard();
         }
 
 
         public void DiedCreature()
         {
             Debug.Log("Существо погибло");
+            gameObject.SetActive(false);
         }
 
         #region //Ability Сondition
-        private void ProvocationAbility()
+
+        private void ChoiseAbility() //выбор активной способности
+        {
+            string nameActiveAbility;
+            foreach (bool isActive in _card_Model._activeAbility.Values)
+            {
+                if (isActive)
+                {
+                    nameActiveAbility = _card_Model._activeAbility.Keys.ToString();
+                    ActivateAbility(nameActiveAbility);
+                }
+            }
+        }
+
+        private void ActivateAbility(string currentNameActiveAbility) //активация активной способности
+        {
+            switch (currentNameActiveAbility)
+            {
+                case "PermanentEffect":
+                    PermanentEffectAbility();
+                    break;
+                case "DivineShield":
+                    DivineShieldAbility();
+                    break;
+                case "Provocation":
+                    ProvocationAbility();
+                    break;
+                case "Charge":
+                    ChargeAbility();
+                    break;
+                case "GetCard":
+                    TakeAdditionalCard();
+                    break;
+            }
+
+        }
+
+        private void ProvocationAbility() //провокация
         {
             if (_card_Model._isProvocation == true)
             {
@@ -87,7 +136,7 @@ namespace Hearthstone
             }
         }
 
-        private void DivineShieldAbility()
+        private void DivineShieldAbility() //божественный щит
         {
             if (_card_Model._isDivineShield == true)
             {
@@ -95,21 +144,26 @@ namespace Hearthstone
             }
         }
 
-        private void PermanentEffectAbility()
+        private void PermanentEffectAbility()//постоянный эффект
         {
 
         }
 
-        private void ChargeAbility()
+        private void ChargeAbility()//рывок
         {
 
         }
-        
+        public void TakeAdditionalCard() //добавление новой карты
+        {
+            Debug.Log("Добавленна новая карта");
+            _mulliganManager.TakeOneCard(_mana_Controller.WhoMovesNow());
+        }
+
         #endregion
 
         #region //Ability Action
-               
-        
+
+
 
         public void ChangeAtackValue(int incomingValue) //изменяем значение атаки
         {
@@ -150,13 +204,8 @@ namespace Hearthstone
         public void BerserkAbility() //ярость берсерка
         {
             ChangeAtackValue(_card_Model._abilityChangeAtackDamage);
-        }
-        public void TakeAdditionalCard() //добавление новой карты
-        {
-            Debug.Log("Добавленна новая карта");
-            _mulliganManager.TakeOneCard(_mana_Controller.WhoMovesNow());
-        }
+        }        
 
-        #endregion
-    }
+        #endregion        
+    }    
 }

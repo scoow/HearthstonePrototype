@@ -15,7 +15,8 @@ namespace Hearthstone
         Rogue,
         Shaman,
         Warlock,
-        Warrior
+        Warrior,
+        Universal
     }
     public enum CardType
     {
@@ -46,7 +47,9 @@ namespace Hearthstone
         SummonAssistant,
         GetCardInDeck,
         PermanentEffect,
-        HaveCharge
+        HaveCharge,
+        UseAbility
+
     }
     /// <summary>
     /// Тип целей для боевого клича

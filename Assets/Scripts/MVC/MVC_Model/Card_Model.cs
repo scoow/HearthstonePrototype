@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,13 +13,15 @@ namespace Hearthstone
         public int _abilityChangeHealth;
         public int _abilityChangeAtackDamage;
         public int _abilityChangeSpellDamage;
-        public int _abilityAddCard;
+        public int _abilityAddCard; // GO переношу в список булевых переменных
 
         public bool _isProvocation;
         public bool _isDivineShield;
         public bool _isPermanentEffect;
         public bool _isCharge;
         public bool _isBerserk;
+        public bool _isGetCard;
+        public Dictionary<string,bool> _activeAbility = new Dictionary<string, bool>(); //список активных способностей
 
         public SpriteRenderer _protectionImage;
         public Sprite _spriteCard;
@@ -38,12 +41,15 @@ namespace Hearthstone
         public BattleCryTargets _battleCryTargets;
         public MinionType _battleCryTargetsType;
         public MinionType _minionType;
+        /// <summary>
+        /// тип классовых карт , которые можно добавлять в колоду
+        /// </summary>
+        public Classes _cardClassInDeck;
 
 
         private void OnEnable()
-        {            
-            _pageBook_Model = FindObjectOfType<PageBook_Model>(); //FindObjectOfType<PageBook_Model>();
-           
+        {   
+            _pageBook_Model = FindObjectOfType<PageBook_Model>();
         }
 
         private void Start()
@@ -59,12 +65,7 @@ namespace Hearthstone
             _abilityChangeAtackDamage = cardSOModel._abilityChangeAtackDamage;
             _abilityChangeSpellDamage = cardSOModel._abilityChangeSpellDamage;
             _abilityChangeHealth = cardSOModel._abilityChangeHealth;
-            _abilityAddCard = cardSOModel._abilityAddCard;
-            _isPermanentEffect = cardSOModel._isPermanentEffect;
-            _isDivineShield = cardSOModel._isDivineShield;
-            _isProvocation = cardSOModel._isProvocation;
-            _isBerserk = cardSOModel._isBerserk;
-            _isCharge = cardSOModel._isCharge;
+            _abilityAddCard = cardSOModel._abilityAddCard;          
 
             _atackDamageCard = cardSOModel._atackDamageCard;
             _descriptionCard = cardSOModel._descriptionCard;
@@ -78,6 +79,21 @@ namespace Hearthstone
             _battleCryTargets = cardSOModel._battleCryTargets;
             _battleCryTargetsType = cardSOModel._battleCryTargetsType;
             _minionType = cardSOModel._minionType;
+            _cardClassInDeck = cardSOModel._cardClass;
+
+            _isPermanentEffect = cardSOModel._isPermanentEffect;
+            _isDivineShield = cardSOModel._isDivineShield;
+            _isProvocation = cardSOModel._isProvocation;
+            _isBerserk = cardSOModel._isBerserk;
+            _isCharge = cardSOModel._isCharge;
+            _isGetCard = cardSOModel._isTakeCard;
+
+            _activeAbility.Add("PermanentEffect",_isPermanentEffect);
+            _activeAbility.Add("DivineShield",_isDivineShield);
+            _activeAbility.Add("Provocation",_isProvocation);
+            _activeAbility.Add("Berserk",_isBerserk); // вынести отдельно
+            _activeAbility.Add("Charge",_isCharge);
+            _activeAbility.Add("GetCard",_isGetCard);
         }
     }
 }

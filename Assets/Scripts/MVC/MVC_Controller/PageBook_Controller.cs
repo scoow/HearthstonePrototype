@@ -13,7 +13,7 @@ namespace Hearthstone
         public Card_Model[] _cardTemplatePrefabs;
         private int _maxPageNumber;
         private int _minPageNumber = 0;
-        private int _pageCounter = 0;
+        public int _pageCounter = 0;
         
 
         private void Start()
@@ -29,24 +29,24 @@ namespace Hearthstone
         public void NextPage()
         {
             //if ((_pageBook_Model._resultCollection.Count % _cardTemplatePrefabs.Length) == 0)
-                _maxPageNumber = _pageBook_Model._resultCollection.Count / _cardTemplatePrefabs.Length;
+                //_maxPageNumber = _pageBook_Model._resultCollection.Count / _cardTemplatePrefabs.Length;
             //else
-            //    _maxPageNumber = _pageBook_Model._resultCollection.Count / _cardTemplatePrefabs.Length + 1;
+                _maxPageNumber = (_pageBook_Model._resultCollection.Count / _cardTemplatePrefabs.Length) + 1;
 
             _pageCounter++;
             if(_pageCounter < _maxPageNumber)
             _pageBook_View.UpdatePageBook(_pageBook_Model._resultCollection, _cardTemplatePrefabs, _pageCounter);
             if (_pageCounter >= _maxPageNumber)
             {
-                _pageCounter = _maxPageNumber-1;
+                _pageCounter = _maxPageNumber - 1;
                 return;
-            }            
+            }
         }
 
-        /// <summary>
-        /// предидущая страница
-        /// </summary>
-        public void PreviousPage()
+            /// <summary>
+            /// предидущая страница
+            /// </summary>
+            public void PreviousPage()
         {
             _pageCounter--;
             if (_pageCounter < _minPageNumber)
