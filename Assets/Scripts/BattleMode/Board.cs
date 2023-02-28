@@ -25,10 +25,13 @@ namespace Hearthstone
         /// </summary>
         public void InitCardList(List<BattleModeCard> BattleModeCards)
         {
-            foreach (BattleModeCard BattleModeCard in BattleModeCards)
+           foreach (BattleModeCard BattleModeCard in BattleModeCards)
             {
                 CardInHand card = BattleModeCard.GetComponent<CardInHand>();
-                card.BeginDrag += ReactionToCardDragging;
+                if (card != null)
+                {
+                    card.BeginDrag += ReactionToCardDragging;
+                }
             }
         }
         public void ReactionToCardDragging(bool drag)//если несём карту - реагировать, иначе - нет
