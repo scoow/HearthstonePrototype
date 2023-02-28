@@ -62,10 +62,11 @@ namespace Hearthstone
                     _battleCryController.UpdateBattleCry();
 
                     ApplyAbilityInSelf(newParent);
-                }                
+                }
+                OnActivateCard?.Invoke();
             }
 
-            OnActivateCard?.Invoke();
+            
             
             //ApplyAbilityInSelf(newParent);
         }
@@ -93,20 +94,20 @@ namespace Hearthstone
         #region //Ability Сondition
 
         private void ChoiseAbility() //выбор активной способности
-        {
-            string nameActiveAbility;
-            foreach (bool isActive in _card_Model._activeAbility.Values)
-            {
-                if (isActive)
+        {            
+            foreach (var isActive in _card_Model._activeAbility)
+            {               
+                if (isActive.Value == true)
                 {
-                    nameActiveAbility = _card_Model._activeAbility.Keys.ToString();
-                    ActivateAbility(nameActiveAbility);
+                    ActivateAbility(isActive.Key);
                 }
             }
         }
 
         private void ActivateAbility(string currentNameActiveAbility) //активация активной способности
-        {
+        {            
+            
+            Debug.Log("активация активной способности");
             switch (currentNameActiveAbility)
             {
                 case "PermanentEffect":
@@ -125,7 +126,7 @@ namespace Hearthstone
                     TakeAdditionalCard();
                     break;
             }
-
+            
         }
 
         private void ProvocationAbility() //провокация
