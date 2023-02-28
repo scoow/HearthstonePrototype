@@ -18,8 +18,12 @@ MonoBehaviour:
   _spriteCard: {fileID: 21300000, guid: 5ee37c7bd7df10145a1cb0dff1f1a51c, type: 3}
   _manaCostCard: 2
   _atackDamageCard: 2
+<<<<<<< Updated upstream
   _healthCard: 0
   _cardClass: 9
+=======
+  _healthCard: 3
+>>>>>>> Stashed changes
   _battleCryType: 0
   _battleCryTargets: 0
   _battleCryTargetsType: 0
