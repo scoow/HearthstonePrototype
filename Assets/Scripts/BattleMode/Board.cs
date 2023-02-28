@@ -37,6 +37,8 @@ namespace Hearthstone
         }
         public override void AddCard(CardInHand card)
         {
+            if (_cardCount > 7) return;
+
             base.AddCard(card);
             EndDragCard?.Invoke(transform); ///событие для смены отображения карты
         }

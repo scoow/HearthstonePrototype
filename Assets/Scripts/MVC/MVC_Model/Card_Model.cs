@@ -95,5 +95,7 @@ namespace Hearthstone
             _activeAbility.Add("Charge",_isCharge);
             _activeAbility.Add("GetCard",_isGetCard);
         }
+        public int GetManaCostCard()
+        { return _manaCostCard; }
     }
 }

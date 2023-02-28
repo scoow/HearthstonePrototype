@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Zenject;
 
 namespace Hearthstone
 {
@@ -11,6 +12,11 @@ namespace Hearthstone
         private GameObject _tempCardGO;
 
         public Transform parent;
+        [Inject]
+        private Mana_Controller _mana_Controller;
+
+        private Players _side;
+        private bool _cancelDrag;
 
         /*public delegate void BeginDrag(CardInHand card);
         public event BeginDrag TellParentBeginDrag;*/
@@ -21,9 +27,17 @@ namespace Hearthstone
             _camera = Camera.main;
             _tempCardGO = GameObject.Find("TempCard");
             _layersRenderUp = GetComponent<LayerRenderUp>();
+            _side = GetComponent<BattleModeCard>().GetSide();
+            _mana_Controller = FindObjectOfType<Mana_Controller>();//Zenject не сработал. Почему?
         }
         public void OnBeginDrag(PointerEventData eventData)
         {
+            _cancelDrag = _side != _mana_Controller.WhoMovesNow() || _mana_Controller.GetManaCount(_side) < GetComponent<Card_Model>().GetManaCostCard();
+            if (_cancelDrag)//Если не наш ход - нельзя схватить карту
+            {
+                return;
+            }
+
             _tempCardGO.transform.position = transform.position;//временная карта
             GetComponent<CanvasGroup>().blocksRaycasts = false;
             _layersRenderUp.LayerUp(50);
@@ -33,6 +47,10 @@ namespace Hearthstone
 
         public void OnDrag(PointerEventData eventData)
         {
+            if (_cancelDrag)//Если не наш ход - нельзя схватить карту
+            {
+                return;
+            }
             Vector3 newPosition = eventData.position;
             newPosition.z = _camera.transform.position.z;
 
@@ -45,6 +63,10 @@ namespace Hearthstone
 
         public void OnEndDrag(PointerEventData eventData)
         {
+            if (_cancelDrag)//Если не наш ход - нельзя схватить карту
+            {
+                return;
+            }
             GetComponent<CanvasGroup>().blocksRaycasts = true;
             CardHolder _parent = transform.parent.GetComponent<CardHolder>();
             _layersRenderUp.LayerUp(-50);
