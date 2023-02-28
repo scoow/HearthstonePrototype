@@ -21,7 +21,10 @@ MonoBehaviour:
   _manaCostCard: 2
   _atackDamageCard: 2
   _healthCard: 3
+<<<<<<< Updated upstream
   _cardClass: 9
+=======
+>>>>>>> Stashed changes
   _battleCryType: 2
   _battleCryTargets: 5
   _battleCryTargetsType: 0
