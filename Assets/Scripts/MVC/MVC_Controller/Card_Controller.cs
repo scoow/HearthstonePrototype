@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 using Zenject;
+using static Unity.VisualScripting.Dependencies.Sqlite.SQLite3;
 
 namespace Hearthstone
 {
@@ -52,27 +53,29 @@ namespace Hearthstone
             {
                 _battleModeCardView.ChangeCardViewMode();                
                 _useBattleCray = true;
-                if (_card_Model._battleCryType != BattleCryType.NoСry && _card_Model._battleCryType != BattleCryType.UseAbility)
+                if(_card_Model._battleCryTypes.Count==1)
                 {
-                    _battleCryController._idBattleCry = _card_Model._idCard;
-                    _battleCryController._battleCryType = _card_Model._battleCryType;
-                    _battleCryController._battleCryTargets = _card_Model._battleCryTargets;
-                    _battleCryController._battleCryTargetsType = _card_Model._battleCryTargetsType;                    
-                    _battleCryController._isActiveCry = true;
-                    _battleCryController.UpdateBattleCry();
+                    BattleCryType crytype = _card_Model._battleCryTypes[0];
+                    if (crytype != BattleCryType.NoСry && crytype != BattleCryType.ActivateAbility)
+                    {
+                        _battleCryController._idBattleCry = _card_Model._idCard;
+                        _battleCryController._battleCryType = crytype;
+                        _battleCryController._battleCryTargets = _card_Model._battleCryTargets;
+                        _battleCryController._battleCryTargetsType = _card_Model._battleCryTargetsType;
+                        _battleCryController._isActiveCry = true;
+                        _battleCryController.UpdateBattleCry();
 
-                    ApplyAbilityInSelf(newParent);
+                        ApplyAbilityInSelf(newParent, crytype);
+                    }
+                    OnActivateCard?.Invoke();
                 }                
-                OnActivateCard?.Invoke();
-            }
-
-            
+            }           
             
             //ApplyAbilityInSelf(newParent);
         }
 
 
-        private void ApplyAbilityInSelf(Transform transformParent) //применяем боевой клич на себя 
+        private void ApplyAbilityInSelf(Transform transformParent, BattleCryType cryType) //применяем боевой клич на себя 
         {
             ApplyBattleCry[] _temporaryArray = transformParent.GetComponentsInChildren<ApplyBattleCry>();
             if (_card_Model._battleCryTargets == BattleCryTargets.Self)
@@ -80,7 +83,7 @@ namespace Hearthstone
                 _card_Model.GetComponent<Card_Controller>().UpdateSelfParametrs(_temporaryArray.Length - 1);
                 StartCoroutine(_battleModeCardView.EffectParticle(_battleModeCardView._scaleEffect));
             }
-            if (_card_Model._battleCryType == BattleCryType.GetCardInDeck)
+            if (cryType == BattleCryType.GetCardInDeck)
                 TakeAdditionalCard();
         }
 

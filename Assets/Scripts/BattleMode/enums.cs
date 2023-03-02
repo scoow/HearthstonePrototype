@@ -47,11 +47,7 @@ namespace Hearthstone
         SummonAssistant,
         GetCardInDeck,
         PermanentEffect,
-        HaveCharge,
-        UseAbility,
-        ChangeHealt,
-        ChangeAtack
-
+        ActivateAbility
     }
     /// <summary>
     /// Тип целей для боевого клича
@@ -65,7 +61,8 @@ namespace Hearthstone
         AllEnemies,
         AllFriends,
         All,
-        MinionType
+        MinionType,
+        Hero
     }
     public enum MinionType
     {

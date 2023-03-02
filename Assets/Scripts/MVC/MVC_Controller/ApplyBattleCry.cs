@@ -44,7 +44,28 @@ namespace Hearthstone
         public void AplyNewValueCardProperty(int idCard)
         {            
             CardSO_Model card_SO = _pageBook_Model._cardsDictionary[idCard];
-            switch (card_SO._battleCryType)
+
+            foreach(BattleCryType cryType in card_SO._battleCryTypes )
+            {
+                if(cryType == BattleCryType.DealDamage) //получаем урон
+                {
+                    _card_Controller.ChangeHealtValue(card_SO._abilityChangeHealth);
+                    if (_card_Model._isBerserk)//если карта берсерк , увеличиваем свой дамаг
+                        _card_Controller.BerserkAbility();
+                }
+                if(cryType == BattleCryType.RaiseParametrs) //повышаем параметры
+                {
+                    _card_Controller.ChangeAtackValue(card_SO._abilityChangeAtackDamage);
+                    _card_Controller.ChangeHealtValue(card_SO._abilityChangeHealth);
+                    StartCoroutine(_battleModeCard_View.EffectParticle(_battleModeCard_View._scaleEffect));//эффект повышение параметров
+                }
+                if(cryType == BattleCryType.Heal) //лечим существо
+                {
+                    _card_Controller.ChangeHealtValue(card_SO._abilityChangeHealth);
+                    StartCoroutine(_battleModeCard_View.EffectParticle(_battleModeCard_View._healtEffect));//эффект лечения
+                }
+            }
+            /*switch (card_SO._battleCryType)
             {
                 // сделать вызов событий и подписать методы 
                 case BattleCryType.DealDamage: //получаем урон
@@ -62,7 +83,7 @@ namespace Hearthstone
                     StartCoroutine(_battleModeCard_View.EffectParticle(_battleModeCard_View._healtEffect));//эффект лечения
                     break;                
 
-            }
+            }*/
         }
           
     }

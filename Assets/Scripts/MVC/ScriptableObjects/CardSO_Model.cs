@@ -18,11 +18,12 @@ namespace Hearthstone
         public int _healthCard;
 
         public Classes _cardClass;
-        public BattleCryType _battleCryType;
+        //public BattleCryType _battleCryType;
+        public List<BattleCryType> _battleCryTypes = new List<BattleCryType>();
         public BattleCryTargets _battleCryTargets;
         public MinionType _battleCryTargetsType;
         public MinionType _minionType;
-        //public List <BattleCryType> _battleCryTypes= new List <BattleCryType> ();
+       
 
         public bool _isProvocation;
         public bool _isDivineShield;

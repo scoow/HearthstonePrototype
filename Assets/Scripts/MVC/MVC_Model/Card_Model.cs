@@ -37,7 +37,8 @@ namespace Hearthstone
         public int _defaultHealtValue;
         public int _defaultAtackValue;
 
-        public BattleCryType _battleCryType;        
+        public List<BattleCryType> _battleCryTypes = new List<BattleCryType>();
+        //public BattleCryType _battleCryType;        
         public BattleCryTargets _battleCryTargets;
         public MinionType _battleCryTargetsType;
         public MinionType _minionType;
@@ -75,7 +76,12 @@ namespace Hearthstone
             _nameCard = cardSOModel._nameCard;
             _idCard = cardSOModel._idCard;
 
-            _battleCryType = cardSOModel._battleCryType;            
+            //_battleCryType = cardSOModel._battleCryType;
+            foreach(BattleCryType cryType in cardSOModel._battleCryTypes)
+            {
+                _battleCryTypes.Add(cryType);
+            }
+            //_battleCryTypes = cardSOModel._battleCryTypes;
             _battleCryTargets = cardSOModel._battleCryTargets;
             _battleCryTargetsType = cardSOModel._battleCryTargetsType;
             _minionType = cardSOModel._minionType;
