@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hearthstone
@@ -21,7 +22,8 @@ namespace Hearthstone
         public BattleCryTargets _battleCryTargets;
         public MinionType _battleCryTargetsType;
         public MinionType _minionType;
-        
+        //public List <BattleCryType> _battleCryTypes= new List <BattleCryType> ();
+
         public bool _isProvocation;
         public bool _isDivineShield;
         public bool _isPermanentEffect;

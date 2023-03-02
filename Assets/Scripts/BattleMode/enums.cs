@@ -48,7 +48,9 @@ namespace Hearthstone
         GetCardInDeck,
         PermanentEffect,
         HaveCharge,
-        UseAbility
+        UseAbility,
+        ChangeHealt,
+        ChangeAtack
 
     }
     /// <summary>

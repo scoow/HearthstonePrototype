@@ -15,16 +15,16 @@ namespace Hearthstone
         private Action OnActivateCard;
 
         private Board _board;
-        [Inject]
+        //[Inject]
         private MulliganManager _mulliganManager;
-        [Inject]
+        //[Inject]
         private Mana_Controller _mana_Controller;
 
         private void OnEnable()
         {
             //пока костыль. заменить на Zenject
-            
-
+            _mana_Controller = FindObjectOfType<Mana_Controller>();
+            _mulliganManager = FindObjectOfType<MulliganManager>();
             _card_Model = GetComponent<Card_Model>();
             _battleCryController = FindObjectOfType<BattleCry_Controller>();
             _battleModeCardView = FindObjectOfType<BattleModeCard_View>();
@@ -52,7 +52,7 @@ namespace Hearthstone
             {
                 _battleModeCardView.ChangeCardViewMode();                
                 _useBattleCray = true;
-                if (_card_Model._battleCryType != BattleCryType.NoСry)
+                if (_card_Model._battleCryType != BattleCryType.NoСry && _card_Model._battleCryType != BattleCryType.UseAbility)
                 {
                     _battleCryController._idBattleCry = _card_Model._idCard;
                     _battleCryController._battleCryType = _card_Model._battleCryType;
@@ -62,7 +62,7 @@ namespace Hearthstone
                     _battleCryController.UpdateBattleCry();
 
                     ApplyAbilityInSelf(newParent);
-                }
+                }                
                 OnActivateCard?.Invoke();
             }
 
@@ -167,10 +167,10 @@ namespace Hearthstone
 
 
         public void ChangeAtackValue(int incomingValue) //изменяем значение атаки
-        {
-            _card_Model._atackDamageCard += incomingValue;
-            _card_Model._maxAtackValue += incomingValue;
-            _battleModeCardView.UpdateViewCard();
+        {            
+             _card_Model._atackDamageCard += incomingValue;            
+             _card_Model._maxAtackValue += incomingValue;
+             _battleModeCardView.UpdateViewCard();           
         }
 
         public void ChangeHealtValue(int incomingValue) //изменяем значение здоровья
@@ -188,11 +188,12 @@ namespace Hearthstone
                 _battleModeCardView.UpdateViewCard();
                 if (_card_Model._healthCard <= 0) DiedCreature(); //событие смерти
             }
-            else if (_battleCryController._battleCryType == BattleCryType.RaiseParametrs)//увеличиваем параметры
-            {
+            else if (_battleCryController._battleCryType == BattleCryType.RaiseParametrs)//изменяем параметры
+            {       
                 _card_Model._healthCard += incomingValue;
+                    if (incomingValue > 0)
                 _card_Model._maxHealtValue += incomingValue;
-                _battleModeCardView.UpdateViewCard();
+                _battleModeCardView.UpdateViewCard();                
             }
         }
 

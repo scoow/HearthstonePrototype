@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using Zenject;
 
 namespace Hearthstone
 {
@@ -11,6 +11,7 @@ namespace Hearthstone
         private BattleModeCard_View _battleModeCard_View;
         private Card_Model _card_Model;
         private Card_Controller _card_Controller;
+        [Inject]
         private PageBook_Model _pageBook_Model;
         public bool _isListen = true; //готов ли принять новый боевой клич
 
@@ -59,7 +60,8 @@ namespace Hearthstone
                 case BattleCryType.Heal://лечим существо                   
                     _card_Controller.ChangeHealtValue(card_SO._abilityChangeHealth);
                     StartCoroutine(_battleModeCard_View.EffectParticle(_battleModeCard_View._healtEffect));//эффект лечения
-                    break;
+                    break;                
+
             }
         }
           
