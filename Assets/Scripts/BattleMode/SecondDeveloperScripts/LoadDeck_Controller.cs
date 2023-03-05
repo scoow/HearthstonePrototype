@@ -24,11 +24,9 @@ namespace Hearthstone
 
         private void Awake()
         {
-            //_mulliganManager = FindObjectOfType<MulliganManager>(); zenject
             _pageBookModel = GetComponent<PageBook_Model>();
             _pathSaveDocument = Application.dataPath + "/SaveData.xml";
         }
-        //private void OnEnable()
         private void Start()
         {           
             LoadActiveDeck();            

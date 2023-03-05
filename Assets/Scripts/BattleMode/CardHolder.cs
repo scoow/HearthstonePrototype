@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -15,6 +14,7 @@ namespace Hearthstone
         protected Vector3 _lastPosition;
 
         //todo добавить ссылку на временную карту для корректной обработки взятия из руки
+        private GameObject _tempCardGO;
 
         [SerializeField]
         protected float _offset;
@@ -22,11 +22,11 @@ namespace Hearthstone
         protected int _cardCount = 0;
 
         //событие для смены отображения карты перенесено в дочерний класс Board
-
         private void Start()
         {
             _cardsList = new();
             _lastPosition= transform.position;
+            _tempCardGO = GameObject.Find("TempCard");
         }
         /// <summary>
         /// получить позицию последней карты в руке
@@ -64,7 +64,7 @@ namespace Hearthstone
                 _cardCount--;
                 foreach (var c in _cardsList)//почему не работает?
                 {
-                    if (c.transform.position.x > card.transform.position.x)
+                    if (c.transform.position.x > _tempCardGO.transform.position.x)
                     {
                         Vector3 newPosition = c.transform.position;
                         newPosition.x -= _offset;

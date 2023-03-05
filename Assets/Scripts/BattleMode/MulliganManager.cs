@@ -64,7 +64,6 @@ namespace Hearthstone
 
             _mulliganCards = new List<BattleModeCard>();
             _mulliganCards = FindObjectsOfType<BattleModeCard>().ToList();
-            // _mulliganCards.Sort((c1, c2) => string.Compare(c1.gameObject.name, c2.gameObject.name));
             _mulliganCardsFirstPlayer = _mulliganCards.Where(x => x._side == Players.First).ToList();
             _mulliganCardsSecondPlayer = _mulliganCards.Where(x => x._side == Players.Second).ToList();
             foreach (var card in _mulliganCards)
@@ -84,12 +83,11 @@ namespace Hearthstone
             else
                 _currentDeck = _mulliganCardsSecondPlayer;
 
-
             int i = 0;
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
                 _card = _currentDeck[i];
-                position.SetCurrentCard(_card);//
+                position.SetCurrentCard(_card);//привязываем карту к позиции
                 _ = _card.MoveCardAsync(_card.transform.position, position.transform.position, _card.transform.rotation, position.transform.rotation, _time);
                 await UniTask.Delay(TimeSpan.FromSeconds(0.5));
                 i++;
@@ -104,10 +102,11 @@ namespace Hearthstone
         private async void MulliganStage3(Players side)
         {
             _mulliganConfirmButton.HideButton();
-            BattleModeCard _card;
 
+            BattleModeCard _card;
             List<BattleModeCard> _currentCards;
             Transform _currentDeck;
+
             if (side == Players.First)
             {
                 _currentCards = _mulliganCardsFirstPlayer;
@@ -189,7 +188,7 @@ namespace Hearthstone
             }
             _nextCardInDeckNumber = 5;//номер текущей карты в колоде после конца муллигана
 
-            _currentBoard.InitCardList(_currentCards);//привязка событий карт текущего игрока к текущему полю
+             _currentBoard.InitCardList(_currentCards);//привязка событий карт текущего игрока к текущему полю
 
             if (side == Players.First)//если первый муллиган
             {

@@ -15,7 +15,6 @@ namespace Hearthstone
         {
             _textManaOnePlayer.text = "1";
             _textManaTwoPlayer.text = "0";
-            //_controller = GetComponent<Mana_Controller>(); Zenject
             _controller.ChangeManaValue += UpdateTextManaValue;
         }
 

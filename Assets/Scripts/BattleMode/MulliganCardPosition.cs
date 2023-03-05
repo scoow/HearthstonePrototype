@@ -7,7 +7,6 @@ namespace Hearthstone
     {
         [SerializeField]
         private MulliganCardPositionEnum _position;
-        [SerializeField]
         private bool _selected = false;
 
         private SpriteRenderer _spriteRenderer;

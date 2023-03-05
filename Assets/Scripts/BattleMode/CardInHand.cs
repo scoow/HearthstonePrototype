@@ -17,9 +17,6 @@ namespace Hearthstone
 
         private Players _side;
         private bool _cancelDrag;
-
-        /*public delegate void BeginDrag(CardInHand card);
-        public event BeginDrag TellParentBeginDrag;*/
         public Action<bool> BeginDrag;
 
         private void Awake()

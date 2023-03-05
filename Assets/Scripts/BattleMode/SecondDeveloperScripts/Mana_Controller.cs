@@ -14,7 +14,6 @@ namespace Hearthstone
         public Action<int> ChangeManaValue;
         private EndTurnButton _endTurnButton;//кнопка конца хода
 
-
         [HideInInspector] public int _onePlayermanaCount;
         [HideInInspector] public int _twoPlayermanaCount;
 

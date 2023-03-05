@@ -23,7 +23,6 @@ namespace Hearthstone
             _playerDeck = GameObject.Find("PlayerDeck").transform;
             _enemyDeck = GameObject.Find("EnemyDeck").transform;
             int layerStep = 0;
-           // _mulliganManager = FindObjectOfType<MulliganManager>();zenject
             foreach (int i in _loadDeckController._activeDeck)
             {
                 var newCard = Instantiate(_cardPrefab, _playerDeck.position, _playerDeck.rotation);

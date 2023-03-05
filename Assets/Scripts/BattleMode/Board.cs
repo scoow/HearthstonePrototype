@@ -10,6 +10,7 @@ namespace Hearthstone
     {
         private Camera _camera;
         private GameObject _tempMinionGO;
+        
         private bool _draggingCard; //несём ли карту
         private bool _rightCard; //добавление карты справа?
 
