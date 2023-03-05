@@ -14,12 +14,8 @@ namespace Hearthstone
         public GameObject _battleCryCreator;
 
         public int _battleCryChangeHealth;
-        public int _battleCryChangeAtackDamage;
+        public int _battleCryChangeAtackDamage;        
         
-        /// <summary>
-        /// словарь текущих способностей активируемых боевым кличем
-        /// </summary>
-        //public Dictionary<string, bool> _battleCryActiveAbility = new Dictionary<string, bool>();
         /// <summary>
         /// типы боевых кличей
         /// </summary>
@@ -69,8 +65,7 @@ namespace Hearthstone
                     
                 if(!_isActiveCry)//если боевой клич неактивен, то карты не услышат боевой крик
                     _temporaryArray[i]._isListen = false;               
-            }
-            //_isActiveCry = false;
+            }            
 
             if (СonditionsTargetBattleCry()) //условие появления прицела 
             _targetBattleCry.gameObject.SetActive(_isActiveCry);            

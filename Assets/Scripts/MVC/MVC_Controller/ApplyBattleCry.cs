@@ -11,6 +11,7 @@ namespace Hearthstone
         private BattleCry_Controller _battleCryController;
         private BattleModeCard_View _battleModeCard_View;
         private EventEffect_Controller _eventEffectController;
+        private SingleEffect_Controller _singleEffectController;        
         private Card_Model _card_Model;
         private Card_Controller _card_Controller;
         [Inject]
@@ -21,6 +22,7 @@ namespace Hearthstone
         {
             _pageBook_Model = FindObjectOfType<PageBook_Model>(); //FindObjectOfType<PageBook_Model>();
             _eventEffectController = FindObjectOfType<EventEffect_Controller>();
+            _singleEffectController = FindObjectOfType<SingleEffect_Controller>();
             _card_Model = GetComponent<Card_Model>();
             _card_Controller = GetComponent<Card_Controller>();
             _battleCryController = FindObjectOfType<BattleCry_Controller>();
@@ -33,17 +35,12 @@ namespace Hearthstone
                 && _isListen && _battleCryController._isActiveCry
                 && (_battleCryController._battleCryTargets_Active != Target.Self))//определяем цель боевого клича
             {
-                
-                //if(_battleCryController._idBattleCry != _card_Model._idCard) //исключаем применение боевого клича на себя
-                if (_battleCryController._battleCryCreator != eventData.pointerClick.gameObject)
-                {             
-                    
+                if (_battleCryController._battleCryCreator != eventData.pointerClick.gameObject) //исключаем применение боевого клича на себя
+                {   
                     ApplyNewBattleCry();
                     _isListen = false;
-                    _battleCryController._isActiveCry = false;
-                    //_battleCryController._isActiveCry = true;
+                    _battleCryController._isActiveCry = false;                    
                     _battleCryController.UpdateBattleCry();
-                    
                 }                
             }
         }
@@ -74,8 +71,10 @@ namespace Hearthstone
                         {
                             if (cryType == BattleCryType.DealDamage) //принимаем урон
                             {
+                                
                                 _eventEffectController.ParseDamageEvent();
-                                _card_Controller.ChangeHealtValue(-_battleCryController._battleCryChangeHealth);                               
+                                _card_Controller.ChangeHealtValue(-_battleCryController._battleCryChangeHealth);
+                                _singleEffectController.ApplyEffect(this.gameObject.GetComponent<Card_Controller>()); //переделать в дженерики
                                 if (_card_Model._healthCard <= 0)
                                     _card_Controller.DiedCreature(); //событие смерти
                             }                                
@@ -83,10 +82,15 @@ namespace Hearthstone
                             if (cryType == BattleCryType.Heal)//лечим себя
                             {
                                 if (_card_Model._healthCard < _card_Model._maxHealtValue)
-                                    _eventEffectController.ParseHealEvent(this);
-                                _card_Controller.ChangeHealtValue(_battleCryController._battleCryChangeHealth);
+                                {
+                                    _eventEffectController.ParseHealEvent(this);                                    
+                                }                               
+                                _card_Controller.ChangeHealtValue(_battleCryController._battleCryChangeHealth);                                
                                 if (_card_Model._healthCard > _card_Model._maxHealtValue)
                                     _card_Model._healthCard = _card_Model._maxHealtValue;
+
+                                _singleEffectController.ApplyEffect(this.gameObject.GetComponent<Card_Controller>()); //переделать в дженерики
+
                                 _battleModeCard_View.UpdateViewCard();
                                 StartCoroutine(_battleModeCard_View.EffectParticle(_battleModeCard_View._healtEffect));
                             }

@@ -11,6 +11,7 @@ namespace Hearthstone
         private Card_Model _card_Model;
         private BattleCry_Controller _battleCryController;
         private PermanentEffect_Controller _permanentEffectController;
+        private SingleEffect_Controller _singleEffect_Controller;
         private EventEffect_Controller _eventEffectController;
         private BattleModeCard_View _battleModeCardView;
         public bool _useBattleCray = false;
@@ -34,7 +35,7 @@ namespace Hearthstone
             _battleModeCardView = FindObjectOfType<BattleModeCard_View>();
             _permanentEffectController = FindObjectOfType<PermanentEffect_Controller>();
             _eventEffectController = FindObjectOfType<EventEffect_Controller>();
-
+            _singleEffect_Controller = FindObjectOfType<SingleEffect_Controller>();
 
             OnActivateCard += ChoiseAbility;
 
@@ -76,6 +77,12 @@ namespace Hearthstone
                 }
                 _eventEffectController.ParsePutCardInBoard(this);
 
+                if(_card_Model._battleCryTypes.Contains(BattleCryType.SingleEffect))
+                //if(_card_Model._battleCryTargets == Target.Self)
+                {
+                    _singleEffect_Controller.ApplyEffect(this);
+                }
+
             }  
         }
 
@@ -102,23 +109,7 @@ namespace Hearthstone
             {
                 _battleCryController._curentAbilityInTarget.Add(abilityInTarget);
             }
-        }
-
-
-        private void ApplyAbilityInSelf(Transform transformParent, BattleCryType cryType) //применяем боевой клич на себя 
-        {
-            ApplyBattleCry[] _temporaryArray = transformParent.GetComponentsInChildren<ApplyBattleCry>();
-            if (_card_Model._battleCryTargets == Target.Self)
-            {
-                _card_Model.GetComponent<Card_Controller>().UpdateSelfParametrs(_temporaryArray.Length - 1);
-                StartCoroutine(_battleModeCardView.EffectParticle(_battleModeCardView._scaleEffect));
-            }
-            if (cryType == BattleCryType.GetCardInDeck)
-                TakeAdditionalCard();
-        }
-
-
-        
+        }        
 
         #region //Ability Сondition
 

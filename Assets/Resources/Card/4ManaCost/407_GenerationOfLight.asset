@@ -22,7 +22,7 @@ MonoBehaviour:
   _atackDamageCard: 4
   _healthCard: 4
   _cardClass: 4
-  _battleCryTypes: 0602
+  _battleCryTypes: 0609
   _abilityInTargetBattleCry: 
   _targets: 1
   _targetsType: 0

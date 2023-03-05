@@ -34,6 +34,4 @@ MonoBehaviour:
   _isBerserk: 1
   _isTakeCard: 0
   _abilityChangeHealth: 0
-  _abilityChangeAtackDamage: 3
-  _abilityChangeSpellDamage: 0
-  _abilityAddCardAmount: 0
+  _abilityChangeAtack: 3

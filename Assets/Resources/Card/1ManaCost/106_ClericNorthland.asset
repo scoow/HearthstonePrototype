@@ -25,7 +25,7 @@ MonoBehaviour:
   _cardClass: 4
   _battleCryTypes: 0805
   _abilityInTargetBattleCry: 
-  _targets: 1
+  _targets: 0
   _targetsType: 0
   _minionType: 0
   _isProvocation: 0

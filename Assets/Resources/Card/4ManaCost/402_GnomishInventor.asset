@@ -23,7 +23,7 @@ MonoBehaviour:
   _cardClass: 9
   _battleCryTypes: 05
   _abilityInTargetBattleCry: 06000000
-  _targets: 1
+  _targets: 0
   _targetsType: 0
   _minionType: 0
   _isProvocation: 0

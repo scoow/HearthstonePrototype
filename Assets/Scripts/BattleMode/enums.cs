@@ -48,7 +48,8 @@ namespace Hearthstone
         GetCardInDeck,
         PermanentEffect,
         ActivateAbility,
-        EventEffect
+        EventEffect,
+        SingleEffect
     }
     /// <summary>
     /// Тип целей для боевого клича

@@ -22,7 +22,7 @@ MonoBehaviour:
   _cardClass: 9
   _battleCryTypes: 07
   _abilityInTargetBattleCry: 03000000
-  _targets: 1
+  _targets: 0
   _targetsType: 0
   _minionType: 0
   _isProvocation: 1
@@ -32,6 +32,4 @@ MonoBehaviour:
   _isBerserk: 0
   _isTakeCard: 0
   _abilityChangeHealth: 0
-  _abilityChangeAtackDamage: 0
-  _abilityChangeSpellDamage: 0
-  _abilityAddCardAmount: 0
+  _abilityChangeAtack: 0
