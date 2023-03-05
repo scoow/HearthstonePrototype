@@ -10,7 +10,7 @@ namespace Hearthstone
     {
         private Camera _camera;
         private GameObject _tempMinionGO;
-        
+
         private bool _draggingCard; //несём ли карту
         private bool _rightCard; //добавление карты справа?
 
@@ -26,7 +26,7 @@ namespace Hearthstone
         /// </summary>
         public void InitCardList(List<BattleModeCard> BattleModeCards)
         {
-           foreach (BattleModeCard BattleModeCard in BattleModeCards)
+            foreach (BattleModeCard BattleModeCard in BattleModeCards)
             {
                 CardInHand card = BattleModeCard.GetComponent<CardInHand>();
                 if (card != null)
@@ -41,7 +41,7 @@ namespace Hearthstone
         }
         public override void AddCard(CardInHand card)
         {
-            if (_cardCount > 7) return;
+            if (_cardsList.Count > 7) return;
 
             base.AddCard(card);
             EndDragCard?.Invoke(transform); ///событие для смены отображения карты
@@ -50,29 +50,28 @@ namespace Hearthstone
         /// получить позицию последней карты в руке
         /// </summary>
         /// <returns></returns>
-        public override Vector3 GetLastCardPosition()
+        public override Transform GetLastCardPosition()
         {
-            Vector3 center = transform.position;
-            center.x = 0;
-            if (_cardCount == 0)
-                return center;
+            Transform newPosition = new GameObject().transform;
+            if (_cardsList.Count ==0)
+            {
+                newPosition.position = new Vector3(0, transform.position.y, transform.position.z);
+            }
             else
             {
-                Vector3 newPosition = center;
-                newPosition.x = _rightCard ? _cardsList.Max(x => x.transform.position.x) : _cardsList.Min(x => x.transform.position.x);
-                newPosition.x += _rightCard ? _offset : -_offset;
-                return newPosition;
+                //newPosition.position = _rightCard ? _cardsList.Max(x => x.transform.position) : _cardsList.Min(x => x.transform.position);
+                newPosition.position += _rightCard ? new Vector3(_offset * _cardsList.Count, transform.position.y, transform.position.z) : new Vector3(-_offset * _cardsList.Count, transform.position.y, transform.position.z);
             }
+            return newPosition;
         }
         public override void OnDrop(PointerEventData eventData)//вынести в класс-родитель
         {
-            CardInHand card = eventData.pointerDrag.GetComponent<CardInHand>();
-            if (card == null) return;
+            if (!eventData.pointerDrag.TryGetComponent<CardInHand>(out var card)) return;
             var _parent = card.transform.parent.GetComponent<CardHolder>();
             if (_parent != this)
             {
                 _parent.RemoveCard(card);
-                card.transform.position = GetLastCardPosition();
+                card.transform.position = GetLastCardPosition().position;
                 AddCard(card);
             }
         }
@@ -91,12 +90,12 @@ namespace Hearthstone
             if (newPosition.x < 0)
             {
                 _rightCard = false;
-                _tempMinionGO.transform.position = GetLastCardPosition();
+                _tempMinionGO.transform.position = GetLastCardPosition().position;
             }
             else
             {
                 _rightCard = true;
-                _tempMinionGO.transform.position = GetLastCardPosition();
+                _tempMinionGO.transform.position = GetLastCardPosition().position;
             }
         }
 

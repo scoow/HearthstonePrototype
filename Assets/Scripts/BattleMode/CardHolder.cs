@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,47 +12,43 @@ namespace Hearthstone
     {
         public Players _side;
         protected List<CardInHand> _cardsList;//сделать serializable
-        protected Vector3 _lastPosition;
+        //protected Vector3 _lastPosition;
 
         //todo добавить ссылку на временную карту для корректной обработки взятия из руки
         private GameObject _tempCardGO;
 
         [SerializeField]
         protected float _offset;
-        [SerializeField]
-        protected int _cardCount = 0;
 
         //событие для смены отображения карты перенесено в дочерний класс Board
         private void Start()
         {
             _cardsList = new();
-            _lastPosition= transform.position;
+            //_lastPosition= transform.position;
             _tempCardGO = GameObject.Find("TempCard");
         }
         /// <summary>
         /// получить позицию последней карты в руке
         /// </summary>
         /// <returns></returns>
-        public virtual Vector3 GetLastCardPosition()
+        public virtual Transform GetLastCardPosition()
         {
-            if (_cardCount == 0)
-                return transform.position;
-            else
-            {
-                Vector3 newPosition = transform.position;
-                newPosition.x += _cardCount * _offset;
-                return newPosition;
-            }
+            Transform newPosition = new GameObject().transform;
+            newPosition.position = transform.position + new Vector3(_cardsList.Count * _offset, 0, 0);
+            newPosition.rotation = Quaternion.identity;
+            newPosition.localScale = Vector3.one;
+            return newPosition;
+
         }
         /// <summary>
         /// добавить карту в руку
         /// </summary>
         public virtual void AddCard(CardInHand card)
         {
-            Vector3 newPosition = GetLastCardPosition();
-            newPosition.x += _offset;
+            /*Transform newPosition = GetLastCardPosition();
+            newPosition.position += new Vector3(_offset, 0);*/
             _cardsList.Add(card);
-            _cardCount++;
+            //_cardCount++;
             card.SetParent(this);
         }
         /// <summary>
@@ -59,9 +56,8 @@ namespace Hearthstone
         /// </summary>
         public void RemoveCard(CardInHand card)
         {
-            if (_cardCount > 0)
+            if (_cardsList.Count > 0)
             {
-                _cardCount--;
                 foreach (var c in _cardsList)//почему не работает?
                 {
                     if (c.transform.position.x > _tempCardGO.transform.position.x)
@@ -83,7 +79,7 @@ namespace Hearthstone
             {
                 Debug.Log("drop card");
                 _parent.RemoveCard(card);
-                card.transform.position = GetLastCardPosition();
+                card.transform.position = GetLastCardPosition().position;
                 AddCard(card);                
             }
         }

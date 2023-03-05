@@ -89,7 +89,7 @@ namespace Hearthstone
             {
                 _card = _currentDeck[i];
                 position.SetCurrentCard(_card);//привязываем карту к позиции
-                _ = _card.MoveCardAsync(_card.transform.position, position.transform.position, _card.transform.rotation, position.transform.rotation, _time);
+                _ = _card.MoveCardAsync(_card.transform, position.transform, _time);
                 await UniTask.Delay(TimeSpan.FromSeconds(0.5));
                 i++;
             }
@@ -125,7 +125,7 @@ namespace Hearthstone
                 _card = _currentCards[i];
                 if (_card.Selected)
                 {
-                    _ = _card.MoveCardAsync(position.transform.position, _currentDeck.position, position.transform.rotation, _currentDeck.rotation, _time);
+                    _ = _card.MoveCardAsync(position.transform, _currentDeck, _time);
                     await UniTask.Delay(TimeSpan.FromSeconds(0.5));
                 }
                 i++;
@@ -163,7 +163,7 @@ namespace Hearthstone
                 _card = _currentCards[i];
                 if (_card.Selected)
                 {
-                    _ = _card.MoveCardAsync(_card.transform.position, position.transform.position, _card.transform.rotation, position.transform.rotation, _time);
+                    _ = _card.MoveCardAsync(_card.transform, position.transform, _time);
                     await UniTask.Delay(TimeSpan.FromSeconds(0.5));
                 }
 
@@ -175,8 +175,8 @@ namespace Hearthstone
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
                 _card = _currentCards[i];
-                _ = _card.MoveCardAsync(position.transform.position, _currentHand.GetLastCardPosition(), position.transform.rotation, _currentHand.transform.rotation, _time);
-
+                //Debug.Log(_currentHand.GetLastCardPosition().position.ToString());
+                _ = _card.MoveCardAsync(position.transform, _currentHand.GetLastCardPosition(), _time);
 
                 await UniTask.Delay(TimeSpan.FromSeconds(0.5));
                 if (side == Players.Second)
@@ -218,7 +218,7 @@ namespace Hearthstone
                 _nextCardInEnemyDeckNumber++;
             }
             var card = _mulliganCards.ElementAt(_nextCardInDeckNumber);
-            _ = card.MoveCardAsync(card.transform.position, _currentHand.GetLastCardPosition(), card.transform.rotation, _currentHand.transform.rotation, _time);
+            _ = card.MoveCardAsync(card.transform, _currentHand.GetLastCardPosition(), _time);
 
         }
         private void Update()//тест взятия 

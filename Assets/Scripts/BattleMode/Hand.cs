@@ -8,7 +8,7 @@ namespace Hearthstone
     {
         public override void AddCard(CardInHand card)
         {
-            if (_cardCount > 10) return;
+            if (_cardsList.Count > 10) return;
 
             base.AddCard(card);
         }

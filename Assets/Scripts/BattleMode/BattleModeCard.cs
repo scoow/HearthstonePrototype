@@ -19,17 +19,17 @@ namespace Hearthstone
         /// <param name="endRotation">конечное вращение</param>
         /// <param name="time">время движения</param>
         /// <returns></returns>
-        public async UniTaskVoid MoveCardAsync(Vector3 startPosition, Vector3 endPosition, Quaternion startRotation, Quaternion endRotation, float time)
+        public async UniTaskVoid MoveCardAsync(Transform start, Transform end, float time)
         {
             float currentTime = 0f;
 
             while (currentTime < time)
             {
-                transform.SetPositionAndRotation(Vector3.Lerp(startPosition, endPosition, currentTime / time), Quaternion.Lerp(startRotation, endRotation, currentTime));
+                transform.SetPositionAndRotation(Vector3.Lerp(start.position, end.position, currentTime / time), Quaternion.Lerp(start.rotation, end.rotation, currentTime));
                 currentTime += Time.deltaTime;
                 await UniTask.Yield();
             }
-            transform.SetPositionAndRotation(endPosition, endRotation);
+            transform.SetPositionAndRotation(end.position, end.rotation);
         }
         public void SetSide(Players side)
         {
