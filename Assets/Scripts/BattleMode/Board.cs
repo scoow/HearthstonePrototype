@@ -50,17 +50,18 @@ namespace Hearthstone
         /// получить позицию последней карты в руке
         /// </summary>
         /// <returns></returns>
-        public override Transform GetLastCardPosition()
+        public override Vector3 GetLastCardPosition()
         {
-            Transform newPosition = new GameObject().transform;
+            Vector3 newPosition;
+            newPosition = new Vector3(0, transform.position.y, transform.position.z);
             if (_cardsList.Count ==0)
             {
-                newPosition.position = new Vector3(0, transform.position.y, transform.position.z);
+                
             }
             else
             {
                 //newPosition.position = _rightCard ? _cardsList.Max(x => x.transform.position) : _cardsList.Min(x => x.transform.position);
-                newPosition.position += _rightCard ? new Vector3(_offset * _cardsList.Count, transform.position.y, transform.position.z) : new Vector3(-_offset * _cardsList.Count, transform.position.y, transform.position.z);
+                newPosition += _rightCard ? new Vector3(_offset * _cardsList.Count, transform.position.y, transform.position.z) : new Vector3(-_offset * _cardsList.Count, transform.position.y, transform.position.z);
             }
             return newPosition;
         }
@@ -71,7 +72,7 @@ namespace Hearthstone
             if (_parent != this)
             {
                 _parent.RemoveCard(card);
-                card.transform.position = GetLastCardPosition().position;
+                card.transform.position = GetLastCardPosition();
                 AddCard(card);
             }
         }
@@ -90,12 +91,12 @@ namespace Hearthstone
             if (newPosition.x < 0)
             {
                 _rightCard = false;
-                _tempMinionGO.transform.position = GetLastCardPosition().position;
+                _tempMinionGO.transform.position = GetLastCardPosition();
             }
             else
             {
                 _rightCard = true;
-                _tempMinionGO.transform.position = GetLastCardPosition().position;
+                _tempMinionGO.transform.position = GetLastCardPosition();
             }
         }
 

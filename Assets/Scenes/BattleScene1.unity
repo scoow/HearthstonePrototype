@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1504,7 +1504,7 @@ CanvasGroup:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 671665859}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
@@ -1523,7 +1523,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _side: 0
   _offset: 3
-  _cardCount: 0
 --- !u!65 &671665863
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2345,7 +2344,7 @@ CanvasGroup:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1048441347}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
@@ -2364,7 +2363,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _side: 1
   _offset: 3
-  _cardCount: 0
 --- !u!65 &1048441351
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2463,6 +2461,7 @@ MonoBehaviour:
   _targetBattleCry: {fileID: 195986248}
   _parentCardInBattle: {fileID: 671665860}
   _idBattleCry: 0
+  _battleCryCreator: {fileID: 0}
   _battleCryChangeHealth: 0
   _battleCryChangeAtackDamage: 0
   _currentBattleCryTypes: 
@@ -2557,7 +2556,7 @@ CanvasGroup:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1274440977}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
@@ -2639,7 +2638,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _side: 0
   _offset: 2
-  _cardCount: 0
 --- !u!1 &1417789395
 GameObject:
   m_ObjectHideFlags: 0
@@ -3108,7 +3106,7 @@ CanvasGroup:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604529404}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
@@ -3190,7 +3188,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _side: 1
   _offset: 2
-  _cardCount: 0
 --- !u!1 &1633345561
 GameObject:
   m_ObjectHideFlags: 0

@@ -419,15 +419,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d81fb05b06b1bb4fb3fcfedb7fa82ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _abilityChangeHealth: 0
-  _abilityChangeAtackDamage: 0
-  _abilityChangeSpellDamage: 0
-  _abilityAddCard: 0
+  "_\u0441hangeHealthValue": 0
+  _changeAtackValue: 0
   _isProvocation: 0
   _isDivineShield: 0
   _isPermanentEffect: 0
   _isCharge: 0
   _isBerserk: 0
+  _isGetCard: 0
   _protectionImage: {fileID: 2524693364671644792}
   _spriteCard: {fileID: 0}
   _descriptionCard: 
@@ -440,10 +439,12 @@ MonoBehaviour:
   _maxAtackValue: 0
   _defaultHealtValue: 0
   _defaultAtackValue: 0
-  _battleCryType: 0
+  _battleCryTypes: 
+  _abilityInTargetBattleCry: 
   _battleCryTargets: 0
   _battleCryTargetsType: 0
   _minionType: 0
+  _cardClassInDeck: 0
 --- !u!114 &2048356227021391361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,6 +482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222e4e9c422b58d45a053af404d6c6bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _side: 0
 --- !u!114 &1391922997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1149,7 +1151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7197990436323605909
 Transform:
   m_ObjectHideFlags: 0
@@ -1205,7 +1207,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 9990
   m_Sprite: {fileID: 21300000, guid: 35f7b43dc36ba3a41aeafdf1d4395551, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

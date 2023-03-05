@@ -117,13 +117,17 @@ public class EventEffect_Controller : MonoBehaviour
                     foreach (Card_Controller cardController in _cardControllerArray)
                     {
                         Card_Model cardModel = cardController.GetComponent<Card_Model>();
-                        if (cardModel._idCard == cardEffectId && cardModel._minionType == incomingMinionType && cardModel.gameObject != gameObject)
+                        if (cardModel._idCard == cardEffectId && cardModel._minionType == incomingMinionType && cardModel.gameObject != cardExample.gameObject)
                         {
                             cardController.TakeAdditionalCard();
                         }
                     }
                 }
             }
+            /*
+             ставим новую карту
+            вызвать событие - если активен эффект 213 и это зверь, то взять карту
+             */
         }
     }
 }

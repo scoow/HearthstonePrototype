@@ -10,7 +10,8 @@ namespace Hearthstone
         public Transform _targetBattleCry;
         public Transform _parentCardInBattle;        
         public int _idBattleCry;
-        
+
+        public GameObject _battleCryCreator;
 
         public int _battleCryChangeHealth;
         public int _battleCryChangeAtackDamage;

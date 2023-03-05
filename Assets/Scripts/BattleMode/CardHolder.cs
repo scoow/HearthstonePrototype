@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -31,14 +30,12 @@ namespace Hearthstone
         /// получить позицию последней карты в руке
         /// </summary>
         /// <returns></returns>
-        public virtual Transform GetLastCardPosition()
+        public virtual Vector3 GetLastCardPosition()
         {
-            Transform newPosition = new GameObject().transform;
-            newPosition.position = transform.position + new Vector3(_cardsList.Count * _offset, 0, 0);
-            newPosition.rotation = Quaternion.identity;
-            newPosition.localScale = Vector3.one;
+            Vector3 newPosition = transform.position;
+            newPosition += new Vector3(_cardsList.Count * _offset, 0, 0);
+            //Destroy(tempGO);
             return newPosition;
-
         }
         /// <summary>
         /// добавить карту в руку
@@ -79,7 +76,7 @@ namespace Hearthstone
             {
                 Debug.Log("drop card");
                 _parent.RemoveCard(card);
-                card.transform.position = GetLastCardPosition().position;
+                card.transform.position = GetLastCardPosition();
                 AddCard(card);                
             }
         }

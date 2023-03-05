@@ -65,15 +65,17 @@ namespace Hearthstone
                 if(_card_Model._battleCryTypes.Contains(BattleCryType.PermanentEffect))
                 {
                     _permanentEffectController.AddPermanentEffect(_card_Model._idCard);
-                    _permanentEffectController.GetActivePermanentEffect(this);
+                    
                 }
+                _permanentEffectController.GetActivePermanentEffect(this);//?
 
-                if(_card_Model._battleCryTypes.Contains(BattleCryType.EventEffect))
+                if (_card_Model._battleCryTypes.Contains(BattleCryType.EventEffect))
                 {
                     _eventEffectController.AddEventEffect(_card_Model._idCard);
-                    _eventEffectController.ParsePutCardInBoard(this);
+                    
                 }
-                              
+                _eventEffectController.ParsePutCardInBoard(this);
+
             }  
         }
 
@@ -81,6 +83,9 @@ namespace Hearthstone
         private void SaveValueCurrentBattleCry()
         {
             _useBattleCray = true;
+
+            _battleCryController._battleCryCreator = _card_Model.gameObject;
+
             _battleCryController._idBattleCry = _card_Model._idCard;
             _battleCryController._battleCryTargets_Active = _card_Model._battleCryTargets;
             _battleCryController._battleCryTargetsType_Active = _card_Model._battleCryTargetsType;

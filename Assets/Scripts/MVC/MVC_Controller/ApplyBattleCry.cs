@@ -32,10 +32,12 @@ namespace Hearthstone
             if (transform.parent.gameObject.GetComponent<Board>()
                 && _isListen && _battleCryController._isActiveCry
                 && (_battleCryController._battleCryTargets_Active != Target.Self))//определяем цель боевого клича
-            {   
+            {
                 
-                if(_battleCryController._idBattleCry != _card_Model._idCard) //исключаем применение боевого клича на себя
-                {                    
+                //if(_battleCryController._idBattleCry != _card_Model._idCard) //исключаем применение боевого клича на себя
+                if (_battleCryController._battleCryCreator != eventData.pointerClick.gameObject)
+                {             
+                    
                     ApplyNewBattleCry();
                     _isListen = false;
                     _battleCryController._isActiveCry = false;

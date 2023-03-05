@@ -31,6 +31,25 @@ namespace Hearthstone
             }
             transform.SetPositionAndRotation(end.position, end.rotation);
         }
+        /// <summary>
+        /// Перегруженная версия для работы с векторами
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        public async UniTaskVoid MoveCardAsync(Vector3 start, Vector3 end, float time)
+        {
+            float currentTime = 0f;
+
+            while (currentTime < time)
+            {
+                transform.SetPositionAndRotation(Vector3.Lerp(start, end, currentTime / time), Quaternion.identity);
+                currentTime += Time.deltaTime;
+                await UniTask.Yield();
+            }
+            transform.SetPositionAndRotation(end, Quaternion.identity);
+        }
         public void SetSide(Players side)
         {
             this._side = side;
