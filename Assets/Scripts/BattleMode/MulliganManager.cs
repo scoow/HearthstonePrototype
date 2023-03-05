@@ -48,7 +48,8 @@ namespace Hearthstone
         [Inject(Id = "Second")]
         private Board _secondPlayerBoard;
 
-        private int _nextCardInDeckNumber;
+        private int _nextCardInPlayerDeckNumber = 5;
+        private int _nextCardInEnemyDeckNumber = 5;
 
         private async void Start()
         {
@@ -186,8 +187,6 @@ namespace Hearthstone
                 _currentHand.AddCard(_cardInHand);
                 i++;
             }
-            _nextCardInDeckNumber = 5;//номер текущей карты в колоде после конца муллигана
-
              _currentBoard.InitCardList(_currentCards);//привязка событий карт текущего игрока к текущему полю
 
             if (side == Players.First)//если первый муллиган
@@ -205,16 +204,33 @@ namespace Hearthstone
         public void TakeOneCard(Players side)
         {
             Hand _currentHand;
+            int _nextCardInDeckNumber;
             if (side == Players.First)
             {
                 _currentHand = _firstPlayerHand;
+                _nextCardInDeckNumber = _nextCardInPlayerDeckNumber;
+                _nextCardInPlayerDeckNumber++;
             }
             else
             {
                 _currentHand = _secondPlayerHand;
+                _nextCardInDeckNumber = _nextCardInEnemyDeckNumber;
+                _nextCardInEnemyDeckNumber++;
             }
             var card = _mulliganCards.ElementAt(_nextCardInDeckNumber);
             _ = card.MoveCardAsync(card.transform.position, _currentHand.GetLastCardPosition(), card.transform.rotation, _currentHand.transform.rotation, _time);
+
+        }
+        private void Update()//тест взятия 
+        {
+            if (Input.GetMouseButtonDown(2))
+            {
+                TakeOneCard(Players.First);
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                TakeOneCard(Players.Second);
+            }
         }
     }
 }

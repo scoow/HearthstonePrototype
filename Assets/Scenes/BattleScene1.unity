@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -693,7 +693,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 161153813}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
   m_Name: 
@@ -1171,7 +1171,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _position: 1
-  _selected: 0
 --- !u!212 &529985566
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2987,7 +2986,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _position: 0
-  _selected: 0
 --- !u!65 &1491325582
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3558,7 +3556,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _position: 2
-  _selected: 0
 --- !u!212 &1897317238
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3786,7 +3783,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _position: 3
-  _selected: 0
 --- !u!212 &2026568697
 SpriteRenderer:
   m_ObjectHideFlags: 0
