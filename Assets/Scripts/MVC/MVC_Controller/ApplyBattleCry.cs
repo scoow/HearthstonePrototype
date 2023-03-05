@@ -50,7 +50,13 @@ namespace Hearthstone
             foreach (AbilityCurrentCard abilityInTarget in _battleCryController._curentAbilityInTarget)
             {
                 if((_battleCryController._battleCryTargetsType_Active == _card_Model._minionType) || _battleCryController._battleCryTargetsType_Active == MinionType.None )
-                {                    
+                {      
+                    if(abilityInTarget == AbilityCurrentCard.Provocation)
+                    {
+                        _card_Controller.ProvocationAbility(true);
+                    }
+
+
                     //изменяем атаку
                     if (abilityInTarget == AbilityCurrentCard.ChangeAtack) 
                     {
