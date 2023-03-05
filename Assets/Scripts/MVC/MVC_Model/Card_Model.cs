@@ -10,10 +10,8 @@ namespace Hearthstone
         private PageBook_Model _pageBook_Model;
         // ////////////////////////////////////
         
-        public int _abilityChangeHealth;
-        public int _abilityChangeAtackDamage;
-        public int _abilityChangeSpellDamage;
-        public int _abilityAddCard; // GO переношу в список булевых переменных
+        public int _сhangeHealthValue; //
+        public int _changeAtackValue;       
 
         public bool _isProvocation;
         public bool _isDivineShield;
@@ -21,7 +19,7 @@ namespace Hearthstone
         public bool _isCharge;
         public bool _isBerserk;
         public bool _isGetCard;
-        public Dictionary<string,bool> _activeAbility = new Dictionary<string, bool>(); //список активных способностей
+        public Dictionary<AbilityCurrentCard, bool> _activeAbility = new Dictionary<AbilityCurrentCard, bool>(); //список активных способностей
 
         public SpriteRenderer _protectionImage;
         public Sprite _spriteCard;
@@ -38,8 +36,8 @@ namespace Hearthstone
         public int _defaultAtackValue;
 
         public List<BattleCryType> _battleCryTypes = new List<BattleCryType>();
-        //public BattleCryType _battleCryType;        
-        public BattleCryTargets _battleCryTargets;
+        public List<AbilityCurrentCard> _abilityInTargetBattleCry = new List<AbilityCurrentCard>();             
+        public Target _battleCryTargets;
         public MinionType _battleCryTargetsType;
         public MinionType _minionType;
         /// <summary>
@@ -63,10 +61,8 @@ namespace Hearthstone
         public void SetCardSettings(int idCard)
         {
             CardSO_Model cardSOModel = _pageBook_Model._cardsDictionary[idCard];
-            _abilityChangeAtackDamage = cardSOModel._abilityChangeAtackDamage;
-            _abilityChangeSpellDamage = cardSOModel._abilityChangeSpellDamage;
-            _abilityChangeHealth = cardSOModel._abilityChangeHealth;
-            _abilityAddCard = cardSOModel._abilityAddCard;          
+            _changeAtackValue = cardSOModel._abilityChangeAtack;            
+            _сhangeHealthValue = cardSOModel._abilityChangeHealth;                     
 
             _atackDamageCard = cardSOModel._atackDamageCard;
             _descriptionCard = cardSOModel._descriptionCard;
@@ -75,15 +71,19 @@ namespace Hearthstone
             _spriteCard = cardSOModel._spriteCard;
             _nameCard = cardSOModel._nameCard;
             _idCard = cardSOModel._idCard;
-
-            //_battleCryType = cardSOModel._battleCryType;
+            
             foreach(BattleCryType cryType in cardSOModel._battleCryTypes)
             {
                 _battleCryTypes.Add(cryType);
             }
-            //_battleCryTypes = cardSOModel._battleCryTypes;
-            _battleCryTargets = cardSOModel._battleCryTargets;
-            _battleCryTargetsType = cardSOModel._battleCryTargetsType;
+
+            foreach(AbilityCurrentCard abilityInTarget in cardSOModel._abilityInTargetBattleCry)
+            {
+                _abilityInTargetBattleCry.Add(abilityInTarget);
+            }
+           
+            _battleCryTargets = cardSOModel._targets;
+            _battleCryTargetsType = cardSOModel._targetsType;
             _minionType = cardSOModel._minionType;
             _cardClassInDeck = cardSOModel._cardClass;
 
@@ -92,14 +92,14 @@ namespace Hearthstone
             _isProvocation = cardSOModel._isProvocation;
             _isBerserk = cardSOModel._isBerserk;
             _isCharge = cardSOModel._isCharge;
-            _isGetCard = cardSOModel._isTakeCard;
+            _isGetCard = cardSOModel._isTakeCard;            
 
-            _activeAbility.Add("PermanentEffect",_isPermanentEffect);
-            _activeAbility.Add("DivineShield",_isDivineShield);
-            _activeAbility.Add("Provocation",_isProvocation);
-            _activeAbility.Add("Berserk",_isBerserk); // вынести отдельно
-            _activeAbility.Add("Charge",_isCharge);
-            _activeAbility.Add("GetCard",_isGetCard);
+            _activeAbility.Add(AbilityCurrentCard.PermanentEffect, _isPermanentEffect);
+            _activeAbility.Add(AbilityCurrentCard.DivineShield,_isDivineShield);
+            _activeAbility.Add(AbilityCurrentCard.Provocation,_isProvocation);
+            _activeAbility.Add(AbilityCurrentCard.Berserk,_isBerserk);
+            _activeAbility.Add(AbilityCurrentCard.Charge,_isCharge);
+            _activeAbility.Add(AbilityCurrentCard.GetCard,_isGetCard);
         }
         public int GetManaCostCard()
         { return _manaCostCard; }

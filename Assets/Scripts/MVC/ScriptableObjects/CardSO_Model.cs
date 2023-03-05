@@ -17,11 +17,11 @@ namespace Hearthstone
         public int _atackDamageCard;
         public int _healthCard;
 
-        public Classes _cardClass;
-        //public BattleCryType _battleCryType;
+        public Classes _cardClass;        
         public List<BattleCryType> _battleCryTypes = new List<BattleCryType>();
-        public BattleCryTargets _battleCryTargets;
-        public MinionType _battleCryTargetsType;
+        public List<AbilityCurrentCard> _abilityInTargetBattleCry = new List<AbilityCurrentCard>();
+        public Target _targets;
+        public MinionType _targetsType;
         public MinionType _minionType;
        
 
@@ -33,8 +33,6 @@ namespace Hearthstone
         public bool _isTakeCard;
 
         public int _abilityChangeHealth;
-        public int _abilityChangeAtackDamage;
-        public int _abilityChangeSpellDamage;
-        public int _abilityAddCard;
+        public int _abilityChangeAtack;       
     }
 }

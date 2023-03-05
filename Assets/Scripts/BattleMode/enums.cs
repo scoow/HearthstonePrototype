@@ -52,7 +52,7 @@ namespace Hearthstone
     /// <summary>
     /// Тип целей для боевого клича
     /// </summary>
-    public enum BattleCryTargets : byte
+    public enum Target : byte
     {
         None,
         Self,
@@ -69,5 +69,18 @@ namespace Hearthstone
         None,
         Murloc,
         Beast
+    }
+
+    public enum AbilityCurrentCard
+    {
+        None,
+        PermanentEffect,
+        DivineShield,
+        Provocation,
+        Berserk,
+        Charge,
+        GetCard,
+        ChangeHealt,
+        ChangeAtack
     }
 }

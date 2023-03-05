@@ -22,7 +22,7 @@ MonoBehaviour:
   _atackDamageCard: 2
   _healthCard: 4
   _cardClass: 9
-  _battleCryType: 4
+  _battleCryTypes: 04
   _battleCryTargets: 0
   _battleCryTargetsType: 0
   _minionType: 0
@@ -31,6 +31,7 @@ MonoBehaviour:
   _isPermanentEffect: 0
   _isCharge: 0
   _isBerserk: 0
+  _isTakeCard: 0
   _abilityChangeHealth: 0
   _abilityChangeAtackDamage: 0
   _abilityChangeSpellDamage: 0

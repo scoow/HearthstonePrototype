@@ -20,16 +20,16 @@ MonoBehaviour:
   _atackDamageCard: 3
   _healthCard: 1
   _cardClass: 9
-  _battleCryType: 7
-  _battleCryTargets: 0
-  _battleCryTargetsType: 0
+  _battleCryTypes: 07
+  _abilityInTargetBattleCry: 05000000
+  _targets: 1
+  _targetsType: 0
   _minionType: 0
   _isProvocation: 0
   _isDivineShield: 0
   _isPermanentEffect: 0
   _isCharge: 1
   _isBerserk: 0
+  _isTakeCard: 0
   _abilityChangeHealth: 0
-  _abilityChangeAtackDamage: 0
-  _abilityChangeSpellDamage: 0
-  _abilityAddCard: 0
+  _abilityChangeAtack: 0

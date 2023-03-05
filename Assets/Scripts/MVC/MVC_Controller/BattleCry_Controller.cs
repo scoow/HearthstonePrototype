@@ -10,12 +10,27 @@ namespace Hearthstone
         public Transform _targetBattleCry;
         public Transform _parentCardInBattle;        
         public int _idBattleCry;
-        public List<int> _activePermanentEffect;
+        
 
-        public BattleCryType _battleCryType;
-        public BattleCryTargets _battleCryTargets;
-        public MinionType _battleCryTargetsType;
-        public MinionType _minionType;
+        public int _battleCryChangeHealth;
+        public int _battleCryChangeAtackDamage;
+        
+        /// <summary>
+        /// словарь текущих способностей активируемых боевым кличем
+        /// </summary>
+        //public Dictionary<string, bool> _battleCryActiveAbility = new Dictionary<string, bool>();
+        /// <summary>
+        /// типы боевых кличей
+        /// </summary>
+        public List<BattleCryType> _currentBattleCryTypes = new List<BattleCryType>();
+        /// <summary>
+        /// спиок способностей активируемых боевым кличем
+        /// </summary>
+        public List<AbilityCurrentCard> _curentAbilityInTarget = new List<AbilityCurrentCard>();
+        
+        public Target _battleCryTargets_Active;
+        public MinionType _battleCryTargetsType_Active;
+        public MinionType _battleCryMinionType_Active;
 
         private void OnEnable()
         {            
@@ -36,57 +51,28 @@ namespace Hearthstone
             }          
         }
 
+        //условия применения боевого клича
+        private bool СonditionsTargetBattleCry()
+        {
+            bool result = _battleCryTargets_Active == Target.Single || _battleCryTargets_Active == Target.SingleFriend;
+            return result;
+        }
+
         public void UpdateBattleCry() //при установке новой карты на стол , у всех появляется возможность принять боевой клич
         {            
             ApplyBattleCry[] _temporaryArray = _parentCardInBattle.GetComponentsInChildren<ApplyBattleCry>();
             for (int i = 0; i <= _temporaryArray.Length - 1; i++)
             {
-                if(_isActiveCry)// если боевой клич активен, то карты могут услышать боевой крик
-                {
-                    _temporaryArray[i]._isListen = true;
-                    if(_battleCryTargets == BattleCryTargets.AllFriends)
-                    {
-                        CardSO_Model cardSO = _pageBook_Model._cardsDictionary[_idBattleCry];
-                        Card_Controller card_Controller = _temporaryArray[i].GetComponent<Card_Controller>();
-                        BattleModeCard_View battleModeCard = _temporaryArray[i].GetComponent<BattleModeCard_View>();
-                        if (_battleCryType == BattleCryType.RaiseParametrs)
-                        {
-                            card_Controller.ChangeAtackValue(cardSO._abilityChangeAtackDamage);
-                            card_Controller.ChangeHealtValue(cardSO._abilityChangeHealth);
-                            StartCoroutine(battleModeCard.EffectParticle(battleModeCard._scaleEffect));
-                        }
-                        if(_battleCryType == BattleCryType.Heal)// требуется проверка
-                        {
-                            card_Controller.ChangeHealtValue(cardSO._abilityChangeHealth);
-                            StartCoroutine(battleModeCard.EffectParticle(battleModeCard._healtEffect));
-                        }
-                        
-                    }
-                }    
+                if(_isActiveCry)// если боевой клич активен, то карты могут услышать боевой крик               
+                    _temporaryArray[i]._isListen = true;                 
                     
                 if(!_isActiveCry)//если боевой клич неактивен, то карты не услышат боевой крик
-                    _temporaryArray[i]._isListen = false;
-
-                
+                    _temporaryArray[i]._isListen = false;               
             }
+            //_isActiveCry = false;
 
-            if(СonditionsTargetBattleCry()) //условие появления прицела 
+            if (СonditionsTargetBattleCry()) //условие появления прицела 
             _targetBattleCry.gameObject.SetActive(_isActiveCry);            
-        }
-
-
-        private bool СonditionsTargetBattleCry()
-        {
-           bool result = _battleCryTargets != BattleCryTargets.Self 
-                && _battleCryTargets != BattleCryTargets.AllFriends
-                && (_battleCryType == BattleCryType.Heal
-                    || _battleCryType == BattleCryType.DealDamage
-                    || _battleCryType == BattleCryType.RaiseParametrs);
-
-            return result;
-        }
-
-
-
+        }       
     }
 }

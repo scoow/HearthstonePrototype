@@ -51,10 +51,11 @@ namespace Hearthstone
                 
                 if (_card_Model._healthCard > _card_Model._defaultHealtValue) //изменяем цвет текста здоровья
                     _healthText.color = Color.green;
-                if (_card_Model._healthCard < _card_Model._maxHealtValue)
-                    _healthText.color = Color.red;
                 if (_card_Model._healthCard == _card_Model._defaultHealtValue)
                     _healthText.color = Color.white;
+                if (_card_Model._healthCard < _card_Model._maxHealtValue)
+                    _healthText.color = Color.red;
+                
             }           
         }
         

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Zenject;
@@ -28,63 +29,63 @@ namespace Hearthstone
         {
             if (transform.parent.gameObject.GetComponent<Board>()
                 && _isListen && _battleCryController._isActiveCry
-                && (_battleCryController._battleCryTargets != BattleCryTargets.Self)
-                && (_battleCryController._battleCryType != BattleCryType.GetCardInDeck))//определяем цель боевого клича
+                && (_battleCryController._battleCryTargets_Active != Target.Self))//определяем цель боевого клича
             {   
                 if(_battleCryController._idBattleCry != _card_Model._idCard) //исключаем применение боевого клича на себя
-                {
-                    AplyNewValueCardProperty(_battleCryController._idBattleCry);
+                {                    
+                    ApplyNewBattleCry();
                     _isListen = false;
                     _battleCryController._isActiveCry = false;
+                    //_battleCryController._isActiveCry = true;
                     _battleCryController.UpdateBattleCry();
+                    
                 }                
             }
         }
 
-        public void AplyNewValueCardProperty(int idCard)
-        {            
-            CardSO_Model card_SO = _pageBook_Model._cardsDictionary[idCard];
+        //применить боевой клич
+        public void ApplyNewBattleCry()
+        {
 
-            foreach(BattleCryType cryType in card_SO._battleCryTypes )
+            foreach (AbilityCurrentCard abilityInTarget in _battleCryController._curentAbilityInTarget)
             {
-                if(cryType == BattleCryType.DealDamage) //получаем урон
-                {
-                    _card_Controller.ChangeHealtValue(card_SO._abilityChangeHealth);
-                    if (_card_Model._isBerserk)//если карта берсерк , увеличиваем свой дамаг
-                        _card_Controller.BerserkAbility();
-                }
-                if(cryType == BattleCryType.RaiseParametrs) //повышаем параметры
-                {
-                    _card_Controller.ChangeAtackValue(card_SO._abilityChangeAtackDamage);
-                    _card_Controller.ChangeHealtValue(card_SO._abilityChangeHealth);
-                    StartCoroutine(_battleModeCard_View.EffectParticle(_battleModeCard_View._scaleEffect));//эффект повышение параметров
-                }
-                if(cryType == BattleCryType.Heal) //лечим существо
-                {
-                    _card_Controller.ChangeHealtValue(card_SO._abilityChangeHealth);
-                    StartCoroutine(_battleModeCard_View.EffectParticle(_battleModeCard_View._healtEffect));//эффект лечения
-                }
+                if((_battleCryController._battleCryTargetsType_Active == _card_Model._minionType) || _battleCryController._battleCryTargetsType_Active == MinionType.None )
+                {                    
+                    //изменяем атаку
+                    if (abilityInTarget == AbilityCurrentCard.ChangeAtack) 
+                    {
+                        _card_Controller.ChangeAtackValue(_battleCryController._battleCryChangeAtackDamage);
+                    }
+                    //изменяем здоровье
+                    if (abilityInTarget == AbilityCurrentCard.ChangeHealt) 
+                    {
+                        foreach(BattleCryType cryType in _battleCryController._currentBattleCryTypes)
+                        {
+                            if (cryType == BattleCryType.DealDamage) //принимаем урон
+                            {
+                                _card_Controller.ChangeHealtValue(-_battleCryController._battleCryChangeHealth);                               
+                                if (_card_Model._healthCard <= 0)
+                                    _card_Controller.DiedCreature(); //событие смерти
+                            }                                
+
+                            if (cryType == BattleCryType.Heal)//лечим себя
+                            {
+                                _card_Controller.ChangeHealtValue(_battleCryController._battleCryChangeHealth);
+                                if (_card_Model._healthCard > _card_Model._maxHealtValue)
+                                    _card_Model._healthCard = _card_Model._maxHealtValue;
+                                _battleModeCard_View.UpdateViewCard();
+                                StartCoroutine(_battleModeCard_View.EffectParticle(_battleModeCard_View._healtEffect));
+                            }
+                            if(cryType == BattleCryType.RaiseParametrs)
+                            {
+                                _card_Model._maxHealtValue += _battleCryController._battleCryChangeHealth;
+                                _card_Controller.ChangeHealtValue(_battleCryController._battleCryChangeHealth);                                
+                                _battleModeCard_View.UpdateViewCard();
+                            }
+                        } 
+                    }
+                }               
             }
-            /*switch (card_SO._battleCryType)
-            {
-                // сделать вызов событий и подписать методы 
-                case BattleCryType.DealDamage: //получаем урон
-                    _card_Controller.ChangeHealtValue(card_SO._abilityChangeHealth);
-                    if (_card_Model._isBerserk)//если карта берсерк , увеличиваем свой дамаг
-                        _card_Controller.BerserkAbility();
-                    break;
-                case BattleCryType.RaiseParametrs: //повышаем параметры
-                    _card_Controller.ChangeAtackValue(card_SO._abilityChangeAtackDamage);
-                    _card_Controller.ChangeHealtValue(card_SO._abilityChangeHealth);
-                    StartCoroutine(_battleModeCard_View.EffectParticle(_battleModeCard_View._scaleEffect));//эффект повышение параметров
-                    break;
-                case BattleCryType.Heal://лечим существо                   
-                    _card_Controller.ChangeHealtValue(card_SO._abilityChangeHealth);
-                    StartCoroutine(_battleModeCard_View.EffectParticle(_battleModeCard_View._healtEffect));//эффект лечения
-                    break;                
-
-            }*/
-        }
-          
+        }      
     }
 }
