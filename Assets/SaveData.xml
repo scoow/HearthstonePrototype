@@ -52,4 +52,12 @@
     <CardId>301</CardId>
     <CardId>301</CardId>
   </DeckName>
+  <DeckName NameValue="звери" StateValue="Неактивная колода">
+    <CardId>5000</CardId>
+    <CardId>107</CardId>
+    <CardId>100</CardId>
+    <CardId>212</CardId>
+    <CardId>213</CardId>
+    <CardId>107</CardId>
+  </DeckName>
 </SaveDeckCollection>

@@ -33,6 +33,7 @@ namespace Hearthstone
                 && _isListen && _battleCryController._isActiveCry
                 && (_battleCryController._battleCryTargets_Active != Target.Self))//определяем цель боевого клича
             {   
+                
                 if(_battleCryController._idBattleCry != _card_Model._idCard) //исключаем применение боевого клича на себя
                 {                    
                     ApplyNewBattleCry();

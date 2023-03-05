@@ -71,6 +71,7 @@ namespace Hearthstone
                 if(_card_Model._battleCryTypes.Contains(BattleCryType.EventEffect))
                 {
                     _eventEffectController.AddEventEffect(_card_Model._idCard);
+                    _eventEffectController.ParsePutCardInBoard(this);
                 }
                               
             }  
@@ -149,10 +150,7 @@ namespace Hearthstone
                     break;
                 case AbilityCurrentCard.GetCard:
                     TakeAdditionalCard();
-                    break;
-                case AbilityCurrentCard.Berserk:
-
-                    break;
+                    break;                
             }          
         }
         private void PermanentEffectAbility()//постоянный эффект
@@ -213,6 +211,8 @@ namespace Hearthstone
         {            
             gameObject.SetActive(false);
             _permanentEffectController.RemovePermanentEffect(_card_Model._idCard);
+            _eventEffectController.RemoveEventEffect(_card_Model._idCard);
+            _eventEffectController.ParseDeathEvent(this);
         }
 
         #endregion        
