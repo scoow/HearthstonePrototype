@@ -47,7 +47,8 @@ namespace Hearthstone
         SummonAssistant,
         GetCardInDeck,
         PermanentEffect,
-        ActivateAbility
+        ActivateAbility,
+        EventEffect
     }
     /// <summary>
     /// Тип целей для боевого клича
@@ -81,6 +82,6 @@ namespace Hearthstone
         Charge,
         GetCard,
         ChangeHealt,
-        ChangeAtack
+        ChangeAtack        
     }
 }

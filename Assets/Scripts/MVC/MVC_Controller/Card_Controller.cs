@@ -11,10 +11,12 @@ namespace Hearthstone
         private Card_Model _card_Model;
         private BattleCry_Controller _battleCryController;
         private PermanentEffect_Controller _permanentEffectController;
+        private EventEffect_Controller _eventEffectController;
         private BattleModeCard_View _battleModeCardView;
         public bool _useBattleCray = false;
 
-        private Action OnActivateCard;        
+        private Action OnActivateCard;
+        
 
         private Board _board;
         //[Inject]
@@ -31,6 +33,7 @@ namespace Hearthstone
             _battleCryController = FindObjectOfType<BattleCry_Controller>();
             _battleModeCardView = FindObjectOfType<BattleModeCard_View>();
             _permanentEffectController = FindObjectOfType<PermanentEffect_Controller>();
+            _eventEffectController = FindObjectOfType<EventEffect_Controller>();
 
 
             OnActivateCard += ChoiseAbility;
@@ -60,8 +63,16 @@ namespace Hearthstone
                 OnActivateCard?.Invoke();
 
                 if(_card_Model._battleCryTypes.Contains(BattleCryType.PermanentEffect))
-                _permanentEffectController.AddEffect(_card_Model._idCard);
-                _permanentEffectController.GetActiveEffectInCard(this);               
+                {
+                    _permanentEffectController.AddPermanentEffect(_card_Model._idCard);
+                    _permanentEffectController.GetActivePermanentEffect(this);
+                }
+
+                if(_card_Model._battleCryTypes.Contains(BattleCryType.EventEffect))
+                {
+                    _eventEffectController.AddEventEffect(_card_Model._idCard);
+                }
+                              
             }  
         }
 
@@ -180,10 +191,10 @@ namespace Hearthstone
         }
 
         public void ChangeHealtValue(int incomingValue) //изменяем значение здоровья
-        {
+        {   
             _card_Model._healthCard += incomingValue;
             if (incomingValue < 0 && _card_Model._isBerserk) //если карта берсерк и здоровье уменьшилось, то увеличиваем атаку 
-                ChangeAtackValue(_card_Model._changeAtackValue);
+                ChangeAtackValue(_card_Model._changeAtackValue);            
             _battleModeCardView.UpdateViewCard();
         }
 
@@ -193,10 +204,15 @@ namespace Hearthstone
             ChangeHealtValue(_card_Model._сhangeHealthValue* multiplicationFactor);            
         }
 
+        public void BerserkAbility() 
+        {
+            ChangeAtackValue(_card_Model._changeAtackValue);
+        }
+
         public void DiedCreature() //смерть существа
         {            
             gameObject.SetActive(false);
-            _permanentEffectController.RemoveEffect(_card_Model._idCard);
+            _permanentEffectController.RemovePermanentEffect(_card_Model._idCard);
         }
 
         #endregion        

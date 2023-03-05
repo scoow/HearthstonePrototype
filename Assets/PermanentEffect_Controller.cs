@@ -22,23 +22,24 @@ public class PermanentEffect_Controller : MonoBehaviour
     }
 
 
-    public void AddEffect(int cardId) //добавить эффект в список и применить его на поле
+    public void AddPermanentEffect(int cardId) //добавить эффект в список и применить его на поле
     {
-        _activePermanentEffect.Add(cardId);        
-        AceptEffect(cardId);
+        //_activePermanentEffect.Add(cardId);        
+        AceptPermanentEffect(cardId);
     }
 
-    public void RemoveEffect(int cardId) //отменить эффект с карт и удалить его из списка
+    public void RemovePermanentEffect(int cardId) //отменить эффект с карт и удалить его из списка
     {
         CardSO_Model cardSO_Model = _pageBook_Model._cardsDictionary[cardId];
         UpdatePermanentEffect(cardId, -cardSO_Model._abilityChangeHealth, -cardSO_Model._abilityChangeAtack);
         _activePermanentEffect.Remove(cardId);
         
     }
-    private void AceptEffect(int cardId)
+    private void AceptPermanentEffect(int cardId) //применить эффект на картах которые стоят на поле
     {
         CardSO_Model cardSO_Model = _pageBook_Model._cardsDictionary[cardId];
-        UpdatePermanentEffect(cardId, cardSO_Model._abilityChangeHealth, cardSO_Model._abilityChangeAtack); //обновляем значения карт       
+        UpdatePermanentEffect(cardId, cardSO_Model._abilityChangeHealth, cardSO_Model._abilityChangeAtack); //обновляем значения карт
+        _activePermanentEffect.Add(cardId);                                                                                                   
     }
 
 
@@ -57,23 +58,11 @@ public class PermanentEffect_Controller : MonoBehaviour
             if((cardEffectId == 102 || cardEffectId == 107) && (cardSO_Model._targetsType == currentCard._minionType)) //баф карт 102 и 107
             {
                 _cardControllerArray[i].ChangeAtackValue(changeAtackValue);
-            }
-
-            if (cardEffectId == 309 && cardSO_Model._atackDamageCard <= 3) //баф карты 309
-            {
-                _cardControllerArray[i].ChargeAbility();
-            }
-
-
-
-
-
-            //_cardControllerArray[i].ChangeAtackValue(changeAtackValue);
-            //_cardControllerArray[i].ChangeHealtValue(changeHealthValue);
+            }            
         }
     }
 
-    public void GetActiveEffectInCard(Card_Controller cardController) //берём уже действующий эффект на столе
+    public void GetActivePermanentEffect(Card_Controller cardController) //берём уже действующий эффект на столе
     {    
         Card_Model currentCard = cardController.GetComponent<Card_Model>();
         if (_activePermanentEffect != null)
@@ -87,10 +76,12 @@ public class PermanentEffect_Controller : MonoBehaviour
                 {
                     cardController.ChangeAtackValue(cardSO_Model._abilityChangeAtack);
                 }
+
                 if (cardEffectId == 304)
                 {
                     cardController.ChangeAtackValue(cardSO_Model._abilityChangeAtack);
                 }
+
                 if (cardEffectId == 309 && cardSO_Model._atackDamageCard <= 3)
                 {
                     cardController.ChargeAbility();

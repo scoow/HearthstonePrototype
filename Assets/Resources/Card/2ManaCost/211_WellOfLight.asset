@@ -24,9 +24,9 @@ MonoBehaviour:
   _atackDamageCard: 0
   _healthCard: 5
   _cardClass: 4
-  _battleCryTypes: 0603
+  _battleCryTypes: 0803
   _abilityInTargetBattleCry: 07000000
-  _targets: 0
+  _targets: 3
   _targetsType: 0
   _minionType: 0
   _isProvocation: 0

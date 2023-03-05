@@ -10,6 +10,7 @@ namespace Hearthstone
     {
         private BattleCry_Controller _battleCryController;
         private BattleModeCard_View _battleModeCard_View;
+        private EventEffect_Controller _eventEffectController;
         private Card_Model _card_Model;
         private Card_Controller _card_Controller;
         [Inject]
@@ -19,6 +20,7 @@ namespace Hearthstone
         private void OnEnable()
         {
             _pageBook_Model = FindObjectOfType<PageBook_Model>(); //FindObjectOfType<PageBook_Model>();
+            _eventEffectController = FindObjectOfType<EventEffect_Controller>();
             _card_Model = GetComponent<Card_Model>();
             _card_Controller = GetComponent<Card_Controller>();
             _battleCryController = FindObjectOfType<BattleCry_Controller>();
@@ -69,6 +71,7 @@ namespace Hearthstone
                         {
                             if (cryType == BattleCryType.DealDamage) //принимаем урон
                             {
+                                _eventEffectController.ParseDamageEvent();
                                 _card_Controller.ChangeHealtValue(-_battleCryController._battleCryChangeHealth);                               
                                 if (_card_Model._healthCard <= 0)
                                     _card_Controller.DiedCreature(); //событие смерти
@@ -76,13 +79,15 @@ namespace Hearthstone
 
                             if (cryType == BattleCryType.Heal)//лечим себя
                             {
+                                if (_card_Model._healthCard < _card_Model._maxHealtValue)
+                                    _eventEffectController.ParseHealEvent(this);
                                 _card_Controller.ChangeHealtValue(_battleCryController._battleCryChangeHealth);
                                 if (_card_Model._healthCard > _card_Model._maxHealtValue)
                                     _card_Model._healthCard = _card_Model._maxHealtValue;
                                 _battleModeCard_View.UpdateViewCard();
                                 StartCoroutine(_battleModeCard_View.EffectParticle(_battleModeCard_View._healtEffect));
                             }
-                            if(cryType == BattleCryType.RaiseParametrs)
+                            if(cryType == BattleCryType.RaiseParametrs) //повышаем параметры
                             {
                                 _card_Model._maxHealtValue += _battleCryController._battleCryChangeHealth;
                                 _card_Controller.ChangeHealtValue(_battleCryController._battleCryChangeHealth);                                

@@ -23,7 +23,7 @@ MonoBehaviour:
   _atackDamageCard: 1
   _healthCard: 3
   _cardClass: 4
-  _battleCryTypes: 0605
+  _battleCryTypes: 0805
   _abilityInTargetBattleCry: 
   _targets: 1
   _targetsType: 0
@@ -36,5 +36,3 @@ MonoBehaviour:
   _isTakeCard: 0
   _abilityChangeHealth: 0
   _abilityChangeAtack: 0
-  _abilityChangeSpellDamage: 0
-  _abilityAddCardAmount: 0

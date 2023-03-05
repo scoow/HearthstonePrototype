@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2439,6 +2439,7 @@ GameObject:
   - component: {fileID: 1234533176}
   - component: {fileID: 1234533175}
   - component: {fileID: 1234533177}
+  - component: {fileID: 1234533178}
   m_Layer: 0
   m_Name: BattleCryController
   m_TagString: Untagged
@@ -2499,6 +2500,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerBoard: {fileID: 671665860}
   _activePermanentEffect: 
+--- !u!114 &1234533178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234533174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 413216cff84edf64a9cc8533eb564b7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerBoard: {fileID: 671665860}
+  _activeEventEffect: 
 --- !u!1 &1274440977
 GameObject:
   m_ObjectHideFlags: 0
