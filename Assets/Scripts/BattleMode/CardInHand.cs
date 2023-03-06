@@ -36,7 +36,7 @@ namespace Hearthstone
             }
 
             _tempCardGO.transform.position = transform.position;//временная карта
-            GetComponent<CanvasGroup>().blocksRaycasts = false;
+            //GetComponent<CanvasGroup>().blocksRaycasts = false;
             _layersRenderUp.LayerUp(50);
 
             BeginDrag?.Invoke(true);
@@ -64,7 +64,7 @@ namespace Hearthstone
             {
                 return;
             }
-            GetComponent<CanvasGroup>().blocksRaycasts = true;
+            //GetComponent<CanvasGroup>().blocksRaycasts = true;
             CardHolder _parent = transform.parent.GetComponent<CardHolder>();
             _layersRenderUp.LayerUp(-50);
             if (_parent is Hand)
