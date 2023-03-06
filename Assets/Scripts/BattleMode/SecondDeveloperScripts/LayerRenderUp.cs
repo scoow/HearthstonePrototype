@@ -10,14 +10,15 @@ namespace Hearthstone
         private SpriteRenderer _spriteFront;
         [SerializeField]
         private Canvas _canvas;
-        
+        [SerializeField]
+        private SpriteRenderer _cardEmission;
 
         public void LayerUp(int counter)
         {
             _spriteCard.sortingOrder += counter;
             _spriteFront.sortingOrder += counter;
-            _canvas.sortingOrder += counter; 
-            
+            _canvas.sortingOrder += counter;
+            //_cardEmission.sortingOrder += counter;
         }
         /*public void LayerLastSpriteUp()
         {

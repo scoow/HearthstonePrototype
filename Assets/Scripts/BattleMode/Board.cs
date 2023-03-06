@@ -3,13 +3,15 @@ using UnityEngine.EventSystems;
 using System.Linq;
 using System.Collections.Generic;
 using System;
+using Zenject;
 
 namespace Hearthstone
 {
     public class Board : CardHolder, IPointerEnterHandler, IPointerExitHandler
     {
         private Camera _camera;
-        private GameObject _tempMinionGO;
+        [Inject]
+        private TempMinion_Marker _tempMinionGO;
 
         private bool _draggingCard; //несём ли карту
         private bool _rightCard; //добавление карты справа?
@@ -19,7 +21,7 @@ namespace Hearthstone
         private void Awake()
         {
             _camera = Camera.main;
-            _tempMinionGO = GameObject.Find("TempMinion");
+            //_tempMinionGO = GameObject.Find("TempMinion");
         }
         /// <summary>
         /// Подписка всех карт на событие. Если взяли карту - отображать место для сброса карты на поле
@@ -44,6 +46,7 @@ namespace Hearthstone
             if (_cardsList.Count > 7) return;
 
             base.AddCard(card);
+            var _cardInHand = card.gameObject.AddComponent<Minion>();
             EndDragCard?.Invoke(transform); ///событие для смены отображения карты
         }
         /// <summary>

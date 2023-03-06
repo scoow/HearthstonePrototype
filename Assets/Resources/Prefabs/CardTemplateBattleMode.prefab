@@ -529,6 +529,7 @@ MonoBehaviour:
   _spriteCard: {fileID: 1716541606589815585}
   _spriteFront: {fileID: 1716541606833526623}
   _canvas: {fileID: 3581428110877527656}
+  _cardEmission: {fileID: 9122684252080428271}
 --- !u!1 &1720805814630253066
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,7 +1139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7197990436323605909
 Transform:
   m_ObjectHideFlags: 0

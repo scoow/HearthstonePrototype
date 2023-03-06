@@ -9,7 +9,7 @@ namespace Hearthstone
     {
         private Camera _camera;
         private LayerRenderUp _layersRenderUp;
-        private GameObject _tempCardGO;
+        private TempCard_Marker _tempCardGO;
 
         public Transform parent;
         [Inject]
@@ -22,7 +22,7 @@ namespace Hearthstone
         private void Awake()
         {
             _camera = Camera.main;
-            _tempCardGO = GameObject.Find("TempCard");
+            _tempCardGO = FindObjectOfType<TempCard_Marker>();
             _layersRenderUp = GetComponent<LayerRenderUp>();
             _side = GetComponent<BattleModeCard>().GetSide();
             _mana_Controller = FindObjectOfType<Mana_Controller>();//Zenject не сработал. ѕочему?
@@ -35,8 +35,7 @@ namespace Hearthstone
                 return;
             }
 
-            _tempCardGO.transform.position = transform.position;//временна€ карта
-            //GetComponent<CanvasGroup>().blocksRaycasts = false;
+            _tempCardGO.gameObject.transform.position = transform.position;//временна€ карта
             _layersRenderUp.LayerUp(50);
 
             BeginDrag?.Invoke(true);
@@ -64,7 +63,6 @@ namespace Hearthstone
             {
                 return;
             }
-            //GetComponent<CanvasGroup>().blocksRaycasts = true;
             CardHolder _parent = transform.parent.GetComponent<CardHolder>();
             _layersRenderUp.LayerUp(-50);
             if (_parent is Hand)

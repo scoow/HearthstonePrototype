@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using Zenject;
 
 namespace Hearthstone
@@ -22,6 +23,9 @@ namespace Hearthstone
         private List<Hand> _hands;
         private Hand _firstPlayerHand;
         private Hand _secondPlayerHand;
+
+        private TempCard_Marker _tempCardGO;
+        private TempMinion_Marker _tempMinionGO;
         /// <summary>
         /// Находит нужные объекты на сцене и помещает в DI-контейнер
         /// </summary>
@@ -43,6 +47,9 @@ namespace Hearthstone
             _firstPlayerHand = _hands.Where(hand => hand._side == Players.First).FirstOrDefault();
             _secondPlayerHand = _hands.Where(hand => hand._side == Players.Second).FirstOrDefault();
 
+            _tempCardGO = FindObjectOfType<TempCard_Marker>();
+            _tempMinionGO = FindObjectOfType<TempMinion_Marker>();
+
             //секция внедрения ссылок на объекты в контейнер Zenject
             Container.BindInstance(_pageBook_Model).AsSingle();
             Container.BindInstance(_loadDeck_Controller).AsSingle();
@@ -54,6 +61,9 @@ namespace Hearthstone
             Container.BindInstance(_secondPlayerBoard).WithId("Second");
             Container.BindInstance(_firstPlayerHand).WithId("First");
             Container.BindInstance(_secondPlayerHand).WithId("Second");
+
+            Container.BindInstance(_tempCardGO).AsSingle();
+            Container.BindInstance(_tempMinionGO).AsSingle();
         }
     }
 }
