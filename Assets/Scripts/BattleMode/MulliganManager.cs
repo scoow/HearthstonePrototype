@@ -224,6 +224,11 @@ namespace Hearthstone
             var card = _currentDeck.ElementAt(_nextCardInDeckNumber);
             _ = card.MoveCardAsync(card.transform.position, _currentHand.GetLastCardPosition(), _time);
 
+            var _cardInHand = card.AddComponent<CardInHand>();
+
+            _cardInHand.SetParent(_currentHand);
+            _currentHand.AddCard(_cardInHand);
+
         }
         private void Update()//тест взятия 
         {

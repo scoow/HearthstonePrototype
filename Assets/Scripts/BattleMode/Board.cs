@@ -60,11 +60,15 @@ namespace Hearthstone
             }
             else
             {
-                //newPosition.position = _rightCard ? _cardsList.Max(x => x.transform.position) : _cardsList.Min(x => x.transform.position);
-                newPosition += _rightCard ? new Vector3(_offset * _cardsList.Count, transform.position.y, transform.position.z) : new Vector3(-_offset * _cardsList.Count, transform.position.y, transform.position.z);
+                newPosition = _rightCard ? _cardsList.First(x => x.transform.position.x == _cardsList.Max(x => x.transform.position.x)).transform.position : _cardsList.First(x => x.transform.position.x == _cardsList.Min(x => x.transform.position.x)).transform.position;
+                newPosition += _rightCard ? new Vector3(_offset, 0, 0) : new Vector3(-_offset, 0, 0);
             }
             return newPosition;
         }
+        /// <summary>
+        /// ƒобавление карты на стол
+        /// </summary>
+        /// <param name="eventData"></param>
         public override void OnDrop(PointerEventData eventData)//вынести в класс-родитель
         {
             if (!eventData.pointerDrag.TryGetComponent<CardInHand>(out var card)) return;
@@ -73,6 +77,22 @@ namespace Hearthstone
             {
                 _parent.RemoveCard(card);
                 card.transform.position = GetLastCardPosition();
+                
+                if (_rightCard)
+                {
+                    foreach (var c in _cardsList)
+                    {
+                        c.transform.position -= new Vector3(_offset/2 , 0, 0);
+                    }
+                }
+                else
+                {
+                    foreach (var c in _cardsList)
+                    {
+                        c.transform.position += new Vector3(_offset/2 , 0, 0);
+                    }
+                }
+
                 AddCard(card);
             }
         }
