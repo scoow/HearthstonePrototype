@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class EventEffect_Controller : MonoBehaviour
 {
+    private Mana_Controller _manaController;
     private PageBook_Model _pageBook_Model;
     //private int _lastEffect;
     [SerializeField] private Transform _playerBoard;
+    [SerializeField] private Transform _enemyBoard;
+
 
     /// <summary>
     /// список эффектов по событию
@@ -17,6 +20,13 @@ public class EventEffect_Controller : MonoBehaviour
     private void OnEnable()
     {
         _pageBook_Model = FindObjectOfType<PageBook_Model>();
+        _manaController = FindObjectOfType<Mana_Controller>();
+        _manaController.OnChangeTurn += ParseChangeTurnEvent;
+    }
+
+    private void OnDisable()
+    {
+        _manaController.OnChangeTurn -= ParseChangeTurnEvent;
     }
 
     public void AddEventEffect(int cardId) //добавить эффект в список
@@ -129,5 +139,34 @@ public class EventEffect_Controller : MonoBehaviour
             вызвать событие - если активен эффект 213 и это зверь, то взять карту
              */
         }
+    }
+
+
+    public void ParseChangeTurnEvent(Players playersTurn)
+    {
+        Card_Model[] _cardControllerArray = _playerBoard.GetComponentsInChildren<Card_Model>(); //все карты на столе
+        if(_cardControllerArray == null) return;
+        
+
+        foreach(Card_Model card_Model1 in _cardControllerArray)
+        {            
+            if(card_Model1._idCard == 211 && ((playersTurn == Players.First && card_Model1.transform.parent == _playerBoard) || (playersTurn == Players.Second && card_Model1.transform.parent == _enemyBoard)))
+            {
+
+                List<Card_Model> tempListCardModel = new List<Card_Model>(); //временный лист раненых
+                foreach (Card_Model card_Model2 in _cardControllerArray)
+                {                    
+                    if(card_Model2._healthCard < card_Model2._maxHealtValue)
+                    {
+                        tempListCardModel.Add(card_Model2);
+                    }
+                    
+                }
+                int indexWounded = Random.Range(0, tempListCardModel.Count); //выбираем счастливчика
+                tempListCardModel[indexWounded].GetComponent<Card_Controller>().ChangeHealtValue(card_Model1._сhangeHealthValue, ChangeHealthType.Healing); //лечим его
+
+            }
+        }
+        
     }
 }

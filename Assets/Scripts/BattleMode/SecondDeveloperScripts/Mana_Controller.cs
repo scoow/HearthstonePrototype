@@ -13,6 +13,7 @@ namespace Hearthstone
         public Players _playersTurn;
         public Action<int> ChangeManaValue;
         private EndTurnButton _endTurnButton;//кнопка конца хода
+        public Action<Players> OnChangeTurn;
 
         [HideInInspector] public int _onePlayermanaCount;
         [HideInInspector] public int _twoPlayermanaCount;
@@ -38,6 +39,7 @@ namespace Hearthstone
                 _playersTurn = Players.Second;
                 AddCristal(_playersTurn);
                 ChangeManaValue?.Invoke(_twoPlayermanaCount);
+                OnChangeTurn?.Invoke(Players.Second);
                 return;
             }
 
@@ -46,6 +48,7 @@ namespace Hearthstone
                 _playersTurn = Players.First;
                 AddCristal(_playersTurn);
                 ChangeManaValue?.Invoke(_onePlayermanaCount);
+                OnChangeTurn?.Invoke(Players.First);
                 return;
             }
         }

@@ -192,6 +192,27 @@ namespace Hearthstone
             _battleModeCardView.UpdateViewCard();
         }
 
+        public void ChangeHealtValue(int incomingValue, ChangeHealthType changeHealthType) //алтернативный вариант //////////////////////////////////////////
+        {
+            if(changeHealthType == ChangeHealthType.DealDamage)
+            {
+                ChangeHealtValue(-incomingValue);
+                _singleEffect_Controller.ApplyEffect(this);
+                if (_card_Model._healthCard <= 0)
+                    DiedCreature(); //событие смерти
+            }
+
+            if(changeHealthType == ChangeHealthType.Healing)
+            {
+                ChangeHealtValue(incomingValue);
+                if (_card_Model._healthCard > _card_Model._maxHealtValue)
+                    _card_Model._healthCard = _card_Model._maxHealtValue;
+
+                _singleEffect_Controller.ApplyEffect(this);
+                _battleModeCardView.UpdateViewCard();
+            }
+        }
+
         public void UpdateSelfParametrs(int multiplicationFactor) //увеличение своих параметров в зависимости от колличества дружеских карт на столе
         {
             ChangeAtackValue(_card_Model._changeAtackValue* multiplicationFactor);

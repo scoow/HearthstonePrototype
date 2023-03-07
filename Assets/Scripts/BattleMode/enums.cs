@@ -64,7 +64,8 @@ namespace Hearthstone
         AllFriends,
         All,
         MinionType,
-        Hero
+        Hero,
+        SingleFriendByCondition
     }
     public enum MinionType
     {
@@ -84,5 +85,12 @@ namespace Hearthstone
         GetCard,
         ChangeHealt,
         ChangeAtack        
+    }
+
+    public enum ChangeHealthType
+    {
+        Healing,
+        DealDamage,
+        RaiseParametrs
     }
 }

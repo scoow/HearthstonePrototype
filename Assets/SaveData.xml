@@ -45,11 +45,11 @@
     <CardId>206</CardId>
     <CardId>203</CardId>
   </DeckName>
-  <DeckName NameValue="cdtn" StateValue="Выбранная колода">
+  <DeckName NameValue="хил" StateValue="Выбранная колода">
     <CardId>9000</CardId>
+    <CardId>211</CardId>
+    <CardId>301</CardId>
     <CardId>100</CardId>
-    <CardId>104</CardId>
-    <CardId>100</CardId>
-    <CardId>407</CardId>
+    <CardId>301</CardId>
   </DeckName>
 </SaveDeckCollection>
