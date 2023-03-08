@@ -48,7 +48,7 @@ namespace Hearthstone
                 return;
             }
 
-            _tempCardGO.gameObject.transform.position = transform.position;//временна€ карта
+            _tempCardGO.gameObject.transform.position = transform.position - new Vector3(0, 0, 5f); ;//временна€ карта
             _layersRenderUp.LayerUp(50);
 
             BeginDrag?.Invoke(true);
@@ -58,6 +58,7 @@ namespace Hearthstone
         {
             if (_cancelDrag)//≈сли не наш ход - нельз€ схватить карту
             {
+                OnEndDrag(eventData);
                 return;
             }
             Vector3 newPosition = eventData.position;
@@ -72,14 +73,15 @@ namespace Hearthstone
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            if (_cancelDrag)//≈сли не наш ход - нельз€ схватить карту
+/*            if (_cancelDrag)//≈сли не наш ход - нельз€ схватить карту
             {
                 return;
-            }
+            }*/
             CardHolder _parent = transform.parent.GetComponent<CardHolder>();
             _layersRenderUp.LayerUp(-50);
             if (_parent is Hand)
             {
+                //transform.position = new Vector3(transform.position.x, transform.position.y, 1f);
                 transform.position = _tempCardGO.transform.position;
             }
             _tempCardGO.transform.position = new Vector3(100, 0);//”бираем временную карту за пределы экрана

@@ -34,9 +34,10 @@ namespace Hearthstone
             int stepUpdatePage = pageCounter * card_ModelArrey.Length;
             for (int i = 0; i <= card_ModelArrey.Length-1; i++)
             {
-                CardSO_Model tempCard_SO = cardSO[i + stepUpdatePage];
-                if(tempCard_SO != null)
+
+                if (i + stepUpdatePage >= cardSO.Count) return;
                 {
+                    CardSO_Model tempCard_SO = cardSO[i + stepUpdatePage];
                     card_ModelArrey[i].gameObject.SetActive(true);                    
                     card_ModelArrey[i]._spriteCard = cardSO[i + stepUpdatePage]._spriteCard;
                     card_ModelArrey[i]._cardClassInDeck = cardSO[i + stepUpdatePage]._cardClass;
