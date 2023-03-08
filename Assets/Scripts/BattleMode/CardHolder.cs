@@ -10,7 +10,7 @@ namespace Hearthstone
     public class CardHolder : MonoBehaviour, IDropHandler
     {
         public Players _side;
-        protected List<CardInHand> _cardsList;//сделать serializable
+        protected List<Card> _cardsList;//сделать serializable
         //protected Vector3 _lastPosition;
 
         //todo добавить ссылку на временную карту для корректной обработки взятия из руки
@@ -40,7 +40,7 @@ namespace Hearthstone
         /// <summary>
         /// добавить карту в руку
         /// </summary>
-        public virtual void AddCard(CardInHand card)
+        public virtual void AddCard(Card card)
         {
             /*Transform newPosition = GetLastCardPosition();
             newPosition.position += new Vector3(_offset, 0);*/
@@ -51,7 +51,7 @@ namespace Hearthstone
         /// <summary>
         /// убрать карту из руки
         /// </summary>
-        public void RemoveCard(CardInHand card)
+        public void RemoveCard(Card card)
         {
             if (_cardsList.Count > 0)
             {
@@ -70,7 +70,7 @@ namespace Hearthstone
         }
         public virtual void OnDrop(PointerEventData eventData)
         {
-            if (!eventData.pointerDrag.TryGetComponent<CardInHand>(out var card)) return;
+            if (!eventData.pointerDrag.TryGetComponent<Card>(out var card)) return;
             var _parent = card.transform.parent.GetComponent<CardHolder>();
             if (_parent != this)
             {

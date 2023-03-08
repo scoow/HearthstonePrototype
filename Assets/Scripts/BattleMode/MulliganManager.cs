@@ -181,7 +181,9 @@ namespace Hearthstone
                 await UniTask.Delay(TimeSpan.FromSeconds(0.1));
                 if (side == Players.Second)
                     position.gameObject.SetActive(false);
-                var _cardInHand = _card.AddComponent<CardInHand>();
+
+                var _cardInHand = _card.GetComponent<Card>();
+                _cardInHand.ChangeState(CardState.Hand);
 
                 _cardInHand.SetParent(_currentHand);
                 _currentHand.AddCard(_cardInHand);
@@ -224,7 +226,7 @@ namespace Hearthstone
             var card = _currentDeck.ElementAt(_nextCardInDeckNumber);
             _ = card.MoveCardAsync(card.transform.position, _currentHand.GetLastCardPosition(), _time);
 
-            var _cardInHand = card.AddComponent<CardInHand>();
+            var _cardInHand = card.AddComponent<Card>();
 
             _cardInHand.SetParent(_currentHand);
             _currentHand.AddCard(_cardInHand);

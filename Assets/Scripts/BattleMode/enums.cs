@@ -93,4 +93,10 @@ namespace Hearthstone
         DealDamage,
         RaiseParametrs
     }
+    public enum CardState
+    {
+        Deck,
+        Hand,
+        Board
+    }
 }

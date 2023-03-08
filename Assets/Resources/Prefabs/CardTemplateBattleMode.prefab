@@ -382,6 +382,7 @@ GameObject:
   - component: {fileID: 1391922997}
   - component: {fileID: 2323716001448710003}
   - component: {fileID: 3753996020665545829}
+  - component: {fileID: 723180506033140231}
   m_Layer: 0
   m_Name: CardTemplateBattleMode
   m_TagString: CardTemplate
@@ -530,6 +531,19 @@ MonoBehaviour:
   _spriteFront: {fileID: 1716541606833526623}
   _canvas: {fileID: 3581428110877527656}
   _cardEmission: {fileID: 9122684252080428271}
+--- !u!114 &723180506033140231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716541608145100750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0141f834b611253449fd51ba26a65642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 0}
 --- !u!1 &1720805814630253066
 GameObject:
   m_ObjectHideFlags: 0

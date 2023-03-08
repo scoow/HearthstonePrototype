@@ -6,7 +6,7 @@ namespace Hearthstone
 {
     public class Hand : CardHolder
     {
-        public override void AddCard(CardInHand card)
+        public override void AddCard(Card card)
         {
             if (_cardsList.Count > 10) return;
 

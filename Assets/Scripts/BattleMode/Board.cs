@@ -31,7 +31,7 @@ namespace Hearthstone
         {
             foreach (BattleModeCard BattleModeCard in BattleModeCards)
             {
-                CardInHand card = BattleModeCard.GetComponent<CardInHand>();
+                Card card = BattleModeCard.GetComponent<Card>();
                 if (card != null)
                 {
                     card.BeginDrag += ReactionToCardDragging;
@@ -42,12 +42,13 @@ namespace Hearthstone
         {
             _draggingCard = drag;
         }
-        public override void AddCard(CardInHand card)
+        public override void AddCard(Card card)
         {
             if (_cardsList.Count > 7) return;
 
             base.AddCard(card);
-            var _cardInHand = card.gameObject.AddComponent<Minion>();
+            //var _cardInHand = card.gameObject.AddComponent<Minion>();
+            card.ChangeState(CardState.Board);
             EndDragCard?.Invoke(transform); ///событие для смены отображения карты
         }
         /// <summary>
@@ -75,7 +76,7 @@ namespace Hearthstone
         /// <param name="eventData"></param>
         public override void OnDrop(PointerEventData eventData)//вынести в класс-родитель
         {
-            if (!eventData.pointerDrag.TryGetComponent<CardInHand>(out var card)) return;
+            if (!eventData.pointerDrag.TryGetComponent<Card>(out var card)) return;
             var _parent = card.transform.parent.GetComponent<CardHolder>();
             if (_parent != this)
             {
@@ -130,10 +131,10 @@ namespace Hearthstone
         }
         private void OnDisable()
         {
-            List<CardInHand> _allCards;
-            _allCards = new List<CardInHand>();
-            _allCards = FindObjectsOfType<CardInHand>().ToList();
-            foreach (CardInHand card in _allCards)
+            List<Card> _allCards;
+            _allCards = new List<Card>();
+            _allCards = FindObjectsOfType<Card>().ToList();
+            foreach (Card card in _allCards)
             {
                 if (card != null)
                     card.BeginDrag -= ReactionToCardDragging;
