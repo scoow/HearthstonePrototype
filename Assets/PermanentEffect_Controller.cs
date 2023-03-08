@@ -58,7 +58,12 @@ public class PermanentEffect_Controller : MonoBehaviour
             if((cardEffectId == 102 || cardEffectId == 107) && (cardSO_Model._targetsType == currentCard._minionType)) //баф карт 102 и 107
             {
                 _cardControllerArray[i].ChangeAtackValue(changeAtackValue);
-            }            
+            }
+            
+            if(cardEffectId == 304)
+            {
+                _cardControllerArray[i].ChangeAtackValue(changeAtackValue);
+            }
         }
     }
 

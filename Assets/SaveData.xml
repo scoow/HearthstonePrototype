@@ -22,34 +22,26 @@
     <CardId>301</CardId>
     <CardId>208</CardId>
   </DeckName>
-  <DeckName NameValue="мурлок" StateValue="Неактивная колода">
+  <DeckName NameValue="dfgdg" StateValue="Неактивная колода">
     <CardId>1000</CardId>
-    <CardId>102</CardId>
-    <CardId>103</CardId>
-    <CardId>101</CardId>
-    <CardId>202</CardId>
+    <CardId>309</CardId>
+    <CardId>308</CardId>
+    <CardId>310</CardId>
+    <CardId>208</CardId>
   </DeckName>
-  <DeckName NameValue="вапва" StateValue="Неактивная колода">
+  <DeckName NameValue="hfg" StateValue="Неактивная колода">
+    <CardId>2000</CardId>
+    <CardId>500</CardId>
+    <CardId>502</CardId>
+    <CardId>503</CardId>
+    <CardId>602</CardId>
+  </DeckName>
+  <DeckName NameValue="dfg" StateValue="Выбранная колода">
     <CardId>1000</CardId>
-    <CardId>101</CardId>
-    <CardId>100</CardId>
-    <CardId>203</CardId>
-    <CardId>206</CardId>
-  </DeckName>
-  <DeckName NameValue="ыва" StateValue="Неактивная колода">
-    <CardId>9000</CardId>
-    <CardId>101</CardId>
-    <CardId>106</CardId>
     <CardId>100</CardId>
     <CardId>104</CardId>
-    <CardId>206</CardId>
-    <CardId>203</CardId>
-  </DeckName>
-  <DeckName NameValue="хил" StateValue="Выбранная колода">
-    <CardId>9000</CardId>
-    <CardId>211</CardId>
-    <CardId>301</CardId>
-    <CardId>100</CardId>
-    <CardId>301</CardId>
+    <CardId>502</CardId>
+    <CardId>405</CardId>
+    <CardId>402</CardId>
   </DeckName>
 </SaveDeckCollection>

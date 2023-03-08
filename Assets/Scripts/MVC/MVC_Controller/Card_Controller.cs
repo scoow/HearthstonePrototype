@@ -181,7 +181,8 @@ namespace Hearthstone
         {
             _card_Model._atackDamageCard += incomingValue;
             _card_Model._maxAtackValue += incomingValue;
-            _battleModeCardView.UpdateViewCard();                 
+            _battleModeCardView.UpdateViewCard();
+            
         }
 
         public void ChangeHealtValue(int incomingValue) //изменяем значение здоровья
@@ -209,6 +210,7 @@ namespace Hearthstone
                     _card_Model._healthCard = _card_Model._maxHealtValue;
 
                 _singleEffect_Controller.ApplyEffect(this);
+                StartCoroutine(_battleModeCardView.EffectParticle(_battleModeCardView._healtEffect));
                 _battleModeCardView.UpdateViewCard();
             }
         }

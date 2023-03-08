@@ -133,6 +133,16 @@ public class EventEffect_Controller : MonoBehaviour
                         }
                     }
                 }
+
+                if (cardEffectId == 501)
+                {
+                    CardSO_Model card_Model = _pageBook_Model._cardsDictionary[cardEffectId];
+                    foreach (Card_Controller cardController in _cardControllerArray)
+                    {
+                        cardController.ChangeHealtValue(card_Model._abilityChangeHealth,ChangeHealthType.Healing);                        
+                    }
+                }
+
             }
             /*
              ставим новую карту
