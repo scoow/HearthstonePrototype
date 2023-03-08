@@ -11,12 +11,14 @@ namespace Hearthstone
         [SerializeField]
         private Transform _onePlayerMana, _twoPlayerMana;
         public Players _playersTurn;
-        public Action<int> ChangeManaValue;
+        public Action<int, int> ChangeManaValue;
         private EndTurnButton _endTurnButton;//кнопка конца хода
         public Action<Players> OnChangeTurn;
 
-        [HideInInspector] public int _onePlayermanaCount;
-        [HideInInspector] public int _twoPlayermanaCount;
+        [HideInInspector] public int _onePlayerCrystalCount;
+        [HideInInspector] public int _twoPlayerCrystalCount;
+        private int _onePlayerManaCount = 1;
+        private int _twoPlayerManaCount = 0;
 
         private int _playermanaMaxValue = 10;
 
@@ -36,50 +38,91 @@ namespace Hearthstone
         {
             if (_playersTurn == Players.First)
             {
+                
                 _playersTurn = Players.Second;
                 AddCristal(_playersTurn);
-                ChangeManaValue?.Invoke(_twoPlayermanaCount);
+                RestoreMana(_playersTurn);
+
+                ChangeManaValue?.Invoke(_twoPlayerManaCount, _twoPlayerCrystalCount);
                 OnChangeTurn?.Invoke(Players.Second);
                 return;
             }
 
             if (_playersTurn == Players.Second)
             {
+                
                 _playersTurn = Players.First;
                 AddCristal(_playersTurn);
-                ChangeManaValue?.Invoke(_onePlayermanaCount);
+                RestoreMana(_playersTurn);
+
+                ChangeManaValue?.Invoke(_onePlayerManaCount, _onePlayerCrystalCount);
                 OnChangeTurn?.Invoke(Players.First);
                 return;
             }
+            
         }
 
         private void AddCristal(Players playersTurn)
         {
             switch (playersTurn)
             {
-                case Players.First: CreateCristal(_onePlayerMana, ref _onePlayermanaCount); break;
-                case Players.Second: CreateCristal(_twoPlayerMana, ref _twoPlayermanaCount); break;
+                case Players.First: CreateCrystal(_onePlayerMana, ref _onePlayerCrystalCount); break;
+                case Players.Second: CreateCrystal(_twoPlayerMana, ref _twoPlayerCrystalCount); break;
             }
         }
 
-        private void CreateCristal(Transform parent, ref int manaCounter)
+        private void CreateCrystal(Transform parent, ref int manaCounter)
         {
             if (manaCounter < _playermanaMaxValue)
             {
                 manaCounter++;
-                ManaCristal cristal = Instantiate(_manaCristalPrefab, parent);
+                ManaCristal crystal = Instantiate(_manaCristalPrefab, parent);
             }
         }
+        /// <summary>
+        /// Восстановить ману в начале хода
+        /// </summary>
+        /// <param name="player"></param>
+        private void RestoreMana(Players player)
+        {
+            switch (player)
+            {
+                case Players.First:
+                    _onePlayerManaCount = _onePlayerCrystalCount;
+                    ChangeManaValue?.Invoke(_onePlayerManaCount, _onePlayerCrystalCount);
+                    break;
+                case Players.Second:
+                    _twoPlayerManaCount = _twoPlayerCrystalCount;
+                    ChangeManaValue?.Invoke(_twoPlayerManaCount, _twoPlayerCrystalCount);
+                    break;
+            }
+            //Debug.Log("Ходит " + _playersTurn + " У первого игрока " + _onePlayerManaCount + " маны, а у второго - " + _twoPlayerManaCount);
+        }
+
+        public void SpendMana(Players player, int manacost)
+        {
+            switch (player)
+            {
+                case Players.First:
+                    _onePlayerManaCount -= manacost;
+                    break;
+                case Players.Second:
+                    _twoPlayerManaCount -= manacost;
+                    break;
+
+            }
+        }
+
         public int GetManaCount(Players player)
         {
             int result = 0;
             switch (player)
             {
                 case Players.First:
-                    result = _onePlayermanaCount;
+                    result = _onePlayerManaCount;
                     break;
                 case Players.Second:
-                    result = _twoPlayermanaCount;
+                    result = _twoPlayerManaCount;
                     break;
             }
             return result;

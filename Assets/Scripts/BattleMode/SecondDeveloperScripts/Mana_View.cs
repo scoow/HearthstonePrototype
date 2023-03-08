@@ -6,27 +6,33 @@ namespace Hearthstone
 {
     public class Mana_View : MonoBehaviour
     {
-        [SerializeField] Text _textManaOnePlayer;
-        [SerializeField] Text _textManaTwoPlayer;
+        [SerializeField] Text _textCrystalOnePlayer;
+        [SerializeField] Text _textCrystalTwoPlayer;
         [Inject]
         private Mana_Controller _controller;
 
         private void OnEnable()
         {
-            _textManaOnePlayer.text = "1";
-            _textManaTwoPlayer.text = "0";
-            _controller.ChangeManaValue += UpdateTextManaValue;
+            _textCrystalOnePlayer.text = "1/1";
+            _textCrystalOnePlayer.text = "0/0";
+            _controller.ChangeManaValue += UpdateTextCrystalsValue;
         }
 
         private void OnDisable()
         {
-            _controller.ChangeManaValue -= UpdateTextManaValue;
+            _controller.ChangeManaValue -= UpdateTextCrystalsValue;
         }
 
-        private void UpdateTextManaValue(int value)
+        private void UpdateTextCrystalsValue(int mana, int crystals)
         {
-            if (_controller._playersTurn == Players.First) _textManaOnePlayer.text = value.ToString();
-            if (_controller._playersTurn == Players.Second) _textManaTwoPlayer.text = value.ToString();
+            if (_controller._playersTurn == Players.First)
+            {
+                _textCrystalOnePlayer.text = mana + "/" + crystals.ToString();
+            }
+            if (_controller._playersTurn == Players.Second)
+            {
+                _textCrystalTwoPlayer.text = mana + "/" + crystals.ToString(); 
+            }
         }
     }
 }
