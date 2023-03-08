@@ -105,9 +105,11 @@ namespace Hearthstone
             {
                 case Players.First:
                     _onePlayerManaCount -= manacost;
+                    ChangeManaValue?.Invoke(_onePlayerManaCount, _onePlayerCrystalCount);
                     break;
                 case Players.Second:
                     _twoPlayerManaCount -= manacost;
+                    ChangeManaValue?.Invoke(_twoPlayerManaCount, _twoPlayerCrystalCount);
                     break;
 
             }

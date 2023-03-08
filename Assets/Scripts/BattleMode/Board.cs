@@ -12,7 +12,8 @@ namespace Hearthstone
         private Camera _camera;
         [Inject]
         private TempMinion_Marker _tempMinionGO;
-
+        [Inject]
+        private Mana_Controller _mana_Controller;
         private bool _draggingCard; //несём ли карту
         private bool _rightCard; //добавление карты справа?
 
@@ -95,7 +96,7 @@ namespace Hearthstone
                         c.transform.position += new Vector3(_offset/2 , 0, 0);
                     }
                 }
-
+                _mana_Controller.SpendMana(_side, card.GetComponent<Card_Model>().GetManaCostCard());// вычесть ману
                 AddCard(card);
             }
         }

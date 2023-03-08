@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Hearthstone
 {
-    public class CardInHand : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+    public class CardInHand : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler, IPointerExitHandler
     {
         private Camera _camera;
         private LayerRenderUp _layersRenderUp;
@@ -79,6 +79,20 @@ namespace Hearthstone
         public void SetParent(CardHolder cardHolder)
         {
             parent = transform.parent = cardHolder.transform;
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            _layersRenderUp.LayerUp(50);
+            transform.localScale *= 1.2f;
+            transform.position += new Vector3(0, 0, 5f);
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            _layersRenderUp.LayerUp(-50);
+            transform.localScale /= 1.2f;
+            transform.position -= new Vector3(0, 0, 5f);
         }
     }
 }
