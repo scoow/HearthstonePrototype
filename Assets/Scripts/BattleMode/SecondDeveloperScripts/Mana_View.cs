@@ -14,7 +14,7 @@ namespace Hearthstone
         private void OnEnable()
         {
             _textCrystalOnePlayer.text = "1/1";
-            _textCrystalOnePlayer.text = "0/0";
+            _textCrystalTwoPlayer.text = "0/0";
             _controller.ChangeManaValue += UpdateTextCrystalsValue;
         }
 

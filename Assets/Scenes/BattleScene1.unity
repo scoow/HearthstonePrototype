@@ -3101,7 +3101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f00886b8c902c46a9af3e9f4a23417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _time: 2
+  _time: 0.5
   _playerDeck: {fileID: 103206867}
   _enemyDeck: {fileID: 143047460}
 --- !u!1 &1604529404

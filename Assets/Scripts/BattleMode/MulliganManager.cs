@@ -176,14 +176,15 @@ namespace Hearthstone
             {
                 _card = _currentCards[i];
                 //Debug.Log(_currentHand.GetLastCardPosition().position.ToString());
-                _ = _card.MoveCardAsync(position.transform.position, _currentHand.GetLastCardPosition(), _time);
+                bool moved = await _card.MoveCardAsync(position.transform.position, _currentHand.GetLastCardPosition(), _time);
 
                 await UniTask.Delay(TimeSpan.FromSeconds(0.1));
                 if (side == Players.Second)
                     position.gameObject.SetActive(false);
 
+                //await UniTask.Delay(TimeSpan.FromSeconds(_time));
                 var _cardInHand = _card.GetComponent<Card>();
-                _cardInHand.ChangeState(CardState.Hand);
+                if (moved) _cardInHand.ChangeState(CardState.Hand);
 
                 _cardInHand.SetParent(_currentHand);
                 _currentHand.AddCard(_cardInHand);

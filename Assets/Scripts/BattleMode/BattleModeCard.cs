@@ -38,7 +38,7 @@ namespace Hearthstone
         /// <param name="end"></param>
         /// <param name="time"></param>
         /// <returns></returns>
-        public async UniTaskVoid MoveCardAsync(Vector3 start, Vector3 end, float time)
+        public async UniTask<bool> MoveCardAsync(Vector3 start, Vector3 end, float time)
         {
             float currentTime = 0f;
 
@@ -49,6 +49,7 @@ namespace Hearthstone
                 await UniTask.Yield();
             }
             transform.SetPositionAndRotation(end, Quaternion.identity);
+            return true;
         }
         public void SetSide(Players side)
         {

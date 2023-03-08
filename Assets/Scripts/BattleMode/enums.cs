@@ -93,6 +93,9 @@ namespace Hearthstone
         DealDamage,
         RaiseParametrs
     }
+    /// <summary>
+    /// Одно из трёх состояний карты - В колоде, в руке или на столе
+    /// </summary>
     public enum CardState
     {
         Deck,

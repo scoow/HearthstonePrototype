@@ -96,6 +96,7 @@ namespace Hearthstone
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            if (_card_State == CardState.Deck) return;
             _layersRenderUp.LayerUp(50);
             transform.localScale *= 1.2f;
             transform.position += new Vector3(0, 0, 5f);
@@ -103,6 +104,7 @@ namespace Hearthstone
 
         public void OnPointerExit(PointerEventData eventData)
         {
+            if (_card_State == CardState.Deck) return;
             _layersRenderUp.LayerUp(-50);
             transform.localScale /= 1.2f;
             transform.position -= new Vector3(0, 0, 5f);
