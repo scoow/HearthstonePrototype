@@ -82,7 +82,7 @@ namespace Hearthstone
                             if (Int32.Parse(cardId.Value) >= 1000)
                             {
                                 _heroId = Int32.Parse(cardId.Value);
-                                foreach (CardSO_Model cardSO in _pageBookModel.cardCollectionSO_Model._heroCollection)
+                                foreach (GameSO_Model cardSO in _pageBookModel.cardCollectionSO_Model._heroCollection)
                                 {
                                     if(cardSO._idCard == Int32.Parse(cardId.Value)) _heroSprite.sprite = cardSO._spriteCard;
                                     continue;

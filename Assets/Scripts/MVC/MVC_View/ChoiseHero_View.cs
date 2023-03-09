@@ -25,7 +25,7 @@ namespace Hearthstone
             _buttonChoiseHero.gameObject.SetActive(true);
             _currentHeroSprite.sprite = _heroSO._spriteCard;
             _cerrentIDHero = _heroSO._idCard;
-            _contentDeck_Model._classHeroInDeck = _heroSO._cardClass;
+            _contentDeck_Model._classHeroInDeck = _heroSO._heroClass;
             AddHeroInDeck();
         }
 

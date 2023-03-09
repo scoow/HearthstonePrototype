@@ -7,12 +7,10 @@ namespace Hearthstone
     /// ScriptableObject для хранения данных карты
     /// </summary>
     [CreateAssetMenu(fileName = "New Card", menuName = "Card/CardExample", order = 51)]
-    public class CardSO_Model : ScriptableObject
+    public class CardSO_Model : GameSO_Model
     {
         public string _nameCard;
-        public string _descriptionCard;
-        public int _idCard;
-        public Sprite _spriteCard;
+        public string _descriptionCard;        
         public int _manaCostCard;
         public int _atackDamageCard;
         public int _healthCard;

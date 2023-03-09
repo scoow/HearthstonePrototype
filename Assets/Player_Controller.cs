@@ -10,7 +10,7 @@ public class Player_Controller : MonoBehaviour , IChangeHealth
 
     private void Start()
     {
-        textHealth = GetComponentInChildren<TextHealthMarker>().GetComponent<Text>();
+        //textHealth = GetComponentInChildren<TextHealthMarker>().GetComponent<Text>();
     }
 
     public void ChangeHealthValue(int incomingValue, ChangeHealthType changeHealthType)
