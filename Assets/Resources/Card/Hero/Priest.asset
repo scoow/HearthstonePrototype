@@ -12,25 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a34ab5cf6ba74f4f9a80cba22d9cba6, type: 3}
   m_Name: Priest
   m_EditorClassIdentifier: 
-  _nameCard: "\u0410\u043D\u0434\u0443\u0438\u043D"
-  _descriptionCard: 
   _idCard: 9000
   _spriteCard: {fileID: 21300000, guid: ed06e8e4c6bcb924984e1c3451c4f4a4, type: 3}
-  _manaCostCard: 0
-  _atackDamageCard: 0
-  _healthCard: 0
-  _cardClass: 4
-  _battleCryType: 0
-  _battleCryTargets: 0
-  _battleCryTargetsType: 0
-  _minionType: 0
-  _isProvocation: 0
-  _isDivineShield: 0
-  _isPermanentEffect: 0
-  _isCharge: 0
-  _isBerserk: 0
-  _abilityChangeHealth: 0
-  _abilityChangeAtackDamage: 0
-  _abilityChangeSpellDamage: 0
-  _abilityAddCard: 0
-  _heroType: 8
+  _heroClass: 4
+  _healthCard: 30

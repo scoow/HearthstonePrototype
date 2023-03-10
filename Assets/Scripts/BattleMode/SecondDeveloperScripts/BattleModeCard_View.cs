@@ -24,11 +24,11 @@ namespace Hearthstone
             _loadDeckController = FindObjectOfType<LoadDeck_Controller>();//тест Zenject (неудачный)
             _card_Model = GetComponent<Card_Model>();            
 
-            _loadDeckController.SetSettings += SetSettingsCardInBattle;            
+            _loadDeckController.SetCardSettings += SetSettingsCardInBattle;            
         }
         private void OnDisable()
         {
-            _loadDeckController.SetSettings -= SetSettingsCardInBattle;            
+            _loadDeckController.SetCardSettings -= SetSettingsCardInBattle;            
         }
 
         public void SetSettingsCardInBattle()

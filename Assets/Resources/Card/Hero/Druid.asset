@@ -12,11 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a34ab5cf6ba74f4f9a80cba22d9cba6, type: 3}
   m_Name: Druid
   m_EditorClassIdentifier: 
-  _nameCard: "\u041C\u0430\u043B\u0444\u0443\u0440\u0438\u043E\u043D"
-  _descriptionCard: 
   _idCard: 6000
   _spriteCard: {fileID: 21300000, guid: 6a3b987eba11760498944195f7aa6fca, type: 3}
-  _manaCostCard: 0
-  _atackDamageCard: 0
-  _healtCard: 30
-  _heroType: 5
+  _heroClass: 0
+  _healthCard: 30

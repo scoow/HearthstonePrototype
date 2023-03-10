@@ -49,14 +49,14 @@ namespace Hearthstone
         }
 
         //условия применения боевого клича
-        private bool СonditionsTargetBattleCry()
+        public bool СonditionsTargetBattleCry()
         {
             bool result = _battleCryTargets_Active == Target.Single || _battleCryTargets_Active == Target.SingleFriend;
             return result;
         }
 
         public void UpdateBattleCry() //при установке новой карты на стол , у всех появляется возможность принять боевой клич
-        {            
+        {   
             ApplyBattleCry[] _temporaryArray = _parentCardInBattle.GetComponentsInChildren<ApplyBattleCry>();
             for (int i = 0; i <= _temporaryArray.Length - 1; i++)
             {

@@ -7,9 +7,13 @@ namespace Hearthstone
     public class PageBook_Model : MonoBehaviour
     {
         /// <summary>
+        /// только игровые карты
+        /// </summary>
+        public List<CardSO_Model> _cardSO_Models = new List<CardSO_Model>();
+        /// <summary>
         /// словарь карт по ключу = ID
         /// </summary>
-        public Dictionary<int, CardSO_Model> _cardsDictionary = new Dictionary<int, CardSO_Model>();      
+        public Dictionary<int, GameSO_Model> _cardsDictionary = new Dictionary<int, GameSO_Model>();      
         /// <summary>
         /// SO сборник всех карт
         /// </summary>
@@ -18,7 +22,7 @@ namespace Hearthstone
         /// общий список всех карт по ID по возрастающей
         /// </summary>
         [HideInInspector]
-        public List<CardSO_Model> _resultCollection = new List<CardSO_Model>();
+        public List<GameSO_Model> _resultCollection = new List<GameSO_Model>();
         [HideInInspector]
         public CreateDeckState _createDeckState ;       
 
@@ -31,11 +35,16 @@ namespace Hearthstone
                             Union(cardCollectionSO_Model._4manaCostCard).
                             Union(cardCollectionSO_Model._5manaCostCard).
                             Union(cardCollectionSO_Model._6manaCostCard).
-                            Union(cardCollectionSO_Model._7manaCostCard).ToList();
-            foreach (CardSO_Model card in _resultCollection)
+                            Union(cardCollectionSO_Model._7manaCostCard).
+                            Union(cardCollectionSO_Model._heroCollection).ToList();
+            foreach (GameSO_Model card in _resultCollection)
             {
                 _cardsDictionary.Add(card._idCard, card);
-            }
+                if (card is CardSO_Model)
+                {
+                    _cardSO_Models.Add((CardSO_Model)card);
+                }
+            }            
         }
     }
 

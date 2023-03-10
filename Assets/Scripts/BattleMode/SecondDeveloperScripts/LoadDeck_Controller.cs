@@ -20,7 +20,8 @@ namespace Hearthstone
         private PageBook_Model _pageBookModel;
         [Inject]
         private MulliganManager _mulliganManager;
-        public Action SetSettings;
+        public Action SetCardSettings;
+        public Action<int> SetHeroSettings;
 
         private void Awake()
         {
@@ -44,7 +45,7 @@ namespace Hearthstone
 
         public void LoadCardSettings(Card_Model card_Model, int cardId)
         {
-            CardSO_Model cardSO_Model = _pageBookModel._cardsDictionary[cardId];
+            CardSO_Model cardSO_Model = (CardSO_Model)_pageBookModel._cardsDictionary[cardId];
             card_Model._atackDamageCard = cardSO_Model._atackDamageCard;
             card_Model._descriptionCard = cardSO_Model._descriptionCard;
             card_Model._manaCostCard = cardSO_Model._manaCostCard;
@@ -52,7 +53,7 @@ namespace Hearthstone
             card_Model._spriteCard = cardSO_Model._spriteCard;
             card_Model._nameCard = cardSO_Model._nameCard;       
                        
-            SetSettings?.Invoke();
+            SetCardSettings?.Invoke();
         }
         private void ShuffleCardInDeck()
         {           
@@ -84,8 +85,12 @@ namespace Hearthstone
                                 _heroId = Int32.Parse(cardId.Value);
                                 foreach (GameSO_Model cardSO in _pageBookModel.cardCollectionSO_Model._heroCollection)
                                 {
-                                    if(cardSO._idCard == Int32.Parse(cardId.Value)) _heroSprite.sprite = cardSO._spriteCard;
-                                    continue;
+                                    if(cardSO._idCard == Int32.Parse(cardId.Value))
+                                    {
+                                        _heroSprite.sprite = cardSO._spriteCard;
+                                        SetHeroSettings?.Invoke(_heroId);
+                                        continue;
+                                    }                                    
                                 }                                
                                 continue;
                             }                               

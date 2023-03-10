@@ -12,25 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a34ab5cf6ba74f4f9a80cba22d9cba6, type: 3}
   m_Name: Paladin
   m_EditorClassIdentifier: 
-  _nameCard: "\u041B\u0438\u0430\u0434\u0440\u0438\u043D"
-  _descriptionCard: 
   _idCard: 4000
   _spriteCard: {fileID: 21300000, guid: c094558ba8b82c04e934d5331d5aae37, type: 3}
-  _manaCostCard: 0
-  _atackDamageCard: 0
-  _healthCard: 0
-  _cardClass: 3
-  _battleCryType: 0
-  _battleCryTargets: 0
-  _battleCryTargetsType: 0
-  _minionType: 0
-  _isProvocation: 0
-  _isDivineShield: 0
-  _isPermanentEffect: 0
-  _isCharge: 0
-  _isBerserk: 0
-  _abilityChangeHealth: 0
-  _abilityChangeAtackDamage: 0
-  _abilityChangeSpellDamage: 0
-  _abilityAddCard: 0
-  _heroType: 3
+  _heroClass: 3
+  _healthCard: 30

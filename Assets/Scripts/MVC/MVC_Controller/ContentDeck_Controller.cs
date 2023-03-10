@@ -20,7 +20,7 @@ namespace Hearthstone
         {
             GameObject obj = Instantiate(_contentDeck_Model._prefabChioseCardSettings, _contentDeckTransform);
             Card_Model addCardSettings = obj.GetComponent<Card_Model>();
-            CardSO_Model cardSO_Model = _pageBook_Model._cardsDictionary[cardId];
+            CardSO_Model cardSO_Model = (CardSO_Model)_pageBook_Model._cardsDictionary[cardId];
             addCardSettings._idCard = cardSO_Model._idCard;
             addCardSettings._nameCard = cardSO_Model._nameCard;
             addCardSettings._manaCostCard = cardSO_Model._manaCostCard;

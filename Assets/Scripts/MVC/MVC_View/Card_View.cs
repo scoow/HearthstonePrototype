@@ -35,7 +35,7 @@ namespace Hearthstone
             if (gameObject.GetComponent<BattleModeCard>() != null)
             {
                 _loadDeck_Controller = FindObjectOfType<LoadDeck_Controller>();
-                _loadDeck_Controller.SetSettings += ChangeViewCard;
+                _loadDeck_Controller.SetCardSettings += ChangeViewCard;
             }
             if (gameObject.GetComponent<CreateModeCard>() != null)
             {
@@ -47,7 +47,7 @@ namespace Hearthstone
         private void OnDisable()
         {
             if (gameObject.GetComponent<BattleModeCard>() != null)
-                _loadDeck_Controller.SetSettings -= ChangeViewCard;
+                _loadDeck_Controller.SetCardSettings -= ChangeViewCard;
             if (gameObject.GetComponent<CreateModeCard>() != null)
                 _pageBook_View.OnUpdatePageBook -= ChangeViewCard;
         }
@@ -80,7 +80,7 @@ namespace Hearthstone
 
         public void ChangeViewZomingCard(int idCard)
         {
-            CardSO_Model cardSO = _pageBook_Model._cardsDictionary[idCard];
+            CardSO_Model cardSO = (CardSO_Model)_pageBook_Model._cardsDictionary[idCard];
             _descriptionText.text = cardSO._descriptionCard;
             _atackDamageText.text = cardSO._atackDamageCard.ToString();
             _healtText.text = cardSO._healthCard.ToString();

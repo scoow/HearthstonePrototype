@@ -60,7 +60,7 @@ namespace Hearthstone
 
         public void SetCardSettings(int idCard)
         {
-            CardSO_Model cardSOModel = _pageBook_Model._cardsDictionary[idCard];
+            CardSO_Model cardSOModel = (CardSO_Model)_pageBook_Model._cardsDictionary[idCard];
             _changeAtackValue = cardSOModel._abilityChangeAtack;            
             _ñhangeHealthValue = cardSOModel._abilityChangeHealth;                     
 
