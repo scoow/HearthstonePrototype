@@ -25,28 +25,19 @@ namespace Hearthstone
         private GameObject _playerDeck;
         [SerializeField]
         private GameObject _enemyDeck;
-
-        [Inject]
-        private Mana_Controller _manaController;
         private List<MulliganCardPosition> _mulliganCardsPositions;//якори дл€ вылетающих карт
         private List<BattleModeCard> _mulliganCards;//—ами карты
         private List<BattleModeCard> _mulliganCardsFirstPlayer;
         private List<BattleModeCard> _mulliganCardsSecondPlayer;
         private MulliganConfirmButton _mulliganConfirmButton;
-
-        [Inject]
-        private List<Hand> _hands;
         [Inject(Id = "First")]
-        private Hand _firstPlayerHand;
+        private readonly Hand _firstPlayerHand;
         [Inject(Id = "Second")]
-        private Hand _secondPlayerHand;
-
-        [Inject]
-        private List<Board> _boards;
+        private readonly Hand _secondPlayerHand;
         [Inject(Id = "First")]
-        private Board _firstPlayerBoard;
+        private readonly Board _firstPlayerBoard;
         [Inject(Id = "Second")]
-        private Board _secondPlayerBoard;
+        private readonly Board _secondPlayerBoard;
 
         private int _nextCardInPlayerDeckNumber = 4;
         private int _nextCardInEnemyDeckNumber = 4;
@@ -176,7 +167,7 @@ namespace Hearthstone
             {
                 _card = _currentCards[i];
                 //Debug.Log(_currentHand.GetLastCardPosition().position.ToString());
-                bool moved = await _card.MoveCardAsync(position.transform.position, _currentHand.GetLastCardPosition(), _time);
+                _ = _card.MoveCardAsync(position.transform.position, _currentHand.GetLastCardPosition(), _time);
 
                 await UniTask.Delay(TimeSpan.FromSeconds(0.1));
                 if (side == Players.Second)
@@ -184,7 +175,7 @@ namespace Hearthstone
 
                 //await UniTask.Delay(TimeSpan.FromSeconds(_time));
                 var _cardInHand = _card.GetComponent<Card>();
-                if (moved) _cardInHand.ChangeState(CardState.Hand);
+                _cardInHand.ChangeState(CardState.Hand);
 
                 _cardInHand.SetParent(_currentHand);
                 _currentHand.AddCard(_cardInHand);

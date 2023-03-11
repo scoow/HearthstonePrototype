@@ -11,24 +11,15 @@ namespace Hearthstone
         private LayerRenderUp _layersRenderUp;
         private TempCard_Marker _tempCardGO;
 
-        private Transform parent;
         [Inject]
         private Mana_Controller _mana_Controller;
 
         private Players _side;
         private bool _cancelDrag;
         public Action<bool> BeginDrag;
-
+        [SerializeField]
         private CardState _card_State;
 
-        public void ChangeState(CardState newState)
-        {
-            _card_State = newState;
-        }
-        public CardState GetState()
-        {
-            return _card_State;
-        }
         private void Awake()
         {
             _camera = Camera.main;
@@ -40,11 +31,21 @@ namespace Hearthstone
 
             _mana_Controller = FindObjectOfType<Mana_Controller>();//Zenject не сработал. Почему?
         }
+        public void ChangeState(CardState newState)
+        {
+            _card_State = newState;
+        }
+        public CardState GetState()
+        {
+            return _card_State;
+        }
+
         public void OnBeginDrag(PointerEventData eventData)
         {
-            _cancelDrag = _side != _mana_Controller.WhoMovesNow() || _mana_Controller.GetManaCount(_side) < GetComponent<Card_Model>().GetManaCostCard();
+            
             if (_cancelDrag)//Если не наш ход - нельзя схватить карту
             {
+                Debug.Log("Нельзя сыграть эту карту");
                 return;
             }
 
@@ -58,7 +59,6 @@ namespace Hearthstone
         {
             if (_cancelDrag)//Если не наш ход - нельзя схватить карту
             {
-                OnEndDrag(eventData);
                 return;
             }
             Vector3 newPosition = eventData.position;
@@ -93,12 +93,13 @@ namespace Hearthstone
         /// <param name="cardHolder">родитель</param>
         public void SetParent(CardHolder cardHolder)
         {
-            parent = transform.parent = cardHolder.transform;
+            transform.parent = cardHolder.transform;
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if (_card_State == CardState.Deck) return;
+            if (_card_State == CardState.Deck || _side != _mana_Controller.WhoMovesNow()) return;
+            _cancelDrag = _side != _mana_Controller.WhoMovesNow() || _mana_Controller.GetManaCount(_side) < GetComponent<Card_Model>().GetManaCostCard();
             _layersRenderUp.LayerUp(50);
             transform.localScale *= 1.2f;
             transform.position += new Vector3(0, 0, 5f);
@@ -106,7 +107,7 @@ namespace Hearthstone
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            if (_card_State == CardState.Deck) return;
+            if (_card_State == CardState.Deck || _side != _mana_Controller.WhoMovesNow()) return;
             _layersRenderUp.LayerUp(-50);
             transform.localScale /= 1.2f;
             transform.position -= new Vector3(0, 0, 5f);
@@ -114,9 +115,20 @@ namespace Hearthstone
 
         public void OnDrop(PointerEventData eventData)
         {
+            if (_card_State != CardState.Board) return;
             if (!eventData.pointerDrag.TryGetComponent<Card>(out var attacker)) return;
-            if (attacker.GetSide() == _side) return;
+            if (attacker.GetSide() != _side) return;
+
             Debug.Log("Атака");
+
+            Attack(attacker, this);
+        }
+
+        private async void Attack(Card attacker, Card card)
+        {
+            BattleModeCard _attackerBattleCard = attacker.GetComponent<BattleModeCard>();
+            _attackerBattleCard.MoveCardAsync(attacker.transform, card.transform, 1f);
+            _attackerBattleCard.MoveCardAsync(card.transform, attacker.transform,1f);
         }
 
         public Players GetSide()
