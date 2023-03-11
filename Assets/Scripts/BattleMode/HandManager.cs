@@ -50,6 +50,10 @@ namespace Hearthstone
             var newCardView = newCard.GetComponent<Card_View>();
             newCardModel.SetCardSettings(i, isMinion);//вынести в отд метод для создания минионов
             battlemodeCardView.SetSettingsCardInBattle();
+            if (isMinion)
+            {
+                battlemodeCardView.ChangeCardViewMode();
+            }
             newCardView.ChangeViewCard();
             battleModeCard.SetSide(side);
             return layerStep;
