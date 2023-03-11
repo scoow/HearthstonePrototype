@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System;
 using Zenject;
+using static UnityEditor.Progress;
 
 namespace Hearthstone
 {
@@ -19,15 +20,36 @@ namespace Hearthstone
 
         public Action<Transform> EndDragCard; ///событие для смены отображения карты
 
+        private (Vector3, bool)[] _minionSlots;//Места для установки существ
         private void Awake()
         {
             _camera = Camera.main;
-            //_tempMinionGO = GameObject.Find("TempMinion");
+
+            CreateSlots();
+
         }
+
+        private void CreateSlots()
+        {
+            _minionSlots = new (Vector3, bool)[7];
+            _minionSlots[0].Item1 = transform.position - new Vector3(_offset * 3, 0, 0);
+            _minionSlots[0].Item2 = false;
+            for (int i = 1; i < 7; i++)
+            {
+                _minionSlots[i].Item1 = _minionSlots[i - 1].Item1 + new Vector3(_offset, 0, 0);
+                _minionSlots[i].Item2 = false;
+            }
+/*
+            for (int i = 0; i < 7; i++)
+            {
+                Debug.Log(_minionSlots[i]);
+            }*/
+        }
+
         /// <summary>
         /// Подписка всех карт на событие. Если взяли карту - отображать место для сброса карты на поле
         /// </summary>
-        public void InitCardList(List<BattleModeCard> BattleModeCards)
+        public void InitializeCardsList(List<BattleModeCard> BattleModeCards)
         {
             foreach (BattleModeCard BattleModeCard in BattleModeCards)
             {
@@ -38,7 +60,7 @@ namespace Hearthstone
                 }
             }
         }
-        public void ReactionToCardDragging(bool drag)//если несём карту - реагировать, иначе - нет
+        private void ReactionToCardDragging(bool drag)//если несём карту - реагировать, иначе - нет
         {
             _draggingCard = drag;
         }
@@ -83,9 +105,45 @@ namespace Hearthstone
             if (_parent != this)
             {
                 _parent.RemoveCard(card);
-                card.transform.position = GetLastCardPosition();
-                
-                if (_rightCard)
+                //card.transform.position = GetLastCardPosition();
+
+                int position = 3;
+                if (!_minionSlots[position].Item2)
+                {
+                    card.transform.position = _minionSlots[position].Item1;
+                    _minionSlots[position].Item2 = true;
+                }
+                else
+                {
+                    if (_rightCard)
+                    {
+                        int i = position + 1;
+                        while (_minionSlots[i].Item2 && i < 7)
+                        {
+                            i++;
+                        }
+                        if (i < 7)
+                        {
+                            card.transform.position = _minionSlots[i].Item1;
+                            _minionSlots[i].Item2 = true;
+                        }
+                    }
+                    else
+                    {
+                        int j = position - 1;
+                        while (_minionSlots[j].Item2 && j > 0)
+                        {
+                            j++;
+                        }
+                        if (j > 0)
+                        {
+                            card.transform.position = _minionSlots[j].Item1;
+                            _minionSlots[j].Item2 = true;
+                        }
+                    }
+                }
+                ////////////////////////////////
+/*                if (_rightCard)
                 {
                     foreach (var c in _cardsList)
                     {
@@ -98,7 +156,7 @@ namespace Hearthstone
                     {
                         c.transform.position += new Vector3(_offset/2 , 0, 0);
                     }
-                }
+                }*/
                 _mana_Controller.SpendMana(_side, card.GetComponent<Card_Model>().GetManaCostCard());// вычесть ману
                 AddCard(card);
             }

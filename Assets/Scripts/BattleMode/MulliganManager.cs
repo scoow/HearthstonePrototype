@@ -189,7 +189,7 @@ namespace Hearthstone
                 _currentHand.AddCard(_cardInHand);
                 i++;
             }
-             _currentBoard.InitCardList(_currentCards);//привязка событий карт текущего игрока к текущему полю
+             _currentBoard.InitializeCardsList(_currentCards);//привязка событий карт текущего игрока к текущему полю
 
             if (side == Players.First)//если первый муллиган
             {
