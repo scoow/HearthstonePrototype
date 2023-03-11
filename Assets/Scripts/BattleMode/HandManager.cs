@@ -32,21 +32,27 @@ namespace Hearthstone
             int layerStep = 0;
             foreach (int i in _loadDeckController._activeDeck)
             {
-                var newCard = Instantiate(_cardPrefab, deck.position, deck.rotation);
-                newCard.transform.parent = _mulliganManager.transform;
-                var battlemodeCardView = newCard.GetComponent<BattleModeCard_View>();
-                var battleModeCard = newCard.GetComponent<BattleModeCard>();
-
-                var newCardModel = newCard.GetComponent<Card_Model>();
-                var newlayerRenderUp = newCard.GetComponent<LayerRenderUp>();
-                newlayerRenderUp.LayerUp(layerStep);
-                layerStep--;
-                var newCardView = newCard.GetComponent<Card_View>();
-                newCardModel.SetCardSettings(i);//вынести в отд метод для создания минионов
-                battlemodeCardView.SetSettingsCardInBattle();
-                newCardView.ChangeViewCard();
-                battleModeCard.SetSide(side);
+                CreateCard(side, deck, layerStep, i, false);
             }
+        }
+
+        public int CreateCard(Players side, Transform deck, int layerStep, int i, bool isMinion)
+        {
+            var newCard = Instantiate(_cardPrefab, deck.position, deck.rotation);
+            newCard.transform.parent = _mulliganManager.transform;
+            var battlemodeCardView = newCard.GetComponent<BattleModeCard_View>();
+            var battleModeCard = newCard.GetComponent<BattleModeCard>();
+
+            var newCardModel = newCard.GetComponent<Card_Model>();
+            var newlayerRenderUp = newCard.GetComponent<LayerRenderUp>();
+            newlayerRenderUp.LayerUp(layerStep);
+            layerStep--;
+            var newCardView = newCard.GetComponent<Card_View>();
+            newCardModel.SetCardSettings(i, isMinion);//вынести в отд метод для создания минионов
+            battlemodeCardView.SetSettingsCardInBattle();
+            newCardView.ChangeViewCard();
+            battleModeCard.SetSide(side);
+            return layerStep;
         }
     }
 }

@@ -108,7 +108,7 @@ public class Hero_Controller : MonoBehaviour, IChangeHealth , IPointerClickHandl
 
         private void BattleCryOff()
         {
-            _battleCry_Controller._cursorBattleCry.gameObject.SetActive(false);
+            _battleCry_Controller._cursorBattleCry.ChangeCursorState(false);
             _battleCry_Controller._isActiveCry = false;
         }
 

@@ -58,9 +58,18 @@ namespace Hearthstone
         }
 
 
-        public void SetCardSettings(int idCard)
+        public void SetCardSettings(int idCard, bool isMinion)
         {
-            CardSO_Model cardSOModel = (CardSO_Model)_pageBook_Model._cardsDictionary[idCard];
+            CardSO_Model cardSOModel;
+            if (isMinion)
+            {
+                cardSOModel = (CardSO_Model)_pageBook_Model._cardAssistDictionary[idCard];
+            }
+            else
+            {
+                cardSOModel = (CardSO_Model)_pageBook_Model._cardsDictionary[idCard];
+            }
+                
             _changeAtackValue = cardSOModel._abilityChangeAtack;            
             _ñhangeHealthValue = cardSOModel._abilityChangeHealth;                     
 

@@ -16,6 +16,7 @@ namespace Hearthstone
         private MulliganManager _mulliganManager;
         private Mana_Controller _mana_Controller;
         private BattleCry_Controller _battleCry_Controller;
+        private IndicatorTarget _indicatorTarget;
 
         private List<Board> _boards;
         private Board _firstPlayerBoard;
@@ -42,6 +43,7 @@ namespace Hearthstone
             _mulliganManager = FindObjectOfType<MulliganManager>();
             _mana_Controller = FindObjectOfType<Mana_Controller>();
             _battleCry_Controller = FindObjectOfType<BattleCry_Controller>();
+            _indicatorTarget = FindObjectOfType<IndicatorTarget>();
 
             _boards = FindObjectsOfType<Board>().ToList();
             _firstPlayerBoard = _boards.Where(board => board._side == Players.First).FirstOrDefault();
@@ -65,6 +67,7 @@ namespace Hearthstone
             Container.BindInstance(_mulliganManager).AsSingle();
             Container.BindInstance(_mana_Controller).AsSingle();
             Container.BindInstance(_battleCry_Controller).AsSingle();
+            Container.BindInstance(_indicatorTarget).AsSingle();
 
             Container.BindInstance(_firstPlayerBoard).WithId("First");
             Container.BindInstance(_secondPlayerBoard).WithId("Second");

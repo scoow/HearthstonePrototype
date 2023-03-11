@@ -8,6 +8,7 @@ namespace Hearthstone
 {
     public class Card_Controller : MonoBehaviour
     {
+        private PageBook_Model _pageBook_Model;
         private Card_Model _card_Model;
         private BattleCry_Controller _battleCryController;
         private PermanentEffect_Controller _permanentEffectController;
@@ -17,7 +18,7 @@ namespace Hearthstone
         public bool _useBattleCray = false;
 
         private Action OnActivateCard;
-        
+
 
         private Board _board;
         //[Inject]
@@ -36,12 +37,13 @@ namespace Hearthstone
             _permanentEffectController = FindObjectOfType<PermanentEffect_Controller>();
             _eventEffectController = FindObjectOfType<EventEffect_Controller>();
             _singleEffect_Controller = FindObjectOfType<SingleEffect_Controller>();
+            _pageBook_Model = FindObjectOfType<PageBook_Model>();
 
             OnActivateCard += ChoiseAbility;
 
         }
         private void OnDisable()
-        {            
+        {
             _board.EndDragCard -= ActivateBattleCry;
             OnActivateCard -= ChoiseAbility;
         }
@@ -58,32 +60,47 @@ namespace Hearthstone
             _battleCryController._isActiveCry = true;
             if (newParent == transform.parent && !_useBattleCray)
             {
-                _battleModeCardView.ChangeCardViewMode();               
-                SaveValueCurrentBattleCry();                
+                _battleModeCardView.ChangeCardViewMode();
+                SaveValueCurrentBattleCry();
                 _battleCryController.UpdateBattleCry();
                 OnActivateCard?.Invoke();
 
-                if(_card_Model._battleCryTypes.Contains(BattleCryType.PermanentEffect))
+                if (_card_Model._battleCryTypes.Contains(BattleCryType.SummonAssistant))
+                {
+                    int minionID = int.Parse(_card_Model._idCard.ToString() + _card_Model._idCard.ToString());
+                    CardSO_Model minionCardSO = (CardSO_Model)_pageBook_Model._cardAssistDictionary[minionID];
+                    Board board = newParent.GetComponent<Board>();
+                    
+
+                    var _handManager = FindObjectOfType<HandManager>();
+                    Transform transform = new GameObject().transform;//исправить
+                    transform.position = board.GetLastCardPosition();
+
+                    _handManager.CreateCard(board._side, transform, 0, minionID, true);
+
+                }
+
+                if (_card_Model._battleCryTypes.Contains(BattleCryType.PermanentEffect))
                 {
                     _permanentEffectController.AddPermanentEffect(_card_Model._idCard);
-                    
+
                 }
                 _permanentEffectController.GetActivePermanentEffect(this);//?
 
                 if (_card_Model._battleCryTypes.Contains(BattleCryType.EventEffect))
                 {
                     _eventEffectController.AddEventEffect(_card_Model._idCard);
-                    
+
                 }
                 _eventEffectController.ParsePutCardInBoard(this);
 
-                if(_card_Model._battleCryTypes.Contains(BattleCryType.SingleEffect))
+                if (_card_Model._battleCryTypes.Contains(BattleCryType.SingleEffect))
                 //if(_card_Model._battleCryTargets == Target.Self)
                 {
                     _singleEffect_Controller.ApplyEffect(this);
                 }
 
-            }  
+            }
         }
 
         //сохраняем значение боевого клича
@@ -109,7 +126,7 @@ namespace Hearthstone
             {
                 _battleCryController._curentAbilityInTarget.Add(abilityInTarget);
             }
-        }        
+        }
 
         #region //Ability Сondition
 
@@ -117,9 +134,9 @@ namespace Hearthstone
         /// выбор активной способности
         /// </summary>
         public void ChoiseAbility() //выбор активной способности
-        {            
+        {
             foreach (var isActive in _card_Model._activeAbility)
-            {               
+            {
                 if (isActive.Value == true)
                 {
                     ActivateAbility(isActive.Key);
@@ -146,8 +163,8 @@ namespace Hearthstone
                     break;
                 case AbilityCurrentCard.GetCard:
                     TakeAdditionalCard();
-                    break;                
-            }          
+                    break;
+            }
         }
         private void PermanentEffectAbility()//постоянный эффект
         {
@@ -159,7 +176,7 @@ namespace Hearthstone
             {
                 _card_Model._protectionImage.gameObject.SetActive(isProvocation);
             }
-            if(!isProvocation)
+            if (!isProvocation)
             {
                 _card_Model._protectionImage.gameObject.SetActive(!isProvocation);
             }
@@ -182,20 +199,20 @@ namespace Hearthstone
             _card_Model._atackDamageCard += incomingValue;
             _card_Model._maxAtackValue += incomingValue;
             _battleModeCardView.UpdateViewCard();
-            
+
         }
 
         public void ChangeHealtValue(int incomingValue) //изменяем значение здоровья
-        {   
+        {
             _card_Model._healthCard += incomingValue;
             if (incomingValue < 0 && _card_Model._isBerserk) //если карта берсерк и здоровье уменьшилось, то увеличиваем атаку 
-                ChangeAtackValue(_card_Model._changeAtackValue);            
+                ChangeAtackValue(_card_Model._changeAtackValue);
             _battleModeCardView.UpdateViewCard();
         }
 
         public void ChangeHealtValue(int incomingValue, ChangeHealthType changeHealthType) //алтернативный вариант //////////////////////////////////////////
         {
-            if(changeHealthType == ChangeHealthType.DealDamage)
+            if (changeHealthType == ChangeHealthType.DealDamage)
             {
                 ChangeHealtValue(-incomingValue);
                 _singleEffect_Controller.ApplyEffect(this);
@@ -203,7 +220,7 @@ namespace Hearthstone
                     DiedCreature(); //событие смерти
             }
 
-            if(changeHealthType == ChangeHealthType.Healing)
+            if (changeHealthType == ChangeHealthType.Healing)
             {
                 ChangeHealtValue(incomingValue);
                 if (_card_Model._healthCard > _card_Model._maxHealtValue)
@@ -211,23 +228,23 @@ namespace Hearthstone
 
                 _singleEffect_Controller.ApplyEffect(this);
                 StartCoroutine(_battleModeCardView.EffectParticle(_battleModeCardView._healtEffect));
-                _battleModeCardView.UpdateViewCard();
+                //_battleModeCardView.UpdateViewCard();
             }
         }
 
         public void UpdateSelfParametrs(int multiplicationFactor) //увеличение своих параметров в зависимости от колличества дружеских карт на столе
         {
-            ChangeAtackValue(_card_Model._changeAtackValue* multiplicationFactor);
-            ChangeHealtValue(_card_Model._сhangeHealthValue* multiplicationFactor);            
+            ChangeAtackValue(_card_Model._changeAtackValue * multiplicationFactor);
+            ChangeHealtValue(_card_Model._сhangeHealthValue * multiplicationFactor);
         }
 
-        public void BerserkAbility() 
+        public void BerserkAbility()
         {
             ChangeAtackValue(_card_Model._changeAtackValue);
         }
 
         public void DiedCreature() //смерть существа
-        {            
+        {
             gameObject.SetActive(false);
             _permanentEffectController.RemovePermanentEffect(_card_Model._idCard);
             _eventEffectController.RemoveEventEffect(_card_Model._idCard);
@@ -235,5 +252,5 @@ namespace Hearthstone
         }
 
         #endregion        
-    }    
+    }
 }

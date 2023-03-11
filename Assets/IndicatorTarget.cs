@@ -8,17 +8,18 @@ public class IndicatorTarget : MonoBehaviour
     private Transform _targetTransform;
     private Transform _watcherTransform;
     public GameObject _cursor;
-    public GameObject _dottedLine;   
+    public GameObject _dottedLine;
+    private bool _cursorEnabled;
+    public bool CursorEnabled { get { return _cursorEnabled; } set { _cursorEnabled = value; } }
 
     public void CursorBattleCryOn(Transform creatorBattleCry)
-    {        
+    {
         _watcherTransform = creatorBattleCry;
-        _cursor.SetActive(true);
-        _dottedLine.SetActive(true);
+        ChangeCursorState(true);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit raycastHit))
         {
-            _cursor.transform.position = raycastHit.point;            
+            _cursor.transform.position = raycastHit.point;
             float x = raycastHit.point.x - _watcherTransform.position.x;
             float y = raycastHit.point.y - _watcherTransform.position.y;
             float angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
@@ -27,5 +28,14 @@ public class IndicatorTarget : MonoBehaviour
             _dottedLine.transform.rotation = Quaternion.Euler(0, 0, angle);
             _cursor.transform.rotation = Quaternion.Euler(0, 0, angle);
         }
+    }
+    public GameObject GetWatcher()
+    {
+        return _watcherTransform.gameObject;
+    }
+    public void ChangeCursorState(bool newstate)
+    {
+        _cursor.SetActive(newstate);
+        _dottedLine.SetActive(newstate);
     }
 }

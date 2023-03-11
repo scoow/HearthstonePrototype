@@ -82,3 +82,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c97d126f89e583c44849b9a363a1d167, type: 2}
   - {fileID: 11400000, guid: 88a157bb72a1a8b42ad79edb4311a53a, type: 2}
   - {fileID: 11400000, guid: 500f9bd33b0db0142aa9ad3459ec2dcb, type: 2}
+  _assistCardCollection:
+  - {fileID: 11400000, guid: afb6ce3480492d1418e8d1806a8734b8, type: 2}
+  - {fileID: 11400000, guid: 06ed8ee4108646b48886cefd70ebfc9b, type: 2}
+  - {fileID: 11400000, guid: 02ac7181509f0b34c90cdccc16d9ab6e, type: 2}

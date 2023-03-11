@@ -36,7 +36,7 @@ namespace Hearthstone
             for(int i = 0; i <= _temporaryArray.Length-1; i++)
             {               
                 LoadCardSettings(_temporaryArray[i], _activeDeck[i]);                
-                _temporaryArray[i].SetCardSettings(_activeDeck[i]);                
+                _temporaryArray[i].SetCardSettings(_activeDeck[i], false);                
                 LayerRenderUp layerRenderUp = _temporaryArray[i].GetComponent<LayerRenderUp>();
                 layerRenderUp.LayerUp(i);
                 //if (i == _temporaryArray.Length - 1) layerRenderUp.LayerLastSpriteUp();               

@@ -66,10 +66,10 @@ namespace Hearthstone
                     
                 if(!_isActiveCry)//если боевой клич неактивен, то карты не услышат боевой крик
                     _temporaryArray[i]._isListen = false;               
-            }            
+            }
 
             if (СonditionsTargetBattleCry()) //условие появления прицела 
-            _cursorBattleCry.gameObject.SetActive(_isActiveCry);            
+                _cursorBattleCry.ChangeCursorState(false);
         }       
     }
 }

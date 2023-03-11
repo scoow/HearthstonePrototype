@@ -44,11 +44,19 @@
     <CardId>206</CardId>
     <CardId>301</CardId>
   </DeckName>
-  <DeckName NameValue="тест" StateValue="Выбранная колода">
+  <DeckName NameValue="тест" StateValue="Неактивная колода">
     <CardId>1000</CardId>
     <CardId>100</CardId>
     <CardId>104</CardId>
     <CardId>301</CardId>
     <CardId>307</CardId>
+  </DeckName>
+  <DeckName NameValue="Призыватели" StateValue="Выбранная колода">
+    <CardId>6000</CardId>
+    <CardId>205</CardId>
+    <CardId>305</CardId>
+    <CardId>401</CardId>
+    <CardId>403</CardId>
+    <CardId>206</CardId>
   </DeckName>
 </SaveDeckCollection>
