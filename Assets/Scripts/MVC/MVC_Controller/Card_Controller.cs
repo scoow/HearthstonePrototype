@@ -8,6 +8,7 @@ namespace Hearthstone
 {
     public class Card_Controller : MonoBehaviour
     {
+        private HandManager _handManager;
         private PageBook_Model _pageBook_Model;
         private Card_Model _card_Model;
         private BattleCry_Controller _battleCryController;
@@ -38,6 +39,7 @@ namespace Hearthstone
             _eventEffectController = FindObjectOfType<EventEffect_Controller>();
             _singleEffect_Controller = FindObjectOfType<SingleEffect_Controller>();
             _pageBook_Model = FindObjectOfType<PageBook_Model>();
+            _handManager = FindObjectOfType<HandManager>();
 
             OnActivateCard += ChoiseAbility;
 
@@ -65,19 +67,19 @@ namespace Hearthstone
                 _battleCryController.UpdateBattleCry();
                 OnActivateCard?.Invoke();
 
-                if (_card_Model._battleCryTypes.Contains(BattleCryType.SummonAssistant))
+                if (_card_Model._battleCryTypes.Contains(BattleCryType.SummonAssistant))//призыв существа-ассистента
                 {
                     int minionID = int.Parse(_card_Model._idCard.ToString() + _card_Model._idCard.ToString());
                     CardSO_Model minionCardSO = (CardSO_Model)_pageBook_Model._cardAssistDictionary[minionID];
                     Board board = newParent.GetComponent<Board>();
                     
-
-                    var _handManager = FindObjectOfType<HandManager>();
                     Transform transform = new GameObject().transform;//исправить
                     transform.position = board.GetLastCardPosition();
+                    int layout = 0;
+                    _handManager.CreateCard(board._side, transform, ref layout, minionID, true);
 
-                    _handManager.CreateCard(board._side, transform, 0, minionID, true);
 
+                    Destroy(transform.gameObject);
                 }
 
                 if (_card_Model._battleCryTypes.Contains(BattleCryType.PermanentEffect))

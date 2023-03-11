@@ -32,11 +32,11 @@ namespace Hearthstone
             int layerStep = 0;
             foreach (int i in _loadDeckController._activeDeck)
             {
-                CreateCard(side, deck, layerStep, i, false);
+                CreateCard(side, deck, ref layerStep, i, false);
             }
         }
 
-        public int CreateCard(Players side, Transform deck, int layerStep, int i, bool isMinion)
+        public int CreateCard(Players side, Transform deck, ref int layerStep, int i, bool isMinion)
         {
             var newCard = Instantiate(_cardPrefab, deck.position, deck.rotation);
             newCard.transform.parent = _mulliganManager.transform;
