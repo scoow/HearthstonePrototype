@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityEngine.UI;
 
 namespace Hearthstone
@@ -7,7 +6,7 @@ namespace Hearthstone
     {
         private Image _image;
 
-        public void Init()
+        public void Initialize()
         {
             _image = GetComponent<Image>();
         }

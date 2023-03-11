@@ -15,11 +15,12 @@ namespace Hearthstone
         private EndTurnButton _endTurnButton;//кнопка конца хода
         public Action<Players> OnChangeTurn;
 
-        [HideInInspector] public int _onePlayerCrystalCount;
-        [HideInInspector] public int _twoPlayerCrystalCount;
+        private int _onePlayerCrystalCount;
+        private int _twoPlayerCrystalCount;
         private int _onePlayerManaCount = 1;
         private int _twoPlayerManaCount = 0;
 
+        [SerializeField]
         private int _playermanaMaxValue = 10;
 
         private void Start()
@@ -76,7 +77,7 @@ namespace Hearthstone
             if (manaCounter < _playermanaMaxValue)
             {
                 manaCounter++;
-                ManaCristal crystal = Instantiate(_manaCristalPrefab, parent);
+                _ = Instantiate(_manaCristalPrefab, parent);
             }
         }
         /// <summary>

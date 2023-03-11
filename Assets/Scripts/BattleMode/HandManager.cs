@@ -22,10 +22,17 @@ namespace Hearthstone
         {
             _playerDeck = GameObject.Find("PlayerDeck").transform;
             _enemyDeck = GameObject.Find("EnemyDeck").transform;
+           
+            CreateDeck(Players.First, _playerDeck);
+            CreateDeck(Players.Second, _enemyDeck);
+        }
+
+        private void CreateDeck(Players side, Transform deck)
+        {
             int layerStep = 0;
             foreach (int i in _loadDeckController._activeDeck)
             {
-                var newCard = Instantiate(_cardPrefab, _playerDeck.position, _playerDeck.rotation);
+                var newCard = Instantiate(_cardPrefab, deck.position, deck.rotation);
                 newCard.transform.parent = _mulliganManager.transform;
                 var battlemodeCardView = newCard.GetComponent<BattleModeCard_View>();
                 var battleModeCard = newCard.GetComponent<BattleModeCard>();
@@ -38,25 +45,7 @@ namespace Hearthstone
                 newCardModel.SetCardSettings(i);//вынести в отд метод для создания минионов
                 battlemodeCardView.SetSettingsCardInBattle();
                 newCardView.ChangeViewCard();
-                battleModeCard.SetSide(Players.First);
-            }
-
-            foreach (int i in _loadDeckController._activeDeck)
-            {
-                var newCard = Instantiate(_cardPrefab, _enemyDeck.position, _enemyDeck.rotation);
-                newCard.transform.parent = _mulliganManager.transform;
-                var battlemodeCardView = newCard.GetComponent<BattleModeCard_View>();
-                var battleModeCard = newCard.GetComponent<BattleModeCard>();
-
-                var newCardModel = newCard.GetComponent<Card_Model>();
-                var newlayerRenderUp = newCard.GetComponent<LayerRenderUp>();
-                newlayerRenderUp.LayerUp(layerStep);
-                layerStep--;
-                var newCardView = newCard.GetComponent<Card_View>();
-                newCardModel.SetCardSettings(i);//вынести в отд метод для создания минионов
-                battlemodeCardView.SetSettingsCardInBattle();
-                newCardView.ChangeViewCard();
-                battleModeCard.SetSide(Players.Second);
+                battleModeCard.SetSide(side);
             }
         }
     }

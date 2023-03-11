@@ -44,9 +44,9 @@ namespace Hearthstone
 
         private async void Start()
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(0.1));//ожидание, пока инициализируется сцена
+            //await UniTask.Delay(TimeSpan.FromSeconds(0.1));//ожидание, пока инициализируется сцена
             _mulliganConfirmButton = FindObjectOfType<MulliganConfirmButton>();
-            _mulliganConfirmButton.Init();
+            _mulliganConfirmButton.Initialize();
             _mulliganConfirmButton.HideButton();
             _mulliganConfirmButton.onClick.AddListener(delegate { MulliganStage3(Players.First); });
 
@@ -62,7 +62,7 @@ namespace Hearthstone
                 card.gameObject.SetActive(true);
 
             MulliganStage1(Players.First);
-            await UniTask.Delay(TimeSpan.FromSeconds(0.1));
+            await UniTask.Delay(TimeSpan.FromSeconds(_time));
             MulliganStage2();
         }
 
@@ -81,7 +81,7 @@ namespace Hearthstone
                 _card = _currentDeck[i];
                 position.SetCurrentCard(_card);//привязываем карту к позиции
                 _ = _card.MoveCardAsync(_card.transform, position.transform, _time);
-                await UniTask.Delay(TimeSpan.FromSeconds(0.1));
+                await UniTask.Delay(TimeSpan.FromSeconds(_time));
                 i++;
             }
         }
@@ -117,18 +117,17 @@ namespace Hearthstone
                 if (_card.Selected)
                 {
                     _ = _card.MoveCardAsync(position.transform, _currentDeck, _time);
-                    await UniTask.Delay(TimeSpan.FromSeconds(0.1));
+                    await UniTask.Delay(TimeSpan.FromSeconds(_time));
                 }
                 i++;
             }
-            await UniTask.Delay(TimeSpan.FromSeconds(0.1));
             MulliganStage4(side);
         }
         private async void MulliganStage4(Players side)
         {
             _mulliganConfirmButton.HideButton();
-            BattleModeCard _card;
 
+            BattleModeCard _card;
             List<BattleModeCard> _currentCards;
             Transform _currentDeck;
             Hand _currentHand;
@@ -155,29 +154,26 @@ namespace Hearthstone
                 if (_card.Selected)
                 {
                     _ = _card.MoveCardAsync(_card.transform, position.transform, _time);
-                    await UniTask.Delay(TimeSpan.FromSeconds(0.1));
+                    await UniTask.Delay(TimeSpan.FromSeconds(_time));
                 }
 
                 position.SwitchRenderer(false);
                 i++;
             }
-            await UniTask.Delay(TimeSpan.FromSeconds(0.1));
+            await UniTask.Delay(TimeSpan.FromSeconds(_time));
             i = 0;
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
                 _card = _currentCards[i];
-                //Debug.Log(_currentHand.GetLastCardPosition().position.ToString());
                 _ = _card.MoveCardAsync(position.transform.position, _currentHand.GetLastCardPosition(), _time);
 
-                await UniTask.Delay(TimeSpan.FromSeconds(0.1));
+                await UniTask.Delay(TimeSpan.FromSeconds(_time));
                 if (side == Players.Second)
                     position.gameObject.SetActive(false);
 
-                //await UniTask.Delay(TimeSpan.FromSeconds(_time));
                 var _cardInHand = _card.GetComponent<Card>();
                 _cardInHand.ChangeState(CardState.Hand);
                 _cardInHand.SetSide(side);
-
                 _cardInHand.SetParent(_currentHand);
                 _currentHand.AddCard(_cardInHand);
                 i++;
@@ -219,8 +215,10 @@ namespace Hearthstone
             var card = _currentDeck.ElementAt(_nextCardInDeckNumber);
             _ = card.MoveCardAsync(card.transform.position, _currentHand.GetLastCardPosition(), _time);
 
-            var _cardInHand = card.AddComponent<Card>();
+            var _cardInHand = card.GetComponent<Card>();
 
+            _cardInHand.ChangeState(CardState.Hand);
+            _cardInHand.SetSide(side);
             _cardInHand.SetParent(_currentHand);
             _currentHand.AddCard(_cardInHand);
 
