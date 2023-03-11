@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 40d72c0cc4d85824aadee7b4d83e5140
+guid: f6c5551f97d7569408d88205640afe17
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -46,14 +46,14 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 9
-  spritePivot: {x: 0.9292582, y: 0.50218034}
+  spritePivot: {x: 0.055726133, y: 0.4912785}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 121, y: 0, z: 139, w: 1}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 8
+  textureType: 0
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1

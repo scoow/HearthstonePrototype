@@ -7,8 +7,8 @@ namespace Hearthstone
     {
         public bool _isActiveCry = false;
         private PageBook_Model _pageBook_Model;        
-        public Transform _targetBattleCry;
-        public Transform _parentCardInBattle;        
+        public IndicatorTarget _cursorBattleCry;
+        public Transform _parentCardInBattle; 
         public int _idBattleCry;
 
         public GameObject _battleCryCreator;
@@ -32,19 +32,20 @@ namespace Hearthstone
         private void OnEnable()
         {            
             _pageBook_Model = FindObjectOfType<PageBook_Model>();
-            _targetBattleCry.gameObject.SetActive(false);
+            //_cursorBattleCry.gameObject.SetActive(false);
         }      
 
         private void Update() //îòîáðàæåíèå ïðèöåëà
         {
             if (_isActiveCry && ÑonditionsTargetBattleCry())
-            {                
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            {
+                _cursorBattleCry.CursorBattleCryOn(_battleCryCreator.transform);
+                /*Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit raycastHit))
                 {
-                    _targetBattleCry.transform.position = raycastHit.point;
-                    _targetBattleCry.transform.LookAt(Camera.main.transform);
-                }
+                    _cursorBattleCry.transform.position = raycastHit.point;
+                    _cursorBattleCry.transform.LookAt(Camera.main.transform);
+                }*/
             }          
         }
 
@@ -68,7 +69,7 @@ namespace Hearthstone
             }            
 
             if (ÑonditionsTargetBattleCry()) //óñëîâèå ïîÿâëåíèÿ ïðèöåëà 
-            _targetBattleCry.gameObject.SetActive(_isActiveCry);            
+            _cursorBattleCry.gameObject.SetActive(_isActiveCry);            
         }       
     }
 }
