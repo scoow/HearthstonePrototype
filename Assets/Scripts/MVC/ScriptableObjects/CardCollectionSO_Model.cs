@@ -14,6 +14,7 @@ namespace Hearthstone
         public List<GameSO_Model> _6manaCostCard;
         public List<GameSO_Model> _7manaCostCard;
         public List<HeroSO_Model> _heroCollection;
+        public List<GameSO_Model> _assistCardCollection;
 
         public Dictionary<string, List<int>> _deckSO_Collection = new Dictionary<string, List<int>>() ;
         

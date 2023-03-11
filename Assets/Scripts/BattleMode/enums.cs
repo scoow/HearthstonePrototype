@@ -16,7 +16,8 @@ namespace Hearthstone
         Shaman,
         Warlock,
         Warrior,
-        Universal
+        Universal,
+        Assist
     }
     public enum CardType
     {

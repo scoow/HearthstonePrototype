@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
-  m_Name: 103_MurlocRaider
+  m_Name: 305_305_Assist
   m_EditorClassIdentifier: 
-  _nameCard: "\u041C\u0443\u0440\u043B\u043E\u043A-\u043D\u0430\u043B\u0435\u0442\u0447\u0438\u043A "
+  _idCard: 305305
+  _spriteCard: {fileID: 0}
+  _nameCard: 
   _descriptionCard: 
-  _idCard: 103
-  _spriteCard: {fileID: 21300000, guid: 547f20df520af354fb2e4eee758f5ea2, type: 3}
-  _manaCostCard: 1
-  _atackDamageCard: 2
-  _healthCard: 1
-  _cardClass: 9
-  _battleCryType: 0
-  _battleCryTargets: 0
-  _battleCryTargetsType: 0
-  _minionType: 1
+  _manaCostCard: 0
+  _atackDamageCard: 0
+  _healthCard: 0
+  _cardClass: 0
+  _battleCryTypes: 
+  _abilityInTargetBattleCry: 
+  _targets: 0
+  _targetsType: 0
+  _minionType: 0
   _isProvocation: 0
   _isDivineShield: 0
   _isPermanentEffect: 0
   _isCharge: 0
   _isBerserk: 0
+  _isTakeCard: 0
   _abilityChangeHealth: 0
-  _abilityChangeAtackDamage: 0
-  _abilityChangeSpellDamage: 0
-  _abilityAddCard: 0
+  _abilityChangeAtack: 0

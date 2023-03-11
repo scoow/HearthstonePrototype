@@ -13,7 +13,10 @@ namespace Hearthstone
         /// <summary>
         /// словарь карт по ключу = ID
         /// </summary>
-        public Dictionary<int, GameSO_Model> _cardsDictionary = new Dictionary<int, GameSO_Model>();      
+        public Dictionary<int, GameSO_Model> _cardsDictionary = new Dictionary<int, GameSO_Model>();
+        
+        public Dictionary<int,GameSO_Model> _cardAssistDictionary = new Dictionary<int, GameSO_Model>();
+
         /// <summary>
         /// SO сборник всех карт
         /// </summary>
@@ -36,9 +39,15 @@ namespace Hearthstone
                             Union(cardCollectionSO_Model._5manaCostCard).
                             Union(cardCollectionSO_Model._6manaCostCard).
                             Union(cardCollectionSO_Model._7manaCostCard).
-                            Union(cardCollectionSO_Model._heroCollection).ToList();
+                            Union(cardCollectionSO_Model._heroCollection).
+                            Union(cardCollectionSO_Model._assistCardCollection).ToList();
             foreach (GameSO_Model card in _resultCollection)
             {
+                if (cardCollectionSO_Model._assistCardCollection.Contains(card))
+                {
+                    _cardAssistDictionary.Add(card._idCard, card);
+                    continue;
+                }                    
                 _cardsDictionary.Add(card._idCard, card);
                 if (card is CardSO_Model)
                 {
