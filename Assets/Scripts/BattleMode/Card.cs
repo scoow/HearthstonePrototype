@@ -10,10 +10,13 @@ namespace Hearthstone
         private Camera _camera;
         private LayerRenderUp _layersRenderUp;
         private TempCard_Marker _tempCardGO;
+        [SerializeField]
+        private float _scaleСoefficient;
 
         [Inject]
         private Mana_Controller _mana_Controller;
 
+        [SerializeField]
         private Players _side;
         private bool _cancelDrag;
         public Action<bool> BeginDrag;
@@ -25,7 +28,7 @@ namespace Hearthstone
             _camera = Camera.main;
             _tempCardGO = FindObjectOfType<TempCard_Marker>();
             _layersRenderUp = GetComponent<LayerRenderUp>();
-            _side = GetComponent<BattleModeCard>().GetSide();
+           // _side = GetComponent<BattleModeCard>().GetSide();
 
             ChangeState(CardState.Deck);//состояние по-умолчанию
 
@@ -42,7 +45,7 @@ namespace Hearthstone
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            
+            _cancelDrag = _side != _mana_Controller.WhoMovesNow() || GetComponent<Card_Model>().GetManaCostCard() > _mana_Controller.GetManaCount(_mana_Controller.WhoMovesNow());
             if (_cancelDrag)//Если не наш ход - нельзя схватить карту
             {
                 Debug.Log("Нельзя сыграть эту карту");
@@ -73,10 +76,10 @@ namespace Hearthstone
 
         public void OnEndDrag(PointerEventData eventData)
         {
-/*            if (_cancelDrag)//Если не наш ход - нельзя схватить карту
+            if (_cancelDrag)//Если не наш ход - нельзя схватить карту
             {
                 return;
-            }*/
+            }
             CardHolder _parent = transform.parent.GetComponent<CardHolder>();
             _layersRenderUp.LayerUp(-50);
             if (_parent is Hand)
@@ -99,9 +102,8 @@ namespace Hearthstone
         public void OnPointerEnter(PointerEventData eventData)
         {
             if (_card_State == CardState.Deck || _side != _mana_Controller.WhoMovesNow()) return;
-            _cancelDrag = _side != _mana_Controller.WhoMovesNow() || _mana_Controller.GetManaCount(_side) < GetComponent<Card_Model>().GetManaCostCard();
             _layersRenderUp.LayerUp(50);
-            transform.localScale *= 1.2f;
+            transform.localScale *= _scaleСoefficient;
             transform.position += new Vector3(0, 0, 5f);
         }
 
@@ -109,7 +111,7 @@ namespace Hearthstone
         {
             if (_card_State == CardState.Deck || _side != _mana_Controller.WhoMovesNow()) return;
             _layersRenderUp.LayerUp(-50);
-            transform.localScale /= 1.2f;
+            transform.localScale /= _scaleСoefficient;
             transform.position -= new Vector3(0, 0, 5f);
         }
 
@@ -124,16 +126,20 @@ namespace Hearthstone
             Attack(attacker, this);
         }
 
-        private async void Attack(Card attacker, Card card)
+        private void Attack(Card attacker, Card card)
         {
             BattleModeCard _attackerBattleCard = attacker.GetComponent<BattleModeCard>();
-            _attackerBattleCard.MoveCardAsync(attacker.transform, card.transform, 1f);
-            _attackerBattleCard.MoveCardAsync(card.transform, attacker.transform,1f);
+            _ = _attackerBattleCard.MoveCardAsync(attacker.transform, card.transform, 1f);
+            _ = _attackerBattleCard.MoveCardAsync(card.transform, attacker.transform,1f);
         }
 
+        public void SetSide(Players side)
+        {
+            this._side = side;
+        }
         public Players GetSide()
         {
-            return _side;
+            return this._side;
         }
     }
 }

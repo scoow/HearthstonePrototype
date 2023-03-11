@@ -543,7 +543,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0141f834b611253449fd51ba26a65642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 0}
+  "_scale\u0421oefficient": 1.1
+  _card_State: 0
 --- !u!1 &1720805814630253066
 GameObject:
   m_ObjectHideFlags: 0

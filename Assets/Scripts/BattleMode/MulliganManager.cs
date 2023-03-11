@@ -176,6 +176,7 @@ namespace Hearthstone
                 //await UniTask.Delay(TimeSpan.FromSeconds(_time));
                 var _cardInHand = _card.GetComponent<Card>();
                 _cardInHand.ChangeState(CardState.Hand);
+                _cardInHand.SetSide(side);
 
                 _cardInHand.SetParent(_currentHand);
                 _currentHand.AddCard(_cardInHand);

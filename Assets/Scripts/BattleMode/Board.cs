@@ -76,6 +76,7 @@ namespace Hearthstone
         /// <param name="eventData"></param>
         public override void OnDrop(PointerEventData eventData)//вынести в класс-родитель
         {
+            if (!_draggingCard) return;
             if (!eventData.pointerDrag.TryGetComponent<Card>(out var card)) return;//если это не карта
             if (card.GetState() != CardState.Hand) return; //если карта не из руки
             var _parent = card.transform.parent.GetComponent<CardHolder>();
