@@ -5,8 +5,8 @@ using Zenject.Asteroids;
 
 public class IndicatorTarget : MonoBehaviour
 {
-    public Transform _targetTransform;
-    public Transform _watcherTransform;
+    private Transform _targetTransform;
+    private Transform _watcherTransform;
     public GameObject _cursor;
     public GameObject _dottedLine;   
 

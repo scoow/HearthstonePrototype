@@ -60,17 +60,10 @@ public class Hero_Controller : MonoBehaviour, IChangeHealth , IPointerClickHandl
             if (_health > _defaultHealtValue)
                 _health = _defaultHealtValue;            
         }
-<<<<<<< Updated upstream
         DrawHealth();
     }
+    
 
-    /*public void ChangeHealtValue(int incomingValue)
-    {
-        _health += incomingValue;
-    }*/
-=======
-    }   
->>>>>>> Stashed changes
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -81,49 +74,43 @@ public class Hero_Controller : MonoBehaviour, IChangeHealth , IPointerClickHandl
                 if(battleCryType == BattleCryType.DealDamage)
                 {
                     ChangeHealthValue(_battleCry_Controller._battleCryChangeHealth, ChangeHealthType.DealDamage);
-<<<<<<< Updated upstream
-                    _battleCry_Controller._targetBattleCry.gameObject.SetActive(false);
+                    //_battleCry_Controller._targetBattleCry.gameObject.SetActive(false);
                     _battleCry_Controller._isActiveCry = false;
-=======
                     _textHealth.text = _health.ToString();
                     _textHealth.color = Color.red;
                     BattleCryOff();
->>>>>>> Stashed changes
                 }
                 if(battleCryType == BattleCryType.Heal)
                 {
                     ChangeHealthValue(_battleCry_Controller._battleCryChangeHealth, ChangeHealthType.Healing);
-<<<<<<< Updated upstream
-                    _battleCry_Controller._targetBattleCry.gameObject.SetActive(false);
+                    //_battleCry_Controller._targetBattleCry.gameObject.SetActive(false);
                     _battleCry_Controller._isActiveCry = false;
-=======
                     _textHealth.text = _health.ToString();
                     if (_health == _defaultHealtValue)
                         _textHealth.color = Color.white;
                     if (_health < _defaultHealtValue)
                         _textHealth.color = Color.red;
                     BattleCryOff();
->>>>>>> Stashed changes
                 }
             }
             
         }        
     }
 
-<<<<<<< Updated upstream
-    private void DrawHealth()
-    {
-        _textHealth.text = _health.ToString();         
+        private void DrawHealth()
+        {
+        _textHealth.text = _health.ToString();
         if (_health < _defaultHealtValue)
             _textHealth.color = Color.red;
         else
             _textHealth.color = Color.white;
-=======
+        }
 
-    private void BattleCryOff()
-    {
-        _battleCry_Controller._cursorBattleCry.gameObject.SetActive(false);
-        _battleCry_Controller._isActiveCry = false;
->>>>>>> Stashed changes
-    }
+        private void BattleCryOff()
+        {
+            _battleCry_Controller._cursorBattleCry.gameObject.SetActive(false);
+            _battleCry_Controller._isActiveCry = false;
+        }
+
+
 }
