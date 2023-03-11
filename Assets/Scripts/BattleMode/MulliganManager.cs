@@ -2,7 +2,6 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -13,6 +12,8 @@ using Zenject;
 3. выбранные карты уходят, на их место приходят случайные из колоды
 4. оставшиеся карты попадают в руку
  */
+
+//todo исправить ошибку при клике на слот муллигана до того, как появились карты
 
 namespace Hearthstone
 {
@@ -38,9 +39,16 @@ namespace Hearthstone
         private readonly Board _firstPlayerBoard;
         [Inject(Id = "Second")]
         private readonly Board _secondPlayerBoard;
+        [Inject(Id = "First")]
+        private Hero_Controller _firstPlayerHero;
+        [Inject(Id = "Second")]
+        private Hero_Controller _secondPlayerHero;
 
         private int _nextCardInPlayerDeckNumber = 4;
         private int _nextCardInEnemyDeckNumber = 4;
+
+        private int _playerFatigueDamage = 1;
+        private int _enemyFatigueDamage = 1;
 
         private async void Start()
         {
@@ -212,6 +220,14 @@ namespace Hearthstone
                 _nextCardInDeckNumber = _nextCardInEnemyDeckNumber;
                 _nextCardInEnemyDeckNumber++;
             }
+
+            if (_nextCardInPlayerDeckNumber > _currentDeck.Count-1)
+            {
+                DealFatigueDamage(side);
+                Debug.Log("В колоде не осталось карт");
+                return;
+            }
+
             var card = _currentDeck.ElementAt(_nextCardInDeckNumber);
             _ = card.MoveCardAsync(card.transform.position, _currentHand.GetLastCardPosition(), _time);
 
@@ -223,6 +239,29 @@ namespace Hearthstone
             _currentHand.AddCard(_cardInHand);
 
         }
+
+        private void DealFatigueDamage(Players side)
+        {
+            Hero_Controller hero = null;
+            int damage = 0;
+            switch (side)
+            {
+                case Players.First:
+                    hero = _firstPlayerHero;
+                    damage = _playerFatigueDamage;
+                    _playerFatigueDamage++;
+                    break;
+                case Players.Second:
+                    hero = _secondPlayerHero;
+                    damage = _enemyFatigueDamage;
+                    _enemyFatigueDamage++;
+                    break;
+                default:
+                    break;
+            }
+            hero.ChangeHealthValue(damage, ChangeHealthType.DealDamage);
+        }
+
         private void Update()//тест взятия 
         {
             if (Input.GetMouseButtonDown(2))

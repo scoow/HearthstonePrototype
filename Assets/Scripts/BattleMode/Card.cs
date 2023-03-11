@@ -21,7 +21,8 @@ namespace Hearthstone
         private bool _cancelDrag;
         public Action<bool> BeginDrag;
         [SerializeField]
-        private CardState _card_State;
+        private CardState _card_State;//“екущее состо€ние карты - в колоде/в руке/на столе
+        private bool _canAttackThisTurn;
 
         private void Awake()
         {

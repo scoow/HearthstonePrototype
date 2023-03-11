@@ -2,27 +2,29 @@ using Hearthstone;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Zenject;
 
 public class Hero_Controller : MonoBehaviour, IChangeHealth , IPointerClickHandler
 {
+    [Inject]
     private LoadDeck_Controller _loadDeck_Controller;
+    [Inject]
     private PageBook_Model _pageBook_Model;
+    [Inject]
     private BattleCry_Controller _battleCry_Controller;
 
     public int _health;
     public int _defaultHealtValue;
     public Text _textHealth;
-
-
-
+    [SerializeField] private Players _side;
+    public Players Side { get { return _side; } }
     private void OnEnable()
     {
-        _battleCry_Controller = FindObjectOfType<BattleCry_Controller>();
-        _pageBook_Model = FindObjectOfType<PageBook_Model>();
-        _loadDeck_Controller = FindObjectOfType<LoadDeck_Controller>();
+        //_battleCry_Controller = FindObjectOfType<BattleCry_Controller>();//zenject
+        //_pageBook_Model = FindObjectOfType<PageBook_Model>();//zenject
+        //_loadDeck_Controller = FindObjectOfType<LoadDeck_Controller>();//zenject
         _textHealth = GetComponentInChildren<TextHealthMarker>().GetComponent<Text>();
         _loadDeck_Controller.SetHeroSettings += SetHeroSettings;
-
     }
 
     private void OnDisable()
@@ -61,6 +63,7 @@ public class Hero_Controller : MonoBehaviour, IChangeHealth , IPointerClickHandl
             StartCoroutine(_battleModeCardView.EffectParticle(_battleModeCardView._healtEffect));
             _battleModeCardView.UpdateViewCard();*/
         }
+        DrawHealth();
     }
 
     /*public void ChangeHealtValue(int incomingValue)
@@ -77,24 +80,26 @@ public class Hero_Controller : MonoBehaviour, IChangeHealth , IPointerClickHandl
                 if(battleCryType == BattleCryType.DealDamage)
                 {
                     ChangeHealthValue(_battleCry_Controller._battleCryChangeHealth, ChangeHealthType.DealDamage);
-                    _textHealth.text = _health.ToString();
-                    _textHealth.color = Color.red;
                     _battleCry_Controller._targetBattleCry.gameObject.SetActive(false);
                     _battleCry_Controller._isActiveCry = false;
                 }
                 if(battleCryType == BattleCryType.Heal)
                 {
                     ChangeHealthValue(_battleCry_Controller._battleCryChangeHealth, ChangeHealthType.Healing);
-                    _textHealth.text = _health.ToString();
-                    if (_health == _defaultHealtValue)
-                        _textHealth.color = Color.white;
-                    if (_health < _defaultHealtValue)
-                        _textHealth.color = Color.red;
                     _battleCry_Controller._targetBattleCry.gameObject.SetActive(false);
-                    _battleCry_Controller._isActiveCry=false;
+                    _battleCry_Controller._isActiveCry = false;
                 }
             }
             
         }        
+    }
+
+    private void DrawHealth()
+    {
+        _textHealth.text = _health.ToString();         
+        if (_health < _defaultHealtValue)
+            _textHealth.color = Color.red;
+        else
+            _textHealth.color = Color.white;
     }
 }

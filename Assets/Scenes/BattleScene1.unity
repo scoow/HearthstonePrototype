@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -722,6 +722,7 @@ MonoBehaviour:
   _health: 0
   _defaultHealtValue: 0
   _textHealth: {fileID: 0}
+  _side: 0
 --- !u!1 &161153813
 GameObject:
   m_ObjectHideFlags: 0
@@ -1957,8 +1958,7 @@ MonoBehaviour:
   _onePlayerMana: {fileID: 1633345562}
   _twoPlayerMana: {fileID: 667931367}
   _playersTurn: 0
-  _onePlayerCrystalCount: 0
-  _twoPlayerCrystalCount: 0
+  _playermanaMaxValue: 10
 --- !u!114 &725379364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2299,7 +2299,7 @@ MonoBehaviour:
   m_EventMask:
     serializedVersion: 2
     m_Bits: 2147483647
-  m_MaxRayIntersections: 0
+  m_MaxRayIntersections: 1
 --- !u!1 &982176428
 GameObject:
   m_ObjectHideFlags: 0
@@ -3052,6 +3052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7d5c549be0d6e343b91401757542fab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cardSO_Models: []
   cardCollectionSO_Model: {fileID: 11400000, guid: 91bad1177d8508e44aee5144ad1c09a8, type: 2}
   _resultCollection: []
   _createDeckState: 0
@@ -3296,6 +3297,7 @@ MonoBehaviour:
   _health: 0
   _defaultHealtValue: 0
   _textHealth: {fileID: 0}
+  _side: 0
 --- !u!1 &1491325578
 GameObject:
   m_ObjectHideFlags: 0
