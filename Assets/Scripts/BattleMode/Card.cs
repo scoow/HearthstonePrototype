@@ -46,6 +46,7 @@ namespace Hearthstone
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            if (_card_State == CardState.Deck) return;
             _cancelDrag = _side != _mana_Controller.WhoMovesNow() || GetComponent<Card_Model>().GetManaCostCard() > _mana_Controller.GetManaCount(_mana_Controller.WhoMovesNow());
             if (_cancelDrag)//Если не наш ход - нельзя схватить карту
             {
@@ -61,6 +62,7 @@ namespace Hearthstone
 
         public void OnDrag(PointerEventData eventData)
         {
+            if (_card_State == CardState.Deck) return;
             if (_cancelDrag)//Если не наш ход - нельзя схватить карту
             {
                 return;
@@ -77,6 +79,7 @@ namespace Hearthstone
 
         public void OnEndDrag(PointerEventData eventData)
         {
+            if (_card_State == CardState.Deck) return;
             if (_cancelDrag)//Если не наш ход - нельзя схватить карту
             {
                 return;

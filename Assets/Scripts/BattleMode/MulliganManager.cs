@@ -70,7 +70,7 @@ namespace Hearthstone
                 card.gameObject.SetActive(true);
 
             MulliganStage1(Players.First);
-            await UniTask.Delay(TimeSpan.FromSeconds(_time));
+            await UniTask.Delay(TimeSpan.FromSeconds(_time * 4));
             MulliganStage2();
         }
 
@@ -87,11 +87,14 @@ namespace Hearthstone
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
                 _card = _currentDeck[i];
+                var coll = position.GetComponent<Collider>();
+                coll.enabled = true;
                 position.SetCurrentCard(_card);//прив€зываем карту к позиции
                 _ = _card.MoveCardAsync(_card.transform, position.transform, _time);
                 await UniTask.Delay(TimeSpan.FromSeconds(_time));
                 i++;
             }
+            
         }
 
         private void MulliganStage2()
@@ -224,7 +227,7 @@ namespace Hearthstone
             if (_nextCardInPlayerDeckNumber > _currentDeck.Count-1)
             {
                 DealFatigueDamage(side);
-                Debug.Log("¬ колоде не осталось карт");
+                Debug.Log("¬ колоде " + side + " не осталось карт");
                 return;
             }
 

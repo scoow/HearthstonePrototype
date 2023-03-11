@@ -1409,7 +1409,7 @@ BoxCollider:
   m_GameObject: {fileID: 529985564}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2.0700002, y: 3.2312195, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
@@ -3297,7 +3297,7 @@ MonoBehaviour:
   _health: 0
   _defaultHealtValue: 0
   _textHealth: {fileID: 0}
-  _side: 0
+  _side: 1
 --- !u!1 &1491325578
 GameObject:
   m_ObjectHideFlags: 0
@@ -3406,7 +3406,7 @@ BoxCollider:
   m_GameObject: {fileID: 1491325578}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2.0700002, y: 3.2312195, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
@@ -3458,7 +3458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f00886b8c902c46a9af3e9f4a23417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _time: 0.5
+  _time: 0.2
   _playerDeck: {fileID: 103206867}
   _enemyDeck: {fileID: 143047460}
 --- !u!1 &1604529404
@@ -4059,7 +4059,7 @@ BoxCollider:
   m_GameObject: {fileID: 1897317236}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2.0700002, y: 3.2312195, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
@@ -4362,7 +4362,7 @@ BoxCollider:
   m_GameObject: {fileID: 2026568695}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2.0700002, y: 3.2312195, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
