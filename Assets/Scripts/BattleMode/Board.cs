@@ -156,6 +156,7 @@ namespace Hearthstone
                 }
 
                 _mana_Controller.SpendMana(_side, card.GetComponent<Card_Model>().GetManaCostCard());// вычесть ману
+                OnPointerExit(eventData);
                 AddCard(card);
             }
         }
