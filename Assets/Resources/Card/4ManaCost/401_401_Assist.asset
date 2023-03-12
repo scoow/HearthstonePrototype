@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _idCard: 401401
   _spriteCard: {fileID: 21300000, guid: a87ab0e57a215a4499c3868af91c2e92, type: 3}
-  _nameCard: 
+  _nameCard: "\u041C\u0435\u0445\u0430\u043D\u043E\u0434\u0440\u0430\u043A\u043E\u043D\u0447\u0438\u043A"
   _descriptionCard: 
-  _manaCostCard: 0
+  _manaCostCard: 1
   _atackDamageCard: 2
   _healthCard: 1
   _cardClass: 10

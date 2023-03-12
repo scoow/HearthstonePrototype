@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -152,8 +153,14 @@ namespace Hearthstone
             Attack(attacker, this);
         }*/
 
-        private void Attack(Card attacker, Card card)
+        private async void Attack(Card attacker, Card card)
         {
+            BattleModeCard _attackerBattleCard = attacker.GetComponent<BattleModeCard>();
+            Vector3 oldPosition = attacker.transform.position;
+            _ = _attackerBattleCard.MoveCardAsync(attacker.transform, card.transform, 1f);
+            await UniTask.Delay(TimeSpan.FromSeconds(1f));
+            _ = _attackerBattleCard.MoveCardAsync(card.transform.position, oldPosition, 1f);
+
             Card_Controller card_Controller_attacker = attacker.GetComponent<Card_Controller>();
             Card_Controller card_Controller_card = card.GetComponent<Card_Controller>();
 
@@ -163,9 +170,7 @@ namespace Hearthstone
             card_Controller_attacker.ChangeHealtValue(card_damage, ChangeHealthType.DealDamage);
             card_Controller_card.ChangeHealtValue(attacker_damage, ChangeHealthType.DealDamage);
 
-            /*BattleModeCard _attackerBattleCard = attacker.GetComponent<BattleModeCard>();
-            _ = _attackerBattleCard.MoveCardAsync(attacker.transform, card.transform, 1f);
-            _ = _attackerBattleCard.MoveCardAsync(card.transform, attacker.transform, 1f);*/
+            
         }
 
         public void SetSide(Players side)

@@ -15,8 +15,8 @@ MonoBehaviour:
   _idCard: 305305
   _spriteCard: {fileID: 21300000, guid: c091071d2c3d5cb448cc6dfc49795abc, type: 3}
   _nameCard: 
-  _descriptionCard: 
-  _manaCostCard: 0
+  _descriptionCard: "\u0412\u0435\u043F\u0440\u044C"
+  _manaCostCard: 1
   _atackDamageCard: 1
   _healthCard: 1
   _cardClass: 10
