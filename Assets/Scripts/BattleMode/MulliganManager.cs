@@ -87,6 +87,10 @@ namespace Hearthstone
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
                 _card = _currentDeck[i];
+
+                var newViewCardInHand = _card.GetComponent<Card_View>(); // добавил переменную для отключения рубашки
+                newViewCardInHand.CardShirtEnable(false);//отключаю отображение рубкашки
+
                 var coll = position.GetComponent<Collider>();
                 coll.enabled = true;
                 position.SetCurrentCard(_card);//привязываем карту к позиции
@@ -242,6 +246,9 @@ namespace Hearthstone
             _ = card.MoveCardAsync(card.transform.position, _currentHand.GetLastCardPosition(), _time);
 
             var _cardInHand = card.GetComponent<Card>();
+
+            var newViewCardInHand = card.GetComponent<Card_View>(); // добавил переменную для отключения рубашки
+            newViewCardInHand.CardShirtEnable(false);//отключаю отображение рубкашки
 
             _cardInHand.ChangeState(CardState.Hand);
             _cardInHand.SetSide(side);

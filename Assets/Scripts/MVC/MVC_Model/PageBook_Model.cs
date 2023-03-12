@@ -27,8 +27,8 @@ namespace Hearthstone
         [HideInInspector]
         public List<GameSO_Model> _resultCollection = new List<GameSO_Model>();
         [HideInInspector]
-        public CreateDeckState _createDeckState ;       
-
+        public CreateDeckState _createDeckState ;
+       
         public void Awake()
         {
             _resultCollection =   cardCollectionSO_Model._1manaCostCard.

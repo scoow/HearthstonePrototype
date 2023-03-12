@@ -11,6 +11,7 @@ namespace Hearthstone
         private PageBook_View _pageBook_View;
         private PageBook_Model _pageBook_Model;
         private LoadDeck_Controller _loadDeck_Controller;
+        public SpriteRenderer _shirtCard;
         private SpriteRenderer _spriteCard;
         private Card_Model _card_Model;
         private int _id;
@@ -30,6 +31,7 @@ namespace Hearthstone
 
         private void OnEnable()
         {
+            
             _card_Model = GetComponent<Card_Model>();
             _pageBook_Model = FindObjectOfType<PageBook_Model>();
             if (gameObject.GetComponent<BattleModeCard>() != null)
@@ -37,6 +39,7 @@ namespace Hearthstone
                 _loadDeck_Controller = FindObjectOfType<LoadDeck_Controller>();
                 _loadDeck_Controller.SetCardSettings += ChangeViewCard;
             }
+            
             if (gameObject.GetComponent<CreateModeCard>() != null)
             {
                 _pageBook_View = FindObjectOfType<PageBook_View>();
@@ -87,6 +90,11 @@ namespace Hearthstone
             _spriteCard.sprite = cardSO._spriteCard;
             _nameText.text = cardSO._nameCard;
             _manaCostText.text = cardSO._manaCostCard.ToString();
+        }
+
+        public void CardShirtEnable(bool isEnable)
+        {
+            _shirtCard.gameObject.SetActive(isEnable);
         }
     }
 }

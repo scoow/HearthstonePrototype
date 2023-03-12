@@ -47,9 +47,9 @@ namespace Hearthstone
             var battleModeCard = newCard.GetComponent<BattleModeCard>();
 
             var newCardModel = newCard.GetComponent<Card_Model>();
-            var newlayerRenderUp = newCard.GetComponent<LayerRenderUp>();
+            var newlayerRenderUp = newCard.GetComponent<LayerRenderUp>();            
             newlayerRenderUp.LayerUp(layerStep);
-            layerStep--;
+            layerStep--;            
             var newCardView = newCard.GetComponent<Card_View>();
             newCardModel.SetCardSettings(i, isMinion);//вынести в отд метод для создания минионов
             battlemodeCardView.SetSettingsCardInBattle();
