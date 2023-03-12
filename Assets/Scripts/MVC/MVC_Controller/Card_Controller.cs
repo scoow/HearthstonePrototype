@@ -242,10 +242,14 @@ namespace Hearthstone
 
         public void DiedCreature() //смерть существа
         {
-            gameObject.SetActive(false);
+            
+
+
             _permanentEffectController.RemovePermanentEffect(_card_Model._idCard);
             _eventEffectController.RemoveEventEffect(_card_Model._idCard);
             _eventEffectController.ParseDeathEvent(this);
+
+            gameObject.SetActive(false);
         }
 
         #endregion        

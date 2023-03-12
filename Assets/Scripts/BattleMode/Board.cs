@@ -7,13 +7,15 @@ using Zenject;
 
 namespace Hearthstone
 {
-    public class Board : CardHolder, IPointerEnterHandler, IPointerExitHandler
+    public class Board : CardHolder, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
         private Camera _camera;
         [Inject]
         private TempMinion_Marker _tempMinionGO;
         [Inject]
         private Mana_Controller _mana_Controller;
+        [Inject]
+        private IndicatorTarget _indicatorTarget;
         private bool _draggingCard; //несём ли карту
         private bool _rightCard; //добавление карты справа?
 
@@ -194,6 +196,14 @@ namespace Hearthstone
             {
                 if (card != null)
                     card.BeginDrag -= ReactionToCardDragging;
+            }
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (_indicatorTarget.CursorEnabled)
+            {
+                _indicatorTarget.ChangeCursorState(false);
             }
         }
     }

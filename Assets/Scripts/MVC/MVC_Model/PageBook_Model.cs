@@ -29,7 +29,6 @@ namespace Hearthstone
         [HideInInspector]
         public CreateDeckState _createDeckState ;       
 
-
         public void Awake()
         {
             _resultCollection =   cardCollectionSO_Model._1manaCostCard.
@@ -55,6 +54,14 @@ namespace Hearthstone
                 }
             }            
         }
+        public CardSO_Model GetCardSO_byID(int idCard)
+        {
+            bool success;
+            success = _cardsDictionary.TryGetValue(idCard, out GameSO_Model cardSO_Model);
+            if (!success)
+                _ = _cardAssistDictionary.TryGetValue(idCard, out cardSO_Model);
+            return (CardSO_Model)cardSO_Model;
+        }    
     }
 
     /// <summary>

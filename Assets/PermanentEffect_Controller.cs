@@ -30,14 +30,16 @@ public class PermanentEffect_Controller : MonoBehaviour
 
     public void RemovePermanentEffect(int cardId) //отменить эффект с карт и удалить его из списка
     {
-        CardSO_Model cardSO_Model = (CardSO_Model)_pageBook_Model._cardsDictionary[cardId];
+        CardSO_Model cardSO_Model = _pageBook_Model.GetCardSO_byID(cardId);       
+
         UpdatePermanentEffect(cardId, -cardSO_Model._abilityChangeHealth, -cardSO_Model._abilityChangeAtack);
         _activePermanentEffect.Remove(cardId);
         
     }
     private void AceptPermanentEffect(int cardId) //применить эффект на картах которые стоят на поле
     {
-        CardSO_Model cardSO_Model = (CardSO_Model)_pageBook_Model._cardsDictionary[cardId];
+        CardSO_Model cardSO_Model = _pageBook_Model.GetCardSO_byID(cardId);
+
         UpdatePermanentEffect(cardId, cardSO_Model._abilityChangeHealth, cardSO_Model._abilityChangeAtack); //обновляем значения карт
         _activePermanentEffect.Add(cardId);                                                                                                   
     }
@@ -48,7 +50,7 @@ public class PermanentEffect_Controller : MonoBehaviour
 
     private void UpdatePermanentEffect(int cardEffectId , int changeHealthValue, int changeAtackValue)
     {
-        CardSO_Model cardSO_Model = (CardSO_Model)_pageBook_Model._cardsDictionary[cardEffectId];
+        CardSO_Model cardSO_Model = _pageBook_Model.GetCardSO_byID(cardEffectId);
         Card_Controller[] _cardControllerArray = _playerBoard.GetComponentsInChildren<Card_Controller>();
         for (int i = 0; i < _cardControllerArray.Length; i++)
         {
@@ -76,7 +78,8 @@ public class PermanentEffect_Controller : MonoBehaviour
             {
                 if (currentCard._idCard == cardEffectId) continue;
 
-                CardSO_Model cardSO_Model = (CardSO_Model)_pageBook_Model._cardsDictionary[cardEffectId];
+                CardSO_Model cardSO_Model = _pageBook_Model.GetCardSO_byID(cardEffectId);
+
                 if ((cardEffectId == 102 || cardEffectId == 107) && (cardSO_Model._targetsType == currentCard._minionType)) //баф карт 102 и 107
                 {
                     cardController.ChangeAtackValue(cardSO_Model._abilityChangeAtack);

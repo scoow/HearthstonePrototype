@@ -37,6 +37,7 @@ public class IndicatorTarget : MonoBehaviour
     {
         _cursor.SetActive(newstate);
         _dottedLine.SetActive(newstate);
+        CursorEnabled= newstate;
     }
 
     private void Update()

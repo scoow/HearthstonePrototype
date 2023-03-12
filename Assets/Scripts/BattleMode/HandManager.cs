@@ -57,6 +57,7 @@ namespace Hearthstone
                 battlemodeCardView.ChangeCardViewMode();
                 Card card = newCard.GetComponent<Card>();
                 card.ChangeState(CardState.Board);
+                card.SetSide(side);
                 if (side == Players.First)
                 {
                     _firstPlayerBoard.AddCard(card);
@@ -69,7 +70,8 @@ namespace Hearthstone
                 }
             }
             newCardView.ChangeViewCard();
-            battleModeCard.SetSide(side);
+            battleModeCard.SetSide(side);//упростить
+
             return layerStep;
         }
     }
