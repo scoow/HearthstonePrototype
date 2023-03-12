@@ -24,7 +24,7 @@ namespace Hearthstone
         public Action<bool> BeginDrag;
         [SerializeField]
         private CardState _card_State;//Текущее состояние карты - в колоде/в руке/на столе
-        private bool _canAttackThisTurn;
+        private bool _canAttackThisTurn = true;
 
         private void Awake()
         {
@@ -130,7 +130,7 @@ namespace Hearthstone
             if (_card_State == CardState.Deck || _side != _mana_Controller.WhoMovesNow()) return;
             _layersRenderUp.LayerUp(50);
             transform.localScale *= _scaleСoefficient;
-            transform.position += new Vector3(0, 0, 5f);
+            //transform.position += new Vector3(0, 0, 5f);
         }
 
         public void OnPointerExit(PointerEventData eventData)
@@ -138,7 +138,7 @@ namespace Hearthstone
             if (_card_State == CardState.Deck || _side != _mana_Controller.WhoMovesNow()) return;
             _layersRenderUp.LayerUp(-50);
             transform.localScale /= _scaleСoefficient;
-            transform.position -= new Vector3(0, 0, 5f);
+            //transform.position -= new Vector3(0, 0, 5f);
         }
 
         /*public void OnDrop(PointerEventData eventData)

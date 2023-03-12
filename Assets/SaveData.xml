@@ -22,21 +22,7 @@
     <CardId>301</CardId>
     <CardId>208</CardId>
   </DeckName>
-  <DeckName NameValue="dfgdg" StateValue="Неактивная колода">
-    <CardId>1000</CardId>
-    <CardId>309</CardId>
-    <CardId>308</CardId>
-    <CardId>310</CardId>
-    <CardId>208</CardId>
-  </DeckName>
-  <DeckName NameValue="hfg" StateValue="Неактивная колода">
-    <CardId>2000</CardId>
-    <CardId>500</CardId>
-    <CardId>502</CardId>
-    <CardId>503</CardId>
-    <CardId>602</CardId>
-  </DeckName>
-  <DeckName NameValue="ТестВар" StateValue="Выбранная колода">
+  <DeckName NameValue="ТестВар" StateValue="Неактивная колода">
     <CardId>1000</CardId>
     <CardId>100</CardId>
     <CardId>104</CardId>
@@ -59,7 +45,7 @@
     <CardId>403</CardId>
     <CardId>206</CardId>
   </DeckName>
-  <DeckName NameValue="Большая" StateValue="Неактивная колода">
+  <DeckName NameValue="Большая" StateValue="Выбранная колода">
     <CardId>5000</CardId>
     <CardId>100</CardId>
     <CardId>100</CardId>
@@ -87,5 +73,13 @@
     <CardId>206</CardId>
     <CardId>207</CardId>
     <CardId>207</CardId>
+  </DeckName>
+  <DeckName NameValue="Рывок мурлок" StateValue="Неактивная колода">
+    <CardId>9000</CardId>
+    <CardId>202</CardId>
+    <CardId>202</CardId>
+    <CardId>207</CardId>
+    <CardId>207</CardId>
+    <CardId>206</CardId>
   </DeckName>
 </SaveDeckCollection>

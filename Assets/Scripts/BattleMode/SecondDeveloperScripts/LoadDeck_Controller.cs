@@ -56,7 +56,7 @@ namespace Hearthstone
                        
             SetCardSettings?.Invoke();
         }
-        private void ShuffleCardInDeck()
+        public void ShuffleCardInDeck()
         {           
             int maxIndex = _activeDeck.Count;
             while (maxIndex > 1)
