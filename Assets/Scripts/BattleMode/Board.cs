@@ -19,7 +19,7 @@ namespace Hearthstone
         private bool _draggingCard; //несём ли карту
         private bool _rightCard; //добавление карты справа?
 
-        public Action<Transform> EndDragCard; ///событие для смены отображения карты
+        public Action<Card> EndDragCard; ///событие для смены отображения карты
 
         private (Vector3, bool)[] _minionSlots;//Места для установки существ
         private void Awake()
@@ -80,10 +80,11 @@ namespace Hearthstone
             //var _cardInHand = card.gameObject.AddComponent<Minion>();
             card.ChangeState(CardState.Board);
 
-            if (!card.GetComponent<Card_Model>()._isCharge)//Если нет рывка - отключаем возможность атаковать на этом ходу
+            if (!card.GetComponent<Card_Model>()._isCharge)//Если нет рывка - отключаем возможность атаковать на этом ходу!!!!!!!!!!
                 card.DisableAttack();
-
-            EndDragCard?.Invoke(transform); ///событие для смены отображения карты
+            ////////////////////////////////////////////////////////////////
+            if (card.GetState() == CardState.Board)
+                EndDragCard?.Invoke(card); ///событие для смены отображения карты
         }
         /// <summary>
         /// получить позицию последней карты в руке
@@ -130,7 +131,7 @@ namespace Hearthstone
                     if (_rightCard)
                     {
                         int i = position + 1;
-                        while (_minionSlots[i].Item2 && i < 7)
+                        while (_minionSlots[i].Item2 && i < 6)
                         {
                             i++;
                         }
@@ -145,9 +146,9 @@ namespace Hearthstone
                         int j = position - 1;
                         while (_minionSlots[j].Item2 && j > 0)
                         {
-                            j++;
+                            j--;
                         }
-                        if (j > 0)
+                        if (j < 0)//придумать что делать
                         {
                             card.transform.position = _minionSlots[j].Item1;
                             _minionSlots[j].Item2 = true;

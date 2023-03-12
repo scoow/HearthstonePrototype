@@ -31,13 +31,16 @@ namespace Hearthstone
             //пока костыль. заменить на Zenject
             _mana_Controller = FindObjectOfType<Mana_Controller>();
             _mulliganManager = FindObjectOfType<MulliganManager>();
-            _card_Model = GetComponent<Card_Model>();
+            
             _battleCryController = FindObjectOfType<BattleCry_Controller>();
-            _battleModeCardView = FindObjectOfType<BattleModeCard_View>();
+            //_battleModeCardView = FindObjectOfType<BattleModeCard_View>();
+            
             _permanentEffectController = FindObjectOfType<PermanentEffect_Controller>();
             _eventEffectController = FindObjectOfType<EventEffect_Controller>();
             _singleEffect_Controller = FindObjectOfType<SingleEffect_Controller>();
             _handManager = FindObjectOfType<HandManager>();
+            _battleModeCardView = GetComponent<BattleModeCard_View>();
+            _card_Model = GetComponent<Card_Model>();
 
             OnActivateCard += ChoiseAbility;
         }
@@ -54,11 +57,21 @@ namespace Hearthstone
             _board.EndDragCard += ActivateBattleCry;
         }
 
-        public void ActivateBattleCry(Transform newParent) //активация боевых кличей
+        public void ActivateBattleCry(/*Transform newParent*/Card card) //активация боевых кличей
         {
             _battleCryController._isActiveCry = true;
-            if (newParent == transform.parent && !_useBattleCray)
+            //        if (newParent == transform.parent && !_useBattleCray)
+            //         if (card.transform.parent == _board.transform && !_useBattleCray)
+            var card_model = card.GetComponent<Card_Model>()._nameCard;
+            
+
+            var my_Card = GetComponent<Card>();
+
+            if (card != my_Card) return;
             {
+                Debug.Log(card_model);
+
+
                 _battleModeCardView.ChangeCardViewMode();
                 SaveValueCurrentBattleCry();
                 _battleCryController.UpdateBattleCry();
@@ -67,12 +80,12 @@ namespace Hearthstone
                 if (_card_Model._battleCryTypes.Contains(BattleCryType.SummonAssistant))//призыв существа-ассистента
                 {
                     int minionID = int.Parse(_card_Model._idCard.ToString() + _card_Model._idCard.ToString());
-                    Board board = newParent.GetComponent<Board>();
+                    //Board board = newParent.GetComponent<Board>();
                     
                     Transform transform = new GameObject().transform;//исправить
-                    transform.position = board.GetLastCardPosition();
+                    transform.position = _board.GetLastCardPosition();
                     int layout = 0;
-                    _handManager.CreateCard(board._side, transform, ref layout, minionID, true);
+                    _handManager.CreateCard(_board._side, transform, ref layout, minionID, true);
 
                     Destroy(transform.gameObject);
                 }

@@ -62,7 +62,6 @@ namespace Hearthstone
 
             if (_playersTurn == Players.Second)
             {
-                
                 _playersTurn = Players.First;
                 AddCristal(_playersTurn);
                 RestoreMana(_playersTurn);

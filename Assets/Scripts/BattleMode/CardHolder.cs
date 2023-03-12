@@ -41,10 +41,7 @@ namespace Hearthstone
         /// </summary>
         public virtual void AddCard(Card card)
         {
-            /*Transform newPosition = GetLastCardPosition();
-            newPosition.position += new Vector3(_offset, 0);*/
             _cardsList.Add(card);
-            //_cardCount++;
             card.SetParent(this);
         }
         /// <summary>
