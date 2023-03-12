@@ -91,16 +91,15 @@ public class Hero_Controller : MonoBehaviour, IChangeHealth, IPointerClickHandle
         {
             if (_indicatorTarget.CursorEnabled)
             {
-                var attacker = _indicatorTarget.GetWatcher().GetComponent<Card_Model>();
-                ChangeHealthValue(attacker._atackDamageCard, ChangeHealthType.DealDamage);
-
+                var attacker = _indicatorTarget.GetWatcher().GetComponent<Card_Model>();//привести в порядок
+                
                 Card attackercard = attacker.GetComponent<Card>();
                 if (attackercard.GetSide() == _side) return;
 
                 _indicatorTarget.ChangeCursorState(false);
 
                 attackercard.DisableAttack();
-                //Attack(attackercard, this);
+                attackercard.Attack(attackercard, this);
             }
         }
     }

@@ -153,7 +153,7 @@ namespace Hearthstone
             Attack(attacker, this);
         }*/
 
-        private async void Attack(Card attacker, Card card)
+        public async void Attack(Card attacker, Card card)
         {
             BattleModeCard _attackerBattleCard = attacker.GetComponent<BattleModeCard>();
             Vector3 oldPosition = attacker.transform.position;
@@ -171,6 +171,23 @@ namespace Hearthstone
 
             card_Controller_attacker.ChangeHealtValue(card_damage, ChangeHealthType.DealDamage);
             card_Controller_card.ChangeHealtValue(attacker_damage, ChangeHealthType.DealDamage);
+        }
+        public async void Attack(Card attacker, Hero_Controller hero)
+        {
+            BattleModeCard _attackerBattleCard = attacker.GetComponent<BattleModeCard>();
+            Vector3 oldPosition = attacker.transform.position;
+            _ = _attackerBattleCard.MoveCardAsync(attacker.transform, hero.transform, 1f);
+            await UniTask.Delay(TimeSpan.FromSeconds(1f));
+            _ = _attackerBattleCard.MoveCardAsync(hero.transform.position, oldPosition, 1f);
+
+            Card_Controller card_Controller_attacker = attacker.GetComponent<Card_Controller>();
+            Hero_Controller hero_Controller_card = hero.GetComponent<Hero_Controller>();
+            
+
+            int attacker_damage = attacker.GetComponent<Card_Model>()._atackDamageCard;
+            hero_Controller_card.ChangeHealthValue(attacker_damage, ChangeHealthType.DealDamage);
+
+            Debug.Log(attacker.GetComponent<Card_Model>()._nameCard + " атаковал героя");
         }
 
         public void SetSide(Players side)
