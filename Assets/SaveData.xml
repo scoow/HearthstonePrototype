@@ -8,7 +8,7 @@
     <CardId>308</CardId>
     <CardId>202</CardId>
   </DeckName>
-  <DeckName NameValue="Рывок" StateValue="Неактивная колода">
+  <DeckName NameValue="Рывок" StateValue="Выбранная колода">
     <CardId>1000</CardId>
     <CardId>309</CardId>
     <CardId>302</CardId>
@@ -51,7 +51,7 @@
     <CardId>301</CardId>
     <CardId>307</CardId>
   </DeckName>
-  <DeckName NameValue="Призыватели" StateValue="Выбранная колода">
+  <DeckName NameValue="Призыватели" StateValue="Неактивная колода">
     <CardId>6000</CardId>
     <CardId>205</CardId>
     <CardId>305</CardId>

@@ -181,6 +181,7 @@ namespace Hearthstone
         public void ChargeAbility()//рывок
         {
             Debug.Log($"{_card_Model._nameCard} может атаковать на этом ходу");
+            //_card_Model._isCharge = true;
         }
         public void TakeAdditionalCard() //добавление новой карты
         {
@@ -242,7 +243,7 @@ namespace Hearthstone
 
         public void DiedCreature() //смерть существа
         {
-            
+            Debug.Log(_card_Model._nameCard + " погиб смертью храбрых");
 
 
             _permanentEffectController.RemovePermanentEffect(_card_Model._idCard);

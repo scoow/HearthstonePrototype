@@ -12,6 +12,8 @@ public class Hero_Controller : MonoBehaviour, IChangeHealth, IPointerClickHandle
     private PageBook_Model _pageBook_Model;
     [Inject]
     private BattleCry_Controller _battleCry_Controller;
+    [Inject]
+    private IndicatorTarget _indicatorTarget;
 
     public int _health;
     public int _defaultHealtValue;
@@ -62,6 +64,7 @@ public class Hero_Controller : MonoBehaviour, IChangeHealth, IPointerClickHandle
 
     public void OnPointerClick(PointerEventData eventData)
     {
+
         if (_battleCry_Controller.ÑonditionsTargetBattleCry())
         {
             foreach (BattleCryType battleCryType in _battleCry_Controller._currentBattleCryTypes)
@@ -71,8 +74,7 @@ public class Hero_Controller : MonoBehaviour, IChangeHealth, IPointerClickHandle
                     ChangeHealthValue(_battleCry_Controller._battleCryChangeHealth, ChangeHealthType.DealDamage);
                     //_battleCry_Controller._targetBattleCry.gameObject.SetActive(false);
                     _battleCry_Controller._isActiveCry = false;
-                    _textHealth.text = _health.ToString();
-                    _textHealth.color = Color.red;
+                    //DrawHealth();
                     BattleCryOff();
                 }
                 if (battleCryType == BattleCryType.Heal)
@@ -80,13 +82,25 @@ public class Hero_Controller : MonoBehaviour, IChangeHealth, IPointerClickHandle
                     ChangeHealthValue(_battleCry_Controller._battleCryChangeHealth, ChangeHealthType.Healing);
                     //_battleCry_Controller._targetBattleCry.gameObject.SetActive(false);
                     _battleCry_Controller._isActiveCry = false;
-                    _textHealth.text = _health.ToString();
-                    if (_health == _defaultHealtValue)
-                        _textHealth.color = Color.white;
-                    if (_health < _defaultHealtValue)
-                        _textHealth.color = Color.red;
+                    //DrawHealth();
                     BattleCryOff();
                 }
+            }
+        }
+        else
+        {
+            if (_indicatorTarget.CursorEnabled)
+            {
+                var attacker = _indicatorTarget.GetWatcher().GetComponent<Card_Model>();
+                ChangeHealthValue(attacker._atackDamageCard, ChangeHealthType.DealDamage);
+
+                Card attackercard = attacker.GetComponent<Card>();
+                if (attackercard.GetSide() == _side) return;
+
+                _indicatorTarget.ChangeCursorState(false);
+
+                attackercard.DisableAttack();
+                //Attack(attackercard, this);
             }
         }
     }

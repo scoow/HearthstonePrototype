@@ -167,10 +167,10 @@ namespace Hearthstone
             int attacker_damage = attacker.GetComponent<Card_Model>()._atackDamageCard;
             int card_damage = card.GetComponent<Card_Model>()._atackDamageCard;
 
+            Debug.Log(attacker.GetComponent<Card_Model>()._nameCard + " атаковал " + card.GetComponent<Card_Model>()._nameCard);
+
             card_Controller_attacker.ChangeHealtValue(card_damage, ChangeHealthType.DealDamage);
             card_Controller_card.ChangeHealtValue(attacker_damage, ChangeHealthType.DealDamage);
-
-            
         }
 
         public void SetSide(Players side)
@@ -192,7 +192,7 @@ namespace Hearthstone
             {
                 if (_canAttackThisTurn)
                 {
-                    Debug.Log("Включился курсор");
+                    //Debug.Log("Включился курсор");
                     _indicatorTarget.ChangeCursorState(true);
                     _indicatorTarget.SetWatcher(this.transform);
                 }
@@ -207,7 +207,7 @@ namespace Hearthstone
                 GameObject attacker = _indicatorTarget.GetWatcher();
                 Card attackercard = attacker.GetComponent<Card>();
                 if (attackercard.GetSide() == _side) return;
-                Debug.Log("Произошла атака" + attackercard + "    " + this);
+
                 _indicatorTarget.ChangeCursorState(false);
 
                 attackercard.DisableAttack();

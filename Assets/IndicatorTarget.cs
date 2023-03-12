@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class IndicatorTarget : MonoBehaviour
 {
-    private Transform _targetTransform;
     private Transform _watcherTransform;
-    public GameObject _cursor;
-    public GameObject _dottedLine;
+    [SerializeField]
+    private GameObject _cursor;
+    [SerializeField]
+    private GameObject _dottedLine;
     private bool _cursorEnabled;
-    public bool CursorEnabled { get { return _cursorEnabled; } set { _cursorEnabled = value; } }
+    public bool CursorEnabled { get { return _cursorEnabled; } set { _cursorEnabled = value; } }//сделать покрасивше
 
     public void CursorBattleCryOn()
     {
