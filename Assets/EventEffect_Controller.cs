@@ -8,8 +8,8 @@ public class EventEffect_Controller : MonoBehaviour
     private Mana_Controller _manaController;
     private PageBook_Model _pageBook_Model;
     //private int _lastEffect;
-    [SerializeField] private Transform _playerBoard;
-    [SerializeField] private Transform _enemyBoard;
+    [SerializeField] private Transform _playerFirstBoard;
+    [SerializeField] private Transform _playerSecondBoard;
 
 
     /// <summary>
@@ -64,7 +64,8 @@ public class EventEffect_Controller : MonoBehaviour
     /// </summary>
     public void ParseDamageEvent()
     {
-        Card_Controller[] _cardControllerArray = _playerBoard.GetComponentsInChildren<Card_Controller>();
+        Card_Controller[] _cardPlayerFirst = _playerFirstBoard.GetComponentsInChildren<Card_Controller>(); //все карты на столе первого игрока
+        Card_Controller[] _cardlayerSecond = _playerSecondBoard.GetComponentsInChildren<Card_Controller>(); //все карты на столе второго игрока
 
         if (_activeEventEffect != null)
         {
@@ -72,7 +73,7 @@ public class EventEffect_Controller : MonoBehaviour
             {
                 if (cardEffectId == 310) // если есть такой эффект
                 {
-                    foreach(Card_Controller cardController in _cardControllerArray)
+                    foreach(Card_Controller cardController in _cardPlayerFirst)
                     {
                         if(cardController.GetComponent<Card_Model>()._idCard == cardEffectId) //то вызываю метод Берсерк у карты с таким же Id
                         {
@@ -89,7 +90,8 @@ public class EventEffect_Controller : MonoBehaviour
     /// </summary>
     public void ParseDeathEvent(Card_Controller cardExample)
     {
-        Card_Controller[] _cardControllerArray = _playerBoard.GetComponentsInChildren<Card_Controller>(); //все карты на столе
+        Card_Controller[] _cardPlayerFirst = _playerFirstBoard.GetComponentsInChildren<Card_Controller>(); //все карты на столе первого игрока
+        Card_Controller[] _cardlayerSecond = _playerSecondBoard.GetComponentsInChildren<Card_Controller>(); //все карты на столе второго игрока
         MinionType incomingMinionType = cardExample.gameObject.GetComponent<Card_Model>()._minionType; //тип миньона вызвавшего событие
         if (_activeEventEffect != null)
         {
@@ -97,7 +99,7 @@ public class EventEffect_Controller : MonoBehaviour
             {
                 if (cardEffectId == 212) // если есть такой эффект
                 {
-                    foreach (Card_Controller cardController in _cardControllerArray)
+                    foreach (Card_Controller cardController in _cardPlayerFirst)
                     { 
                         Card_Model cardModel = cardController.GetComponent<Card_Model>();
                         if (cardModel._idCard == cardEffectId && cardModel._minionType == incomingMinionType) //то вызываю метод увеличения параметров
@@ -116,7 +118,9 @@ public class EventEffect_Controller : MonoBehaviour
     /// </summary>
     public void ParsePutCardInBoard(Card_Controller cardExample)
     {
-        Card_Controller[] _cardControllerArray = _playerBoard.GetComponentsInChildren<Card_Controller>(); //все карты на столе
+        Card_Controller[] _cardPlayerFirst = _playerFirstBoard.GetComponentsInChildren<Card_Controller>(); //все карты на столе первого игрока
+        Card_Controller[] _cardlayerSecond = _playerSecondBoard.GetComponentsInChildren<Card_Controller>(); //все карты на столе второго игрока
+
         MinionType incomingMinionType = cardExample.gameObject.GetComponent<Card_Model>()._minionType; //тип миньона вызвавшего событие
         if (_activeEventEffect != null)
         {
@@ -124,7 +128,7 @@ public class EventEffect_Controller : MonoBehaviour
             {
                 if (cardEffectId == 213) // если есть такой эффект
                 {
-                    foreach (Card_Controller cardController in _cardControllerArray)
+                    foreach (Card_Controller cardController in _cardPlayerFirst)
                     {
                         Card_Model cardModel = cardController.GetComponent<Card_Model>();
                         if (cardModel._idCard == cardEffectId && cardModel._minionType == incomingMinionType && cardModel.gameObject != cardExample.gameObject)
@@ -137,7 +141,7 @@ public class EventEffect_Controller : MonoBehaviour
                 if (cardEffectId == 501)
                 {
                     CardSO_Model card_Model = (CardSO_Model)_pageBook_Model._cardsDictionary[cardEffectId];
-                    foreach (Card_Controller cardController in _cardControllerArray)
+                    foreach (Card_Controller cardController in _cardPlayerFirst)
                     {
                         cardController.ChangeHealtValue(card_Model._abilityChangeHealth,ChangeHealthType.Healing);                        
                     }
@@ -154,19 +158,22 @@ public class EventEffect_Controller : MonoBehaviour
 
     public void ParseChangeTurnEvent(Players playersTurn)
     {
-        Card_Model[] _cardControllerArray = _playerBoard.GetComponentsInChildren<Card_Model>(); //все карты на столе
-        if(_cardControllerArray == null) return;
+        Card_Controller[] _cardPlayerFirst = _playerFirstBoard.GetComponentsInChildren<Card_Controller>(); //все карты на столе первого игрока
+        Card_Controller[] _cardlayerSecond = _playerSecondBoard.GetComponentsInChildren<Card_Controller>(); //все карты на столе второго игрока
+        if (_cardPlayerFirst == null) return;
         
 
-        foreach(Card_Model card_Model1 in _cardControllerArray)
-        {            
-            if(card_Model1._idCard == 211 && ((playersTurn == Players.First && card_Model1.transform.parent == _playerBoard) || (playersTurn == Players.Second && card_Model1.transform.parent == _enemyBoard)))
+        foreach(Card_Controller cardModel1 in _cardPlayerFirst)
+        {     
+            Card_Model card_Model1 = cardModel1.GetComponent<Card_Model>();
+            if (card_Model1._idCard == 211 && ((playersTurn == Players.First && card_Model1.transform.parent == _playerFirstBoard) || (playersTurn == Players.Second && card_Model1.transform.parent == _playerSecondBoard)))
             {
 
                 List<Card_Model> tempListCardModel = new List<Card_Model>(); //временный лист раненых
-                foreach (Card_Model card_Model2 in _cardControllerArray)
-                {                    
-                    if(card_Model2._healthCard < card_Model2._maxHealtValue)
+                foreach (Card_Controller cardModel2 in _cardPlayerFirst)
+                {
+                    Card_Model card_Model2 = cardModel2.GetComponent<Card_Model>();
+                    if (card_Model2._healthCard < card_Model2._maxHealtValue)
                     {
                         tempListCardModel.Add(card_Model2);
                     }

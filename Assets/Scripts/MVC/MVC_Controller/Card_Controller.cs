@@ -69,9 +69,7 @@ namespace Hearthstone
 
             if (card != my_Card) return;
             {
-                Debug.Log(card_model);
-
-
+                //Debug.Log(card_model);
                 _battleModeCardView.ChangeCardViewMode();
                 SaveValueCurrentBattleCry();
                 _battleCryController.UpdateBattleCry();
@@ -92,7 +90,7 @@ namespace Hearthstone
 
                 if (_card_Model._battleCryTypes.Contains(BattleCryType.PermanentEffect))
                 {
-                    _permanentEffectController.AddPermanentEffect(_card_Model._idCard);
+                    _permanentEffectController.AddPermanentEffect(this);
 
                 }
                 _permanentEffectController.GetActivePermanentEffect(this);//?
@@ -259,7 +257,7 @@ namespace Hearthstone
             Debug.Log(_card_Model._nameCard + " погиб смертью храбрых");
 
 
-            _permanentEffectController.RemovePermanentEffect(_card_Model._idCard);
+            _permanentEffectController.RemovePermanentEffect(this);
             _eventEffectController.RemoveEventEffect(_card_Model._idCard);
             _eventEffectController.ParseDeathEvent(this);
 

@@ -21,19 +21,27 @@ public class SingleEffect_Controller : MonoBehaviour
         
         int cardId = cardExample.gameObject.GetComponent<Card_Model>()._idCard;
         Card_Model[] _temporaryArray = _playerBoard.GetComponentsInChildren<Card_Model>();
-        if (cardId == 503 && !_permanentEffect_Controller._activePermanentEffect.Contains(cardId))
+        if (cardId == 503)
         {            
             cardExample.ChangeAtackValue(_temporaryArray.Length);
             cardExample.ChangeHealtValue(_temporaryArray.Length);
         }
 
-        if(cardId == 407 && _permanentEffect_Controller._activePermanentEffect.Contains(cardId))
+
+
+        //как-то переделать покрасивее
+        Card incomingCard = cardExample.GetComponent<Card>();
+        List<int> activePermanentEffect;
+        if (incomingCard._side == Players.First)
+            activePermanentEffect = _permanentEffect_Controller._activePermanentEffectPlayersFirst;
+        else
+            activePermanentEffect = _permanentEffect_Controller._activePermanentEffectPlayersSecond;
+        if (cardId == 407 && activePermanentEffect.Contains(cardId))
         {
             Card_Model card_Model = cardExample.GetComponent<Card_Model>();
-            BattleModeCard_View card_View = cardExample.GetComponent<BattleModeCard_View>();            
+            BattleModeCard_View card_View = cardExample.GetComponent<BattleModeCard_View>();
             card_Model._atackDamageCard = card_Model._healthCard;
             card_View.UpdateViewCard();
-
         }
-    }
+    } 
 }

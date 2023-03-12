@@ -19,7 +19,7 @@ namespace Hearthstone
         [Inject]
         private IndicatorTarget _indicatorTarget;
         [SerializeField]
-        private Players _side;
+        public Players _side; //сменил на public . Святослав
         private bool _cancelDrag;
         public Action<bool> BeginDrag;
         [SerializeField]

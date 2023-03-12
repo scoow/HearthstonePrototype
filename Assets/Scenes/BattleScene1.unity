@@ -2627,8 +2627,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf74090189a33af43988e626e8735e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerBoard: {fileID: 671665860}
-  _activePermanentEffect: 
+  _playerBoardFirst: {fileID: 671665860}
+  _playerBoardSecond: {fileID: 1048441348}
+  _activePermanentEffectPlayersFirst: 
+  _activePermanentEffectPlayersSecond: 
 --- !u!114 &1234533178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2642,7 +2644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerBoard: {fileID: 671665860}
-  _enemyBoard: {fileID: 0}
+  _enemyBoard: {fileID: 1048441348}
   _activeEventEffect: 
 --- !u!114 &1234533179
 MonoBehaviour:

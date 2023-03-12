@@ -8,13 +8,20 @@ public class PermanentEffect_Controller : MonoBehaviour
 {
     private PageBook_Model _pageBook_Model;
     private int _lastEffect;
-    [SerializeField] private Transform _playerBoard;
+    [SerializeField] private Transform _playerBoardFirst;
+    [SerializeField] private Transform _playerBoardSecond;
+
 
 
     /// <summary>
-    /// список постоянных эффектов
+    /// список постоянных эффектов первого игрока
     /// </summary>
-    public List<int> _activePermanentEffect;
+    public List<int> _activePermanentEffectPlayersFirst;
+
+    /// <summary>
+    /// список постоянных эффектов второго игрока
+    /// </summary>
+    public List<int> _activePermanentEffectPlayersSecond;
 
     private void OnEnable()
     {
@@ -22,84 +29,117 @@ public class PermanentEffect_Controller : MonoBehaviour
     }
 
 
-    public void AddPermanentEffect(int cardId) //добавить эффект в список и применить его на поле
+    public void AddPermanentEffect(Card_Controller card) //добавить эффект в список и применить его на поле
     {
-        //_activePermanentEffect.Add(cardId);        
-        AceptPermanentEffect(cardId);
-    }
-
-    public void RemovePermanentEffect(int cardId) //отменить эффект с карт и удалить его из списка
-    {
-        CardSO_Model cardSO_Model = _pageBook_Model.GetCardSO_byID(cardId);       
-
-        UpdatePermanentEffect(cardId, -cardSO_Model._abilityChangeHealth, -cardSO_Model._abilityChangeAtack);
-        _activePermanentEffect.Remove(cardId);
         
+        Card incomingCard = card.GetComponent<Card>();
+        Card_Model cardModel = card.GetComponent<Card_Model>();
+        if (incomingCard._side == Players.First)
+            _activePermanentEffectPlayersFirst.Add(cardModel._idCard);
+        else
+            _activePermanentEffectPlayersSecond.Add(cardModel._idCard);
+
+        AceptPermanentEffect(card);
     }
-    private void AceptPermanentEffect(int cardId) //применить эффект на картах которые стоят на поле
-    {
-        CardSO_Model cardSO_Model = _pageBook_Model.GetCardSO_byID(cardId);
 
-        UpdatePermanentEffect(cardId, cardSO_Model._abilityChangeHealth, cardSO_Model._abilityChangeAtack); //обновляем значения карт
-        _activePermanentEffect.Add(cardId);                                                                                                   
+    public void RemovePermanentEffect(Card_Controller card) //отменить эффект с карт и удалить его из списка
+    {
+        Card_Model card_model = card.GetComponent<Card_Model>();        
+        //CardSO_Model cardSO_Model = _pageBook_Model.GetCardSO_byID(card_model._idCard);      
+
+        UpdatePermanentEffect(card_model, -card_model._сhangeHealthValue, -card_model._changeAtackValue);
+
+        Card incomingCard = card.GetComponent<Card>();
+        if(incomingCard._side == Players.First)
+            _activePermanentEffectPlayersFirst.Remove(card_model._idCard);
+        else
+            _activePermanentEffectPlayersSecond.Remove(card_model._idCard);
+
+    }
+    private void AceptPermanentEffect(Card_Controller card) //применить эффект на картах которые стоят на поле
+    {
+        Card_Model card_model = card.GetComponent<Card_Model>();
+        //CardSO_Model cardSO_Model = _pageBook_Model.GetCardSO_byID(cardId);      
+        
+        UpdatePermanentEffect(card_model, card_model._сhangeHealthValue, card_model._changeAtackValue); //обновляем значения карт                                                                       
+    }
+
+    private void UpdatePermanentEffect(Card_Model cardModel , int changeHealthValue, int changeAtackValue)
+    {        
+        Card_Controller[] _cardPlayersFirst = _playerBoardFirst.GetComponentsInChildren<Card_Controller>();
+        Card_Controller[] _cardPlayersSecond = _playerBoardSecond.GetComponentsInChildren<Card_Controller>();
+
+        Card incomingCard = cardModel.GetComponent<Card>();
+        if (incomingCard._side == Players.First)
+            CheckBoard(_cardPlayersFirst, cardModel, changeHealthValue, changeAtackValue);
+        else
+            CheckBoard(_cardPlayersSecond, cardModel, changeHealthValue, changeAtackValue);
     }
 
 
-    
-
-
-    private void UpdatePermanentEffect(int cardEffectId , int changeHealthValue, int changeAtackValue)
+    private void CheckBoard(Card_Controller[] _cardControllerArray, Card_Model cardModel, int changeHealthValue, int changeAtackValue)
     {
-        CardSO_Model cardSO_Model = _pageBook_Model.GetCardSO_byID(cardEffectId);
-        Card_Controller[] _cardControllerArray = _playerBoard.GetComponentsInChildren<Card_Controller>();
         for (int i = 0; i < _cardControllerArray.Length; i++)
         {
             Card_Model currentCard = _cardControllerArray[i].gameObject.GetComponent<Card_Model>();
-            if (currentCard._idCard == cardEffectId) continue;
+            if (currentCard._idCard == cardModel._idCard) continue;
 
-            if((cardEffectId == 102 || cardEffectId == 107) && (cardSO_Model._targetsType == currentCard._minionType)) //баф карт 102 и 107
+            if ((cardModel._idCard == 102 || cardModel._idCard == 107) && (cardModel._battleCryTargetsType == currentCard._minionType)) //баф карт 102 и 107
             {
                 _cardControllerArray[i].ChangeAtackValue(changeAtackValue);
             }
-            
-            if(cardEffectId == 304)
+
+            if (cardModel._idCard == 304)
             {
                 _cardControllerArray[i].ChangeAtackValue(changeAtackValue);
             }
         }
+
     }
 
-    public void GetActivePermanentEffect(Card_Controller cardController) //берём уже действующий эффект на столе
-    {    
-        Card_Model currentCard = cardController.GetComponent<Card_Model>();
-        if (_activePermanentEffect != null)
+    public void GetActivePermanentEffect(Card_Controller card) //берём уже действующий эффект на столе
+    {            
+        Card incomingCard = card.GetComponent<Card>();      
+
+        if (incomingCard._side == Players.First)
+            ApplyPermanentEffect(_activePermanentEffectPlayersFirst, card);
+        else
+            ApplyPermanentEffect(_activePermanentEffectPlayersSecond, card);
+    } 
+    
+
+    public void ApplyPermanentEffect(List<int> permanentEffect, Card_Controller card)
+    {
+        if (permanentEffect != null)
         {
-            foreach(int cardEffectId in _activePermanentEffect)
+            Card_Model card_Model = card.GetComponent<Card_Model>();
+            foreach (int cardEffectId in permanentEffect)
             {
-                if (currentCard._idCard == cardEffectId) continue;
+                if (card_Model._idCard == cardEffectId) continue;
 
                 CardSO_Model cardSO_Model = _pageBook_Model.GetCardSO_byID(cardEffectId);
 
-                if ((cardEffectId == 102 || cardEffectId == 107) && (cardSO_Model._targetsType == currentCard._minionType)) //баф карт 102 и 107
+                if ((cardEffectId == 102 || cardEffectId == 107) && (cardSO_Model._targetsType == card_Model._minionType)) //баф карт 102 и 107
                 {
-                    cardController.ChangeAtackValue(cardSO_Model._abilityChangeAtack);
+                    card.ChangeAtackValue(cardSO_Model._abilityChangeAtack);
                 }
 
                 if (cardEffectId == 304)
                 {
-                    cardController.ChangeAtackValue(cardSO_Model._abilityChangeAtack);
+                    card.ChangeAtackValue(cardSO_Model._abilityChangeAtack);
                 }
 
                 if (cardEffectId == 309 && cardSO_Model._atackDamageCard <= 3)
                 {
-                    cardController.ChargeAbility();
+                    card.GetComponent<Card>().EnableAttack();
                 }
 
-                if(cardEffectId == 505 && (cardSO_Model._targetsType == currentCard._minionType))
+                if (cardEffectId == 505 && (cardSO_Model._targetsType == card_Model._minionType))
                 {
-                    cardController.ChargeAbility();
+                    card.ChargeAbility();
                 }
             }
         }
-    }    
+
+    }
 }
