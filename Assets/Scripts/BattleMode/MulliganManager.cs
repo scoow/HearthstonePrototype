@@ -224,7 +224,7 @@ namespace Hearthstone
                 _nextCardInEnemyDeckNumber++;
             }
 
-            if (_nextCardInPlayerDeckNumber > _currentDeck.Count-1)
+            if (_nextCardInDeckNumber > _currentDeck.Count - 1)
             {
                 DealFatigueDamage(side);
                 Debug.Log("В колоде " + side + " не осталось карт");

@@ -62,7 +62,7 @@ namespace Hearthstone
 
             //секция внедрения ссылок на объекты в контейнер Zenject
             Container.BindInstance(_pageBook_Model).AsSingle();
-            Container.BindInstance(_loadDeck_Controller).AsSingle();
+            Container.BindInstance(_loadDeck_Controller).AsSingle().NonLazy();
             Container.BindInstance(_handManager).AsSingle();
             Container.BindInstance(_mulliganManager).AsSingle();
             Container.BindInstance(_mana_Controller).AsSingle();
@@ -79,5 +79,14 @@ namespace Hearthstone
             Container.BindInstance(_tempCardGO).AsSingle();
             Container.BindInstance(_tempMinionGO).AsSingle();
         }
+/*        public void InjectCards()
+        {
+            List<Card> cards = new();
+            cards = FindObjectsOfType<Card>().ToList();
+            foreach (Card card in cards)
+            {
+                DiContainer.Inject(_mana_Controller, cards);
+            }
+        }*/
     }
 }

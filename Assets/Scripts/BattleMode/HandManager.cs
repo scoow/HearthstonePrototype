@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using UnityEngine;
 using Zenject;
 
@@ -38,7 +39,8 @@ namespace Hearthstone
 
         public int CreateCard(Players side, Transform deck, ref int layerStep, int i, bool isMinion)
         {
-            var newCard = Instantiate(_cardPrefab, deck.position, deck.rotation);
+            GameObject newCard = Instantiate(_cardPrefab, deck.position, deck.rotation);
+
             newCard.transform.parent = _mulliganManager.transform;
             var battlemodeCardView = newCard.GetComponent<BattleModeCard_View>();
             var battleModeCard = newCard.GetComponent<BattleModeCard>();

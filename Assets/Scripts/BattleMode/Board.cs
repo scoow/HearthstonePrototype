@@ -71,6 +71,10 @@ namespace Hearthstone
             base.AddCard(card);
             //var _cardInHand = card.gameObject.AddComponent<Minion>();
             card.ChangeState(CardState.Board);
+
+            if (!card.GetComponent<Card_Model>()._isCharge)//Если нет рывка - отключаем возможность атаковать на этом ходу
+                card.DisableAttack();
+
             EndDragCard?.Invoke(transform); ///событие для смены отображения карты
         }
         /// <summary>
@@ -142,21 +146,7 @@ namespace Hearthstone
                         }
                     }
                 }
-                ////////////////////////////////
-/*                if (_rightCard)
-                {
-                    foreach (var c in _cardsList)
-                    {
-                        c.transform.position -= new Vector3(_offset/2 , 0, 0);
-                    }
-                }
-                else
-                {
-                    foreach (var c in _cardsList)
-                    {
-                        c.transform.position += new Vector3(_offset/2 , 0, 0);
-                    }
-                }*/
+
                 _mana_Controller.SpendMana(_side, card.GetComponent<Card_Model>().GetManaCostCard());// вычесть ману
                 AddCard(card);
             }

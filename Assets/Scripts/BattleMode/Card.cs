@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Hearthstone
 {
-    public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler, IPointerExitHandler, /*IDropHandler,*/ IPointerClickHandler
+    public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
         private Camera _camera;
         private LayerRenderUp _layersRenderUp;
@@ -36,6 +36,14 @@ namespace Hearthstone
 
             _mana_Controller = FindObjectOfType<Mana_Controller>();//Zenject не сработал. Почему?
             _indicatorTarget = FindObjectOfType<IndicatorTarget>();//Zenject не сработал. Почему?
+        }
+        public void EnableAttack()
+        { 
+            _canAttackThisTurn = true;
+        }
+        public void DisableAttack()
+        {
+            _canAttackThisTurn = false;
         }
         public void ChangeState(CardState newState)
         {
