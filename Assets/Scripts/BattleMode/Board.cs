@@ -4,7 +4,6 @@ using System.Linq;
 using System.Collections.Generic;
 using System;
 using Zenject;
-using static UnityEditor.Progress;
 
 namespace Hearthstone
 {

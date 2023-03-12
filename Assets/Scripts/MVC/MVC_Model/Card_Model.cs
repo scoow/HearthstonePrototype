@@ -19,7 +19,7 @@ namespace Hearthstone
         public bool _isCharge;
         public bool _isBerserk;
         public bool _isGetCard;
-        public Dictionary<AbilityCurrentCard, bool> _activeAbility = new Dictionary<AbilityCurrentCard, bool>(); //список активных способностей
+        public Dictionary<AbilityCurrentCard, bool> _activeAbility = new(); //список активных способностей
 
         public SpriteRenderer _protectionImage;
         public Sprite _spriteCard;
@@ -35,8 +35,8 @@ namespace Hearthstone
         public int _defaultHealtValue;
         public int _defaultAtackValue;
 
-        public List<BattleCryType> _battleCryTypes = new List<BattleCryType>();
-        public List<AbilityCurrentCard> _abilityInTargetBattleCry = new List<AbilityCurrentCard>();             
+        public List<BattleCryType> _battleCryTypes = new();
+        public List<AbilityCurrentCard> _abilityInTargetBattleCry = new();             
         public Target _battleCryTargets;
         public MinionType _battleCryTargetsType;
         public MinionType _minionType;

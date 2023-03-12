@@ -186,7 +186,7 @@ namespace Hearthstone
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (_card_State == CardState.Board)
+            if (_card_State == CardState.Board && _canAttackThisTurn)
             {
                 if (!_indicatorTarget.CursorEnabled)
                 {
@@ -195,15 +195,18 @@ namespace Hearthstone
                 }
                 else
                 {
-                    //if (!eventData.pointerDrag.TryGetComponent<Card>(out var card)) return;
                     GameObject attacker = _indicatorTarget.GetWatcher();
                     Card attackercard = attacker.GetComponent<Card>();
                     if (attackercard.GetSide() == _side) return;
                     Debug.Log("Произошла атака" + attackercard + "    " + this);
                     Attack(attackercard, this);
                     _indicatorTarget.CursorEnabled = false;
+                    attackercard.DisableAttack();
                 }
-               
+            }
+            else
+            {
+                Debug.Log("Нельзя атаковать");
             }
         }
 

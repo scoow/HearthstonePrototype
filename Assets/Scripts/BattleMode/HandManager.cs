@@ -19,6 +19,11 @@ namespace Hearthstone
         private readonly PageBook_Model _pageBook_Model;
         [Inject]
         private readonly MulliganManager _mulliganManager;
+
+        [Inject(Id = "First")]
+        private readonly Board _firstPlayerBoard;
+        [Inject(Id = "Second")]
+        private readonly Board _secondPlayerBoard;
         private void Start()
         {
             _playerDeck = GameObject.Find("PlayerDeck").transform;
@@ -41,7 +46,7 @@ namespace Hearthstone
         {
             GameObject newCard = Instantiate(_cardPrefab, deck.position, deck.rotation);
 
-            newCard.transform.parent = _mulliganManager.transform;
+            newCard.transform.parent = deck;
             var battlemodeCardView = newCard.GetComponent<BattleModeCard_View>();
             var battleModeCard = newCard.GetComponent<BattleModeCard>();
 
@@ -55,6 +60,17 @@ namespace Hearthstone
             if (isMinion)
             {
                 battlemodeCardView.ChangeCardViewMode();
+                Card card = newCard.GetComponent<Card>();
+                card.ChangeState(CardState.Board);
+                if (side == Players.First)
+                {
+                    
+                    card.SetParent(_firstPlayerBoard);
+                }
+                else
+                {
+                    card.SetParent(_secondPlayerBoard);
+                }
             }
             newCardView.ChangeViewCard();
             battleModeCard.SetSide(side);

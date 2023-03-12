@@ -18,8 +18,8 @@ namespace Hearthstone
         public List<int> _activeDeck = new List<int>();
         private string _pathSaveDocument;
         private PageBook_Model _pageBookModel;
-        [Inject]
-        private MulliganManager _mulliganManager;
+     /*   [Inject]
+        private MulliganManager _mulliganManager;*/
         public Action SetCardSettings;
         public Action<int> SetHeroSettings;
 
@@ -32,8 +32,9 @@ namespace Hearthstone
         {           
             LoadActiveDeck();            
             ShuffleCardInDeck();
-            Card_Model[] _temporaryArray = _mulliganManager.transform.GetComponentsInChildren<Card_Model>();
-            for(int i = 0; i <= _temporaryArray.Length-1; i++)
+            //Card_Model[] _temporaryArray = _mulliganManager.transform.GetComponentsInChildren<Card_Model>();
+            Card_Model[] _temporaryArray = FindObjectsOfType<Card_Model>();
+            for (int i = 0; i <= _temporaryArray.Length-1; i++)
             {               
                 LoadCardSettings(_temporaryArray[i], _activeDeck[i]);                
                 _temporaryArray[i].SetCardSettings(_activeDeck[i], false);                

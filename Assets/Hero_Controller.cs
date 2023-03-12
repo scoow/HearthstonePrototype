@@ -111,6 +111,4 @@ public class Hero_Controller : MonoBehaviour, IChangeHealth , IPointerClickHandl
             _battleCry_Controller._cursorBattleCry.ChangeCursorState(false);
             _battleCry_Controller._isActiveCry = false;
         }
-
-
 }

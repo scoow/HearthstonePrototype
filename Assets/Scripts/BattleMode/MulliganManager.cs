@@ -16,7 +16,7 @@ using Zenject;
 //todo исправить ошибку при клике на слот муллигана до того, как появились карты
 
 namespace Hearthstone
-{
+{ 
     public class MulliganManager : MonoBehaviour
     {
         [SerializeField]
