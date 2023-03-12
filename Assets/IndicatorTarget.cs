@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Zenject.Asteroids;
 
 public class IndicatorTarget : MonoBehaviour
 {
@@ -12,10 +9,9 @@ public class IndicatorTarget : MonoBehaviour
     private bool _cursorEnabled;
     public bool CursorEnabled { get { return _cursorEnabled; } set { _cursorEnabled = value; } }
 
-    public void CursorBattleCryOn(Transform creatorBattleCry)
+    public void CursorBattleCryOn()
     {
-        _watcherTransform = creatorBattleCry;
-        ChangeCursorState(true);
+        //ChangeCursorState(true);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit raycastHit))
         {
@@ -33,9 +29,21 @@ public class IndicatorTarget : MonoBehaviour
     {
         return _watcherTransform.gameObject;
     }
+    public void SetWatcher(Transform creatorBattleCry)
+    {
+        _watcherTransform = creatorBattleCry;
+    }
     public void ChangeCursorState(bool newstate)
     {
         _cursor.SetActive(newstate);
         _dottedLine.SetActive(newstate);
+    }
+
+    private void Update()
+    {
+        if (CursorEnabled)
+        {
+            CursorBattleCryOn();
+        }
     }
 }

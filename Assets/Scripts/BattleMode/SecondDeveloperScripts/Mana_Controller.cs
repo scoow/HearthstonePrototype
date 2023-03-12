@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Hearthstone
 {
@@ -14,6 +15,11 @@ namespace Hearthstone
         public Action<int, int> ChangeManaValue;
         private EndTurnButton _endTurnButton;//кнопка конца хода
         public Action<Players> OnChangeTurn;
+
+        [Inject(Id = "First")]
+        private readonly Board _firstPlayerBoard;
+        [Inject(Id = "Second")]
+        private readonly Board _secondPlayerBoard;
 
         private int _onePlayerCrystalCount;
         private int _twoPlayerCrystalCount;
@@ -43,6 +49,7 @@ namespace Hearthstone
                 _playersTurn = Players.Second;
                 AddCristal(_playersTurn);
                 RestoreMana(_playersTurn);
+                _secondPlayerBoard.EnableAttackForAllMinions();
 
                 ChangeManaValue?.Invoke(_twoPlayerManaCount, _twoPlayerCrystalCount);
                 OnChangeTurn?.Invoke(Players.Second);
@@ -55,6 +62,7 @@ namespace Hearthstone
                 _playersTurn = Players.First;
                 AddCristal(_playersTurn);
                 RestoreMana(_playersTurn);
+                _firstPlayerBoard.EnableAttackForAllMinions();
 
                 ChangeManaValue?.Invoke(_onePlayerManaCount, _onePlayerCrystalCount);
                 OnChangeTurn?.Invoke(Players.First);

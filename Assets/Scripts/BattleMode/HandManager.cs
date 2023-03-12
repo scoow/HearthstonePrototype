@@ -15,11 +15,6 @@ namespace Hearthstone
         private Transform _enemyDeck;
         [SerializeField]
         private GameObject _cardPrefab;
-        [Inject]
-        private readonly PageBook_Model _pageBook_Model;
-        [Inject]
-        private readonly MulliganManager _mulliganManager;
-
         [Inject(Id = "First")]
         private readonly Board _firstPlayerBoard;
         [Inject(Id = "Second")]
@@ -64,11 +59,12 @@ namespace Hearthstone
                 card.ChangeState(CardState.Board);
                 if (side == Players.First)
                 {
-                    
+                    _firstPlayerBoard.AddCard(card);
                     card.SetParent(_firstPlayerBoard);
                 }
                 else
                 {
+                    _secondPlayerBoard.AddCard(card);
                     card.SetParent(_secondPlayerBoard);
                 }
             }

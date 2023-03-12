@@ -24,7 +24,7 @@ namespace Hearthstone
         [SerializeField]
         private CardState _card_State;//Текущее состояние карты - в колоде/в руке/на столе
         private bool _canAttackThisTurn;
-        
+
         private void Awake()
         {
             _camera = Camera.main;
@@ -38,7 +38,7 @@ namespace Hearthstone
             _indicatorTarget = FindObjectOfType<IndicatorTarget>();//Zenject не сработал. Почему?
         }
         public void EnableAttack()
-        { 
+        {
             _canAttackThisTurn = true;
         }
         public void DisableAttack()
@@ -75,13 +75,6 @@ namespace Hearthstone
             _layersRenderUp.LayerUp(50);
 
             BeginDrag?.Invoke(true);
-        }
-        private void Update()
-        {
-            if (_indicatorTarget.CursorEnabled)
-            {
-                _indicatorTarget.CursorBattleCryOn(this.gameObject.transform);
-            }
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -186,29 +179,36 @@ namespace Hearthstone
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (_card_State == CardState.Board && _canAttackThisTurn)
+            if (_card_State != CardState.Board) return;
+
+
+            if (!_indicatorTarget.CursorEnabled)
+
             {
-                if (!_indicatorTarget.CursorEnabled)
+                if (_canAttackThisTurn)
                 {
                     Debug.Log("Включился курсор");
                     _indicatorTarget.CursorEnabled = true;
+                    _indicatorTarget.SetWatcher(this.transform);
                 }
                 else
                 {
-                    GameObject attacker = _indicatorTarget.GetWatcher();
-                    Card attackercard = attacker.GetComponent<Card>();
-                    if (attackercard.GetSide() == _side) return;
-                    Debug.Log("Произошла атака" + attackercard + "    " + this);
-                    Attack(attackercard, this);
-                    _indicatorTarget.CursorEnabled = false;
-                    attackercard.DisableAttack();
+                    Debug.Log("Не могу атаковать на этом ходу");
                 }
+
             }
             else
             {
-                Debug.Log("Нельзя атаковать");
+                GameObject attacker = _indicatorTarget.GetWatcher();
+                Card attackercard = attacker.GetComponent<Card>();
+                if (attackercard.GetSide() == _side) return;
+                Debug.Log("Произошла атака" + attackercard + "    " + this);
+                _indicatorTarget.ChangeCursorState(false);
+
+                attackercard.DisableAttack();
+                Attack(attackercard, this);
+
             }
         }
-
     }
 }

@@ -39,7 +39,9 @@ namespace Hearthstone
         {
             if (_isActiveCry && ÑonditionsTargetBattleCry())
             {
-                _cursorBattleCry.CursorBattleCryOn(_battleCryCreator.transform);
+                //_cursorBattleCry.CursorBattleCryOn(_battleCryCreator.transform);
+                _cursorBattleCry.SetWatcher(_battleCryCreator.transform);
+
                 /*Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit raycastHit))
                 {

@@ -63,6 +63,13 @@ namespace Hearthstone
         {
             _draggingCard = drag;
         }
+        public void EnableAttackForAllMinions()
+        {
+            foreach (Card card in _cardsList)
+            {
+                card.EnableAttack();
+            }
+        }
         public override void AddCard(Card card)
         {
             if (_cardsList.Count > 7) return;
