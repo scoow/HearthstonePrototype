@@ -13,8 +13,7 @@ namespace Hearthstone
         protected List<Card> _cardsList;//сделать serializable
         //protected Vector3 _lastPosition;
 
-        //todo добавить ссылку на временную карту для корректной обработки взятия из руки
-        private GameObject _tempCardGO;
+         private GameObject _tempCardGO;
 
         [SerializeField]
         protected float _offset;
@@ -79,6 +78,10 @@ namespace Hearthstone
                 card.transform.position = GetLastCardPosition();
                 AddCard(card);                
             }
+        }
+        public int CountCards()
+        { 
+            return _cardsList.Count;
         }
     }
 }

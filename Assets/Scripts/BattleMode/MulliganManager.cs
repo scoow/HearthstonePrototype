@@ -232,6 +232,13 @@ namespace Hearthstone
             }
 
             var card = _currentDeck.ElementAt(_nextCardInDeckNumber);
+            if (_currentHand.CountCards() > 9)
+            {
+                Debug.Log(card + " уничтожена");
+                Destroy(card.gameObject);
+                return;
+            }
+
             _ = card.MoveCardAsync(card.transform.position, _currentHand.GetLastCardPosition(), _time);
 
             var _cardInHand = card.GetComponent<Card>();

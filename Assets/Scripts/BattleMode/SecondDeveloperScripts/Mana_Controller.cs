@@ -20,6 +20,9 @@ namespace Hearthstone
         private readonly Board _firstPlayerBoard;
         [Inject(Id = "Second")]
         private readonly Board _secondPlayerBoard;
+        [Inject]
+        private MulliganManager _mulliganManager;
+
 
         private int _onePlayerCrystalCount;
         private int _twoPlayerCrystalCount;
@@ -49,6 +52,7 @@ namespace Hearthstone
                 _playersTurn = Players.Second;
                 AddCristal(_playersTurn);
                 RestoreMana(_playersTurn);
+                _mulliganManager.TakeOneCard(_playersTurn);
                 _secondPlayerBoard.EnableAttackForAllMinions();
 
                 ChangeManaValue?.Invoke(_twoPlayerManaCount, _twoPlayerCrystalCount);
@@ -62,6 +66,7 @@ namespace Hearthstone
                 _playersTurn = Players.First;
                 AddCristal(_playersTurn);
                 RestoreMana(_playersTurn);
+                _mulliganManager.TakeOneCard(_playersTurn);
                 _firstPlayerBoard.EnableAttackForAllMinions();
 
                 ChangeManaValue?.Invoke(_onePlayerManaCount, _onePlayerCrystalCount);
