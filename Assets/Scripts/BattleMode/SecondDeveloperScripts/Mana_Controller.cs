@@ -16,6 +16,9 @@ namespace Hearthstone
         private EndTurnButton _endTurnButton;//кнопка конца хода
         public Action<Players> OnChangeTurn;
 
+        [Inject]
+        private IndicatorTarget _indicatorTarget;
+
         [Inject(Id = "First")]
         private readonly Board _firstPlayerBoard;
         [Inject(Id = "Second")]
@@ -48,7 +51,6 @@ namespace Hearthstone
         {
             if (_playersTurn == Players.First)
             {
-                
                 _playersTurn = Players.Second;
                 AddCristal(_playersTurn);
                 RestoreMana(_playersTurn);
@@ -57,11 +59,9 @@ namespace Hearthstone
 
                 ChangeManaValue?.Invoke(_twoPlayerManaCount, _twoPlayerCrystalCount);
                 OnChangeTurn?.Invoke(Players.Second);
-                return;
             }
-
-            if (_playersTurn == Players.Second)
-            {
+            else
+            { 
                 _playersTurn = Players.First;
                 AddCristal(_playersTurn);
                 RestoreMana(_playersTurn);
@@ -70,9 +70,8 @@ namespace Hearthstone
 
                 ChangeManaValue?.Invoke(_onePlayerManaCount, _onePlayerCrystalCount);
                 OnChangeTurn?.Invoke(Players.First);
-                return;
             }
-            
+            _indicatorTarget.ChangeCursorState(false);
         }
 
         private void AddCristal(Players playersTurn)

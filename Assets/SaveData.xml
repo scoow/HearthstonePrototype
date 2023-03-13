@@ -22,7 +22,7 @@
     <CardId>403</CardId>
     <CardId>206</CardId>
   </DeckName>
-  <DeckName NameValue="Большая" StateValue="Неактивная колода">
+  <DeckName NameValue="Большая" StateValue="Выбранная колода">
     <CardId>5000</CardId>
     <CardId>100</CardId>
     <CardId>100</CardId>
@@ -66,7 +66,7 @@
     <CardId>503</CardId>
     <CardId>403</CardId>
   </DeckName>
-  <DeckName NameValue="Лечение" StateValue="Выбранная колода">
+  <DeckName NameValue="Лечение" StateValue="Неактивная колода">
     <CardId>9000</CardId>
     <CardId>104</CardId>
     <CardId>100</CardId>

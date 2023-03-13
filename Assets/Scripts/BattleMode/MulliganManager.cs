@@ -209,6 +209,7 @@ namespace Hearthstone
         /// <param name="side">текущий игрок</param>
         public void TakeOneCard(Players side)
         {
+            TakeOneRandomCard(side);
             Hand _currentHand;
             int _nextCardInDeckNumber;
             List<BattleModeCard> _currentDeck;
@@ -239,7 +240,7 @@ namespace Hearthstone
             if (_currentHand.CountCards() > 9)
             {
                 Debug.Log(card + " уничтожена");
-                Destroy(card.gameObject);
+                card.gameObject.SetActive(false);
                 return;
             }
 
@@ -254,7 +255,19 @@ namespace Hearthstone
             _cardInHand.SetSide(side);
             _cardInHand.SetParent(_currentHand);
             _currentHand.AddCard(_cardInHand);
-
+        }
+        public void TakeOneRandomCard(Players side)
+        {
+            List<Card> _currentDeck = new();
+            if (side == Players.First)
+            {
+                _currentDeck = FindObjectsOfType<Card>().Where(x => x.GetState() == CardState.Deck && x._side == Players.First).ToList();
+            }
+            else
+            {
+                _currentDeck = FindObjectsOfType<Card>().Where(x => x.GetState() == CardState.Deck && x._side == Players.Second).ToList();
+            }
+            Debug.Log(" арт в колоде: " + _currentDeck.Count);
         }
 
         private void DealFatigueDamage(Players side)

@@ -203,6 +203,11 @@ namespace Hearthstone
 
         public void OnPointerClick(PointerEventData eventData)
         {
+            DisableCursor();
+        }
+
+        private void DisableCursor()
+        {
             if (_indicatorTarget.CursorEnabled)
             {
                 _indicatorTarget.ChangeCursorState(false);

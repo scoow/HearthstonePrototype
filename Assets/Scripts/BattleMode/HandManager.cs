@@ -53,12 +53,13 @@ namespace Hearthstone
             var newCardView = newCard.GetComponent<Card_View>();
             newCardModel.SetCardSettings(i, isMinion);//вынести в отд метод для создания минионов
             battlemodeCardView.SetSettingsCardInBattle();
+            Card card = newCard.GetComponent<Card>();
             if (isMinion)
             {
                 battlemodeCardView.ChangeCardViewMode();
-                Card card = newCard.GetComponent<Card>();
+                
                 card.ChangeState(CardState.Board);
-                card.SetSide(side);
+                
                 if (side == Players.First)
                 {
                     _firstPlayerBoard.AddCard(card);
@@ -70,6 +71,7 @@ namespace Hearthstone
                     card.SetParent(_secondPlayerBoard);
                 }
             }
+            card.SetSide(side);
             newCardView.ChangeViewCard();
             battleModeCard.SetSide(side);//упростить
 
