@@ -57,7 +57,7 @@ namespace Hearthstone
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            if (_card_State == CardState.Deck) return;
+            if (_card_State != CardState.Hand) return;
             /*            if (_card_State == CardState.Board)
                         {
                            // _indicatorTarget.CursorBattleCryOn(this.transform);
@@ -80,11 +80,7 @@ namespace Hearthstone
 
         public void OnDrag(PointerEventData eventData)
         {
-            /*            if (_cursorEnabled)
-                        {
-                            return;
-                        }*/
-            if (_card_State == CardState.Deck) return;
+            if (_card_State != CardState.Hand) return;
             if (_cancelDrag)//Если не наш ход - нельзя схватить карту
             {
                 return;
