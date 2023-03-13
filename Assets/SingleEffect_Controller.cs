@@ -16,31 +16,27 @@ public class SingleEffect_Controller : MonoBehaviour
         _pageBook_Model = GetComponent<PageBook_Model>();
     }
 
-    public void ApplyEffect(Card_Controller cardExample)
-    {
-        
-        int cardId = cardExample.gameObject.GetComponent<Card_Model>()._idCard;
+    public void ApplyEffect(ApplyBattleCry card)
+    {        
+        Card_Model cardModel = card.gameObject.GetComponent<Card_Model>();
+        Card_Controller cardController = card.gameObject.GetComponent<Card_Controller>();
+        Card incomingCard = card.GetComponent<Card>();
         Card_Model[] _temporaryArray = _playerBoard.GetComponentsInChildren<Card_Model>();
-        if (cardId == 503)
-        {            
-            cardExample.ChangeAtackValue(_temporaryArray.Length);
-            cardExample.ChangeHealtValue(_temporaryArray.Length);
+        if (cardModel._idCard == 503)
+        {
+            cardController.ChangeAtackValue(_temporaryArray.Length);
+            cardController.ChangeHealtValue(_temporaryArray.Length);
         }
-
-
-
-        //как-то переделать покрасивее
-        Card incomingCard = cardExample.GetComponent<Card>();
+        
         List<int> activePermanentEffect;
         if (incomingCard._side == Players.First)
             activePermanentEffect = _permanentEffect_Controller._activePermanentEffectPlayersFirst;
         else
             activePermanentEffect = _permanentEffect_Controller._activePermanentEffectPlayersSecond;
-        if (cardId == 407 && activePermanentEffect.Contains(cardId))
-        {
-            Card_Model card_Model = cardExample.GetComponent<Card_Model>();
-            BattleModeCard_View card_View = cardExample.GetComponent<BattleModeCard_View>();
-            card_Model._atackDamageCard = card_Model._healthCard;
+        if (cardModel._idCard == 407 && activePermanentEffect.Contains(cardModel._idCard))
+        {            
+            BattleModeCard_View card_View = card.GetComponent<BattleModeCard_View>();
+            cardModel._atackDamageCard = cardModel._healthCard;
             card_View.UpdateViewCard();
         }
     } 

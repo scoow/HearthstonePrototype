@@ -72,9 +72,9 @@ namespace Hearthstone
                             if (cryType == BattleCryType.DealDamage) //принимаем урон
                             {
                                 
-                                _eventEffectController.ParseDamageEvent();
+                                _eventEffectController.ParseDamageEvent(this);
                                 _card_Controller.ChangeHealtValue(-_battleCryController._battleCryChangeHealth);
-                                _singleEffectController.ApplyEffect(this.gameObject.GetComponent<Card_Controller>()); //переделать в дженерики
+                                _singleEffectController.ApplyEffect(this); //переделать в дженерики
                                 if (_card_Model._healthCard <= 0)
                                     _card_Controller.DiedCreature(); //событие смерти
                             }                                
@@ -89,7 +89,7 @@ namespace Hearthstone
                                 if (_card_Model._healthCard > _card_Model._maxHealtValue)
                                     _card_Model._healthCard = _card_Model._maxHealtValue;
 
-                                _singleEffectController.ApplyEffect(this.gameObject.GetComponent<Card_Controller>()); //переделать в дженерики
+                                _singleEffectController.ApplyEffect(this);
 
                                 _battleModeCard_View.UpdateViewCard();
                                 StartCoroutine(_battleModeCard_View.EffectParticle(_battleModeCard_View._healtEffect));

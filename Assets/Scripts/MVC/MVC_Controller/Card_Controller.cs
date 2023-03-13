@@ -97,7 +97,7 @@ namespace Hearthstone
 
                 if (_card_Model._battleCryTypes.Contains(BattleCryType.EventEffect))
                 {
-                    _eventEffectController.AddEventEffect(_card_Model._idCard);
+                    _eventEffectController.AddEventEffect(this);
 
                 }
                 _eventEffectController.ParsePutCardInBoard(this);
@@ -105,7 +105,7 @@ namespace Hearthstone
                 if (_card_Model._battleCryTypes.Contains(BattleCryType.SingleEffect))
                 //if(_card_Model._battleCryTargets == Target.Self)
                 {
-                    _singleEffect_Controller.ApplyEffect(this);
+                    _singleEffect_Controller.ApplyEffect(gameObject.GetComponent<ApplyBattleCry>());
                 }
 
             }
@@ -224,7 +224,7 @@ namespace Hearthstone
             if (changeHealthType == ChangeHealthType.DealDamage)
             {
                 ChangeHealtValue(-incomingValue);
-                _singleEffect_Controller.ApplyEffect(this);
+                _singleEffect_Controller.ApplyEffect(gameObject.GetComponent<ApplyBattleCry>());
                 if (_card_Model._healthCard <= 0)
                     DiedCreature(); //событие смерти
             }
@@ -234,8 +234,8 @@ namespace Hearthstone
                 ChangeHealtValue(incomingValue);
                 if (_card_Model._healthCard > _card_Model._maxHealtValue)
                     _card_Model._healthCard = _card_Model._maxHealtValue;
-
-                _singleEffect_Controller.ApplyEffect(this);
+                _battleModeCardView.UpdateViewCard();
+                _singleEffect_Controller.ApplyEffect(gameObject.GetComponent<ApplyBattleCry>());
                 StartCoroutine(_battleModeCardView.EffectParticle(_battleModeCardView._healtEffect));
                 //_battleModeCardView.UpdateViewCard();
             }
@@ -258,7 +258,7 @@ namespace Hearthstone
 
 
             _permanentEffectController.RemovePermanentEffect(this);
-            _eventEffectController.RemoveEventEffect(_card_Model._idCard);
+            _eventEffectController.RemoveEventEffect(this);
             _eventEffectController.ParseDeathEvent(this);
 
             gameObject.SetActive(false);
