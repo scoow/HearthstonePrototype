@@ -72,7 +72,7 @@ namespace Hearthstone
                 return;
             }
 
-            _tempCardGO.gameObject.transform.position = transform.position - new Vector3(0, 0, 5f); ;//временная карта
+            _tempCardGO.gameObject.transform.position = transform.position - new Vector3(0, 0, 5f); ; //временная карта
             _layersRenderUp.LayerUp(50);
 
             BeginDrag?.Invoke(true);
@@ -107,7 +107,7 @@ namespace Hearthstone
             if (_parent is Hand)
             {
                 //transform.position = new Vector3(transform.position.x, transform.position.y, 1f);
-                transform.position = _tempCardGO.transform.position;
+                transform.position = _tempCardGO.transform.position + new Vector3(0, 0, 5f); ;
             }
             _tempCardGO.transform.position = new Vector3(100, 0);//Убираем временную карту за пределы экрана
             BeginDrag?.Invoke(false);
