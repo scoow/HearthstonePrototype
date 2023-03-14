@@ -22,7 +22,7 @@
     <CardId>403</CardId>
     <CardId>206</CardId>
   </DeckName>
-  <DeckName NameValue="Большая" StateValue="Выбранная колода">
+  <DeckName NameValue="Большая" StateValue="Неактивная колода">
     <CardId>5000</CardId>
     <CardId>100</CardId>
     <CardId>100</CardId>
@@ -72,5 +72,15 @@
     <CardId>100</CardId>
     <CardId>407</CardId>
     <CardId>501</CardId>
+  </DeckName>
+  <DeckName NameValue="Тест рандома" StateValue="Выбранная колода">
+    <CardId>1000</CardId>
+    <CardId>100</CardId>
+    <CardId>104</CardId>
+    <CardId>206</CardId>
+    <CardId>302</CardId>
+    <CardId>202</CardId>
+    <CardId>207</CardId>
+    <CardId>204</CardId>
   </DeckName>
 </SaveDeckCollection>

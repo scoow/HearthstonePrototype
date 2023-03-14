@@ -16,7 +16,7 @@ using Zenject;
 //todo исправить ошибку при клике на слот муллигана до того, как по€вились карты
 
 namespace Hearthstone
-{ 
+{
     public class MulliganManager : MonoBehaviour
     {
         [SerializeField]
@@ -98,7 +98,7 @@ namespace Hearthstone
                 await UniTask.Delay(TimeSpan.FromSeconds(_time));
                 i++;
             }
-            
+
         }
 
         private void MulliganStage2()
@@ -193,7 +193,7 @@ namespace Hearthstone
                 _currentHand.AddCard(_cardInHand);
                 i++;
             }
-             _currentBoard.InitializeCardsList(_currentCards);//прив€зка событий карт текущего игрока к текущему полю
+            _currentBoard.InitializeCardsList(_currentCards);//прив€зка событий карт текущего игрока к текущему полю
 
             if (side == Players.First)//если первый муллиган
             {
@@ -209,14 +209,14 @@ namespace Hearthstone
         /// <param name="side">текущий игрок</param>
         public void TakeOneCard(Players side)
         {
-            TakeOneRandomCard(side);
+
             Hand _currentHand;
             int _nextCardInDeckNumber;
-            List<BattleModeCard> _currentDeck;
+            //List<BattleModeCard> _currentDeck;
             if (side == Players.First)
             {
                 _currentHand = _firstPlayerHand;
-                _currentDeck = _mulliganCardsFirstPlayer;
+                // _currentDeck = _mulliganCardsFirstPlayer;
                 _nextCardInDeckNumber = _nextCardInPlayerDeckNumber;
                 _nextCardInPlayerDeckNumber++;
 
@@ -224,19 +224,26 @@ namespace Hearthstone
             else
             {
                 _currentHand = _secondPlayerHand;
-                _currentDeck = _mulliganCardsSecondPlayer;
+                // _currentDeck = _mulliganCardsSecondPlayer;
                 _nextCardInDeckNumber = _nextCardInEnemyDeckNumber;
                 _nextCardInEnemyDeckNumber++;
             }
 
-            if (_nextCardInDeckNumber > _currentDeck.Count - 1)
+            /*if (_nextCardInDeckNumber > _currentDeck.Count - 1)
             {
                 DealFatigueDamage(side);
                 Debug.Log("¬ колоде " + side + " не осталось карт");
                 return;
+            }*/
+            // TakeOneRandomCard(side);
+            // var card = _currentDeck.ElementAt(_nextCardInDeckNumber);
+            
+            var card = TakeOneRandomCard(side);
+            if (card == null)
+            {
+                return;
             }
 
-            var card = _currentDeck.ElementAt(_nextCardInDeckNumber);
             if (_currentHand.CountCards() > 9)
             {
                 Debug.Log(card + " уничтожена");
@@ -244,19 +251,19 @@ namespace Hearthstone
                 return;
             }
 
-            _ = card.MoveCardAsync(card.transform.position, _currentHand.GetLastCardPosition(), _time);
+            _ = card.GetComponent<BattleModeCard>().MoveCardAsync(card.transform.position, _currentHand.GetLastCardPosition(), _time);
 
-            var _cardInHand = card.GetComponent<Card>();
+            //var _cardInHand = card.GetComponent<Card>();
 
             var newViewCardInHand = card.GetComponent<Card_View>(); // добавил переменную дл€ отключени€ рубашки
             newViewCardInHand.CardShirtEnable(false);//отключаю отображение рубкашки
 
-            _cardInHand.ChangeState(CardState.Hand);
-            _cardInHand.SetSide(side);
-            _cardInHand.SetParent(_currentHand);
-            _currentHand.AddCard(_cardInHand);
+            card.ChangeState(CardState.Hand);
+            card.SetSide(side);
+            card.SetParent(_currentHand);
+            _currentHand.AddCard(card);
         }
-        public void TakeOneRandomCard(Players side)
+        public Card TakeOneRandomCard(Players side)
         {
             List<Card> _currentDeck = new();
             if (side == Players.First)
@@ -267,7 +274,19 @@ namespace Hearthstone
             {
                 _currentDeck = FindObjectsOfType<Card>().Where(x => x.GetState() == CardState.Deck && x._side == Players.Second).ToList();
             }
+
+            if (_currentDeck.Count <= 0)
+            {
+                DealFatigueDamage(side);
+                Debug.Log("¬ колоде " + side + " не осталось карт");
+                return null;
+            }
+
             Debug.Log(" арт в колоде: " + _currentDeck.Count);
+            int _random = UnityEngine.Random.Range(0, _currentDeck.Count);
+            Debug.Log("Ќомер случайной карты: " + _random);
+            Debug.Log("Ќазвание случайной карты: " + _currentDeck.ElementAt(_random).GetComponent<Card_Model>()._nameCard);
+            return _currentDeck.ElementAt(_random);
         }
 
         private void DealFatigueDamage(Players side)
