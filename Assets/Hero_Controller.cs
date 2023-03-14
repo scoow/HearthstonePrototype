@@ -14,6 +14,7 @@ public class Hero_Controller : MonoBehaviour, IChangeHealth, IPointerClickHandle
     private BattleCry_Controller _battleCry_Controller;
     [Inject]
     private IndicatorTarget _indicatorTarget;
+    private WinnerMesage _winnerMesage;
 
     public int _health;
     public int _defaultHealtValue;
@@ -24,6 +25,7 @@ public class Hero_Controller : MonoBehaviour, IChangeHealth, IPointerClickHandle
     {
         _textHealth = GetComponentInChildren<TextHealthMarker>().GetComponent<Text>();
         _loadDeck_Controller.SetHeroSettings += SetHeroSettings;
+        _winnerMesage = FindAnyObjectByType<WinnerMesage>();
     }
 
     private void OnDisable()
@@ -49,6 +51,7 @@ public class Hero_Controller : MonoBehaviour, IChangeHealth, IPointerClickHandle
 
             //_singleEffect_Controller.ApplyEffect(this);
             if (_health <= 0)
+                _winnerMesage.SetWiner(((Players)((int)(_side + 1) % 2)).ToString());
                 Debug.Log("ÏÎÁÅÄÀ ÈÃÐÎÊÀ " + (Players)((int)(_side + 1) % 2));
             //DiedCreature(); //ñîáûòèå ñìåðòè*/
         }

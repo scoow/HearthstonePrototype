@@ -31,23 +31,14 @@ namespace Hearthstone
 
         private void OnEnable()
         {            
-            _pageBook_Model = FindObjectOfType<PageBook_Model>();
-            //_cursorBattleCry.gameObject.SetActive(false);
+            _pageBook_Model = FindObjectOfType<PageBook_Model>();   
         }      
 
-        private void Update() //отображение прицела
+        private void LateUpdate() //отображение прицела
         {
             if (_isActiveCry && СonditionsTargetBattleCry())
-            {
-                //_cursorBattleCry.CursorBattleCryOn(_battleCryCreator.transform);
+            {          
                 _cursorBattleCry.SetWatcher(_battleCryCreator.transform);
-
-                /*Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out RaycastHit raycastHit))
-                {
-                    _cursorBattleCry.transform.position = raycastHit.point;
-                    _cursorBattleCry.transform.LookAt(Camera.main.transform);
-                }*/
             }          
         }
 
