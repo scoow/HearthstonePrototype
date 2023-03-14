@@ -9,7 +9,7 @@ namespace Hearthstone
     public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
         private Camera _camera;
-        private LayerRenderUp _layersRenderUp;
+        public LayerRenderUp _layersRenderUp;
         private TempCard_Marker _tempCardGO;
         [SerializeField]
         private float _scale—oefficient;

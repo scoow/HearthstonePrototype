@@ -42,6 +42,7 @@ namespace Hearthstone
         public virtual void AddCard(Card card)
         {
             _cardsList.Add(card);
+            SortCardsByPosition();
             card.SetParent(this);
         }
         /// <summary>
@@ -79,6 +80,16 @@ namespace Hearthstone
         public int CountCards()
         { 
             return _cardsList.Count;
+        }
+        public void SortCardsByPosition()
+        {
+            _cardsList.Sort((c1, c2) => c1.transform.position.x.CompareTo(c2.transform.position.x));
+
+/*            foreach (var card in _cardsList)
+            {
+                Debug.Log(card.GetComponent<Card_Model>()._nameCard);
+            }*/
+            
         }
     }
 }

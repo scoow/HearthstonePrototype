@@ -273,10 +273,10 @@ namespace Hearthstone
                 return null;
             }
 
-            Debug.Log("Карт в колоде: " + _currentDeck.Count);
+            //Debug.Log("Карт в колоде: " + _currentDeck.Count);
             int _random = UnityEngine.Random.Range(0, _currentDeck.Count);
-            Debug.Log("Номер случайной карты: " + _random);
-            Debug.Log("Название случайной карты: " + _currentDeck.ElementAt(_random).GetComponent<Card_Model>()._nameCard);
+            //Debug.Log("Номер случайной карты: " + _random);
+            //Debug.Log("Название случайной карты: " + _currentDeck.ElementAt(_random).GetComponent<Card_Model>()._nameCard);
             return _currentDeck.ElementAt(_random);
         }
         /// <summary>
