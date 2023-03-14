@@ -8,9 +8,10 @@ namespace Hearthstone
         [SerializeField]
         private MulliganCardPositionEnum _position;
         private bool _selected = false;
+        public bool Selected => _selected;
 
         private SpriteRenderer _spriteRenderer;
-        private BattleModeCard _mulliganCard;
+        private Card _mulliganCard;
 
         private void Awake()
         {
@@ -24,11 +25,16 @@ namespace Hearthstone
         public void SwitchRenderer(bool selected)
         {
             _spriteRenderer.enabled = selected;
-            _mulliganCard.Selected = selected;
+            _selected = selected;
+           //_mulliganCard.Selected = selected;
         }
-        public void SetCurrentCard(BattleModeCard card)
+        public void SetCurrentCard(Card card)
         {
             _mulliganCard = card;
+        }
+        public Card GetCurrentCard()
+        {
+            return _mulliganCard;
         }
     }
 }

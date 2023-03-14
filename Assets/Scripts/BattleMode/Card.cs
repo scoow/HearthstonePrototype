@@ -123,7 +123,7 @@ namespace Hearthstone
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if (_card_State == CardState.Deck || _side != _mana_Controller.WhoMovesNow()) return;
+            if (_card_State == CardState.Deck || _card_State == CardState.Mulligan || _side != _mana_Controller.WhoMovesNow()) return;
             _layersRenderUp.LayerUp(50);
             transform.localScale *= _scale—oefficient;
             //transform.position += new Vector3(0, 0, 5f);
@@ -131,7 +131,7 @@ namespace Hearthstone
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            if (_card_State == CardState.Deck || _side != _mana_Controller.WhoMovesNow()) return;
+            if (_card_State == CardState.Deck || _card_State == CardState.Mulligan || _side != _mana_Controller.WhoMovesNow()) return;
             _layersRenderUp.LayerUp(-50);
             transform.localScale /= _scale—oefficient;
             //transform.position -= new Vector3(0, 0, 5f);

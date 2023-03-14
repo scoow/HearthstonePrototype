@@ -50,11 +50,12 @@ namespace Hearthstone
         /// <summary>
         /// Подписка всех карт на событие. Если взяли карту - отображать место для сброса карты на поле
         /// </summary>
-        public void InitializeCardsList(List<BattleModeCard> BattleModeCards)
+        public void InitializeCardsList(Players side)
         {
-            foreach (BattleModeCard BattleModeCard in BattleModeCards)
+            List<Card> cards = new List<Card>();
+            cards = FindObjectsOfType<Card>().Where(x => x._side == side).ToList();
+            foreach (Card card in cards)
             {
-                Card card = BattleModeCard.GetComponent<Card>();
                 if (card != null)
                 {
                     card.BeginDrag += ReactionToCardDragging;

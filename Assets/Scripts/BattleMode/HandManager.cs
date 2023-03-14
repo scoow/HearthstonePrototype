@@ -25,7 +25,7 @@ namespace Hearthstone
             _enemyDeck = GameObject.Find("EnemyDeck").transform;
            
             CreateDeck(Players.First, _playerDeck);
-            _loadDeckController.ShuffleCardInDeck();
+            //_loadDeckController.ShuffleCardInDeck();
             CreateDeck(Players.Second, _enemyDeck);
         }
 

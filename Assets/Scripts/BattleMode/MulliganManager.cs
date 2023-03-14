@@ -44,9 +44,6 @@ namespace Hearthstone
         [Inject(Id = "Second")]
         private Hero_Controller _secondPlayerHero;
 
-        private int _nextCardInPlayerDeckNumber = 4;
-        private int _nextCardInEnemyDeckNumber = 4;
-
         private int _playerFatigueDamage = 1;
         private int _enemyFatigueDamage = 1;
 
@@ -77,26 +74,26 @@ namespace Hearthstone
         private async void MulliganStage1(Players side)
         {
             BattleModeCard _card;
-            List<BattleModeCard> _currentDeck;
-            if (side == Players.First)
-                _currentDeck = _mulliganCardsFirstPlayer;
-            else
-                _currentDeck = _mulliganCardsSecondPlayer;
-
-            int i = 0;
+            Card card;
+            //int i = 0;
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
-                _card = _currentDeck[i];
+                // _card = _currentDeck[i];
+                card = TakeOneRandomCard(side);
+/*                if (card == null)
+                    return;*/
+                _card = card.GetComponent<BattleModeCard>();//случайность
+                card.ChangeState(CardState.Mulligan);
 
                 var newViewCardInHand = _card.GetComponent<Card_View>(); // добавил переменную для отключения рубашки
-                newViewCardInHand.CardShirtEnable(false);//отключаю отображение рубкашки
+                newViewCardInHand.CardShirtEnable(false);//отключаю отображение рубашки
 
                 var coll = position.GetComponent<Collider>();
                 coll.enabled = true;
-                position.SetCurrentCard(_card);//привязываем карту к позиции
+                position.SetCurrentCard(card);//привязываем карту к позиции
                 _ = _card.MoveCardAsync(_card.transform, position.transform, _time);
                 await UniTask.Delay(TimeSpan.FromSeconds(_time));
-                i++;
+                //i++;
             }
 
         }
@@ -110,31 +107,29 @@ namespace Hearthstone
         {
             _mulliganConfirmButton.HideButton();
 
-            BattleModeCard _card;
-            List<BattleModeCard> _currentCards;
             Transform _currentDeck;
 
             if (side == Players.First)
             {
-                _currentCards = _mulliganCardsFirstPlayer;
                 _currentDeck = _playerDeck.transform;
             }
             else
             {
-                _currentCards = _mulliganCardsSecondPlayer;
                 _currentDeck = _enemyDeck.transform;
             }
 
-            int i = 0;
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
-                _card = _currentCards[i];
-                if (_card.Selected)
+                //_card = _currentCards[i];
+                if (position.Selected)
                 {
-                    _ = _card.MoveCardAsync(position.transform, _currentDeck, _time);
+                    //var card = _card.GetComponent<Card>();
+                    var card = position.GetCurrentCard();
+                    position.SetCurrentCard(null);
+                    card.ChangeState(CardState.Deck);
+                    _ = card.GetComponent<BattleModeCard>().MoveCardAsync(position.transform, _currentDeck, _time);
                     await UniTask.Delay(TimeSpan.FromSeconds(_time));
                 }
-                i++;
             }
             MulliganStage4(side);
         }
@@ -142,58 +137,54 @@ namespace Hearthstone
         {
             _mulliganConfirmButton.HideButton();
 
-            BattleModeCard _card;
-            List<BattleModeCard> _currentCards;
+            Card card;
             Transform _currentDeck;
             Hand _currentHand;
             Board _currentBoard;
             if (side == Players.First)
             {
-                _currentCards = _mulliganCardsFirstPlayer;
                 _currentDeck = _playerDeck.transform;
                 _currentHand = _firstPlayerHand;
                 _currentBoard = _firstPlayerBoard;
             }
             else
             {
-                _currentCards = _mulliganCardsSecondPlayer;
                 _currentDeck = _enemyDeck.transform;
                 _currentHand = _secondPlayerHand;
                 _currentBoard = _secondPlayerBoard;
             }
 
-            int i = 0;
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
-                _card = _currentCards[i];
-                if (_card.Selected)
+                
+                if (position.Selected)
                 {
-                    _ = _card.MoveCardAsync(_card.transform, position.transform, _time);
+                    card = TakeOneRandomCard(side);
+                    position.SetCurrentCard(card);
+                    card.ChangeState(CardState.Mulligan);
+                    _ = card.GetComponent<BattleModeCard>().MoveCardAsync(card.transform, position.transform, _time);
                     await UniTask.Delay(TimeSpan.FromSeconds(_time));
                 }
 
                 position.SwitchRenderer(false);
-                i++;
             }
             await UniTask.Delay(TimeSpan.FromSeconds(_time));
-            i = 0;
+
             foreach (MulliganCardPosition position in _mulliganCardsPositions)
             {
-                _card = _currentCards[i];
-                _ = _card.MoveCardAsync(position.transform.position, _currentHand.GetLastCardPosition(), _time);
+                card = position.GetCurrentCard();
+                _ = card.GetComponent<BattleModeCard>().MoveCardAsync(position.transform.position, _currentHand.GetLastCardPosition(), _time);
 
                 await UniTask.Delay(TimeSpan.FromSeconds(_time));
                 if (side == Players.Second)
                     position.gameObject.SetActive(false);
 
-                var _cardInHand = _card.GetComponent<Card>();
-                _cardInHand.ChangeState(CardState.Hand);
-                _cardInHand.SetSide(side);
-                _cardInHand.SetParent(_currentHand);
-                _currentHand.AddCard(_cardInHand);
-                i++;
+                card.ChangeState(CardState.Hand);
+                card.SetSide(side);
+                card.SetParent(_currentHand);
+                _currentHand.AddCard(card);
             }
-            _currentBoard.InitializeCardsList(_currentCards);//привязка событий карт текущего игрока к текущему полю
+            _currentBoard.InitializeCardsList(side);//привязка событий карт текущего игрока к текущему полю
 
             if (side == Players.First)//если первый муллиган
             {
@@ -211,22 +202,17 @@ namespace Hearthstone
         {
 
             Hand _currentHand;
-            int _nextCardInDeckNumber;
             //List<BattleModeCard> _currentDeck;
             if (side == Players.First)
             {
                 _currentHand = _firstPlayerHand;
                 // _currentDeck = _mulliganCardsFirstPlayer;
-                _nextCardInDeckNumber = _nextCardInPlayerDeckNumber;
-                _nextCardInPlayerDeckNumber++;
-
             }
             else
             {
                 _currentHand = _secondPlayerHand;
                 // _currentDeck = _mulliganCardsSecondPlayer;
-                _nextCardInDeckNumber = _nextCardInEnemyDeckNumber;
-                _nextCardInEnemyDeckNumber++;
+
             }
 
             /*if (_nextCardInDeckNumber > _currentDeck.Count - 1)
@@ -263,6 +249,11 @@ namespace Hearthstone
             card.SetParent(_currentHand);
             _currentHand.AddCard(card);
         }
+        /// <summary>
+        /// Взятие случайной карты игрока
+        /// </summary>
+        /// <param name="side"></param>
+        /// <returns></returns>
         public Card TakeOneRandomCard(Players side)
         {
             List<Card> _currentDeck = new();
@@ -288,7 +279,10 @@ namespace Hearthstone
             Debug.Log("Название случайной карты: " + _currentDeck.ElementAt(_random).GetComponent<Card_Model>()._nameCard);
             return _currentDeck.ElementAt(_random);
         }
-
+        /// <summary>
+        /// Нанести урон от усталости игроку
+        /// </summary>
+        /// <param name="side"></param>
         private void DealFatigueDamage(Players side)
         {
             Hero_Controller hero = null;

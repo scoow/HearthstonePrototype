@@ -100,6 +100,7 @@ namespace Hearthstone
     public enum CardState
     {
         Deck,
+        Mulligan,
         Hand,
         Board
     }
