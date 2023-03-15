@@ -178,7 +178,26 @@ namespace Hearthstone
                         }
                     }
                 }
+<<<<<<< Updated upstream
             }
+=======
+
+                if (cardEffectId == 501)
+                {
+                    CardSO_Model card_Model = (CardSO_Model)_pageBook_Model._cardsDictionary[cardEffectId];
+                    List<Card_Controller> cardsInBoard;
+                    if (tempArrey == _activeEventEffectPlayerFirst)
+                        cardsInBoard = _cardInBoardFirst;
+                    else
+                        cardsInBoard = _cardInBoardSecond;
+                    foreach (Card_Controller cardController in cardsInBoard)
+                    {
+                        cardController.ChangeHealtValue(card_Model._abilityChangeHealth,ChangeHealthType.Healing);                        
+                    }
+                    RemoveEventEffect(cardExample);
+                }
+            }            
+>>>>>>> Stashed changes
         }
         #endregion
 

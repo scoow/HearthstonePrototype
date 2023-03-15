@@ -216,6 +216,8 @@ namespace Hearthstone
         public void ChangeHealtValue(int incomingValue) //изменяем значение здоровья
         {
             _card_Model._healthCard += incomingValue;
+            if (_card_Model._healthCard <= 0)
+                DiedCreature(); //событие смерти
             if (incomingValue < 0 && _card_Model._isBerserk) //если карта берсерк и здоровье уменьшилось, то увеличиваем атаку 
                 ChangeAtackValue(_card_Model._changeAtackValue);
             _battleModeCardView.UpdateViewCard();
@@ -227,8 +229,8 @@ namespace Hearthstone
             {
                 ChangeHealtValue(-incomingValue);
                 _singleEffect_Controller.ApplyEffect(gameObject.GetComponent<ApplyBattleCry>());
-                if (_card_Model._healthCard <= 0)
-                    DiedCreature(); //событие смерти
+                /*if (_card_Model._healthCard <= 0)
+                    DiedCreature(); //событие смерти*/
             }
 
             if (changeHealthType == ChangeHealthType.Healing)
