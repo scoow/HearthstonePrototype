@@ -25,9 +25,7 @@ namespace Hearthstone
         private void Awake()
         {
             _camera = Camera.main;
-
             CreateSlots();
-
         }
 
         private void CreateSlots()
@@ -35,16 +33,13 @@ namespace Hearthstone
             _minionSlots = new (Vector3, bool)[7];
             _minionSlots[0].Item1 = transform.position - new Vector3(_offset * 3, 0, 0);
             _minionSlots[0].Item2 = false;
+            Debug.Log(_minionSlots[0].Item1);
             for (int i = 1; i < 7; i++)
             {
                 _minionSlots[i].Item1 = _minionSlots[i - 1].Item1 + new Vector3(_offset, 0, 0);
+                Debug.Log(_minionSlots[i].Item1);
                 _minionSlots[i].Item2 = false;
             }
-/*
-            for (int i = 0; i < 7; i++)
-            {
-                Debug.Log(_minionSlots[i]);
-            }*/
         }
 
         /// <summary>
@@ -115,13 +110,18 @@ namespace Hearthstone
             if (!_draggingCard) return;
             if (!eventData.pointerDrag.TryGetComponent<Card>(out var card)) return;//если это не карта
             if (card.GetState() != CardState.Hand) return; //если карта не из руки
+            if (_cardsList.Count >= 7)
+            {
+                Debug.Log("Стол заполнен");
+                return;
+            }
             var _parent = card.transform.parent.GetComponent<CardHolder>();
             if (_parent != this)
             {
                 _parent.RemoveCard(card);
                 //card.transform.position = GetLastCardPosition();
 
-                int position = 3;
+                /*int position = 3;
                 if (!_minionSlots[position].Item2)
                 {
                     card.transform.position = _minionSlots[position].Item1;
@@ -155,11 +155,21 @@ namespace Hearthstone
                             _minionSlots[j].Item2 = true;
                         }
                     }
+                }*/
+                ////////////////////////////////////////////////////////////////////////////////////////
+
+                AddCard(card);
+                int range = 3 - _cardsList.Count() / 2;
+                for (int i = 0; i < _cardsList.Count(); i++)
+                {
+                    _cardsList[i].transform.position = _minionSlots[range].Item1;
+                    range++;
                 }
+
 
                 _mana_Controller.SpendMana(_side, card.GetComponent<Card_Model>().GetManaCostCard());// вычесть ману
                 OnPointerExit(eventData);
-                AddCard(card);
+                
             }
         }
         /// <summary>

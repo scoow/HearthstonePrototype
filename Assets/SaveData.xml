@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <SaveDeckCollection>
-  <DeckName NameValue="Рывок" StateValue="Выбранная колода">
+  <DeckName NameValue="Рывок" StateValue="Неактивная колода">
     <CardId>1000</CardId>
     <CardId>309</CardId>
     <CardId>302</CardId>
@@ -22,7 +22,7 @@
     <CardId>403</CardId>
     <CardId>206</CardId>
   </DeckName>
-  <DeckName NameValue="Большая" StateValue="Неактивная колода">
+  <DeckName NameValue="Большая" StateValue="Выбранная колода">
     <CardId>5000</CardId>
     <CardId>100</CardId>
     <CardId>100</CardId>
