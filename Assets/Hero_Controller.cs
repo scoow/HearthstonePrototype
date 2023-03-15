@@ -53,8 +53,11 @@ namespace Hearthstone
 
                 //_singleEffect_Controller.ApplyEffect(this);
                 if (_health <= 0)
+                {
                     _winnerMesage.SetWiner(((Players)((int)(_side + 1) % 2)).ToString());
-                Debug.Log("ÏÎÁÅÄÀ ÈÃÐÎÊÀ " + (Players)((int)(_side + 1) % 2));
+                    Debug.Log("ÏÎÁÅÄÀ ÈÃÐÎÊÀ " + (Players)((int)(_side + 1) % 2));
+                }    
+                   
                 //DiedCreature(); //ñîáûòèå ñìåðòè*/
             }
 

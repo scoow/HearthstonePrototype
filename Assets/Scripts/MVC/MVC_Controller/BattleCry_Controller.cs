@@ -45,7 +45,7 @@ namespace Hearthstone
         //условия применения боевого клича
         public bool СonditionsTargetBattleCry()
         {
-            bool result = _battleCryTargets_Active == Target.Single || _battleCryTargets_Active == Target.SingleFriend;
+            bool result = _isActiveCry && _battleCryTargets_Active == Target.Single || _battleCryTargets_Active == Target.SingleFriend;//?????
             return result;
         }
 

@@ -41,6 +41,12 @@ namespace Hearthstone
                     _isListen = false;
                     _battleCryController._isActiveCry = false;                    
                     _battleCryController.UpdateBattleCry();
+
+                    //test
+                    IndicatorTarget indicatorTarget = FindObjectOfType<IndicatorTarget>();
+                    indicatorTarget.ChangeCursorState(false);
+                    ///test
+
                 }                
             }
         }
