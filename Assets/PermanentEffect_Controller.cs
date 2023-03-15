@@ -24,10 +24,10 @@ namespace Hearthstone
 
         private void OnEnable()
         {
-<<<<<<< Updated upstream
+
             _pageBook_Model = FindObjectOfType<PageBook_Model>();
-=======
-            Card_Model currentCard = _cardControllerArray[i].gameObject.GetComponent<Card_Model>();
+
+            /*Card_Model currentCard = _cardControllerArray[i].gameObject.GetComponent<Card_Model>();
             if (currentCard._idCard == cardModel._idCard) continue;
 
             if ((cardModel._idCard == 102 || cardModel._idCard == 107) && (cardModel._battleCryTargetsType == currentCard._minionType)) //баф карт 102 и 107
@@ -38,8 +38,8 @@ namespace Hearthstone
             if (cardModel._idCard == 304)
             {
                 _cardControllerArray[i].ChangeAtackValue(changeAtackValue);
-            }
->>>>>>> Stashed changes
+            }*/
+
         }
 
 

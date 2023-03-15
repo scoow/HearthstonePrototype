@@ -19,8 +19,12 @@ namespace Hearthstone
         private readonly Board _firstPlayerBoard;
         [Inject(Id = "Second")]
         private readonly Board _secondPlayerBoard;
+        private PermanentEffect_Controller _permanentEffectController;
+
         private void Start()
         {
+            _permanentEffectController = FindObjectOfType<PermanentEffect_Controller>();
+
             _playerDeck = GameObject.Find("PlayerDeck").transform;
             _enemyDeck = GameObject.Find("EnemyDeck").transform;
            
@@ -70,10 +74,16 @@ namespace Hearthstone
                     _secondPlayerBoard.AddCard(card);
                     card.SetParent(_secondPlayerBoard);
                 }
-            }
+            }            
             card.SetSide(side);
             newCardView.ChangeViewCard();
             battleModeCard.SetSide(side);//упростить
+
+            //добавил блок для подбора эффекта с доски 
+            if (card.GetState() == CardState.Board)
+            {
+                _permanentEffectController.GetActivePermanentEffect(card.GetComponent<Card_Controller>());
+            }
 
             return layerStep;
         }
