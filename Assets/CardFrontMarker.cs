@@ -1,18 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
-public class CardFrontMarker : MonoBehaviour
+namespace Hearthstone
 {
-    // Start is called before the first frame update
-    void Start()
+    public class CardFrontMarker : MonoBehaviour
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

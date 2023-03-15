@@ -1,7 +1,8 @@
-using Hearthstone;
-
-public interface IChangeHealth
+namespace Hearthstone
 {
-    public void ChangeHealthValue(int incomingValue, ChangeHealthType changeHealthType);
-    
+    public interface IChangeHealth
+    {
+        public void ChangeHealthValue(int incomingValue, ChangeHealthType changeHealthType);
+
+    }
 }

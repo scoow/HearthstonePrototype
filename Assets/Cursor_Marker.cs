@@ -1,5 +1,8 @@
 using UnityEngine;
 
-public class Cursor_Marker : MonoBehaviour
+namespace Hearthstone
 {
+    public class Cursor_Marker : MonoBehaviour
+    {
+    }
 }

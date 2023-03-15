@@ -1,15 +1,18 @@
 using UnityEngine;
 
-public class LockAt : MonoBehaviour
-{    
-
-    private void Update()
+namespace Hearthstone
+{
+    public class LockAt : MonoBehaviour
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit raycastHit))
+
+        private void Update()
         {
-            gameObject.transform.LookAt(raycastHit.point,Vector3.up);
-            Debug.Log(raycastHit.point);
-        }        
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit raycastHit))
+            {
+                gameObject.transform.LookAt(raycastHit.point, Vector3.up);
+                Debug.Log(raycastHit.point);
+            }
+        }
     }
 }

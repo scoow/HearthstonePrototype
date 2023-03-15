@@ -1,17 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WinnerMesage : MonoBehaviour
+namespace Hearthstone
 {
-    public GameObject _winerEvent;
-    public Text _textWiner;
-    public Image _spriteWiner;
-
-
-    public void SetWiner(string text/*, Sprite sprite*/)
+    public class WinnerMesage : MonoBehaviour
     {
-        _winerEvent.gameObject.SetActive(true);
-        _textWiner.text = text;
-        //_spriteWiner.sprite = sprite;
-    }    
+        public GameObject _winerEvent;
+        public Text _textWiner;
+        public Image _spriteWiner;
+
+
+        public void SetWiner(string text/*, Sprite sprite*/)
+        {
+            _winerEvent.gameObject.SetActive(true);
+            _textWiner.text = text;
+            //_spriteWiner.sprite = sprite;
+        }
+    }
 }
