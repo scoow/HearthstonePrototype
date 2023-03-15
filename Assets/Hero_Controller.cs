@@ -1,4 +1,5 @@
 using Hearthstone;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -94,7 +95,20 @@ public class Hero_Controller : MonoBehaviour, IChangeHealth, IPointerClickHandle
         {
             if (_indicatorTarget.CursorEnabled)
             {
+                Board board = FindObjectsOfType<Board>().Where(board => board._side == _side).FirstOrDefault();
+
                 var attacker = _indicatorTarget.GetWatcher().GetComponent<Card_Model>();//привести в порядок
+
+                if (board.HasMinionWithTaunt())
+                {
+                    if (!attacker._isProvocation)
+                    {
+                        Debug.Log("Можно атаковать только провокатора");
+                        return;
+                    }
+                }
+
+                
                 
                 Card attackercard = attacker.GetComponent<Card>();
                 if (attackercard.GetSide() == _side) return;
