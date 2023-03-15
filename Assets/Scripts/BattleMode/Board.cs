@@ -47,7 +47,7 @@ namespace Hearthstone
         /// </summary>
         public void InitializeCardsList(Players side)//todo проверить работу
         {
-            List<Card> cards = new List<Card>();
+            List<Card> cards = new();
             cards = FindObjectsOfType<Card>().Where(x => x._side == side).ToList();
             foreach (Card card in cards)
             {
@@ -187,6 +187,14 @@ namespace Hearthstone
             {
                 _indicatorTarget.ChangeCursorState(false);
             }
+        }
+        /// <summary>
+        /// ≈сть ли на столе провокатор?
+        /// </summary>
+        /// <returns></returns>
+        public bool HasMinionWithTaunt()
+        {
+            return _cardsList.Any(x => x.GetComponent<Card_Model>()._isProvocation);
         }
     }
 }

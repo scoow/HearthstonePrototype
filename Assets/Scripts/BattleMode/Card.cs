@@ -9,7 +9,7 @@ namespace Hearthstone
     public class Card : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
         private Camera _camera;
-        public LayerRenderUp _layersRenderUp;
+        private LayerRenderUp _layersRenderUp;
         private TempCard_Marker _tempCardGO;
         [SerializeField]
         private float _scaleСoefficient;
@@ -18,7 +18,6 @@ namespace Hearthstone
         private Mana_Controller _mana_Controller;
         [Inject]
         private IndicatorTarget _indicatorTarget;
-        [SerializeField]
         public Players _side; //сменил на public . Святослав
         private bool _cancelDrag;
         public Action<bool> BeginDrag;
@@ -31,12 +30,11 @@ namespace Hearthstone
             _camera = Camera.main;
             _tempCardGO = FindObjectOfType<TempCard_Marker>();
             _layersRenderUp = GetComponent<LayerRenderUp>();
-            // _side = GetComponent<BattleModeCard>().GetSide();
 
             ChangeState(CardState.Deck);//состояние по-умолчанию
 
-            _mana_Controller = FindObjectOfType<Mana_Controller>();//Zenject не сработал. Почему?
-            _indicatorTarget = FindObjectOfType<IndicatorTarget>();//Zenject не сработал. Почему?
+            _mana_Controller = FindObjectOfType<Mana_Controller>();//Zenject не сработал так как карта инстанциируется после работы Monoinstaller'а
+            _indicatorTarget = FindObjectOfType<IndicatorTarget>();
         }
         public void EnableAttack()
         {
@@ -54,16 +52,9 @@ namespace Hearthstone
         {
             return _card_State;
         }
-
         public void OnBeginDrag(PointerEventData eventData)
         {
             if (_card_State != CardState.Hand) return;
-            /*            if (_card_State == CardState.Board)
-                        {
-                           // _indicatorTarget.CursorBattleCryOn(this.transform);
-                            _cursorEnabled = true;
-                            return;
-                        }*/
 
             _cancelDrag = _side != _mana_Controller.WhoMovesNow() || GetComponent<Card_Model>().GetManaCostCard() > _mana_Controller.GetManaCount(_mana_Controller.WhoMovesNow());
             if (_cancelDrag)//Если не наш ход - нельзя схватить карту
@@ -71,10 +62,8 @@ namespace Hearthstone
                 Debug.Log("Нельзя сыграть эту карту");
                 return;
             }
-
             _tempCardGO.gameObject.transform.position = transform.position - new Vector3(0, 0, 5f); ; //временная карта
             _layersRenderUp.LayerUp(50);
-
             BeginDrag?.Invoke(true);
         }
 
@@ -92,7 +81,7 @@ namespace Hearthstone
 
             newPosition.z = -1;
             transform.position = newPosition;
-            //разобраться почему надо умножать на -1
+            //надо умножать на -1, так как камера находится в отрицательном направлении по оси z
         }
 
         public void OnEndDrag(PointerEventData eventData)
@@ -106,8 +95,7 @@ namespace Hearthstone
             _layersRenderUp.LayerUp(-50);
             if (_parent is Hand)
             {
-                //transform.position = new Vector3(transform.position.x, transform.position.y, 1f);
-                transform.position = _tempCardGO.transform.position + new Vector3(0, 0, 5f); ;
+                transform.position = _tempCardGO.transform.position + new Vector3(0, 0, 5f);
             }
             _tempCardGO.transform.position = new Vector3(100, 0);//Убираем временную карту за пределы экрана
             BeginDrag?.Invoke(false);
@@ -120,13 +108,11 @@ namespace Hearthstone
         {
             transform.parent = cardHolder.transform;
         }
-
         public void OnPointerEnter(PointerEventData eventData)
         {
             if (_card_State == CardState.Deck || _card_State == CardState.Mulligan || _side != _mana_Controller.WhoMovesNow()) return;
             _layersRenderUp.LayerUp(50);
             transform.localScale *= _scaleСoefficient;
-            //transform.position += new Vector3(0, 0, 5f);
         }
 
         public void OnPointerExit(PointerEventData eventData)
@@ -134,21 +120,12 @@ namespace Hearthstone
             if (_card_State == CardState.Deck || _card_State == CardState.Mulligan || _side != _mana_Controller.WhoMovesNow()) return;
             _layersRenderUp.LayerUp(-50);
             transform.localScale /= _scaleСoefficient;
-            //transform.position -= new Vector3(0, 0, 5f);
         }
-
-        /*public void OnDrop(PointerEventData eventData)
-        {
-            if (_card_State != CardState.Board) return;
-            if (!eventData.pointerDrag.TryGetComponent<IndicatorTarget>(out var attacker)) return;
-            //if (attacker.GetSide() == _side) return;
-
-            Debug.Log("Атака");
-
-
-            Attack(attacker, this);
-        }*/
-
+        /// <summary>
+        /// Существо атакует другое существо
+        /// </summary>
+        /// <param name="attacker">атакующий</param>
+        /// <param name="card">атакуемый</param>
         public async void Attack(Card attacker, Card card)
         {
             BattleModeCard _attackerBattleCard = attacker.GetComponent<BattleModeCard>();
@@ -168,17 +145,20 @@ namespace Hearthstone
             card_Controller_attacker.ChangeHealtValue(card_damage, ChangeHealthType.DealDamage);
             card_Controller_card.ChangeHealtValue(attacker_damage, ChangeHealthType.DealDamage);
         }
+        /// <summary>
+        /// Существо атакует героя
+        /// </summary>
+        /// <param name="attacker">атакующий</param>
+        /// <param name="hero">атакуемый</param>
         public async void Attack(Card attacker, Hero_Controller hero)
         {
             BattleModeCard _attackerBattleCard = attacker.GetComponent<BattleModeCard>();
             Vector3 oldPosition = attacker.transform.position;
-            _ = _attackerBattleCard.MoveCardAsync(attacker.transform, hero.transform, 1f);
-            await UniTask.Delay(TimeSpan.FromSeconds(1f));
+            _ = _attackerBattleCard.MoveCardAsync(attacker.transform, hero.transform, 0.5f);//todo вынести в редактор
+            await UniTask.Delay(TimeSpan.FromSeconds(0.3f));
             _ = _attackerBattleCard.MoveCardAsync(hero.transform.position, oldPosition, 1f);
 
-            Card_Controller card_Controller_attacker = attacker.GetComponent<Card_Controller>();
             Hero_Controller hero_Controller_card = hero.GetComponent<Hero_Controller>();
-            
 
             int attacker_damage = attacker.GetComponent<Card_Model>()._atackDamageCard;
             hero_Controller_card.ChangeHealthValue(attacker_damage, ChangeHealthType.DealDamage);
@@ -194,38 +174,43 @@ namespace Hearthstone
         {
             return this._side;
         }
-
         public void OnPointerClick(PointerEventData eventData)
         {
             if (_card_State != CardState.Board) return;
 
-
-            if (!_indicatorTarget.CursorEnabled)
-
+            if (!_indicatorTarget.CursorEnabled)//добавить условие
             {
                 if (_canAttackThisTurn)
                 {
-                    //Debug.Log("Включился курсор");
+                    Debug.Log("Включился курсор");
                     _indicatorTarget.ChangeCursorState(true);
-                    _indicatorTarget.SetWatcher(this.transform);
+                    _indicatorTarget.SetWatcher(transform);
                 }
                 else
                 {
                     Debug.Log("Не могу атаковать на этом ходу");
                 }
-
             }
             else
             {
+                Board board = transform.parent.GetComponent<Board>();
+                if (board.HasMinionWithTaunt())
+                {
+                    Card_Model card_Model = GetComponent<Card_Model>();
+                    if (!card_Model._isProvocation)
+                    {
+                        Debug.Log("Можно атаковать только провокатора");
+                        return;
+                    }
+                }
+
                 GameObject attacker = _indicatorTarget.GetWatcher();
                 Card attackercard = attacker.GetComponent<Card>();
                 if (attackercard.GetSide() == _side) return;
 
                 _indicatorTarget.ChangeCursorState(false);
-
                 attackercard.DisableAttack();
                 Attack(attackercard, this);
-
             }
         }
     }
