@@ -83,4 +83,11 @@
     <CardId>207</CardId>
     <CardId>204</CardId>
   </DeckName>
+  <DeckName NameValue="пра" StateValue="Выбранная колода">
+    <CardId>9000</CardId>
+    <CardId>100</CardId>
+    <CardId>102</CardId>
+    <CardId>205</CardId>
+    <CardId>306</CardId>
+  </DeckName>
 </SaveDeckCollection>

@@ -81,8 +81,8 @@ namespace Hearthstone
                                 _eventEffectController.ParseDamageEvent(this);
                                 _card_Controller.ChangeHealtValue(-_battleCryController._battleCryChangeHealth);
                                 _singleEffectController.ApplyEffect(this); //переделать в дженерики
-                                if (_card_Model._healthCard <= 0)
-                                    _card_Controller.DiedCreature(); //событие смерти
+                                /*if (_card_Model._healthCard <= 0)
+                                    _card_Controller.DiedCreature(); //событие смерти*/
                             }                                
 
                             if (cryType == BattleCryType.Heal)//лечим себя
