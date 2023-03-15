@@ -15,6 +15,7 @@ namespace Hearthstone
         private SingleEffect_Controller _singleEffect_Controller;
         private EventEffect_Controller _eventEffectController;
         private BattleModeCard_View _battleModeCardView;
+        private IndicatorTarget _indicatorTarget;
         public bool _useBattleCray = false;
 
         private Action OnActivateCard;
@@ -41,6 +42,7 @@ namespace Hearthstone
             _handManager = FindObjectOfType<HandManager>();
             _battleModeCardView = GetComponent<BattleModeCard_View>();
             _card_Model = GetComponent<Card_Model>();
+            _indicatorTarget = FindObjectOfType<IndicatorTarget>();
 
             OnActivateCard += ChoiseAbility;
         }
@@ -255,13 +257,20 @@ namespace Hearthstone
         public void DiedCreature() //смерть существа
         {
             Debug.Log(_card_Model._nameCard + " погиб смертью храбрых");
-
+            /////////////////////////////////////////////////////
 
             _permanentEffectController.RemovePermanentEffect(this);
             _eventEffectController.RemoveEventEffect(this);
             _eventEffectController.ParseDeathEvent(this);
 
+            _indicatorTarget.ChangeCursorState(false);
+
             gameObject.SetActive(false);
+
+            Card card = GetComponent<Card>();
+            Board parent = transform.parent.GetComponent<Board>();
+            parent.RemoveCard(card);
+            parent.ReorderMinions();
         }
 
         #endregion        

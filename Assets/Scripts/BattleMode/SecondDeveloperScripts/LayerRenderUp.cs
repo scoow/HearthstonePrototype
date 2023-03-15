@@ -16,8 +16,8 @@ namespace Hearthstone
         public void SetLayer(int counter)
         {
             _spriteCard.sortingOrder = counter;
-            _spriteFront.sortingOrder = counter;
-            _canvas.sortingOrder = counter;
+            _spriteFront.sortingOrder = counter+1;
+            _canvas.sortingOrder = counter+1;
         }
         public void LayerUp(int counter)
         {

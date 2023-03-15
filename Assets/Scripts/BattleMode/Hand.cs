@@ -9,7 +9,7 @@ namespace Hearthstone
         private int _minimumLayer = 50;
         public override void AddCard(Card card)
         {
-            if (_cardsList.Count > 10) return;
+            if (CardsCount() > 10) return;
 
             base.AddCard(card);
             ResetCardsLayers();
@@ -20,7 +20,7 @@ namespace Hearthstone
             foreach (Card card in _cardsList)
             {
                 card._layersRenderUp.SetLayer(_layer);
-                _layer++;
+                _layer += 2;
             }
         }
     }

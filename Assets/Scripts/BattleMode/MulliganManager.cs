@@ -230,7 +230,7 @@ namespace Hearthstone
                 return;
             }
 
-            if (_currentHand.CountCards() > 9)
+            if (_currentHand.CardsCount() > 9)
             {
                 Debug.Log(card + " уничтожена");
                 card.gameObject.SetActive(false);

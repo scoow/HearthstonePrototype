@@ -32,7 +32,7 @@ namespace Hearthstone
         public virtual Vector3 GetLastCardPosition()
         {
             Vector3 newPosition = transform.position;
-            newPosition += new Vector3(_cardsList.Count * _offset, 0, 0);
+            newPosition += new Vector3(CardsCount() * _offset, 0, 0);
             //Destroy(tempGO);
             return newPosition;
         }
@@ -50,7 +50,7 @@ namespace Hearthstone
         /// </summary>
         public void RemoveCard(Card card)
         {
-            if (_cardsList.Count > 0)
+            if (CardsCount() > 0)
             {
                 foreach (var c in _cardsList)//почему не работает?
                 {
@@ -77,19 +77,13 @@ namespace Hearthstone
                 AddCard(card);                
             }
         }
-        public int CountCards()
+        public int CardsCount()
         { 
             return _cardsList.Count;
         }
         public void SortCardsByPosition()
         {
             _cardsList.Sort((c1, c2) => c1.transform.position.x.CompareTo(c2.transform.position.x));
-
-/*            foreach (var card in _cardsList)
-            {
-                Debug.Log(card.GetComponent<Card_Model>()._nameCard);
-            }*/
-            
         }
     }
 }

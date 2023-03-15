@@ -33,11 +33,11 @@ namespace Hearthstone
             _minionSlots = new (Vector3, bool)[7];
             _minionSlots[0].Item1 = transform.position - new Vector3(_offset * 3, 0, 0);
             _minionSlots[0].Item2 = false;
-            Debug.Log(_minionSlots[0].Item1);
+            //Debug.Log(_minionSlots[0].Item1);
             for (int i = 1; i < 7; i++)
             {
                 _minionSlots[i].Item1 = _minionSlots[i - 1].Item1 + new Vector3(_offset, 0, 0);
-                Debug.Log(_minionSlots[i].Item1);
+                //Debug.Log(_minionSlots[i].Item1);
                 _minionSlots[i].Item2 = false;
             }
         }
@@ -45,7 +45,7 @@ namespace Hearthstone
         /// <summary>
         /// ѕодписка всех карт на событие. ≈сли вз€ли карту - отображать место дл€ сброса карты на поле
         /// </summary>
-        public void InitializeCardsList(Players side)
+        public void InitializeCardsList(Players side)//todo проверить работу
         {
             List<Card> cards = new List<Card>();
             cards = FindObjectsOfType<Card>().Where(x => x._side == side).ToList();
@@ -70,10 +70,9 @@ namespace Hearthstone
         }
         public override void AddCard(Card card)
         {
-            if (_cardsList.Count > 7) return;
-
+/*            if (CardsCount() > 7) return;
+*/
             base.AddCard(card);
-            //var _cardInHand = card.gameObject.AddComponent<Minion>();
             card.ChangeState(CardState.Board);
 
             if (!card.GetComponent<Card_Model>()._isCharge)//≈сли нет рывка - отключаем возможность атаковать на этом ходу!!!!!!!!!!
@@ -90,11 +89,7 @@ namespace Hearthstone
         {
             Vector3 newPosition;
             newPosition = new Vector3(0, transform.position.y, transform.position.z);
-            if (_cardsList.Count ==0)
-            {
-                
-            }
-            else
+            if (_cardsList.Count  > 0)
             {
                 newPosition = _rightCard ? _cardsList.First(x => x.transform.position.x == _cardsList.Max(x => x.transform.position.x)).transform.position : _cardsList.First(x => x.transform.position.x == _cardsList.Min(x => x.transform.position.x)).transform.position;
                 newPosition += _rightCard ? new Vector3(_offset, 0, 0) : new Vector3(-_offset, 0, 0);
@@ -110,7 +105,7 @@ namespace Hearthstone
             if (!_draggingCard) return;
             if (!eventData.pointerDrag.TryGetComponent<Card>(out var card)) return;//если это не карта
             if (card.GetState() != CardState.Hand) return; //если карта не из руки
-            if (_cardsList.Count >= 7)
+            if (CardsCount() >= 7)
             {
                 Debug.Log("—тол заполнен");
                 return;
@@ -119,59 +114,28 @@ namespace Hearthstone
             if (_parent != this)
             {
                 _parent.RemoveCard(card);
-                //card.transform.position = GetLastCardPosition();
 
-                /*int position = 3;
-                if (!_minionSlots[position].Item2)
-                {
-                    card.transform.position = _minionSlots[position].Item1;
-                    _minionSlots[position].Item2 = true;
-                }
-                else
-                {
-                    if (_rightCard)
-                    {
-                        int i = position + 1;
-                        while (_minionSlots[i].Item2 && i < 6)
-                        {
-                            i++;
-                        }
-                        if (i < 7)
-                        {
-                            card.transform.position = _minionSlots[i].Item1;
-                            _minionSlots[i].Item2 = true;
-                        }
-                    }
-                    else
-                    {
-                        int j = position - 1;
-                        while (_minionSlots[j].Item2 && j > 0)
-                        {
-                            j--;
-                        }
-                        if (j < 0)//придумать что делать
-                        {
-                            card.transform.position = _minionSlots[j].Item1;
-                            _minionSlots[j].Item2 = true;
-                        }
-                    }
-                }*/
                 ////////////////////////////////////////////////////////////////////////////////////////
 
                 AddCard(card);
-                int range = 3 - _cardsList.Count() / 2;
-                for (int i = 0; i < _cardsList.Count(); i++)
-                {
-                    _cardsList[i].transform.position = _minionSlots[range].Item1;
-                    range++;
-                }
-
+                ReorderMinions();
 
                 _mana_Controller.SpendMana(_side, card.GetComponent<Card_Model>().GetManaCostCard());// вычесть ману
                 OnPointerExit(eventData);
-                
+
             }
         }
+
+        public void ReorderMinions()
+        {
+            int range = 3 - CardsCount() / 2;
+            for (int i = 0; i < CardsCount(); i++)
+            {
+                _cardsList[i].transform.position = _minionSlots[range].Item1;
+                range++;
+            }
+        }
+
         /// <summary>
         /// ѕри наведении курсора на поле рисует место дл€ выкладывани€ карты
         /// </summary>
