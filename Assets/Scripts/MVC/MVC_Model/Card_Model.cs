@@ -53,10 +53,14 @@ namespace Hearthstone
 
         private void Start()
         {
-            _defaultHealtValue = _maxHealtValue = _healthCard;
-            _defaultAtackValue = _maxAtackValue = _atackDamageCard;
+            SetDefaultParameters(_healthCard, _atackDamageCard);
         }
 
+        private void SetDefaultParameters(int healtValue, int atakValue)
+        {
+            _defaultHealtValue = _maxHealtValue = healtValue;
+            _defaultAtackValue = _maxAtackValue = atakValue;
+        }
 
         public void SetCardSettings(int idCard, bool isMinion)
         {
@@ -69,9 +73,10 @@ namespace Hearthstone
             {
                 cardSOModel = (CardSO_Model)_pageBook_Model._cardsDictionary[idCard];
             }
-                
-            _changeAtackValue = cardSOModel._abilityChangeAtack;            
-            _ñhangeHealthValue = cardSOModel._abilityChangeHealth;                     
+            SetDefaultParameters(cardSOModel._healthCard, cardSOModel._atackDamageCard);
+
+            _changeAtackValue  = cardSOModel._abilityChangeAtack;            
+            _ñhangeHealthValue  = cardSOModel._abilityChangeHealth;                     
 
             _atackDamageCard = cardSOModel._atackDamageCard;
             _descriptionCard = cardSOModel._descriptionCard;

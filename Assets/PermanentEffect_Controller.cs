@@ -138,6 +138,11 @@ namespace Hearthstone
                         card.ChangeAtackValue(cardSO_Model._abilityChangeAtack);
                     }
 
+                    if (cardEffectId == 106)
+                    {
+                        //card.ChangeAtackValue(cardSO_Model._abilityChangeAtack);
+                    }
+
                     if (cardEffectId == 304)
                     {
                         card.ChangeAtackValue(cardSO_Model._abilityChangeAtack);

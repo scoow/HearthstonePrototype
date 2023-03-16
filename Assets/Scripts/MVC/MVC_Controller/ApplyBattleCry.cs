@@ -79,7 +79,7 @@ namespace Hearthstone
                             {
                                 
                                 _eventEffectController.ParseDamageEvent(this);
-                                _card_Controller.ChangeHealtValue(-_battleCryController._battleCryChangeHealth);
+                                _card_Controller.ChangeHealtValue(_battleCryController._battleCryChangeHealth, ChangeHealthType.DealDamage);
                                 _singleEffectController.ApplyEffect(this); //переделать в дженерики
                                 /*if (_card_Model._healthCard <= 0)
                                     _card_Controller.DiedCreature(); //событие смерти*/
@@ -91,7 +91,7 @@ namespace Hearthstone
                                 {
                                     _eventEffectController.ParseHealEvent(this);                                    
                                 }                               
-                                _card_Controller.ChangeHealtValue(_battleCryController._battleCryChangeHealth);                                
+                                _card_Controller.ChangeHealtValue(_battleCryController._battleCryChangeHealth, ChangeHealthType.Healing);                                
                                 if (_card_Model._healthCard > _card_Model._maxHealtValue)
                                     _card_Model._healthCard = _card_Model._maxHealtValue;
 
@@ -103,7 +103,7 @@ namespace Hearthstone
                             if(cryType == BattleCryType.RaiseParametrs) //повышаем параметры
                             {
                                 _card_Model._maxHealtValue += _battleCryController._battleCryChangeHealth;
-                                _card_Controller.ChangeHealtValue(_battleCryController._battleCryChangeHealth);                                
+                                _card_Controller.ChangeHealtValue(_battleCryController._battleCryChangeHealth,ChangeHealthType.RaiseParametrs);                                
                                 _battleModeCard_View.UpdateViewCard();
                             }
                         } 

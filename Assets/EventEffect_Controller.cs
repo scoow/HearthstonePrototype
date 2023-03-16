@@ -97,8 +97,26 @@ namespace Hearthstone
         /// <param name="cardExample"></param>
         public void ParseHealEvent(ApplyBattleCry card)
         {
-            List<int> tempArrey = ÑheckTurnQueue(card, _activeEventEffectPlayerFirst, _activeEventEffectPlayerSecond);
-            if (tempArrey != null)
+            FillListMinion();
+            List<Card_Controller> listCardController = new ();
+            foreach (Card_Controller _card in _cardInBoardFirst)
+            {
+                if(_card.GetComponent<Card_Model>()._idCard == 106)
+                    listCardController.Add(_card);
+            }
+            foreach (Card_Controller _card in _cardInBoardSecond)
+            {
+                if (_card.GetComponent<Card_Model>()._idCard == 106)
+                    listCardController.Add(_card);
+            }
+
+            //List<int> tempArrey = ÑheckTurnQueue(card, _activeEventEffectPlayerFirst, _activeEventEffectPlayerSecond);
+            foreach(Card_Controller _card in listCardController)
+            {
+                _card.TakeAdditionalCard(_card.GetComponent<Card>().GetSide());
+            }
+
+           /* if (tempArrey != null)
             {
                 foreach (int cardEffectId in tempArrey)
                 {
@@ -107,7 +125,7 @@ namespace Hearthstone
                         card.gameObject.GetComponent<Card_Controller>().TakeAdditionalCard();
                     }
                 }
-            }
+            }*/
         }
         #endregion
 
@@ -223,7 +241,7 @@ namespace Hearthstone
                             Card_Model cardModel = cardController.GetComponent<Card_Model>();
                             if (cardModel._idCard == cardEffectId && cardModel._minionType == incomingMinionType && cardModel.gameObject != cardExample.gameObject)
                             {
-                                cardController.TakeAdditionalCard();
+                                cardController.TakeAdditionalCard(cardController.GetComponent<Card>().GetSide());
                             }
                         }
                     }

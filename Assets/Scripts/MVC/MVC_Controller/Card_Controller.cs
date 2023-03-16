@@ -172,7 +172,7 @@ namespace Hearthstone
                     ChargeAbility();
                     break;
                 case AbilityCurrentCard.GetCard:
-                    TakeAdditionalCard();
+                    TakeAdditionalCard(GetComponent<Card>().GetSide());
                     break;
             }
         }
@@ -196,9 +196,9 @@ namespace Hearthstone
             Debug.Log($"{_card_Model._nameCard} может атаковать на этом ходу");
             //_card_Model._isCharge = true;
         }
-        public void TakeAdditionalCard() //добавление новой карты
+        public void TakeAdditionalCard(Players side) //добавление новой карты
         {
-            _mulliganManager.TakeOneCard(_mana_Controller.WhoMovesNow());
+            _mulliganManager.TakeOneCard(side);
         }
 
         #endregion
@@ -228,9 +228,7 @@ namespace Hearthstone
             if (changeHealthType == ChangeHealthType.DealDamage)
             {
                 ChangeHealtValue(-incomingValue);
-                _singleEffect_Controller.ApplyEffect(gameObject.GetComponent<ApplyBattleCry>());
-                /*if (_card_Model._healthCard <= 0)
-                    DiedCreature(); //событие смерти*/
+                _singleEffect_Controller.ApplyEffect(gameObject.GetComponent<ApplyBattleCry>());                
             }
 
             if (changeHealthType == ChangeHealthType.Healing)
@@ -240,6 +238,7 @@ namespace Hearthstone
                     _card_Model._healthCard = _card_Model._maxHealtValue;
                 _battleModeCardView.UpdateViewCard();
                 _singleEffect_Controller.ApplyEffect(gameObject.GetComponent<ApplyBattleCry>());
+
                 StartCoroutine(_battleModeCardView.EffectParticle(_battleModeCardView._healtEffect));
                 //_battleModeCardView.UpdateViewCard();
             }
