@@ -64,4 +64,31 @@
     <CardId>211</CardId>
     <CardId>211</CardId>
   </DeckName>
+  <DeckName NameValue="fhgfh" StateValue="Неактивная колода">
+    <CardId>5000</CardId>
+    <CardId>107</CardId>
+    <CardId>201</CardId>
+    <CardId>202</CardId>
+    <CardId>207</CardId>
+    <CardId>203</CardId>
+    <CardId>212</CardId>
+    <CardId>213</CardId>
+    <CardId>301</CardId>
+    <CardId>304</CardId>
+    <CardId>301</CardId>
+    <CardId>503</CardId>
+    <CardId>401</CardId>
+    <CardId>305</CardId>
+    <CardId>306</CardId>
+    <CardId>304</CardId>
+    <CardId>308</CardId>
+    <CardId>307</CardId>
+    <CardId>303</CardId>
+    <CardId>301</CardId>
+    <CardId>212</CardId>
+    <CardId>212</CardId>
+    <CardId>212</CardId>
+    <CardId>212</CardId>
+    <CardId>212</CardId>
+  </DeckName>
 </SaveDeckCollection>

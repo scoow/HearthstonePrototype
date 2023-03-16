@@ -902,6 +902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ae5035248a55d44961a8b02c43e0ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteHero: {fileID: 207377243}
   _health: 0
   _defaultHealtValue: 0
   _textHealth: {fileID: 0}
@@ -3760,6 +3761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ae5035248a55d44961a8b02c43e0ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteHero: {fileID: 1356101276}
   _health: 0
   _defaultHealtValue: 0
   _textHealth: {fileID: 0}

@@ -16,6 +16,7 @@ namespace Hearthstone
         private BattleCry_Controller _battleCry_Controller;
         [Inject]
         private IndicatorTarget _indicatorTarget;
+        public Image _spriteHeroWinner;
         private WinnerMesage _winnerMesage;
 
         public int _health;
@@ -54,7 +55,7 @@ namespace Hearthstone
                 //_singleEffect_Controller.ApplyEffect(this);
                 if (_health <= 0)
                 {
-                    _winnerMesage.SetWiner(((Players)((int)(_side + 1) % 2)).ToString());
+                    _winnerMesage.SetWiner(((Players)((int)(_side + 1) % 2)).ToString() + " Player" , _spriteHeroWinner);
                     Debug.Log("ÏÎÁÅÄÀ ÈÃÐÎÊÀ " + (Players)((int)(_side + 1) % 2));
                 }    
                    

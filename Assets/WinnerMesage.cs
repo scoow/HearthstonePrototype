@@ -9,12 +9,11 @@ namespace Hearthstone
         public Text _textWiner;
         public Image _spriteWiner;
 
-
-        public void SetWiner(string text/*, Sprite sprite*/)
+        public void SetWiner(string text, Image sprite)
         {
             _winerEvent.gameObject.SetActive(true);
             _textWiner.text = text;
-            //_spriteWiner.sprite = sprite;
+            _spriteWiner.sprite = sprite.sprite;
         }
     }
 }
