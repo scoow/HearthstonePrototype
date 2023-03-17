@@ -7,8 +7,7 @@ namespace Hearthstone
     public class EventEffect_Controller : MonoBehaviour
     {
         private Mana_Controller _manaController;
-        private PageBook_Model _pageBook_Model;
-        //private int _lastEffect;
+        private PageBook_Model _pageBook_Model;        
         [SerializeField] private Transform _playerFirstBoard;
         [SerializeField] private Transform _playerSecondBoard;
 
@@ -46,9 +45,9 @@ namespace Hearthstone
             Card incomingCard = card.GetComponent<Card>();
             Card_Model cardModel = card.GetComponent<Card_Model>();
             if (incomingCard._side == Players.First)
-                _activeEventEffectPlayerFirst.Add(cardModel._idCard);
+                _activeEventEffectPlayerFirst.Add(cardModel.IdCard);
             else
-                _activeEventEffectPlayerSecond.Add(cardModel._idCard);
+                _activeEventEffectPlayerSecond.Add(cardModel.IdCard);
         }
 
         public void RemoveEventEffect(Card_Controller card) //удалить эффект из списка
@@ -56,9 +55,9 @@ namespace Hearthstone
             Card_Model card_model = card.GetComponent<Card_Model>();
             Card incomingCard = card.GetComponent<Card>();
             if (incomingCard._side == Players.First)
-                _activeEventEffectPlayerFirst.Remove(card_model._idCard);
+                _activeEventEffectPlayerFirst.Remove(card_model.IdCard);
             else
-                _activeEventEffectPlayerSecond.Remove(card_model._idCard);
+                _activeEventEffectPlayerSecond.Remove(card_model.IdCard);
         }
 
         /// <summary>
@@ -101,12 +100,12 @@ namespace Hearthstone
             List<Card_Controller> listCardController = new ();
             foreach (Card_Controller _card in _cardInBoardFirst)
             {
-                if(_card.GetComponent<Card_Model>()._idCard == 106)
+                if(_card.GetComponent<Card_Model>().IdCard == 106)
                     listCardController.Add(_card);
             }
             foreach (Card_Controller _card in _cardInBoardSecond)
             {
-                if (_card.GetComponent<Card_Model>()._idCard == 106)
+                if (_card.GetComponent<Card_Model>().IdCard == 106)
                     listCardController.Add(_card);
             }
 
@@ -152,7 +151,7 @@ namespace Hearthstone
 
                         foreach (Card_Controller cardController in cardsInBoard)
                         {
-                            if (cardController.GetComponent<Card_Model>()._idCard == cardEffectId) //то вызываю метод Берсерк у карты с таким же Id
+                            if (cardController.GetComponent<Card_Model>().IdCard == cardEffectId) //то вызываю метод Берсерк у карты с таким же Id
                             {
                                 cardController.BerserkAbility();
                             }
@@ -188,10 +187,10 @@ namespace Hearthstone
                         foreach (Card_Controller cardController in cardsInBoard)
                         {
                             Card_Model cardModel = cardController.GetComponent<Card_Model>();
-                            if (cardModel._idCard == cardEffectId && cardModel._minionType == incomingMinionType) //то вызываю метод увеличения параметров
+                            if (cardModel.IdCard == cardEffectId && cardModel._minionType == incomingMinionType) //то вызываю метод увеличения параметров
                             {
-                                cardController.ChangeAtackValue(cardModel._changeAtackValue);
-                                cardController.ChangeHealtValue(cardModel._сhangeHealthValue);
+                                cardController.ChangeAtackValue(cardModel.ChangeAtackValue);
+                                cardController.ChangeHealtValue(cardModel.ChangeHealthValue);
                             }
                         }
                     }
@@ -205,7 +204,7 @@ namespace Hearthstone
                             cardsInBoard = _cardInBoardSecond;
                         foreach (Card_Controller cardController in cardsInBoard)
                         {
-                            cardController.ChangeHealtValue(card_Model._abilityChangeHealth, ChangeHealthType.Healing);
+                            cardController.ChangeHealtValue(card_Model.AbilityChangeHealth, ChangeHealthType.Healing);
                         }
                         RemoveEventEffect(cardExample);
                     }
@@ -239,7 +238,7 @@ namespace Hearthstone
                         foreach (Card_Controller cardController in cardsInBoard)
                         {
                             Card_Model cardModel = cardController.GetComponent<Card_Model>();
-                            if (cardModel._idCard == cardEffectId && cardModel._minionType == incomingMinionType && cardModel.gameObject != cardExample.gameObject)
+                            if (cardModel.IdCard == cardEffectId && cardModel._minionType == incomingMinionType && cardModel.gameObject != cardExample.gameObject)
                             {
                                 cardController.TakeAdditionalCard(cardController.GetComponent<Card>().GetSide());
                             }
@@ -256,7 +255,7 @@ namespace Hearthstone
                             cardsInBoard = _cardInBoardSecond;
                         foreach (Card_Controller cardController in cardsInBoard)
                         {
-                            cardController.ChangeHealtValue(card_Model._abilityChangeHealth, ChangeHealthType.Healing);
+                            cardController.ChangeHealtValue(card_Model.AbilityChangeHealth, ChangeHealthType.Healing);
                         }
                         RemoveEventEffect(cardExample);
                     }
@@ -288,20 +287,20 @@ namespace Hearthstone
             foreach (Card_Controller cardModel1 in cardsInBoard)
             {
                 Card_Model card_Model1 = cardModel1.GetComponent<Card_Model>();
-                if (card_Model1._idCard == 211/* && ((playersTurn == Players.First && card_Model1.transform.parent == _playerFirstBoard) || (playersTurn == Players.Second && card_Model1.transform.parent == _playerSecondBoard))*/)
+                if (card_Model1.IdCard == 211/* && ((playersTurn == Players.First && card_Model1.transform.parent == _playerFirstBoard) || (playersTurn == Players.Second && card_Model1.transform.parent == _playerSecondBoard))*/)
                 {
                     List<Card_Model> tempListCardModel = new List<Card_Model>(); //временный лист раненых
                     foreach (Card_Controller cardModel2 in cardsInBoard)
                     {
                         Card_Model card_Model2 = cardModel2.GetComponent<Card_Model>();
-                        if (card_Model2._healthCard < card_Model2._maxHealtValue)
+                        if (card_Model2.HealthCard < card_Model2.MaxHealtValue)
                         {
                             tempListCardModel.Add(card_Model2);
                         }
 
                     }
                     int indexWounded = Random.Range(0, tempListCardModel.Count); //выбираем счастливчика
-                    tempListCardModel[indexWounded].GetComponent<Card_Controller>().ChangeHealtValue(card_Model1._сhangeHealthValue, ChangeHealthType.Healing); //лечим его
+                    tempListCardModel[indexWounded].GetComponent<Card_Controller>().ChangeHealtValue(card_Model1.ChangeHealthValue, ChangeHealthType.Healing); //лечим его
 
                 }
             }

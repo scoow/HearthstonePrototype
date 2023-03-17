@@ -23,12 +23,7 @@ namespace Hearthstone
         {
             _spriteCard.sortingOrder += counter;
             _spriteFront.sortingOrder += counter;
-            _canvas.sortingOrder += counter;
-            //_cardEmission.sortingOrder += counter;
-        }
-        /*public void LayerLastSpriteUp()
-        {
-            _spriteLastSprite.sortingOrder++;
-        }*/
+            _canvas.sortingOrder += counter;            
+        }       
     }
 }

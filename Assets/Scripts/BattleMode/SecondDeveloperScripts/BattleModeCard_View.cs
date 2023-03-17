@@ -7,23 +7,24 @@ namespace Hearthstone
 {
     public class BattleModeCard_View : MonoBehaviour
     {
+        private LoadDeck_Controller _loadDeckController;
+        private Card_Model _card_Model;
         [SerializeField] private SpriteRenderer _spriteCard;
         [SerializeField] private InFieldViewMarker _inFieldView;
         [SerializeField] private InHeadViewMarker _inHeadView;
-        private LoadDeck_Controller _loadDeckController;        
-        private Card_Model _card_Model;        
-        public Text _atackText;
-        public Text _healthText;
-        
-        public ParticleSystem _healtEffect; //ссылка на систему частиц HealthEffect
-        public ParticleSystem _scaleEffect; //ссылка на систему частиц ScalleEffect
-        
+        [SerializeField] private ParticleSystem _healtEffect; //ссылка на систему частиц HealthEffect
+        [SerializeField] private ParticleSystem _scaleEffect; //ссылка на систему частиц ScalleEffect
+        [SerializeField] private Text _atackText;
+        [SerializeField] private Text _healthText;        
+        public Text AtackText { get => _atackText; set => _atackText = value; }        
+        public Text HealthText { get => _healthText; set => _healthText = value; }        
+        public ParticleSystem HealtEffect { get => _healtEffect; }
+        public ParticleSystem ScaleEffect { get => _scaleEffect; }
 
         private void OnEnable()
         {            
             _loadDeckController = FindObjectOfType<LoadDeck_Controller>();//тест Zenject (неудачный)
-            _card_Model = GetComponent<Card_Model>();            
-
+            _card_Model = GetComponent<Card_Model>();
             _loadDeckController.SetCardSettings += SetSettingsCardInBattle;            
         }
         private void OnDisable()
@@ -34,26 +35,26 @@ namespace Hearthstone
         public void SetSettingsCardInBattle()
         {                
             UpdateViewCard();
-            _spriteCard.sprite = _card_Model._spriteCard;            
+            _spriteCard.sprite = _card_Model.SpriteCard;            
             _inFieldView.gameObject.SetActive(false);
         }
 
         public void UpdateViewCard()
         {
-            _atackText.text = _card_Model._atackDamageCard.ToString();
-            _healthText.text = _card_Model._healthCard.ToString();
+            _atackText.text = _card_Model.AtackDamageCard.ToString();
+            _healthText.text = _card_Model.HealthCard.ToString();
             if (transform.parent.gameObject.GetComponent<Board>())
             {
-                if (_card_Model._atackDamageCard > _card_Model._defaultAtackValue)//измен€ем цвет текста атаки
+                if (_card_Model.AtackDamageCard > _card_Model.DefaultAtackValue)//измен€ем цвет текста атаки
                     _atackText.color = Color.green;
-                if (_card_Model._atackDamageCard <= _card_Model._defaultAtackValue)
+                if (_card_Model.AtackDamageCard <= _card_Model.DefaultAtackValue)
                     _atackText.color = Color.white;
                 
-                if (_card_Model._healthCard > _card_Model._defaultHealtValue) //измен€ем цвет текста здоровь€
+                if (_card_Model.HealthCard > _card_Model.DefaultHealtValue) //измен€ем цвет текста здоровь€
                     _healthText.color = Color.green;
-                if (_card_Model._healthCard == _card_Model._defaultHealtValue)
+                if (_card_Model.HealthCard == _card_Model.DefaultHealtValue)
                     _healthText.color = Color.white;
-                if (_card_Model._healthCard < _card_Model._maxHealtValue)
+                if (_card_Model.HealthCard < _card_Model.MaxHealtValue)
                     _healthText.color = Color.red;                
             }           
         }

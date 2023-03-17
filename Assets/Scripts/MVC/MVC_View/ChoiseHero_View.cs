@@ -6,12 +6,11 @@ namespace Hearthstone
 {
     public class ChoiseHero_View : MonoBehaviour, IPointerClickHandler
     {
+        private int _cerrentIDHero;
+        private ContentDeck_Model _contentDeck_Model;
         public SpriteRenderer _currentHeroSprite;
         public Image _buttonChoiseHero;
-        private ContentDeck_Model _contentDeck_Model;
-
-        public HeroSO_Model _heroSO;
-        private int _cerrentIDHero;
+        public HeroSO_Model _heroSO;        
 
         private void Start()
         {
@@ -23,22 +22,22 @@ namespace Hearthstone
         {
             _currentHeroSprite.gameObject.SetActive(true);
             _buttonChoiseHero.gameObject.SetActive(true);
-            _currentHeroSprite.sprite = _heroSO._spriteCard;
-            _cerrentIDHero = _heroSO._idCard;
-            _contentDeck_Model._classHeroInDeck = _heroSO._heroClass;
+            _currentHeroSprite.sprite = _heroSO.SpriteCard;
+            _cerrentIDHero = _heroSO.IdCard;
+            _contentDeck_Model.ClassHeroInDeck = _heroSO.HeroClass;
             AddHeroInDeck();
         }
 
         public void AddHeroInDeck()
         {
-            if (_contentDeck_Model._contentDeck.Count > 0)
+            if (_contentDeck_Model.ContentDeck.Count > 0)
             {
-                _contentDeck_Model._contentDeck.Clear();
-                _contentDeck_Model._contentDeck.Add(_cerrentIDHero);                         
+                _contentDeck_Model.ContentDeck.Clear();
+                _contentDeck_Model.ContentDeck.Add(_cerrentIDHero);                         
             }
             else
             {
-                _contentDeck_Model._contentDeck.Add(_cerrentIDHero);                
+                _contentDeck_Model.ContentDeck.Add(_cerrentIDHero);                
             }
         }
     }

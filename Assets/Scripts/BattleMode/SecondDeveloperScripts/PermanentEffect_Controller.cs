@@ -5,12 +5,9 @@ namespace Hearthstone
 {
     public class PermanentEffect_Controller : MonoBehaviour
     {
-        private PageBook_Model _pageBook_Model;
-        private int _lastEffect;
+        private PageBook_Model _pageBook_Model;        
         [SerializeField] private Transform _playerBoardFirst;
         [SerializeField] private Transform _playerBoardSecond;
-
-
 
         /// <summary>
         /// список постоянных эффектов первого игрока
@@ -24,66 +21,47 @@ namespace Hearthstone
 
         private void OnEnable()
         {
-
-            _pageBook_Model = FindObjectOfType<PageBook_Model>();
-
-            /*Card_Model currentCard = _cardControllerArray[i].gameObject.GetComponent<Card_Model>();
-            if (currentCard._idCard == cardModel._idCard) continue;
-
-            if ((cardModel._idCard == 102 || cardModel._idCard == 107) && (cardModel._battleCryTargetsType == currentCard._minionType)) //баф карт 102 и 107
-            {
-                _cardControllerArray[i].ChangeAtackValue(changeAtackValue);                
-            }
-
-            if (cardModel._idCard == 304)
-            {
-                _cardControllerArray[i].ChangeAtackValue(changeAtackValue);
-            }*/
-
+            _pageBook_Model = FindObjectOfType<PageBook_Model>(); 
         }
-
 
         public void AddPermanentEffect(Card_Controller card) //добавить эффект в список и применить его на поле
         {
-
             Card incomingCard = card.GetComponent<Card>();
             Card_Model cardModel = card.GetComponent<Card_Model>();
+
             if (incomingCard._side == Players.First)
-                _activePermanentEffectPlayersFirst.Add(cardModel._idCard);
+                _activePermanentEffectPlayersFirst.Add(cardModel.IdCard);
             else
-                _activePermanentEffectPlayersSecond.Add(cardModel._idCard);
+                _activePermanentEffectPlayersSecond.Add(cardModel.IdCard);
 
             AceptPermanentEffect(card);
         }
 
         public void RemovePermanentEffect(Card_Controller card) //отменить эффект с карт и удалить его из списка
         {
-            Card_Model card_model = card.GetComponent<Card_Model>();
-            //CardSO_Model cardSO_Model = _pageBook_Model.GetCardSO_byID(card_model._idCard);      
-
-            UpdatePermanentEffect(card_model, -card_model._сhangeHealthValue, -card_model._changeAtackValue);
-
             Card incomingCard = card.GetComponent<Card>();
-            if (incomingCard._side == Players.First)
-                _activePermanentEffectPlayersFirst.Remove(card_model._idCard);
-            else
-                _activePermanentEffectPlayersSecond.Remove(card_model._idCard);
+            Card_Model card_model = card.GetComponent<Card_Model>();            
 
+            UpdatePermanentEffect(card_model, -card_model.ChangeHealthValue, -card_model.ChangeAtackValue);
+            
+            if (incomingCard._side == Players.First)
+                _activePermanentEffectPlayersFirst.Remove(card_model.IdCard);
+            else
+                _activePermanentEffectPlayersSecond.Remove(card_model.IdCard);
         }
         private void AceptPermanentEffect(Card_Controller card) //применить эффект на картах которые стоят на поле
         {
-            Card_Model card_model = card.GetComponent<Card_Model>();
-            //CardSO_Model cardSO_Model = _pageBook_Model.GetCardSO_byID(cardId);      
+            Card_Model card_model = card.GetComponent<Card_Model>();                
 
-            UpdatePermanentEffect(card_model, card_model._сhangeHealthValue, card_model._changeAtackValue); //обновляем значения карт                                                                       
+            UpdatePermanentEffect(card_model, card_model.ChangeHealthValue, card_model.ChangeAtackValue); //обновляем значения карт                                                                       
         }
 
         private void UpdatePermanentEffect(Card_Model cardModel, int changeHealthValue, int changeAtackValue)
         {
-            Card_Controller[] _cardPlayersFirst = _playerBoardFirst.GetComponentsInChildren<Card_Controller>();
-            Card_Controller[] _cardPlayersSecond = _playerBoardSecond.GetComponentsInChildren<Card_Controller>();
-
             Card incomingCard = cardModel.GetComponent<Card>();
+            Card_Controller[] _cardPlayersFirst = _playerBoardFirst.GetComponentsInChildren<Card_Controller>();
+            Card_Controller[] _cardPlayersSecond = _playerBoardSecond.GetComponentsInChildren<Card_Controller>();            
+
             if (incomingCard._side == Players.First)
                 CheckBoard(_cardPlayersFirst, cardModel, changeHealthValue, changeAtackValue);
             else
@@ -96,14 +74,14 @@ namespace Hearthstone
             for (int i = 0; i < _cardControllerArray.Length; i++)
             {
                 Card_Model currentCard = _cardControllerArray[i].gameObject.GetComponent<Card_Model>();
-                if (currentCard._idCard == cardModel._idCard) continue;
+                if (currentCard.IdCard == cardModel.IdCard) continue;
 
-                if ((cardModel._idCard == 102 || cardModel._idCard == 107) && (cardModel._battleCryTargetsType == currentCard._minionType)) //баф карт 102 и 107
+                if ((cardModel.IdCard == 102 || cardModel.IdCard == 107) && (cardModel._battleCryTargetsType == currentCard._minionType)) //баф карт 102 и 107
                 {
                     _cardControllerArray[i].ChangeAtackValue(changeAtackValue);
                 }
 
-                if (cardModel._idCard == 304)
+                if (cardModel.IdCard == 304)
                 {
                     _cardControllerArray[i].ChangeAtackValue(changeAtackValue);
                 }
@@ -129,13 +107,13 @@ namespace Hearthstone
                 Card_Model card_Model = card.GetComponent<Card_Model>();
                 foreach (int cardEffectId in permanentEffect)
                 {
-                    if (card_Model._idCard == cardEffectId) continue;
+                    if (card_Model.IdCard == cardEffectId) continue;
 
                     CardSO_Model cardSO_Model = _pageBook_Model.GetCardSO_byID(cardEffectId);
 
                     if ((cardEffectId == 102 || cardEffectId == 107) && (cardSO_Model._targetsType == card_Model._minionType)) //баф карт 102 и 107
                     {
-                        card.ChangeAtackValue(cardSO_Model._abilityChangeAtack);
+                        card.ChangeAtackValue(cardSO_Model.AbilityChangeAtack);
                     }
 
                     if (cardEffectId == 106)
@@ -145,10 +123,10 @@ namespace Hearthstone
 
                     if (cardEffectId == 304)
                     {
-                        card.ChangeAtackValue(cardSO_Model._abilityChangeAtack);
+                        card.ChangeAtackValue(cardSO_Model.AbilityChangeAtack);
                     }
 
-                    if (cardEffectId == 309 && cardSO_Model._atackDamageCard <= 3)
+                    if (cardEffectId == 309 && cardSO_Model.AtackDamageCard <= 3)
                     {
                         card.GetComponent<Card>().EnableAttack();
                     }

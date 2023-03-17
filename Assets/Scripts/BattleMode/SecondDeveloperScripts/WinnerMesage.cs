@@ -5,9 +5,9 @@ namespace Hearthstone
 {
     public class WinnerMesage : MonoBehaviour
     {
-        public GameObject _winerEvent;
-        public Text _textWiner;
-        public Image _spriteWiner;
+        [SerializeField] private GameObject _winerEvent;
+        [SerializeField] private Text _textWiner;
+        [SerializeField] private Image _spriteWiner;
 
         public void SetWiner(string text, Image sprite)
         {

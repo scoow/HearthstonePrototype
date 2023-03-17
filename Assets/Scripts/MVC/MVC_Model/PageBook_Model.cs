@@ -9,25 +9,27 @@ namespace Hearthstone
         /// <summary>
         /// только игровые карты
         /// </summary>
-        public List<CardSO_Model> _cardSO_Models = new List<CardSO_Model>();
+        [HideInInspector] public List<CardSO_Model> _cardSO_Models = new List<CardSO_Model>();
         /// <summary>
         /// словарь карт по ключу = ID
         /// </summary>
-        public Dictionary<int, GameSO_Model> _cardsDictionary = new Dictionary<int, GameSO_Model>();
-        
-        public Dictionary<int,GameSO_Model> _cardAssistDictionary = new Dictionary<int, GameSO_Model>();
-
+        [HideInInspector] public Dictionary<int, GameSO_Model> _cardsDictionary = new Dictionary<int, GameSO_Model>();
+        /// <summary>
+        /// словарь карт-ассистентов призываемых во время боя
+        /// </summary>
+        [HideInInspector] public Dictionary<int,GameSO_Model> _cardAssistDictionary = new Dictionary<int, GameSO_Model>();
         /// <summary>
         /// SO сборник всех карт
         /// </summary>
-        public CardCollectionSO_Model cardCollectionSO_Model;
+        [HideInInspector] public CardCollectionSO_Model cardCollectionSO_Model;
         /// <summary>
         /// общий список всех карт по ID по возрастающей
         /// </summary>
-        [HideInInspector]
-        public List<GameSO_Model> _resultCollection = new List<GameSO_Model>();
-        [HideInInspector]
-        public CreateDeckState _createDeckState ;
+        [HideInInspector] public List<GameSO_Model> _resultCollection = new List<GameSO_Model>();
+        /// <summary>
+        /// состояние выбора
+        /// </summary>
+        [HideInInspector] public CreateDeckState _createDeckState ;
        
         public void Awake()
         {
@@ -44,10 +46,10 @@ namespace Hearthstone
             {
                 if (cardCollectionSO_Model._assistCardCollection.Contains(card))
                 {
-                    _cardAssistDictionary.Add(card._idCard, card);
+                    _cardAssistDictionary.Add(card.IdCard, card);
                     continue;
                 }                    
-                _cardsDictionary.Add(card._idCard, card);
+                _cardsDictionary.Add(card.IdCard, card);
                 if (card is CardSO_Model)
                 {
                     _cardSO_Models.Add((CardSO_Model)card);
@@ -62,15 +64,5 @@ namespace Hearthstone
                 _ = _cardAssistDictionary.TryGetValue(idCard, out cardSO_Model);
             return (CardSO_Model)cardSO_Model;
         }    
-    }
-
-    /// <summary>
-    /// Состояния выбора
-    /// </summary>
-    public enum CreateDeckState
-    {
-        ChoiseHero,
-        ChoiseDeck,
-        CreateDeck,
-    }
+    }  
 }

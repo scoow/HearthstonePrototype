@@ -47,7 +47,7 @@ namespace Hearthstone
             if (gameObject.CompareTag("CardTemplate"))
                 _spriteEmission.gameObject.SetActive(true);                 
             _zommingCard_View.gameObject.SetActive(true);
-            _zommingCard_View.ChangeViewZomingCard(_card_Model._idCard);
+            _zommingCard_View.ChangeViewZomingCard(_card_Model.IdCard);
         }
 
         public void OnPointerExit(PointerEventData eventData)
@@ -65,11 +65,11 @@ namespace Hearthstone
         {
             if(_pageBook_Model._createDeckState == CreateDeckState.CreateDeck)
             {
-                if (gameObject.CompareTag("CardTemplate") && (_card_Model._cardClassInDeck == _contentDeck_Model._classHeroInDeck || _card_Model._cardClassInDeck == Classes.Universal))
-                    _contentDeckController.AddContent(_card_Model._idCard);
+                if (gameObject.CompareTag("CardTemplate") && (_card_Model._cardClassInDeck == _contentDeck_Model.ClassHeroInDeck || _card_Model._cardClassInDeck == Classes.Universal))
+                    _contentDeckController.AddContent(_card_Model.IdCard);
                 if (gameObject.CompareTag("ChoiseCard"))
                 {
-                    _contentDeckController.RemoveContent(_card_Model._idCard);
+                    _contentDeckController.RemoveContent(_card_Model.IdCard);
                     Destroy(this.gameObject);
                     _zommingCard_View.gameObject.SetActive(false);
                 }

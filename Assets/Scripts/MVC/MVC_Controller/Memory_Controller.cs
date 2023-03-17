@@ -9,7 +9,6 @@ namespace Hearthstone
         private ContentDeck_Model _contentDeck_Model;
         private PageBook_Model _pageBook_Model;        
         private DeckCollection_Controller _deckCollection_Controller;
-
         private string _pathSaveDocument ;        
 
         private void Awake()
@@ -17,7 +16,7 @@ namespace Hearthstone
             _deckCollection_Controller = FindObjectOfType<DeckCollection_Controller>();
             _contentDeck_Model = FindObjectOfType<ContentDeck_Model>();
             _pathSaveDocument = Application.dataPath + "/SaveData.xml";
-            _pageBook_Model = FindObjectOfType<PageBook_Model>(); //FindObjectOfType<PageBook_Model>();
+            _pageBook_Model = FindObjectOfType<PageBook_Model>();
         }
 
         private void Start()
@@ -30,15 +29,15 @@ namespace Hearthstone
             XDocument xdoc = XDocument.Load(_pathSaveDocument);
             XElement saveDeckCollection = xdoc.Element("SaveDeckCollection");
             XElement deckNameElement = new XElement("DeckName");
-            XAttribute nameAtribute = new XAttribute("NameValue", $"{_contentDeck_Model._currentDeckName}");
+            XAttribute nameAtribute = new XAttribute("NameValue", $"{_contentDeck_Model.CurrentDeckName}");
             XAttribute stateAtribute = new XAttribute("StateValue", "Неактивная колода");
             deckNameElement.Add(nameAtribute);
             deckNameElement.Add(stateAtribute);
             saveDeckCollection.Add(deckNameElement);
 
-            for (int i = 0; i < _contentDeck_Model._contentDeck.Count; i++)
+            for (int i = 0; i < _contentDeck_Model.ContentDeck.Count; i++)
             {
-                XElement idElement = new XElement("CardId",$"{_contentDeck_Model._contentDeck[i]}");
+                XElement idElement = new XElement("CardId",$"{_contentDeck_Model.ContentDeck[i]}");
                 deckNameElement.Add(idElement);
             }
             xdoc.Save(_pathSaveDocument);  
@@ -55,7 +54,7 @@ namespace Hearthstone
                 foreach (XElement deck in saveDeckCollection.Elements("DeckName"))
                 {
                     XAttribute nameDeck = deck.Attribute("NameValue");
-                    _contentDeck_Model._currentDeckName = nameDeck.Value;                    
+                    _contentDeck_Model.CurrentDeckName = nameDeck.Value;                    
                     _deckCollection_Controller.AddDeckInCollection();
                 }
             }

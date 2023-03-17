@@ -10,8 +10,7 @@ namespace Hearthstone
     {
         private PageBook_View _pageBook_View;
         private PageBook_Model _pageBook_Model;
-        private LoadDeck_Controller _loadDeck_Controller;
-        public SpriteRenderer _shirtCard;
+        private LoadDeck_Controller _loadDeck_Controller;        
         private SpriteRenderer _spriteCard;
         private Card_Model _card_Model;
         private int _id;
@@ -20,6 +19,7 @@ namespace Hearthstone
         private Text _manaCostText;
         private Text _atackDamageText;
         private Text _healtText;
+        public SpriteRenderer _shirtCard;
 
         public Text Name { get => _nameText; }
         public Text Description { get => _descriptionText; }
@@ -72,24 +72,24 @@ namespace Hearthstone
         {
             if (gameObject.CompareTag("CardTemplate"))
             {
-                _descriptionText.text = _card_Model._descriptionCard;
-                _atackDamageText.text = _card_Model._atackDamageCard.ToString();
-                _healtText.text = _card_Model._healthCard.ToString();
-                _spriteCard.sprite = _card_Model._spriteCard;
+                _descriptionText.text = _card_Model.DescriptionCard;
+                _atackDamageText.text = _card_Model.AtackDamageCard.ToString();
+                _healtText.text = _card_Model.HealthCard.ToString();
+                _spriteCard.sprite = _card_Model.SpriteCard;
             }
-            _nameText.text = _card_Model._nameCard;
-            _manaCostText.text = _card_Model._manaCostCard.ToString();
+            _nameText.text = _card_Model.NameCard;
+            _manaCostText.text = _card_Model.ManaCostCard.ToString();
         }
 
         public void ChangeViewZomingCard(int idCard)
         {
             CardSO_Model cardSO = (CardSO_Model)_pageBook_Model._cardsDictionary[idCard];
-            _descriptionText.text = cardSO._descriptionCard;
-            _atackDamageText.text = cardSO._atackDamageCard.ToString();
-            _healtText.text = cardSO._healthCard.ToString();
-            _spriteCard.sprite = cardSO._spriteCard;
-            _nameText.text = cardSO._nameCard;
-            _manaCostText.text = cardSO._manaCostCard.ToString();
+            _descriptionText.text = cardSO.DescriptionCard;
+            _atackDamageText.text = cardSO.AtackDamageCard.ToString();
+            _healtText.text = cardSO.HealthCard.ToString();
+            _spriteCard.sprite = cardSO.SpriteCard;
+            _nameText.text = cardSO.NameCard;
+            _manaCostText.text = cardSO.ManaCostCard.ToString();
         }
 
         public void CardShirtEnable(bool isEnable)

@@ -137,10 +137,10 @@ namespace Hearthstone
             Card_Controller card_Controller_attacker = attacker.GetComponent<Card_Controller>();
             Card_Controller card_Controller_card = card.GetComponent<Card_Controller>();
 
-            int attacker_damage = attacker.GetComponent<Card_Model>()._atackDamageCard;
-            int card_damage = card.GetComponent<Card_Model>()._atackDamageCard;
+            int attacker_damage = attacker.GetComponent<Card_Model>().AtackDamageCard;
+            int card_damage = card.GetComponent<Card_Model>().AtackDamageCard;
 
-            Debug.Log(attacker.GetComponent<Card_Model>()._nameCard + " атаковал " + card.GetComponent<Card_Model>()._nameCard);
+            Debug.Log(attacker.GetComponent<Card_Model>().NameCard + " атаковал " + card.GetComponent<Card_Model>().NameCard);
 
             card_Controller_attacker.ChangeHealtValue(card_damage, ChangeHealthType.DealDamage);
             card_Controller_card.ChangeHealtValue(attacker_damage, ChangeHealthType.DealDamage);
@@ -160,10 +160,10 @@ namespace Hearthstone
 
             Hero_Controller hero_Controller_card = hero.GetComponent<Hero_Controller>();
 
-            int attacker_damage = attacker.GetComponent<Card_Model>()._atackDamageCard;
+            int attacker_damage = attacker.GetComponent<Card_Model>().AtackDamageCard;
             hero_Controller_card.ChangeHealthValue(attacker_damage, ChangeHealthType.DealDamage);
 
-            Debug.Log(attacker.GetComponent<Card_Model>()._nameCard + " атаковал героя");
+            Debug.Log(attacker.GetComponent<Card_Model>().NameCard + " атаковал героя");
         }
 
         public void SetSide(Players side)

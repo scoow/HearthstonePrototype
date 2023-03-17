@@ -15,15 +15,17 @@ namespace Hearthstone
         [Inject]
         private BattleCry_Controller _battleCry_Controller;
         [Inject]
-        private IndicatorTarget _indicatorTarget;
-        public Image _spriteHeroWinner;
+        private IndicatorTarget _indicatorTarget;        
         private WinnerMesage _winnerMesage;
-
-        public int _health;
-        public int _defaultHealtValue;
-        public Text _textHealth;
-        [SerializeField] private Players _side;
+        [SerializeField] private int _health;
+        [SerializeField] private int _defaultHealtValue;
+        [SerializeField] private Text _textHealth;
+        [SerializeField] private Players _side;               
+        public int Health { get => _health; set => _health = value; }        
+        public int DefaultHealtValue { get => _defaultHealtValue; set => _defaultHealtValue = value; }
+        public Text TextHealth { get => _textHealth; set => _textHealth = value; }
         public Players Side { get { return _side; } }
+        public Image _spriteHeroWinner;
         private void OnEnable()
         {
             _textHealth = GetComponentInChildren<TextHealthMarker>().GetComponent<Text>();
@@ -39,10 +41,9 @@ namespace Hearthstone
         public void SetHeroSettings(int idCard)
         {
             HeroSO_Model heroSO_Model = (HeroSO_Model)_pageBook_Model._cardsDictionary[idCard];
-            _health = heroSO_Model._healthCard;
+            _health = heroSO_Model.HealthCard;
             _defaultHealtValue = _health;
             _textHealth.text = _health.ToString();
-
         }
 
         public void ChangeHealthValue(int incomingValue, ChangeHealthType changeHealthType)
@@ -57,9 +58,8 @@ namespace Hearthstone
                 {
                     _winnerMesage.SetWiner(((Players)((int)(_side + 1) % 2)).ToString() + " Player" , _spriteHeroWinner);
                     Debug.Log("œŒ¡≈ƒ¿ »√–Œ ¿ " + (Players)((int)(_side + 1) % 2));
-                }    
-                   
-                //DiedCreature(); //ÒÓ·˚ÚËÂ ÒÏÂÚË*/
+                }                      
+                
             }
 
             if (changeHealthType == ChangeHealthType.Healing)
@@ -80,17 +80,17 @@ namespace Hearthstone
                 {
                     if (battleCryType == BattleCryType.DealDamage)
                     {
-                        ChangeHealthValue(_battleCry_Controller._battleCryChangeHealth, ChangeHealthType.DealDamage);
+                        ChangeHealthValue(_battleCry_Controller.BattleCryChangeHealth, ChangeHealthType.DealDamage);
                         //_battleCry_Controller._targetBattleCry.gameObject.SetActive(false);
-                        _battleCry_Controller._isActiveCry = false;
+                        _battleCry_Controller.IsActiveCry = false;
                         //DrawHealth();
                         BattleCryOff();
                     }
                     if (battleCryType == BattleCryType.Heal)
                     {
-                        ChangeHealthValue(_battleCry_Controller._battleCryChangeHealth, ChangeHealthType.Healing);
+                        ChangeHealthValue(_battleCry_Controller.BattleCryChangeHealth, ChangeHealthType.Healing);
                         //_battleCry_Controller._targetBattleCry.gameObject.SetActive(false);
-                        _battleCry_Controller._isActiveCry = false;
+                        _battleCry_Controller.IsActiveCry = false;
                         //DrawHealth();
                         BattleCryOff();
                     }
@@ -137,8 +137,8 @@ namespace Hearthstone
 
         private void BattleCryOff()
         {
-            _battleCry_Controller._cursorBattleCry.ChangeCursorState(false);
-            _battleCry_Controller._isActiveCry = false;
+            _battleCry_Controller.CursorBattleCry.ChangeCursorState(false);
+            _battleCry_Controller.IsActiveCry = false;
         }
     }
 }

@@ -6,23 +6,29 @@ namespace Hearthstone
 {
     public class ContentDeck_Model : MonoBehaviour
     {
-        public InputField _inputField;
+        [SerializeField] private InputField _inputField;
         /// <summary>
         /// текущее название колоды
         /// </summary>
-        public string _currentDeckName;
+        [SerializeField] private string _currentDeckName;
         /// <summary>
         /// тип классовых карт , которые можно добавлять в колоду
         /// </summary>
-        public Classes _classHeroInDeck;
+        [SerializeField] private Classes _classHeroInDeck;
         /// <summary>
         /// префаб шаблона отображающего краткие настройки выбранной карты
         /// </summary>
-        public GameObject _prefabChioseCardSettings;
+        [SerializeField] private GameObject _prefabChioseCardSettings;
         /// <summary>
         /// текущий список ID выбранных карт в колоде
         /// </summary>
-        public List<int> _contentDeck;
+        [SerializeField] private List<int> _contentDeck;
+
+        public List<int> ContentDeck { get => _contentDeck; set => _contentDeck = value; }
+        public InputField InputField { get => _inputField; }
+        public string CurrentDeckName { get => _currentDeckName; set => _currentDeckName = value; }
+        public Classes ClassHeroInDeck { get => _classHeroInDeck; set => _classHeroInDeck = value; }
+        public GameObject PrefabChioseCardSettings { get => _prefabChioseCardSettings; }
 
         private void Awake()
         {

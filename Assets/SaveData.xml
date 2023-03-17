@@ -43,52 +43,25 @@
     <CardId>207</CardId>
     <CardId>207</CardId>
   </DeckName>
-  <DeckName NameValue="пра" StateValue="Выбранная колода">
+  <DeckName NameValue="пра" StateValue="Неактивная колода">
     <CardId>9000</CardId>
     <CardId>100</CardId>
     <CardId>102</CardId>
     <CardId>205</CardId>
     <CardId>306</CardId>
   </DeckName>
-  <DeckName NameValue="паврапр" StateValue="Неактивная колода">
-    <CardId>9000</CardId>
-    <CardId>106</CardId>
+  <DeckName NameValue="dfgdf" StateValue="Выбранная колода">
+    <CardId>1000</CardId>
     <CardId>104</CardId>
-    <CardId>100</CardId>
-    <CardId>106</CardId>
-    <CardId>104</CardId>
-    <CardId>100</CardId>
-    <CardId>106</CardId>
-    <CardId>104</CardId>
-    <CardId>211</CardId>
-    <CardId>211</CardId>
-    <CardId>211</CardId>
+    <CardId>208</CardId>
+    <CardId>209</CardId>
+    <CardId>310</CardId>
   </DeckName>
-  <DeckName NameValue="fhgfh" StateValue="Неактивная колода">
-    <CardId>5000</CardId>
-    <CardId>107</CardId>
-    <CardId>201</CardId>
-    <CardId>202</CardId>
-    <CardId>207</CardId>
-    <CardId>203</CardId>
-    <CardId>212</CardId>
-    <CardId>213</CardId>
-    <CardId>301</CardId>
-    <CardId>304</CardId>
-    <CardId>301</CardId>
-    <CardId>503</CardId>
-    <CardId>401</CardId>
-    <CardId>305</CardId>
-    <CardId>306</CardId>
-    <CardId>304</CardId>
-    <CardId>308</CardId>
-    <CardId>307</CardId>
-    <CardId>303</CardId>
-    <CardId>301</CardId>
-    <CardId>212</CardId>
-    <CardId>212</CardId>
-    <CardId>212</CardId>
-    <CardId>212</CardId>
-    <CardId>212</CardId>
+  <DeckName NameValue="hgdhg" StateValue="Неактивная колода">
+    <CardId>8000</CardId>
+    <CardId>105</CardId>
+    <CardId>406</CardId>
+    <CardId>403</CardId>
+    <CardId>501</CardId>
   </DeckName>
 </SaveDeckCollection>

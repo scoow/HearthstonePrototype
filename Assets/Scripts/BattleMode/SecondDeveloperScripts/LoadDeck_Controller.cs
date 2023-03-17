@@ -31,28 +31,26 @@ namespace Hearthstone
         private void Start()
         {           
             LoadActiveDeck();            
-            ShuffleCardInDeck();
-            //Card_Model[] _temporaryArray = _mulliganManager.transform.GetComponentsInChildren<Card_Model>();
+            ShuffleCardInDeck();           
             Card_Model[] _temporaryArray = FindObjectsOfType<Card_Model>();
             for (int i = 0; i <= _temporaryArray.Length-1; i++)
             {               
                 LoadCardSettings(_temporaryArray[i], _activeDeck[i]);                
                 _temporaryArray[i].SetCardSettings(_activeDeck[i], false);                
                 LayerRenderUp layerRenderUp = _temporaryArray[i].GetComponent<LayerRenderUp>();
-                layerRenderUp.LayerUp(i);
-                //if (i == _temporaryArray.Length - 1) layerRenderUp.LayerLastSpriteUp();               
+                layerRenderUp.LayerUp(i);                             
             }            
         }
 
         public void LoadCardSettings(Card_Model card_Model, int cardId)
         {
             CardSO_Model cardSO_Model = (CardSO_Model)_pageBookModel._cardsDictionary[cardId];
-            card_Model._atackDamageCard = cardSO_Model._atackDamageCard;
-            card_Model._descriptionCard = cardSO_Model._descriptionCard;
-            card_Model._manaCostCard = cardSO_Model._manaCostCard;
-            card_Model._healthCard = cardSO_Model._healthCard;
-            card_Model._spriteCard = cardSO_Model._spriteCard;
-            card_Model._nameCard = cardSO_Model._nameCard;       
+            card_Model.AtackDamageCard = cardSO_Model.AtackDamageCard;
+            card_Model.DescriptionCard = cardSO_Model.DescriptionCard;
+            card_Model.ManaCostCard = cardSO_Model.ManaCostCard;
+            card_Model.HealthCard = cardSO_Model.HealthCard;
+            card_Model.SpriteCard = cardSO_Model.SpriteCard;
+            card_Model.NameCard = cardSO_Model.NameCard;       
                        
             SetCardSettings?.Invoke();
         }
@@ -86,9 +84,9 @@ namespace Hearthstone
                                 _heroId = Int32.Parse(cardId.Value);
                                 foreach (GameSO_Model cardSO in _pageBookModel.cardCollectionSO_Model._heroCollection)
                                 {
-                                    if(cardSO._idCard == Int32.Parse(cardId.Value))
+                                    if(cardSO.IdCard == Int32.Parse(cardId.Value))
                                     {
-                                        _heroSprite.sprite = cardSO._spriteCard;
+                                        _heroSprite.sprite = cardSO.SpriteCard;
                                         SetHeroSettings?.Invoke(_heroId);
                                         continue;
                                     }                                    

@@ -1,20 +1,28 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Hearthstone
 {
     public class BattleCry_Controller : MonoBehaviour
-    {
-        public bool _isActiveCry = false;
-        private PageBook_Model _pageBook_Model;        
-        public IndicatorTarget _cursorBattleCry;
-        public Transform _parentCardInBattle; 
-        public int _idBattleCry;
+    {        
+        //private PageBook_Model _pageBook_Model;        
+        [SerializeField] private IndicatorTarget _cursorBattleCry;
+        [SerializeField] private Transform _parentCardInBattle;
+        [SerializeField] private GameObject _battleCryCreator;
+        [SerializeField] private bool _isActiveCry = false;
+        [SerializeField] private int _idBattleCry;        
+        [SerializeField] private int _battleCryChangeHealth;
+        [SerializeField] private int _battleCryChangeAtackDamage;
+        
 
-        public GameObject _battleCryCreator;
-
-        public int _battleCryChangeHealth;
-        public int _battleCryChangeAtackDamage;        
+        public IndicatorTarget CursorBattleCry { get => _cursorBattleCry; }
+        public Transform ParentCardInBattle { get => _parentCardInBattle; }
+        public GameObject BattleCryCreator { get => _battleCryCreator; set => _battleCryCreator = value; }
+        public bool IsActiveCry { get => _isActiveCry; set => _isActiveCry = value; }
+        public int IdBattleCry { get => _idBattleCry; set => _idBattleCry = value; }        
+        public int BattleCryChangeHealth { get => _battleCryChangeHealth; set => _battleCryChangeHealth = value; }
+        public int BattleCryChangeAtackDamage { get => _battleCryChangeAtackDamage; set => _battleCryChangeAtackDamage = value; }
         
         /// <summary>
         /// типы боевых кличей
@@ -31,7 +39,7 @@ namespace Hearthstone
 
         private void OnEnable()
         {            
-            _pageBook_Model = FindObjectOfType<PageBook_Model>();   
+            //_pageBook_Model = FindObjectOfType<PageBook_Model>();   
         }      
 
         private void LateUpdate() //отображение прицела
@@ -55,10 +63,10 @@ namespace Hearthstone
             for (int i = 0; i <= _temporaryArray.Length - 1; i++)
             {
                 if(_isActiveCry)// если боевой клич активен, то карты могут услышать боевой крик               
-                    _temporaryArray[i]._isListen = true;                 
+                    _temporaryArray[i].IsListen = true;                 
                     
                 if(!_isActiveCry)//если боевой клич неактивен, то карты не услышат боевой крик
-                    _temporaryArray[i]._isListen = false;               
+                    _temporaryArray[i].IsListen = false;               
             }
 
             if (СonditionsTargetBattleCry()) //условие появления прицела 

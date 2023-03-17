@@ -9,11 +9,21 @@ namespace Hearthstone
     [CreateAssetMenu(fileName = "New Card", menuName = "Card/CardExample", order = 51)]
     public class CardSO_Model : GameSO_Model
     {
-        public string _nameCard;
-        public string _descriptionCard;        
-        public int _manaCostCard;
-        public int _atackDamageCard;
-        public int _healthCard;
+        [SerializeField] private string _nameCard;
+        [SerializeField] private string _descriptionCard;
+        [SerializeField] private int _manaCostCard;
+        [SerializeField] private int _atackDamageCard;
+        [SerializeField] private int _healthCard;
+        [SerializeField] private int _abilityChangeHealth;
+        [SerializeField] private int _abilityChangeAtack;
+
+        public string NameCard { get => _nameCard; }        
+        public string DescriptionCard { get => _descriptionCard; }        
+        public int ManaCostCard { get => _manaCostCard; }        
+        public int AtackDamageCard { get => _atackDamageCard; }        
+        public int HealthCard { get => _healthCard; }
+        public int AbilityChangeHealth { get => _abilityChangeHealth; }
+        public int AbilityChangeAtack { get => _abilityChangeAtack; }
 
         public Classes _cardClass;        
         public List<BattleCryType> _battleCryTypes = new List<BattleCryType>();
@@ -22,15 +32,10 @@ namespace Hearthstone
         public MinionType _targetsType;
         public MinionType _minionType;
        
-
         public bool _isProvocation;
-        public bool _isDivineShield;
         public bool _isPermanentEffect;
         public bool _isCharge;
         public bool _isBerserk;
-        public bool _isTakeCard;
-
-        public int _abilityChangeHealth;
-        public int _abilityChangeAtack;       
+        public bool _isTakeCard;               
     }
 }

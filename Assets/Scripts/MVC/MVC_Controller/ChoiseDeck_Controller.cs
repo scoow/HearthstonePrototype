@@ -37,7 +37,7 @@ namespace Hearthstone
         {
             _pageBook_Model._createDeckState = CreateDeckState.CreateDeck;
             ChangeOFState(_pageBook_Model._createDeckState);
-            _pageBook_View.UpdatePageBook(_pageBook_Model._cardSO_Models, _pageBook_Controller._cardTemplatePrefabs, _pageBook_Controller._pageCounter);
+            _pageBook_View.UpdatePageBook(_pageBook_Model._cardSO_Models, _pageBook_Controller._cardTemplatePrefabs, _pageBook_Controller.PageCounter);
 
         }
 

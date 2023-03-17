@@ -88,6 +88,9 @@ namespace Hearthstone
         ChangeAtack        
     }
 
+    /// <summary>
+    /// способ изменить здоровье урон/лечение/изменение параметра
+    /// </summary>
     public enum ChangeHealthType
     {
         Healing,
@@ -103,5 +106,15 @@ namespace Hearthstone
         Mulligan,
         Hand,
         Board
+    }
+
+    /// <summary>
+    /// Этапы создания колоды
+    /// </summary>
+    public enum CreateDeckState
+    {
+        ChoiseHero,
+        ChoiseDeck,
+        CreateDeck,
     }
 }

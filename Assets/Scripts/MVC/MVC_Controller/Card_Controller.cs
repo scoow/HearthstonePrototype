@@ -16,26 +16,21 @@ namespace Hearthstone
         private EventEffect_Controller _eventEffectController;
         private BattleModeCard_View _battleModeCardView;
         private IndicatorTarget _indicatorTarget;
-        public bool _useBattleCray = false;
-
         private Action OnActivateCard;
-
-
         private Board _board;
         //[Inject]
         private MulliganManager _mulliganManager;
         //[Inject]
         private Mana_Controller _mana_Controller;
+        private bool _useBattleCray = false;
+        public bool UseBattleCray { get => _useBattleCray; set => _useBattleCray = value; }
 
         private void OnEnable()
         {
             //пока костыль. заменить на Zenject
             _mana_Controller = FindObjectOfType<Mana_Controller>();
-            _mulliganManager = FindObjectOfType<MulliganManager>();
-            
-            _battleCryController = FindObjectOfType<BattleCry_Controller>();
-            //_battleModeCardView = FindObjectOfType<BattleModeCard_View>();
-            
+            _mulliganManager = FindObjectOfType<MulliganManager>();            
+            _battleCryController = FindObjectOfType<BattleCry_Controller>();            
             _permanentEffectController = FindObjectOfType<PermanentEffect_Controller>();
             _eventEffectController = FindObjectOfType<EventEffect_Controller>();
             _singleEffect_Controller = FindObjectOfType<SingleEffect_Controller>();
@@ -61,13 +56,9 @@ namespace Hearthstone
 
         public void ActivateBattleCry(/*Transform newParent*/Card card) //активация боевых кличей
         {
-            _battleCryController._isActiveCry = true;
-            //        if (newParent == transform.parent && !_useBattleCray)
-            //         if (card.transform.parent == _board.transform && !_useBattleCray)
-            var card_model = card.GetComponent<Card_Model>()._nameCard;
-            
-
-            var my_Card = GetComponent<Card>();
+            _battleCryController.IsActiveCry = true;            
+            var card_model = card.GetComponent<Card_Model>().NameCard;
+            Card my_Card = GetComponent<Card>();
 
             if (card != my_Card) return;
             {
@@ -79,9 +70,7 @@ namespace Hearthstone
 
                 if (_card_Model._battleCryTypes.Contains(BattleCryType.SummonAssistant))//призыв существа-ассистента
                 {
-                    int minionID = int.Parse(_card_Model._idCard.ToString() + _card_Model._idCard.ToString());
-                    //Board board = newParent.GetComponent<Board>();
-                    
+                    int minionID = int.Parse(_card_Model.IdCard.ToString() + _card_Model.IdCard.ToString());                    
                     Transform transform = new GameObject().transform;//исправить
                     transform.position = _board.GetLastCardPosition();
                     int layout = 0;
@@ -104,8 +93,7 @@ namespace Hearthstone
                 }
                 _eventEffectController.ParsePutCardInBoard(this);
 
-                if (_card_Model._battleCryTypes.Contains(BattleCryType.SingleEffect))
-                //if(_card_Model._battleCryTargets == Target.Self)
+                if (_card_Model._battleCryTypes.Contains(BattleCryType.SingleEffect))                
                 {
                     _singleEffect_Controller.ApplyEffect(gameObject.GetComponent<ApplyBattleCry>());
                 }
@@ -118,13 +106,13 @@ namespace Hearthstone
         {
             _useBattleCray = true;
 
-            _battleCryController._battleCryCreator = _card_Model.gameObject;
+            _battleCryController.BattleCryCreator = _card_Model.gameObject;
 
-            _battleCryController._idBattleCry = _card_Model._idCard;
+            _battleCryController.IdBattleCry = _card_Model.IdCard;
             _battleCryController._battleCryTargets_Active = _card_Model._battleCryTargets;
             _battleCryController._battleCryTargetsType_Active = _card_Model._battleCryTargetsType;
-            _battleCryController._battleCryChangeAtackDamage = _card_Model._changeAtackValue;
-            _battleCryController._battleCryChangeHealth = _card_Model._сhangeHealthValue;
+            _battleCryController.BattleCryChangeAtackDamage = _card_Model.ChangeAtackValue;
+            _battleCryController.BattleCryChangeHealth = _card_Model.ChangeHealthValue;
 
             _battleCryController._currentBattleCryTypes.Clear();
             foreach (BattleCryType cryType in _card_Model._battleCryTypes)
@@ -184,16 +172,16 @@ namespace Hearthstone
         {
             if (isProvocation)
             {
-                _card_Model._protectionImage.gameObject.SetActive(isProvocation);
+                _card_Model.ProtectionImage.gameObject.SetActive(isProvocation);
             }
             if (!isProvocation)
             {
-                _card_Model._protectionImage.gameObject.SetActive(!isProvocation);
+                _card_Model.ProtectionImage.gameObject.SetActive(!isProvocation);
             }
         }
         public void ChargeAbility()//рывок
         {
-            Debug.Log($"{_card_Model._nameCard} может атаковать на этом ходу");
+            Debug.Log($"{_card_Model.NameCard} может атаковать на этом ходу");
             //_card_Model._isCharge = true;
         }
         public void TakeAdditionalCard(Players side) //добавление новой карты
@@ -207,19 +195,19 @@ namespace Hearthstone
 
         public void ChangeAtackValue(int incomingValue) //изменяем значение атаки
         {
-            _card_Model._atackDamageCard += incomingValue;
-            _card_Model._maxAtackValue += incomingValue;
+            _card_Model.AtackDamageCard += incomingValue;
+            _card_Model.MaxAtackValue += incomingValue;
             _battleModeCardView.UpdateViewCard();
 
         }
 
         public void ChangeHealtValue(int incomingValue) //изменяем значение здоровья
         {
-            _card_Model._healthCard += incomingValue;
-            if (_card_Model._healthCard <= 0)
+            _card_Model.HealthCard += incomingValue;
+            if (_card_Model.HealthCard <= 0)
                 DiedCreature(); //событие смерти
             if (incomingValue < 0 && _card_Model._isBerserk) //если карта берсерк и здоровье уменьшилось, то увеличиваем атаку 
-                ChangeAtackValue(_card_Model._changeAtackValue);
+                ChangeAtackValue(_card_Model.ChangeAtackValue);
             _battleModeCardView.UpdateViewCard();
         }
 
@@ -234,30 +222,30 @@ namespace Hearthstone
             if (changeHealthType == ChangeHealthType.Healing)
             {
                 ChangeHealtValue(incomingValue);
-                if (_card_Model._healthCard > _card_Model._maxHealtValue)
-                    _card_Model._healthCard = _card_Model._maxHealtValue;
+                if (_card_Model.HealthCard > _card_Model.MaxHealtValue)
+                    _card_Model.HealthCard = _card_Model.MaxHealtValue;
                 _battleModeCardView.UpdateViewCard();
                 _singleEffect_Controller.ApplyEffect(gameObject.GetComponent<ApplyBattleCry>());
 
-                StartCoroutine(_battleModeCardView.EffectParticle(_battleModeCardView._healtEffect));
+                StartCoroutine(_battleModeCardView.EffectParticle(_battleModeCardView.HealtEffect));
                 //_battleModeCardView.UpdateViewCard();
             }
         }
 
         public void UpdateSelfParametrs(int multiplicationFactor) //увеличение своих параметров в зависимости от колличества дружеских карт на столе
         {
-            ChangeAtackValue(_card_Model._changeAtackValue * multiplicationFactor);
-            ChangeHealtValue(_card_Model._сhangeHealthValue * multiplicationFactor);
+            ChangeAtackValue(_card_Model.ChangeAtackValue * multiplicationFactor);
+            ChangeHealtValue(_card_Model.ChangeHealthValue * multiplicationFactor);
         }
 
         public void BerserkAbility()
         {
-            ChangeAtackValue(_card_Model._changeAtackValue);
+            ChangeAtackValue(_card_Model.ChangeAtackValue);
         }
 
         public void DiedCreature() //смерть существа
         {
-            Debug.Log(_card_Model._nameCard + " погиб смертью храбрых");
+            Debug.Log(_card_Model.NameCard + " погиб смертью храбрых");
             /////////////////////////////////////////////////////
 
             _permanentEffectController.RemovePermanentEffect(this);

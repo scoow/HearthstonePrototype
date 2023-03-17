@@ -7,34 +7,49 @@ namespace Hearthstone
 {    
     public class Card_Model : MonoBehaviour
     {
-        private PageBook_Model _pageBook_Model;
-        // ////////////////////////////////////
+        private SpriteRenderer _protectionImage;
+        private Sprite _spriteCard;
+        private string _descriptionCard;
+        private string _nameCard;
+        private int _manaCostCard;
+        private int _idCard;
+        private int _atackDamageCard;
+        private int _healthCard;
+        private int _ñhangeHealthValue;
+        private int _changeAtackValue;
+        private int _maxHealtValue;
+        private int _maxAtackValue;
+        private int _defaultHealtValue;
+        private int _defaultAtackValue;
+
+        public SpriteRenderer ProtectionImage { get => _protectionImage; }
+        public Sprite SpriteCard { get => _spriteCard; set => _spriteCard = value; }
+        public string DescriptionCard { get => _descriptionCard; set => _descriptionCard = value; }
+        public string NameCard { get => _nameCard; set => _nameCard = value; }
+        public int ManaCostCard { get => _manaCostCard; set => _manaCostCard = value; }
+        public int IdCard { get => _idCard; set => _idCard = value; }
+        public int DefaultHealtValue { get => _defaultHealtValue; set => _defaultHealtValue = value; }
+        public int DefaultAtackValue { get => _defaultAtackValue; set => _defaultAtackValue = value; }
+        public int AtackDamageCard { get => _atackDamageCard; set => _atackDamageCard = value; }
+        public int HealthCard { get => _healthCard; set => _healthCard = value; }
+        public int ChangeHealthValue { get => _ñhangeHealthValue; set => _ñhangeHealthValue = value; }
+        public int MaxHealtValue { get => _maxHealtValue; set => _maxHealtValue = value; }
+        public int ChangeAtackValue { get => _changeAtackValue; set => _changeAtackValue = value; }
+        public int MaxAtackValue { get => _maxAtackValue; set => _maxAtackValue = value; }
+
+
+
         
-        public int _ñhangeHealthValue; //
-        public int _changeAtackValue;       
 
         public bool _isProvocation;
-        public bool _isDivineShield;
         public bool _isPermanentEffect;
         public bool _isCharge;
         public bool _isBerserk;
         public bool _isGetCard;
+
+        //////////////////////////////////////
         public Dictionary<AbilityCurrentCard, bool> _activeAbility = new(); //ñïèñîê àêòèâíûõ ñïîñîáíîñòåé
-
-        public SpriteRenderer _protectionImage;
-        public Sprite _spriteCard;
-        public string _descriptionCard;
-        public string _nameCard;
-        public int _idCard;    
-        public int _manaCostCard;
-        public int _atackDamageCard;
-        public int _healthCard;
-
-        public int _maxHealtValue;
-        public int _maxAtackValue;
-        public int _defaultHealtValue;
-        public int _defaultAtackValue;
-
+        private PageBook_Model _pageBook_Model;        
         public List<BattleCryType> _battleCryTypes = new();
         public List<AbilityCurrentCard> _abilityInTargetBattleCry = new();             
         public Target _battleCryTargets;
@@ -73,18 +88,17 @@ namespace Hearthstone
             {
                 cardSOModel = (CardSO_Model)_pageBook_Model._cardsDictionary[idCard];
             }
-            SetDefaultParameters(cardSOModel._healthCard, cardSOModel._atackDamageCard);
+            SetDefaultParameters(cardSOModel.HealthCard, cardSOModel.AtackDamageCard);
 
-            _changeAtackValue  = cardSOModel._abilityChangeAtack;            
-            _ñhangeHealthValue  = cardSOModel._abilityChangeHealth;                     
-
-            _atackDamageCard = cardSOModel._atackDamageCard;
-            _descriptionCard = cardSOModel._descriptionCard;
-            _manaCostCard = cardSOModel._manaCostCard;
-            _healthCard = cardSOModel._healthCard;
-            _spriteCard = cardSOModel._spriteCard;
-            _nameCard = cardSOModel._nameCard;
-            _idCard = cardSOModel._idCard;
+            _changeAtackValue  = cardSOModel.AbilityChangeAtack;            
+            _ñhangeHealthValue  = cardSOModel.AbilityChangeHealth;
+            _atackDamageCard = cardSOModel.AtackDamageCard;
+            _descriptionCard = cardSOModel.DescriptionCard;
+            _manaCostCard = cardSOModel.ManaCostCard;
+            _healthCard = cardSOModel.HealthCard;
+            _spriteCard = cardSOModel.SpriteCard;
+            _nameCard = cardSOModel.NameCard;
+            _idCard = cardSOModel.IdCard;
             
             foreach(BattleCryType cryType in cardSOModel._battleCryTypes)
             {
@@ -101,15 +115,13 @@ namespace Hearthstone
             _minionType = cardSOModel._minionType;
             _cardClassInDeck = cardSOModel._cardClass;
 
-            _isPermanentEffect = cardSOModel._isPermanentEffect;
-            _isDivineShield = cardSOModel._isDivineShield;
+            _isPermanentEffect = cardSOModel._isPermanentEffect;            
             _isProvocation = cardSOModel._isProvocation;
             _isBerserk = cardSOModel._isBerserk;
             _isCharge = cardSOModel._isCharge;
             _isGetCard = cardSOModel._isTakeCard;            
 
             _activeAbility.Add(AbilityCurrentCard.PermanentEffect, _isPermanentEffect);
-            _activeAbility.Add(AbilityCurrentCard.DivineShield,_isDivineShield);
             _activeAbility.Add(AbilityCurrentCard.Provocation,_isProvocation);
             _activeAbility.Add(AbilityCurrentCard.Berserk,_isBerserk);
             _activeAbility.Add(AbilityCurrentCard.Charge,_isCharge);

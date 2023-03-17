@@ -14,7 +14,8 @@ namespace Hearthstone
         public Card_Model[] _cardTemplatePrefabs;
         private int _maxPageNumber;
         private int _minPageNumber = 0;
-        public int _pageCounter = 0;
+        private int _pageCounter = 0;
+        [HideInInspector]public int PageCounter { get => _pageCounter; set => _pageCounter = value; }
         
 
         private void Start()

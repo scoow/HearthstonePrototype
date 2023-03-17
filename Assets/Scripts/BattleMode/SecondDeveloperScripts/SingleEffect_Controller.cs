@@ -21,7 +21,7 @@ namespace Hearthstone
             Card_Controller cardController = card.gameObject.GetComponent<Card_Controller>();
             Card incomingCard = card.GetComponent<Card>();
             Card_Model[] _temporaryArray = _playerBoard.GetComponentsInChildren<Card_Model>();
-            if (cardModel._idCard == 503)
+            if (cardModel.IdCard == 503)
             {
                 cardController.ChangeAtackValue(_temporaryArray.Length);
                 cardController.ChangeHealtValue(_temporaryArray.Length);
@@ -32,10 +32,10 @@ namespace Hearthstone
                 activePermanentEffect = _permanentEffect_Controller._activePermanentEffectPlayersFirst;
             else
                 activePermanentEffect = _permanentEffect_Controller._activePermanentEffectPlayersSecond;
-            if (cardModel._idCard == 407 && activePermanentEffect.Contains(cardModel._idCard))
+            if (cardModel.IdCard == 407 && activePermanentEffect.Contains(cardModel.IdCard))
             {
                 BattleModeCard_View card_View = card.GetComponent<BattleModeCard_View>();
-                cardModel._atackDamageCard = cardModel._healthCard;
+                cardModel.AtackDamageCard = cardModel.HealthCard;
                 card_View.UpdateViewCard();
             }
         }
