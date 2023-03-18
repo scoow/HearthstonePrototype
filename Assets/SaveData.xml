@@ -1,34 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <SaveDeckCollection>
-  <DeckName NameValue="Рывок" StateValue="Неактивная колода">
+  <DeckName NameValue="вариус" StateValue="Выбранная колода">
     <CardId>1000</CardId>
-    <CardId>309</CardId>
-    <CardId>302</CardId>
+    <CardId>102</CardId>
+    <CardId>205</CardId>
+    <CardId>208</CardId>
     <CardId>304</CardId>
-    <CardId>307</CardId>
-  </DeckName>
-  <DeckName NameValue="hdgfjghf" StateValue="Неактивная колода">
-    <CardId>1000</CardId>
-    <CardId>310</CardId>
-    <CardId>310</CardId>
-    <CardId>310</CardId>
-    <CardId>310</CardId>
-  </DeckName>
-  <DeckName NameValue="хантер" StateValue="Неактивная колода">
-    <CardId>1000</CardId>
-    <CardId>100</CardId>
-    <CardId>104</CardId>
-    <CardId>203</CardId>
-    <CardId>302</CardId>
-  </DeckName>
-  <DeckName NameValue="dfhfds" StateValue="Выбранная колода">
-    <CardId>1000</CardId>
+    <CardId>303</CardId>
+    <CardId>305</CardId>
+    <CardId>306</CardId>
+    <CardId>308</CardId>
     <CardId>309</CardId>
+    <CardId>307</CardId>
     <CardId>310</CardId>
+    <CardId>405</CardId>
+    <CardId>401</CardId>
+    <CardId>400</CardId>
     <CardId>402</CardId>
-    <CardId>206</CardId>
-    <CardId>203</CardId>
-    <CardId>206</CardId>
-    <CardId>402</CardId>
+    <CardId>403</CardId>
+    <CardId>404</CardId>
+    <CardId>500</CardId>
+    <CardId>501</CardId>
+    <CardId>502</CardId>
+    <CardId>503</CardId>
+    <CardId>504</CardId>
+    <CardId>600</CardId>
+    <CardId>601</CardId>
+    <CardId>602</CardId>
+    <CardId>700</CardId>
   </DeckName>
 </SaveDeckCollection>

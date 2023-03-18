@@ -12,25 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
   m_Name: 203_FrostwolfGrunt
   m_EditorClassIdentifier: 
+  _spriteCard: {fileID: 21300000, guid: 3cd6d012591cf1c4f8ba2ac4db8b5754, type: 3}
+  _idCard: 203
   _nameCard: "\u0411\u043E\u0435\u0446 \u0421\u0435\u0432\u0435\u0440\u043D\u043E\u0433\u043E
     \u0412\u043E\u043B\u043A\u0430"
   _descriptionCard: "\u041F\u0440\u043E\u0432\u043E\u043A\u0430\u0446\u0438\u044F"
-  _idCard: 203
-  _spriteCard: {fileID: 21300000, guid: 3cd6d012591cf1c4f8ba2ac4db8b5754, type: 3}
   _manaCostCard: 2
   _atackDamageCard: 2
   _healthCard: 2
+  _abilityChangeHealth: 0
+  _abilityChangeAtack: 0
   _cardClass: 9
   _battleCryTypes: 07
   _abilityInTargetBattleCry: 03000000
-  _targets: 0
+  _targets: 1
   _targetsType: 0
   _minionType: 0
   _isProvocation: 1
-  _isDivineShield: 0
   _isPermanentEffect: 0
   _isCharge: 0
   _isBerserk: 0
   _isTakeCard: 0
-  _abilityChangeHealth: 0
-  _abilityChangeAtack: 0

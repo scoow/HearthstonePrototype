@@ -14,6 +14,7 @@ namespace Hearthstone
         [SerializeField]
         private float _scaleСoefficient;
         private SoundEffect_Controller _soundEffect_Controller;
+        private BattleCry_Controller _battleCry_Controller;
 
         [Inject]
         private Mana_Controller _mana_Controller;
@@ -37,6 +38,7 @@ namespace Hearthstone
             _mana_Controller = FindObjectOfType<Mana_Controller>();//Zenject не сработал так как карта инстанциируется после работы Monoinstaller'а
             _indicatorTarget = FindObjectOfType<IndicatorTarget>();
             _soundEffect_Controller = FindObjectOfType<SoundEffect_Controller>();
+            _battleCry_Controller = FindAnyObjectByType<BattleCry_Controller>();
         }
         public void EnableAttack()
         {
@@ -130,7 +132,7 @@ namespace Hearthstone
         /// <param name="attacker">атакующий</param>
         /// <param name="card">атакуемый</param>
         public async void Attack(Card attacker, Card card)
-        {
+        {            
             BattleModeCard _attackerBattleCard = attacker.GetComponent<BattleModeCard>();
             Vector3 oldPosition = attacker.transform.position;
             _ = _attackerBattleCard.MoveCardAsync(attacker.transform, card.transform, 1f);

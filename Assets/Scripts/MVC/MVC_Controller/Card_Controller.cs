@@ -155,24 +155,24 @@ namespace Hearthstone
         {
             switch (currentActiveAbility)
             {
-                case AbilityCurrentCard.PermanentEffect:
-                    PermanentEffectAbility();
-                    break;
+                //case AbilityCurrentCard.PermanentEffect:
+                //    //PermanentEffectAbility();
+                //    break;
                 case AbilityCurrentCard.Provocation:
                     ProvocationAbility(_card_Model._isProvocation);
                     break;
-                case AbilityCurrentCard.Charge:
-                    ChargeAbility();
-                    break;
+                //case AbilityCurrentCard.Charge:
+                //    ChargeAbility();
+                //    break;
                 case AbilityCurrentCard.GetCard:
                     TakeAdditionalCard(GetComponent<Card>().GetSide());
                     break;
             }
         }
-        private void PermanentEffectAbility()//постоянный эффект
+        /*private void PermanentEffectAbility()//постоянный эффект
         {
 
-        }
+        }*/
         public void ProvocationAbility(bool isProvocation) //провокация
         {
             if (isProvocation)
@@ -185,11 +185,11 @@ namespace Hearthstone
                 _card_Model.ProtectionImage.gameObject.SetActive(!isProvocation);
             }
         }
-        public void ChargeAbility()//рывок
-        {
-            Debug.Log($"{_card_Model.NameCard} может атаковать на этом ходу");
-            //_card_Model._isCharge = true;
-        }
+        //public void ChargeAbility()//рывок
+        //{
+        //    Debug.Log($"{_card_Model.NameCard} может атаковать на этом ходу");
+        //    //_card_Model._isCharge = true;
+        //}
         public void TakeAdditionalCard(Players side) //добавление новой карты
         {
             StartCoroutine(Pause(1, side));                        
@@ -242,6 +242,12 @@ namespace Hearthstone
                 StartCoroutine(_battleModeCardView.EffectParticle(_battleModeCardView.HealtEffect));
                 //_battleModeCardView.UpdateViewCard();
             }
+
+            if (changeHealthType == ChangeHealthType.RaiseParametrs)
+            {
+                ChangeHealtValue(incomingValue);
+                //_singleEffect_Controller.ApplyEffect(gameObject.GetComponent<ApplyBattleCry>());
+            }
         }
 
         public void UpdateSelfParametrs(int multiplicationFactor) //увеличение своих параметров в зависимости от колличества дружеских карт на столе
@@ -256,9 +262,7 @@ namespace Hearthstone
         }
 
         public void DiedCreature() //смерть существа
-        {
-            Debug.Log(_card_Model.NameCard + " погиб смертью храбрых");
-            /////////////////////////////////////////////////////
+        {           
 
             _permanentEffectController.RemovePermanentEffect(this);
             _eventEffectController.RemoveEventEffect(this);

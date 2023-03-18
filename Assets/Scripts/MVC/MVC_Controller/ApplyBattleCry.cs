@@ -59,7 +59,6 @@ namespace Hearthstone
         //применить боевой клич
         public void ApplyNewBattleCry()
         {
-
             foreach (AbilityCurrentCard abilityInTarget in _battleCryController._curentAbilityInTarget)
             {
                 if((_battleCryController._battleCryTargetsType_Active == _card_Model._minionType) || _battleCryController._battleCryTargetsType_Active == MinionType.None )

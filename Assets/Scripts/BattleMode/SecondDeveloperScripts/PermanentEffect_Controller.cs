@@ -131,10 +131,10 @@ namespace Hearthstone
                         card.GetComponent<Card>().EnableAttack();
                     }
 
-                    if (cardEffectId == 505 && (cardSO_Model._targetsType == card_Model._minionType))
-                    {
-                        card.ChargeAbility();
-                    }
+                    //if (cardEffectId == 505 && (cardSO_Model._targetsType == card_Model._minionType))
+                    //{
+                    //    card.ChargeAbility();
+                    //}
                 }
             }
 

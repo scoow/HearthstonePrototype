@@ -12,24 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
   m_Name: 307_SilverbackPatriarch
   m_EditorClassIdentifier: 
+  _spriteCard: {fileID: 21300000, guid: 55cd7291abbc4ea47b5d0b9a3fb94c18, type: 3}
+  _idCard: 307
   _nameCard: "\u0421\u0435\u0434\u043E\u0441\u043F\u0438\u043D-\u043F\u0430\u0442\u0440\u0438\u0430\u0440\u0445"
   _descriptionCard: "\u041F\u0440\u043E\u0432\u043E\u043A\u0430\u0446\u0438\u044F"
-  _idCard: 307
-  _spriteCard: {fileID: 21300000, guid: 55cd7291abbc4ea47b5d0b9a3fb94c18, type: 3}
   _manaCostCard: 3
   _atackDamageCard: 1
   _healthCard: 4
+  _abilityChangeHealth: 0
+  _abilityChangeAtack: 0
   _cardClass: 9
   _battleCryTypes: 07
   _abilityInTargetBattleCry: 03000000
-  _targets: 0
+  _targets: 1
   _targetsType: 0
   _minionType: 2
   _isProvocation: 1
-  _isDivineShield: 0
   _isPermanentEffect: 0
   _isCharge: 0
   _isBerserk: 0
   _isTakeCard: 0
-  _abilityChangeHealth: 0
-  _abilityChangeAtack: 0
