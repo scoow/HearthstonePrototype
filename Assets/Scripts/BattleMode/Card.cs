@@ -13,6 +13,7 @@ namespace Hearthstone
         private TempCard_Marker _tempCardGO;
         [SerializeField]
         private float _scaleСoefficient;
+        private SoundEffect_Controller _soundEffect_Controller;
 
         [Inject]
         private Mana_Controller _mana_Controller;
@@ -35,6 +36,7 @@ namespace Hearthstone
 
             _mana_Controller = FindObjectOfType<Mana_Controller>();//Zenject не сработал так как карта инстанциируется после работы Monoinstaller'а
             _indicatorTarget = FindObjectOfType<IndicatorTarget>();
+            _soundEffect_Controller = FindObjectOfType<SoundEffect_Controller>();
         }
         public void EnableAttack()
         {
@@ -112,6 +114,7 @@ namespace Hearthstone
         {
             if (_card_State == CardState.Deck || _card_State == CardState.Mulligan || _side != _mana_Controller.WhoMovesNow()) return;
             _layersRenderUp.LayerUp(50);
+            _soundEffect_Controller.PlaySound(_soundEffect_Controller.CardShrink);
             transform.localScale *= _scaleСoefficient;
         }
 

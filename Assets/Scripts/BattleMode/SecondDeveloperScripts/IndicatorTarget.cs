@@ -13,8 +13,7 @@ namespace Hearthstone
         public bool CursorEnabled { get { return _cursorEnabled; } set { _cursorEnabled = value; } }//сделать покрасивше
 
         public void CursorBattleCryOn()
-        {
-            //ChangeCursorState(true);
+        {            
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit raycastHit))
             {

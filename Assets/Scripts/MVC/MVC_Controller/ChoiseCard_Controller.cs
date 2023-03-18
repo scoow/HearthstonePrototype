@@ -23,6 +23,7 @@ namespace Hearthstone
         private Card_View _zommingCard_View;           
         private PageBook_Model _pageBook_Model;
         private ContentDeck_Model _contentDeck_Model;
+        private Sound_Controller _soundController;
 
 
         private void Awake()
@@ -30,7 +31,8 @@ namespace Hearthstone
             _contentDeck_Model = FindObjectOfType<ContentDeck_Model>();
             _pageBook_Model = FindObjectOfType<PageBook_Model>();            
             _card_Model = GetComponent<Card_Model>();
-            _zommingCard_View = FindObjectOfType<CardZoomingTemplateMarker>().GetComponentInChildren<Card_View>();           
+            _zommingCard_View = FindObjectOfType<CardZoomingTemplateMarker>().GetComponentInChildren<Card_View>();
+            _soundController = FindAnyObjectByType<Sound_Controller>();
             if (gameObject.CompareTag("CardTemplate"))            
                 _spriteEmission = GetComponentInChildren<EmissionMarker>().gameObject.GetComponent<Renderer>();           
             
@@ -45,7 +47,8 @@ namespace Hearthstone
         public void OnPointerEnter(PointerEventData eventData)
         {            
             if (gameObject.CompareTag("CardTemplate"))
-                _spriteEmission.gameObject.SetActive(true);                 
+                _spriteEmission.gameObject.SetActive(true);
+            _soundController.PlaySound(_soundController.CardShrink);
             _zommingCard_View.gameObject.SetActive(true);
             _zommingCard_View.ChangeViewZomingCard(_card_Model.IdCard);
         }
@@ -67,6 +70,7 @@ namespace Hearthstone
             {
                 if (gameObject.CompareTag("CardTemplate") && (_card_Model._cardClassInDeck == _contentDeck_Model.ClassHeroInDeck || _card_Model._cardClassInDeck == Classes.Universal))
                     _contentDeckController.AddContent(_card_Model.IdCard);
+                    _soundController.PlaySound(_soundController.AddCardToDeck);
                 if (gameObject.CompareTag("ChoiseCard"))
                 {
                     _contentDeckController.RemoveContent(_card_Model.IdCard);

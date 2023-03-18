@@ -424,26 +424,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d81fb05b06b1bb4fb3fcfedb7fa82ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "_\u0441hangeHealthValue": 0
-  _changeAtackValue: 0
+  _protectionImage: {fileID: 2524693364671644792}
   _isProvocation: 0
-  _isDivineShield: 0
   _isPermanentEffect: 0
   _isCharge: 0
   _isBerserk: 0
   _isGetCard: 0
-  _protectionImage: {fileID: 2524693364671644792}
-  _spriteCard: {fileID: 0}
-  _descriptionCard: 
-  _nameCard: 
-  _idCard: 0
-  _manaCostCard: 0
-  _atackDamageCard: 0
-  _healthCard: 0
-  _maxHealtValue: 0
-  _maxAtackValue: 0
-  _defaultHealtValue: 0
-  _defaultAtackValue: 0
   _battleCryTypes: 
   _abilityInTargetBattleCry: 
   _battleCryTargets: 0
@@ -475,7 +461,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9dd1be2f17ff85409e0a9305d01d5b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _useBattleCray: 0
 --- !u!114 &-2857173228747400422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,10 +489,10 @@ MonoBehaviour:
   _spriteCard: {fileID: 3608145858537101082}
   _inFieldView: {fileID: 511861538}
   _inHeadView: {fileID: 4913150803855213570}
-  _atackText: {fileID: 5870755291040523593}
-  _healthText: {fileID: 1356143739031938082}
   _healtEffect: {fileID: 3418191930775950699}
   _scaleEffect: {fileID: 7315342492032106267}
+  _atackText: {fileID: 5870755291040523593}
+  _healthText: {fileID: 1356143739031938082}
 --- !u!114 &2323716001448710003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,7 +534,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0141f834b611253449fd51ba26a65642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _layersRenderUp: {fileID: 0}
   "_scale\u0421oefficient": 1.1
   _side: 0
   _card_State: 0
@@ -756,7 +740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2963142782115703590
 Transform:
   m_ObjectHideFlags: 0
@@ -11382,7 +11366,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8518533783991921931}
   - component: {fileID: 511861538}
-  - component: {fileID: 4587262176376359234}
   m_Layer: 0
   m_Name: InField
   m_TagString: Untagged
@@ -11421,18 +11404,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d85c5a0efbcfc44a8db6afc8d0cb855, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4587262176376359234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8518533783991921930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce52f145e1776444899e3d24ac6d988f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8684261940682926903

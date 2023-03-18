@@ -15,7 +15,7 @@ namespace Hearthstone
         private Card_Model _card_Model;
         private Card_Controller _card_Controller;
         [Inject]
-        private PageBook_Model _pageBook_Model;
+        private PageBook_Model _pageBook_Model;        
 
         /// <summary>
         /// готов ли юнит принять новый боевой клич
@@ -66,7 +66,7 @@ namespace Hearthstone
                 {      
                     if(abilityInTarget == AbilityCurrentCard.Provocation)
                     {
-                        _card_Controller.ProvocationAbility(true);
+                        _card_Controller.ProvocationAbility(true);                        
                     }
 
 

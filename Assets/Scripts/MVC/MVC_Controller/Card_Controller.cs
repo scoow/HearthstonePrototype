@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using UnityEngine;
 using Zenject;
@@ -14,6 +16,7 @@ namespace Hearthstone
         private PermanentEffect_Controller _permanentEffectController;
         private SingleEffect_Controller _singleEffect_Controller;
         private EventEffect_Controller _eventEffectController;
+        private SoundEffect_Controller _soundEffect_Controller;
         private BattleModeCard_View _battleModeCardView;
         private IndicatorTarget _indicatorTarget;
         private Action OnActivateCard;
@@ -33,6 +36,7 @@ namespace Hearthstone
             _battleCryController = FindObjectOfType<BattleCry_Controller>();            
             _permanentEffectController = FindObjectOfType<PermanentEffect_Controller>();
             _eventEffectController = FindObjectOfType<EventEffect_Controller>();
+            _soundEffect_Controller = FindObjectOfType<SoundEffect_Controller>();
             _singleEffect_Controller = FindObjectOfType<SingleEffect_Controller>();
             _handManager = FindObjectOfType<HandManager>();
             _battleModeCardView = GetComponent<BattleModeCard_View>();
@@ -56,6 +60,7 @@ namespace Hearthstone
 
         public void ActivateBattleCry(/*Transform newParent*/Card card) //активация боевых кличей
         {
+            _soundEffect_Controller.PlaySound(_soundEffect_Controller.PutCardInBoard);
             _battleCryController.IsActiveCry = true;            
             var card_model = card.GetComponent<Card_Model>().NameCard;
             Card my_Card = GetComponent<Card>();
@@ -172,7 +177,8 @@ namespace Hearthstone
         {
             if (isProvocation)
             {
-                _card_Model.ProtectionImage.gameObject.SetActive(isProvocation);
+                _card_Model.ProtectionImage.gameObject.SetActive(isProvocation);                
+                _soundEffect_Controller.PlaySound(_soundEffect_Controller.Taunt);
             }
             if (!isProvocation)
             {
@@ -186,7 +192,13 @@ namespace Hearthstone
         }
         public void TakeAdditionalCard(Players side) //добавление новой карты
         {
-            _mulliganManager.TakeOneCard(side);
+            StartCoroutine(Pause(1, side));                        
+        }
+        IEnumerator Pause(float pauseValue, Players side)
+        {
+            yield return new WaitForSeconds(pauseValue);
+            _soundEffect_Controller.PlaySound(_soundEffect_Controller.DrawCard);
+            _mulliganManager.TakeOneCard(side);            
         }
 
         #endregion

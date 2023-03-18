@@ -7,7 +7,7 @@ namespace Hearthstone
 {    
     public class Card_Model : MonoBehaviour
     {
-        private SpriteRenderer _protectionImage;
+        [SerializeField] private SpriteRenderer _protectionImage;
         private Sprite _spriteCard;
         private string _descriptionCard;
         private string _nameCard;
