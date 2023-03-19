@@ -58,7 +58,7 @@ namespace Hearthstone
             _board.EndDragCard += ActivateBattleCry;
         }
 
-        public void ActivateBattleCry(/*Transform newParent*/Card card) //активация боевых кличей
+        public void ActivateBattleCry(Card card) //активация боевых кличей
         {
             _soundEffect_Controller.PlaySound(_soundEffect_Controller.PutCardInBoard);
             _battleCryController.IsActiveCry = true;            

@@ -38,7 +38,7 @@ namespace Hearthstone
             _mana_Controller = FindObjectOfType<Mana_Controller>();//Zenject не сработал так как карта инстанциируется после работы Monoinstaller'а
             _indicatorTarget = FindObjectOfType<IndicatorTarget>();
             _soundEffect_Controller = FindObjectOfType<SoundEffect_Controller>();
-            _battleCry_Controller = FindAnyObjectByType<BattleCry_Controller>();
+            _battleCry_Controller = FindObjectOfType<BattleCry_Controller>();
         }
         public void EnableAttack()
         {
@@ -182,8 +182,9 @@ namespace Hearthstone
         public void OnPointerClick(PointerEventData eventData)
         {
             if (_card_State != CardState.Board) return;
+            if (!_battleCry_Controller.IsActiveCry) return;
 
-            if (!_indicatorTarget.CursorEnabled)//добавить условие
+            if (!_indicatorTarget.CursorEnabled && _side == _mana_Controller.WhoMovesNow())//добавить условие
             {
                 if (_canAttackThisTurn)
                 {
