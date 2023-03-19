@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 /*
@@ -44,6 +45,9 @@ namespace Hearthstone
         [Inject(Id = "Second")]
         private Hero_Controller _secondPlayerHero;
 
+        [Inject]
+        private EndTurnButton _endTurnButton;//кнопка конца хода
+
         private int _playerFatigueDamage = 1;
         private int _enemyFatigueDamage = 1;
 
@@ -65,6 +69,8 @@ namespace Hearthstone
             _mulliganCardsSecondPlayer = _mulliganCards.Where(x => x._side == Players.Second).ToList();
             foreach (var card in _mulliganCards)
                 card.gameObject.SetActive(true);
+
+            _endTurnButton.GetComponent<Button>().enabled= false;
 
             MulliganStage1(Players.First);
             await UniTask.Delay(TimeSpan.FromSeconds(_time * 4));
@@ -159,7 +165,9 @@ namespace Hearthstone
                 
                 if (position.Selected)
                 {
-                    card = TakeOneRandomCard(side);
+                    card = TakeOneRandomCard(side);//
+                    var newViewCardInHand = card.GetComponent<Card_View>(); // добавил переменную для отключения рубашки
+                    newViewCardInHand.CardShirtEnable(false);//отключаю отображение рубкашки
                     position.SetCurrentCard(card);
                     card.ChangeState(CardState.Mulligan);
                     _ = card.GetComponent<BattleModeCard>().MoveCardAsync(card.transform, position.transform, _time);
@@ -193,6 +201,8 @@ namespace Hearthstone
                 _mulliganConfirmButton.onClick.RemoveAllListeners();
                 _mulliganConfirmButton.onClick.AddListener(delegate { MulliganStage3(Players.Second); });
             }
+            else
+                _endTurnButton.GetComponent<Button>().enabled = true;
         }
         /// <summary>
         /// Взятие одной карты из колоды в руку текущего игрока

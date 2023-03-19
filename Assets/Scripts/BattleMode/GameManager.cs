@@ -31,6 +31,8 @@ namespace Hearthstone
 
         private TempCard_Marker _tempCardGO;
         private TempMinion_Marker _tempMinionGO;
+
+        private EndTurnButton _endTurnButton;
         /// <summary>
         /// Находит нужные объекты на сцене и помещает в DI-контейнер
         /// </summary>
@@ -60,6 +62,7 @@ namespace Hearthstone
             _tempCardGO = FindObjectOfType<TempCard_Marker>();
             _tempMinionGO = FindObjectOfType<TempMinion_Marker>();
 
+            _endTurnButton = FindObjectOfType<EndTurnButton>();
             //секция внедрения ссылок на объекты в контейнер Zenject
             Container.BindInstance(_pageBook_Model).AsSingle();
             Container.BindInstance(_loadDeck_Controller).AsSingle().NonLazy();
@@ -78,6 +81,8 @@ namespace Hearthstone
 
             Container.BindInstance(_tempCardGO).AsSingle();
             Container.BindInstance(_tempMinionGO).AsSingle();
+
+            Container.BindInstance(_endTurnButton).AsSingle();
         }
 /*        public void InjectCards()
         {
