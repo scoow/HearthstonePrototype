@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2626,8 +2626,8 @@ GameObject:
   m_Component:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
-  - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2635,14 +2635,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &963194226
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -2717,6 +2709,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483647
   m_MaxRayIntersections: 2
+--- !u!81 &963194230
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
 --- !u!1 &982176428
 GameObject:
   m_ObjectHideFlags: 0
@@ -3318,7 +3318,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f85e2cf10e9b4e541b827f17e0091036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cursorBattleCry: {fileID: 1454093349}
   _parentCardInBattle: {fileID: 671665860}
   _battleCryCreator: {fileID: 0}
   _isActiveCry: 0
@@ -3388,7 +3387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d4de3a5f2fb7984782c695be1ffb8a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerBoard: {fileID: 671665860}
 --- !u!1 &1246373053
 GameObject:
   m_ObjectHideFlags: 0
@@ -3546,7 +3544,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1274440977}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.05, y: -8.17, z: 0}
+  m_LocalPosition: {x: -14.25, y: -8.17, z: 0}
   m_LocalScale: {x: 20, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4453,7 +4451,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604529404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.66, y: 8.16, z: 0}
+  m_LocalPosition: {x: -14.22, y: 8.16, z: 0}
   m_LocalScale: {x: 20, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
