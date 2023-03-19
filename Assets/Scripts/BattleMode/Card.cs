@@ -200,6 +200,7 @@ namespace Hearthstone
                 }
                 else
                 {
+                    _voiceHero_Controller.PlayVoiceHero(TalkExample.AtackNextTurn, _side);
                     Debug.Log("Не могу атаковать на этом ходу");
                 }
             }
@@ -211,6 +212,7 @@ namespace Hearthstone
                     Card_Model card_Model = GetComponent<Card_Model>();
                     if (!card_Model._isProvocation)
                     {
+                        _voiceHero_Controller.PlayVoiceHero(TalkExample.AtackTaunt, _side);
                         Debug.Log("Можно атаковать только провокатора");
                         return;
                     }

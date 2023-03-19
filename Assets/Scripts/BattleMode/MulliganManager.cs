@@ -32,6 +32,7 @@ namespace Hearthstone
         private List<BattleModeCard> _mulliganCardsFirstPlayer;
         private List<BattleModeCard> _mulliganCardsSecondPlayer;
         private MulliganConfirmButton _mulliganConfirmButton;
+        private VoiceHero_Controller _voiceHero_Controller;
         [Inject(Id = "First")]
         private readonly Hand _firstPlayerHand;
         [Inject(Id = "Second")]
@@ -53,6 +54,7 @@ namespace Hearthstone
 
         private async void Start()
         {
+            _voiceHero_Controller = FindObjectOfType<VoiceHero_Controller>();
             //await UniTask.Delay(TimeSpan.FromSeconds(0.1));//ожидание, пока инициализируется сцена
             _mulliganConfirmButton = FindObjectOfType<MulliganConfirmButton>();
             _mulliganConfirmButton.Initialize();
@@ -279,6 +281,7 @@ namespace Hearthstone
             if (_currentDeck.Count <= 0)
             {
                 DealFatigueDamage(side);
+                _voiceHero_Controller.PlayVoiceHero(TalkExample.ErrorNoCard, side);
                 Debug.Log("В колоде " + side + " не осталось карт");
                 return null;
             }

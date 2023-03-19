@@ -3198,10 +3198,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372e6378dd84b7240b38db1b08ef873b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroVoiceSO_Models: []
+  heroVoiceSO_Models:
+  - {fileID: 11400000, guid: f3873f1da29614148b42190c00c75406, type: 2}
+  - {fileID: 11400000, guid: 4b3af92a61a7a3b49bbc11b8a1970559, type: 2}
+  - {fileID: 11400000, guid: b048c78d037d27e44970dbeec97e9732, type: 2}
+  - {fileID: 11400000, guid: bdf817842e4e5bb44a43dba2af0d7900, type: 2}
+  - {fileID: 11400000, guid: a8079cb5eeab6cc4686d171e33a359db, type: 2}
+  - {fileID: 11400000, guid: 6b8da5166e30479489f5c071ee946377, type: 2}
+  - {fileID: 11400000, guid: cc2317edc09e05d40a174f31b2177d29, type: 2}
+  - {fileID: 11400000, guid: c6fbfcfb0e2fecc4fb7bde7dcd8cf26c, type: 2}
+  - {fileID: 11400000, guid: d17c25a3e41839a409b72b17a897ddbe, type: 2}
   _heroFirst: {fileID: 158649505}
   _heroSecond: {fileID: 1475821679}
   _audioSourceHero: {fileID: 1085398604}
+  _audioClipHero: {fileID: 0}
 --- !u!82 &1085398604
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5727,7 +5737,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 543ef3984e9c0bd439f0678fc80005a4, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1

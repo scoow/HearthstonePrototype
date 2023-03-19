@@ -11,15 +11,16 @@ public class VoiceHero_Controller : MonoBehaviour
     private HeroVoiceSO_Model _firstHeroVoice;
     private HeroVoiceSO_Model _secondHeroVoice;
     [SerializeField] private AudioSource _audioSourceHero;
-    private AudioClip _audioClipHero;
+    [SerializeField] private AudioClip _audioClipHero;
 
     private void OnEnable()
     {
-        //_audioSourceHero = GetComponent<AudioSource>();
-        _audioClipHero = _audioSourceHero.GetComponent<AudioClip>();
+        _audioSourceHero = GetComponent<AudioSource>();
+        _audioClipHero = _audioSourceHero.clip;
     }
 
-    private void Start()
+
+    public void SetAudioVoiceHero()
     {
         foreach (HeroVoiceSO_Model heroVoiceSO in heroVoiceSO_Models)
         {
@@ -65,6 +66,7 @@ public class VoiceHero_Controller : MonoBehaviour
                 _audioClipHero = currentAudioModel.AtackNextTurn;
                 break;
         }
+        _audioSourceHero.clip = _audioClipHero;
         _audioSourceHero.Play();
     }
 }

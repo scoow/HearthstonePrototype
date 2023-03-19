@@ -15,7 +15,8 @@ namespace Hearthstone
         [Inject]
         private BattleCry_Controller _battleCry_Controller;
         [Inject]
-        private IndicatorTarget _indicatorTarget;        
+        private IndicatorTarget _indicatorTarget;
+        private VoiceHero_Controller _voiceHero_Controller;
         private WinnerMesage _winnerMesage;
         [SerializeField] private int _health;
         [SerializeField] private int _defaultHealtValue;
@@ -32,12 +33,13 @@ namespace Hearthstone
         {
             _textHealth = GetComponentInChildren<TextHealthMarker>().GetComponent<Text>();
             _loadDeck_Controller.SetHeroSettings += SetHeroSettings;
+            _voiceHero_Controller = FindObjectOfType<VoiceHero_Controller>();
             _winnerMesage = FindAnyObjectByType<WinnerMesage>();
         }
 
         private void OnDisable()
         {
-            _loadDeck_Controller.SetHeroSettings -= SetHeroSettings;
+            _loadDeck_Controller.SetHeroSettings -= SetHeroSettings;            
         }
 
         public void SetHeroSettings(int idCard)
@@ -47,7 +49,7 @@ namespace Hearthstone
             _heroClass = heroSO_Model.HeroClass;
             _defaultHealtValue = _health;
             _textHealth.text = _health.ToString();
-            
+            _voiceHero_Controller.SetAudioVoiceHero();
         }
 
         public void ChangeHealthValue(int incomingValue, ChangeHealthType changeHealthType)
