@@ -48,7 +48,7 @@ namespace Hearthstone
         /// <summary>
         /// убрать карту из руки
         /// </summary>
-        public void RemoveCard(Card card)
+        public virtual void RemoveCard(Card card)
         {
             if (CardsCount() > 0)
             {
