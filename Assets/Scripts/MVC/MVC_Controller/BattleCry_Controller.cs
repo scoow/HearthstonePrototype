@@ -66,7 +66,11 @@ namespace Hearthstone
             }
 
             if (СonditionsTargetBattleCry()) //условие появления прицела 
+            {
+                _cursorBattleCry.SetWatcher(transform);
                 _cursorBattleCry.ChangeCursorState(true);
+            }
+                
         }       
     }
 }

@@ -189,8 +189,9 @@ namespace Hearthstone
                 if (_canAttackThisTurn)
                 {
                     Debug.Log("Включился курсор");
-                    _indicatorTarget.ChangeCursorState(true);
                     _indicatorTarget.SetWatcher(transform);
+                    _indicatorTarget.ChangeCursorState(true);
+                    
                 }
                 else
                 {
