@@ -126,7 +126,7 @@ namespace Hearthstone
                         card.ChangeAtackValue(cardSO_Model.AbilityChangeAtack);
                     }
 
-                    if (cardEffectId == 309 && cardSO_Model.AtackDamageCard <= 3)
+                    if (cardEffectId == 309 && /*cardSO_Model.AtackDamageCard*/ card_Model.AtackDamageCard <= 3)
                     {
                         card.GetComponent<Card>().EnableAttack();
                     }
