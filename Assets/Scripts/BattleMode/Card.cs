@@ -187,12 +187,14 @@ namespace Hearthstone
             if (_card_State != CardState.Board) return;
             if (_battleCry_Controller.IsActiveCry) return;
 
-            if (!_indicatorTarget.CursorEnabled)//добавить условие
+            if (!_indicatorTarget.CursorEnabled && !_battleCry_Controller.IsActiveCry)//добавить условие
             {
                 if (_canAttackThisTurn && _side == _mana_Controller.WhoMovesNow())
                 {
                     Debug.Log("¬ключилс€ курсор");
-                    _indicatorTarget.SetWatcher(transform);
+                    _indicatorTarget.SetWatcher(GetComponent<Card_Model>());
+                    /*Debug.Log(transform.position);
+                    Debug.Log(GetComponent<Card_Model>().NameCard);*/
                     _indicatorTarget.ChangeCursorState(true);
                     
                 }
