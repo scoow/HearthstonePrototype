@@ -8,7 +8,11 @@ namespace Hearthstone
     {
         private PermanentEffect_Controller _permanentEffect_Controller;
         //private PageBook_Model _pageBook_Model;
-        [SerializeField] private Transform _playerBoard;
+        //[SerializeField] private Transform _playerBoard;//ИСПРАВИТЬ
+        [Inject(Id = "First")]
+        private Board _firstPlayerBoard;
+        [Inject(Id = "Second")]
+        private Board _secondPlayerBoard;
         [Inject(Id = "First")]
         private Hero_Controller _firstPlayerHero;
         [Inject(Id = "Second")]
@@ -25,11 +29,25 @@ namespace Hearthstone
             Card_Model cardModel = card.gameObject.GetComponent<Card_Model>();
             Card_Controller cardController = card.gameObject.GetComponent<Card_Controller>();
             Card incomingCard = card.GetComponent<Card>();
-            Card_Model[] _temporaryArray = _playerBoard.GetComponentsInChildren<Card_Model>();
+
+            Board _currentBoard = null;
+            switch (incomingCard.GetSide())
+            {
+                case Players.First:
+                    _currentBoard = _firstPlayerBoard;
+                    break;
+                case Players.Second:
+                    _currentBoard = _secondPlayerBoard;
+                    break;
+                default:
+                    break;
+            }
+
+            Card_Model[] _temporaryArray = _currentBoard.GetComponentsInChildren<Card_Model>();
             if (cardModel.IdCard == 503)
             {
-                cardController.ChangeAtackValue(_temporaryArray.Length);
-                cardController.ChangeHealthValue(_temporaryArray.Length);
+                cardController.ChangeAtackValue(_temporaryArray.Length - 1);
+                cardController.ChangeHealthValue(_temporaryArray.Length - 1);
             }
             if (cardModel.IdCard == 504)
             {
@@ -45,7 +63,7 @@ namespace Hearthstone
                     default:
                         break;
                 }
-                hero.ChangeHealthValue(3, ChangeHealthType.DealDamage);
+                hero.ChangeHealthValue(3, ChangeHealthType.DealDamage);//todo заменить 3 на значение из клича
 
             }
 
