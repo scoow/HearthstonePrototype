@@ -12,7 +12,7 @@ namespace Hearthstone
         }
         private void StartBattleScene()
         {
-            SceneManager.LoadScene("BattleScene1");
+            SceneManager.LoadScene("BattleScene");
         }
     }
 }
