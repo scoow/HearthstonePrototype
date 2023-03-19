@@ -182,11 +182,11 @@ namespace Hearthstone
         public void OnPointerClick(PointerEventData eventData)
         {
             if (_card_State != CardState.Board) return;
-            //if (!_battleCry_Controller.IsActiveCry) return;
+            if (_battleCry_Controller.IsActiveCry) return;
 
-            if (!_indicatorTarget.CursorEnabled && _side == _mana_Controller.WhoMovesNow())//добавить условие
+            if (!_indicatorTarget.CursorEnabled)//добавить условие
             {
-                if (_canAttackThisTurn)
+                if (_canAttackThisTurn && _side == _mana_Controller.WhoMovesNow())
                 {
                     Debug.Log("¬ключилс€ курсор");
                     _indicatorTarget.SetWatcher(transform);
