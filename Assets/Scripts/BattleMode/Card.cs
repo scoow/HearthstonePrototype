@@ -147,8 +147,8 @@ namespace Hearthstone
 
             Debug.Log(attacker.GetComponent<Card_Model>().NameCard + " атаковал " + card.GetComponent<Card_Model>().NameCard);
 
-            card_Controller_attacker.ChangeHealtValue(card_damage, ChangeHealthType.DealDamage);
-            card_Controller_card.ChangeHealtValue(attacker_damage, ChangeHealthType.DealDamage);
+            card_Controller_attacker.ChangeHealthValue(card_damage, ChangeHealthType.DealDamage);
+            card_Controller_card.ChangeHealthValue(attacker_damage, ChangeHealthType.DealDamage);
         }
         /// <summary>
         /// Существо атакует героя

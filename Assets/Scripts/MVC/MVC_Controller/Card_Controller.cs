@@ -180,10 +180,8 @@ namespace Hearthstone
                 _card_Model.ProtectionImage.gameObject.SetActive(isProvocation);                
                 _soundEffect_Controller.PlaySound(_soundEffect_Controller.Taunt);
             }
-            if (!isProvocation)
-            {
+            else
                 _card_Model.ProtectionImage.gameObject.SetActive(!isProvocation);
-            }
         }
         //public void ChargeAbility()//рывок
         //{
@@ -213,7 +211,7 @@ namespace Hearthstone
 
         }
 
-        public void ChangeHealtValue(int incomingValue) //изменяем значение здоровья
+        public void ChangeHealthValue(int incomingValue) //изменяем значение здоровья
         {
             _card_Model.HealthCard += incomingValue;
             if (_card_Model.HealthCard <= 0)
@@ -223,17 +221,17 @@ namespace Hearthstone
             _battleModeCardView.UpdateViewCard();
         }
 
-        public void ChangeHealtValue(int incomingValue, ChangeHealthType changeHealthType) //алтернативный вариант //////////////////////////////////////////
+        public void ChangeHealthValue(int incomingValue, ChangeHealthType changeHealthType) //алтернативный вариант //////////////////////////////////////////
         {
             if (changeHealthType == ChangeHealthType.DealDamage)
             {
-                ChangeHealtValue(-incomingValue);
+                ChangeHealthValue(-incomingValue);
                 _singleEffect_Controller.ApplyEffect(gameObject.GetComponent<ApplyBattleCry>());                
             }
 
             if (changeHealthType == ChangeHealthType.Healing)
             {
-                ChangeHealtValue(incomingValue);
+                ChangeHealthValue(incomingValue);
                 if (_card_Model.HealthCard > _card_Model.MaxHealtValue)
                     _card_Model.HealthCard = _card_Model.MaxHealtValue;
                 _battleModeCardView.UpdateViewCard();
@@ -245,7 +243,7 @@ namespace Hearthstone
 
             if (changeHealthType == ChangeHealthType.RaiseParametrs)
             {
-                ChangeHealtValue(incomingValue);
+                ChangeHealthValue(incomingValue);
                 //_singleEffect_Controller.ApplyEffect(gameObject.GetComponent<ApplyBattleCry>());
             }
         }
@@ -253,7 +251,7 @@ namespace Hearthstone
         public void UpdateSelfParametrs(int multiplicationFactor) //увеличение своих параметров в зависимости от колличества дружеских карт на столе
         {
             ChangeAtackValue(_card_Model.ChangeAtackValue * multiplicationFactor);
-            ChangeHealtValue(_card_Model.ChangeHealthValue * multiplicationFactor);
+            ChangeHealthValue(_card_Model.ChangeHealthValue * multiplicationFactor);
         }
 
         public void BerserkAbility()

@@ -1,12 +1,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Zenject;
 
 namespace Hearthstone
 {
     public class EventEffect_Controller : MonoBehaviour
     {
+        [Inject]
         private Mana_Controller _manaController;
+        [Inject]
         private PageBook_Model _pageBook_Model;        
         [SerializeField] private Transform _playerFirstBoard;
         [SerializeField] private Transform _playerSecondBoard;
@@ -14,24 +17,24 @@ namespace Hearthstone
         /// <summary>
         /// коллекция карт на столе первого игрока
         /// </summary>
-        private List<Card_Controller> _cardInBoardFirst = new List<Card_Controller>();
+        private List<Card_Controller> _cardInBoardFirst = new();
         /// <summary>
         /// коллекция карт на столе второго игрока
         /// </summary>
-        private List<Card_Controller> _cardInBoardSecond = new List<Card_Controller>();
+        private List<Card_Controller> _cardInBoardSecond = new();
         /// <summary>
         /// список эффектов по событию у первого игрока
         /// </summary>
-        private List<int> _activeEventEffectPlayerFirst = new List<int>();
+        private List<int> _activeEventEffectPlayerFirst = new();
         /// <summary>
         /// список эффектов по событию у второго игрока
         /// </summary>
-        private List<int> _activeEventEffectPlayerSecond = new List<int>();
+        private List<int> _activeEventEffectPlayerSecond = new();
 
         private void OnEnable()
         {
-            _pageBook_Model = FindObjectOfType<PageBook_Model>();
-            _manaController = FindObjectOfType<Mana_Controller>();
+/*            _pageBook_Model = FindObjectOfType<PageBook_Model>();
+            _manaController = FindObjectOfType<Mana_Controller>();*/
             _manaController.OnChangeTurn += ParseChangeTurnEvent;
         }
 
@@ -190,7 +193,7 @@ namespace Hearthstone
                             if (cardModel.IdCard == cardEffectId && cardModel._minionType == incomingMinionType) //то вызываю метод увеличения параметров
                             {
                                 cardController.ChangeAtackValue(cardModel.ChangeAtackValue);
-                                cardController.ChangeHealtValue(cardModel.ChangeHealthValue);
+                                cardController.ChangeHealthValue(cardModel.ChangeHealthValue);
                             }
                         }
                     }
@@ -204,7 +207,7 @@ namespace Hearthstone
                             cardsInBoard = _cardInBoardSecond;
                         foreach (Card_Controller cardController in cardsInBoard)
                         {
-                            cardController.ChangeHealtValue(card_Model.AbilityChangeHealth, ChangeHealthType.Healing);
+                            cardController.ChangeHealthValue(card_Model.AbilityChangeHealth, ChangeHealthType.Healing);
                         }
                         RemoveEventEffect(cardExample);
                     }
@@ -255,7 +258,7 @@ namespace Hearthstone
                             cardsInBoard = _cardInBoardSecond;
                         foreach (Card_Controller cardController in cardsInBoard)
                         {
-                            cardController.ChangeHealtValue(card_Model.AbilityChangeHealth, ChangeHealthType.Healing);
+                            cardController.ChangeHealthValue(card_Model.AbilityChangeHealth, ChangeHealthType.Healing);
                         }
                         RemoveEventEffect(cardExample);
                     }
@@ -300,7 +303,7 @@ namespace Hearthstone
 
                     }
                     int indexWounded = Random.Range(0, tempListCardModel.Count); //выбираем счастливчика
-                    tempListCardModel[indexWounded].GetComponent<Card_Controller>().ChangeHealtValue(card_Model1.ChangeHealthValue, ChangeHealthType.Healing); //лечим его
+                    tempListCardModel[indexWounded].GetComponent<Card_Controller>().ChangeHealthValue(card_Model1.ChangeHealthValue, ChangeHealthType.Healing); //лечим его
 
                 }
             }

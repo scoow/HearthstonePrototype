@@ -1,18 +1,23 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Hearthstone
 {
     public class SingleEffect_Controller : MonoBehaviour
     {
         private PermanentEffect_Controller _permanentEffect_Controller;
-        private PageBook_Model _pageBook_Model;
+        //private PageBook_Model _pageBook_Model;
         [SerializeField] private Transform _playerBoard;
+        [Inject(Id = "First")]
+        private Hero_Controller _firstPlayerHero;
+        [Inject(Id = "Second")]
+        private Hero_Controller _secondPlayerHero;
 
         private void OnEnable()
         {
             _permanentEffect_Controller = GetComponent<PermanentEffect_Controller>();
-            _pageBook_Model = GetComponent<PageBook_Model>();
+            // _pageBook_Model = GetComponent<PageBook_Model>();
         }
 
         public void ApplyEffect(ApplyBattleCry card)
@@ -24,7 +29,24 @@ namespace Hearthstone
             if (cardModel.IdCard == 503)
             {
                 cardController.ChangeAtackValue(_temporaryArray.Length);
-                cardController.ChangeHealtValue(_temporaryArray.Length);
+                cardController.ChangeHealthValue(_temporaryArray.Length);
+            }
+            if (cardModel.IdCard == 504)
+            {
+                Hero_Controller hero = null;
+                switch (incomingCard.GetSide())
+                {
+                    case Players.First:
+                        hero = _secondPlayerHero; 
+                        break;
+                    case Players.Second:
+                        hero = _firstPlayerHero;
+                        break;
+                    default:
+                        break;
+                }
+                hero.ChangeHealthValue(3, ChangeHealthType.DealDamage);
+
             }
 
             List<int> activePermanentEffect;

@@ -83,7 +83,7 @@ namespace Hearthstone
                             {
                                 
                                 _eventEffectController.ParseDamageEvent(this);
-                                _card_Controller.ChangeHealtValue(_battleCryController.BattleCryChangeHealth, ChangeHealthType.DealDamage);
+                                _card_Controller.ChangeHealthValue(_battleCryController.BattleCryChangeHealth, ChangeHealthType.DealDamage);
                                 _singleEffectController.ApplyEffect(this); //переделать в дженерики
                                 /*if (_card_Model._healthCard <= 0)
                                     _card_Controller.DiedCreature(); //событие смерти*/
@@ -95,7 +95,7 @@ namespace Hearthstone
                                 {
                                     _eventEffectController.ParseHealEvent(this);                                    
                                 }                               
-                                _card_Controller.ChangeHealtValue(_battleCryController.BattleCryChangeHealth, ChangeHealthType.Healing);                                
+                                _card_Controller.ChangeHealthValue(_battleCryController.BattleCryChangeHealth, ChangeHealthType.Healing);                                
                                 if (_card_Model.HealthCard > _card_Model.MaxHealtValue)
                                     _card_Model.HealthCard = _card_Model.MaxHealtValue;
 
@@ -107,7 +107,7 @@ namespace Hearthstone
                             if(cryType == BattleCryType.RaiseParametrs) //повышаем параметры
                             {
                                 _card_Model.MaxHealtValue += _battleCryController.BattleCryChangeHealth;
-                                _card_Controller.ChangeHealtValue(_battleCryController.BattleCryChangeHealth,ChangeHealthType.RaiseParametrs);                                
+                                _card_Controller.ChangeHealthValue(_battleCryController.BattleCryChangeHealth,ChangeHealthType.RaiseParametrs);                                
                                 _battleModeCard_View.UpdateViewCard();
                             }
                         } 
