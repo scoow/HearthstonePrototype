@@ -111,23 +111,11 @@ namespace Hearthstone
                 if (_card.GetComponent<Card_Model>().IdCard == 106)
                     listCardController.Add(_card);
             }
-
-            //List<int> tempArrey = СheckTurnQueue(card, _activeEventEffectPlayerFirst, _activeEventEffectPlayerSecond);
+            
             foreach(Card_Controller _card in listCardController)
             {
                 _card.TakeAdditionalCard(_card.GetComponent<Card>().GetSide());
             }
-
-           /* if (tempArrey != null)
-            {
-                foreach (int cardEffectId in tempArrey)
-                {
-                    if (cardEffectId == 106)
-                    {
-                        card.gameObject.GetComponent<Card_Controller>().TakeAdditionalCard();
-                    }
-                }
-            }*/
         }
         #endregion
 
@@ -138,29 +126,22 @@ namespace Hearthstone
         public void ParseDamageEvent(ApplyBattleCry card)
         {
             FillListMinion();
-            List<int> tempArrey = СheckTurnQueue(card, _activeEventEffectPlayerFirst, _activeEventEffectPlayerSecond);
-
-            if (tempArrey != null)
+            List<Card_Controller> listCardController = new();
+            foreach (Card_Controller _card in _cardInBoardFirst)
             {
-                foreach (int cardEffectId in tempArrey) //обхожу весь список евент еффектов
-                {
-                    if (cardEffectId == 310) // если есть такой эффект
-                    {
-                        List<Card_Controller> cardsInBoard;
-                        if (tempArrey == _activeEventEffectPlayerFirst)
-                            cardsInBoard = _cardInBoardFirst;
-                        else
-                            cardsInBoard = _cardInBoardSecond;
+                if (_card.GetComponent<Card_Model>().IdCard == 310)
+                    listCardController.Add(_card);
+            }
+            foreach (Card_Controller _card in _cardInBoardSecond)
+            {
+                if (_card.GetComponent<Card_Model>().IdCard == 310)
+                    listCardController.Add(_card);
+            }
 
-                        foreach (Card_Controller cardController in cardsInBoard)
-                        {
-                            if (cardController.GetComponent<Card_Model>().IdCard == cardEffectId) //то вызываю метод Берсерк у карты с таким же Id
-                            {
-                                cardController.BerserkAbility();
-                            }
-                        }
-                    }
-                }
+            foreach (Card_Controller _card in listCardController)
+            {
+                Card_Model card_Model = _card.GetComponent<Card_Model>();
+                _card.ChangeAtackValue(card_Model.ChangeAtackValue);
             }
         }
         #endregion

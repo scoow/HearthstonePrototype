@@ -64,7 +64,7 @@ namespace Hearthstone
 
             //_battleCryController.IsActiveCry = true;
             Card_Model card_Model = card.GetComponent<Card_Model>();
-            if (card_Model._battleCryTargets == Target.Single || card_Model._battleCryTargets == Target.SingleFriend)
+            if (card_Model._battleCryTargets == Target.Single || card_Model._battleCryTargets == Target.SingleFriend || card_Model._battleCryTargets == Target.Hero)
                 _battleCryController.IsActiveCry = true;
 
             var card_model = card.GetComponent<Card_Model>().NameCard;            

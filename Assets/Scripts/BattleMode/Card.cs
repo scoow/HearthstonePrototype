@@ -146,7 +146,7 @@ namespace Hearthstone
             int card_damage = card.GetComponent<Card_Model>().AtackDamageCard;
 
             Debug.Log(attacker.GetComponent<Card_Model>().NameCard + " атаковал " + card.GetComponent<Card_Model>().NameCard);
-
+            
             card_Controller_attacker.ChangeHealthValue(card_damage, ChangeHealthType.DealDamage);
             card_Controller_card.ChangeHealthValue(attacker_damage, ChangeHealthType.DealDamage);
         }
@@ -216,9 +216,8 @@ namespace Hearthstone
                 if (attackercard.GetSide() == _side) return;
 
                 _indicatorTarget.ChangeCursorState(false);
-                //attackercard.DisableAttack();
-                Attack(attackercard, this);
                 attackercard.DisableAttack();
+                Attack(attackercard, this);                
             }
         }
     }

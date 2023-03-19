@@ -125,7 +125,7 @@ namespace Hearthstone
                     _indicatorTarget.ChangeCursorState(false);
 
                     attackercard.DisableAttack();
-                    attackercard.Attack(attackercard, this);
+                    attackercard.Attack(attackercard, this);                   
                 }
             }
         }
