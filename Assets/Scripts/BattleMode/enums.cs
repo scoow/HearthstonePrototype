@@ -5,7 +5,7 @@ namespace Hearthstone
         First,
         Second
     }
-    public enum Classes
+    public enum CardClasses
     {
         Druid,
         Hunter,

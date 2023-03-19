@@ -25,7 +25,7 @@ namespace Hearthstone
         public int AbilityChangeHealth { get => _abilityChangeHealth; }
         public int AbilityChangeAtack { get => _abilityChangeAtack; }
 
-        public Classes _cardClass;        
+        public CardClasses _cardClass;        
         public List<BattleCryType> _battleCryTypes = new List<BattleCryType>();
         public List<AbilityCurrentCard> _abilityInTargetBattleCry = new List<AbilityCurrentCard>();
         public Target _targets;

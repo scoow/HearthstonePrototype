@@ -182,7 +182,7 @@ namespace Hearthstone
         public void OnPointerClick(PointerEventData eventData)
         {
             if (_card_State != CardState.Board) return;
-            if (!_battleCry_Controller.IsActiveCry) return;
+            //if (!_battleCry_Controller.IsActiveCry) return;
 
             if (!_indicatorTarget.CursorEnabled && _side == _mana_Controller.WhoMovesNow())//добавить условие
             {
@@ -216,8 +216,9 @@ namespace Hearthstone
                 if (attackercard.GetSide() == _side) return;
 
                 _indicatorTarget.ChangeCursorState(false);
-                attackercard.DisableAttack();
+                //attackercard.DisableAttack();
                 Attack(attackercard, this);
+                attackercard.DisableAttack();
             }
         }
     }

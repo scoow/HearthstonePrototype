@@ -890,6 +890,7 @@ GameObject:
   m_Component:
   - component: {fileID: 158649503}
   - component: {fileID: 158649505}
+  - component: {fileID: 158649506}
   m_Layer: 5
   m_Name: PlayerOne
   m_TagString: Untagged
@@ -936,7 +937,25 @@ MonoBehaviour:
   _defaultHealtValue: 0
   _textHealth: {fileID: 0}
   _side: 0
+  _heroClass: 0
   _spriteHeroWinner: {fileID: 1356101276}
+--- !u!114 &158649506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158649502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bb6f0a255290bd45b2fb093468f965e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroVoiceSO_Models:
+  - {fileID: 11400000, guid: c6fbfcfb0e2fecc4fb7bde7dcd8cf26c, type: 2}
+  - {fileID: 11400000, guid: 4b3af92a61a7a3b49bbc11b8a1970559, type: 2}
+  - {fileID: 11400000, guid: b048c78d037d27e44970dbeec97e9732, type: 2}
+  - {fileID: 11400000, guid: a8079cb5eeab6cc4686d171e33a359db, type: 2}
 --- !u!1 &161153813
 GameObject:
   m_ObjectHideFlags: 0
@@ -3176,6 +3195,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 412e423f18751454a926231a671a303f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioColection:
+  - {fileID: 0}
   _buttonClick: {fileID: 909514637}
   _cardShrink: {fileID: 1896818738}
   _putCardInBoard: {fileID: 1246373054}
@@ -4238,6 +4259,7 @@ MonoBehaviour:
   _defaultHealtValue: 0
   _textHealth: {fileID: 0}
   _side: 1
+  _heroClass: 0
   _spriteHeroWinner: {fileID: 207377243}
 --- !u!1 &1491325578
 GameObject:

@@ -14,7 +14,7 @@ namespace Hearthstone
         /// <summary>
         /// тип классовых карт , которые можно добавлять в колоду
         /// </summary>
-        [SerializeField] private Classes _classHeroInDeck;
+        [SerializeField] private CardClasses _classHeroInDeck;
         /// <summary>
         /// префаб шаблона отображающего краткие настройки выбранной карты
         /// </summary>
@@ -27,12 +27,12 @@ namespace Hearthstone
         public List<int> ContentDeck { get => _contentDeck; set => _contentDeck = value; }
         public InputField InputField { get => _inputField; }
         public string CurrentDeckName { get => _currentDeckName; set => _currentDeckName = value; }
-        public Classes ClassHeroInDeck { get => _classHeroInDeck; set => _classHeroInDeck = value; }
+        public CardClasses ClassHeroInDeck { get => _classHeroInDeck; set => _classHeroInDeck = value; }
         public GameObject PrefabChioseCardSettings { get => _prefabChioseCardSettings; }
 
         private void Awake()
         {
-            _classHeroInDeck = Classes.Universal;
+            _classHeroInDeck = CardClasses.Universal;
             _inputField = FindObjectOfType<InputTextMarker>().GetComponent<InputField>();
             _inputField.onEndEdit.AddListener(ToText);
         }

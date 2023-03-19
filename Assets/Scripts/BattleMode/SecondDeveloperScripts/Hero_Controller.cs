@@ -20,11 +20,13 @@ namespace Hearthstone
         [SerializeField] private int _health;
         [SerializeField] private int _defaultHealtValue;
         [SerializeField] private Text _textHealth;
-        [SerializeField] private Players _side;               
+        [SerializeField] private Players _side;
+        [SerializeField] private CardClasses _heroClass;
         public int Health { get => _health; set => _health = value; }        
         public int DefaultHealtValue { get => _defaultHealtValue; set => _defaultHealtValue = value; }
         public Text TextHealth { get => _textHealth; set => _textHealth = value; }
-        public Players Side { get { return _side; } }
+        public Players Side { get => _side; }
+        public CardClasses HeroClass { get => _heroClass; }
         public Image _spriteHeroWinner;
         private void OnEnable()
         {
@@ -42,8 +44,10 @@ namespace Hearthstone
         {
             HeroSO_Model heroSO_Model = (HeroSO_Model)_pageBook_Model._cardsDictionary[idCard];
             _health = heroSO_Model.HealthCard;
+            _heroClass = heroSO_Model.HeroClass;
             _defaultHealtValue = _health;
             _textHealth.text = _health.ToString();
+            
         }
 
         public void ChangeHealthValue(int incomingValue, ChangeHealthType changeHealthType)

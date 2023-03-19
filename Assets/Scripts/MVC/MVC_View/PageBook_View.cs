@@ -48,7 +48,7 @@ namespace Hearthstone
                             card_ModelArrey[i].gameObject.GetComponentInChildren<SpriteRendererMarker>().GetComponent<SpriteRenderer>().color = Color.red;                            
                         }           
 
-                        if (cardSO[i + stepUpdatePage]._cardClass == Classes.Universal)                        
+                        if (cardSO[i + stepUpdatePage]._cardClass == CardClasses.Universal)                        
                             card_ModelArrey[i].gameObject.GetComponentInChildren<SpriteRendererMarker>().GetComponent<SpriteRenderer>().color = Color.white;                        
                     }
                     

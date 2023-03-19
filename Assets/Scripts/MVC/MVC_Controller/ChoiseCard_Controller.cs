@@ -68,7 +68,7 @@ namespace Hearthstone
         {
             if(_pageBook_Model._createDeckState == CreateDeckState.CreateDeck)
             {
-                if (gameObject.CompareTag("CardTemplate") && (_card_Model._cardClassInDeck == _contentDeck_Model.ClassHeroInDeck || _card_Model._cardClassInDeck == Classes.Universal))
+                if (gameObject.CompareTag("CardTemplate") && (_card_Model._cardClassInDeck == _contentDeck_Model.ClassHeroInDeck || _card_Model._cardClassInDeck == CardClasses.Universal))
                     _contentDeckController.AddContent(_card_Model.IdCard);
                     _soundController.PlaySound(_soundController.AddCardToDeck);
                 if (gameObject.CompareTag("ChoiseCard"))

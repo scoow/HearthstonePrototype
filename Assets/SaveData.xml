@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <SaveDeckCollection>
-  <DeckName NameValue="вариус" StateValue="Выбранная колода">
+  <DeckName NameValue="вариус" StateValue="Неактивная колода">
     <CardId>1000</CardId>
     <CardId>102</CardId>
     <CardId>205</CardId>
@@ -37,5 +37,23 @@
     <CardId>101</CardId>
     <CardId>207</CardId>
     <CardId>207</CardId>
+  </DeckName>
+  <DeckName NameValue="хант" StateValue="Выбранная колода">
+    <CardId>5000</CardId>
+    <CardId>107</CardId>
+    <CardId>201</CardId>
+    <CardId>207</CardId>
+    <CardId>212</CardId>
+    <CardId>213</CardId>
+    <CardId>301</CardId>
+    <CardId>302</CardId>
+    <CardId>307</CardId>
+    <CardId>304</CardId>
+    <CardId>305</CardId>
+    <CardId>306</CardId>
+    <CardId>403</CardId>
+    <CardId>408</CardId>
+    <CardId>505</CardId>
+    <CardId>700</CardId>
   </DeckName>
 </SaveDeckCollection>

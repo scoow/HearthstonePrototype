@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Hearthstone
 {
-    public class SoundEffect_Controller : Sound, ISound
+    public class SoundEffect_Controller : Sound
     {        
         [SerializeField] private AudioSource _putCardInBoard;
         [SerializeField] private AudioSource _drawCard;
@@ -10,11 +10,6 @@ namespace Hearthstone
 
         public AudioSource PutCardInBoard { get => _putCardInBoard; }        
         public AudioSource DrawCard { get => _drawCard; }        
-        public AudioSource Taunt { get => _taunt; }        
-
-        public void PlaySound(AudioSource currentSound)
-        {
-            currentSound.Play();
-        }
+        public AudioSource Taunt { get => _taunt; }       
     }
 }

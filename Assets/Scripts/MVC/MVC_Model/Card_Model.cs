@@ -58,7 +58,7 @@ namespace Hearthstone
         /// <summary>
         /// тип классовых карт , которые можно добавлять в колоду
         /// </summary>
-        public Classes _cardClassInDeck;
+        public CardClasses _cardClassInDeck;
 
 
         private void OnEnable()

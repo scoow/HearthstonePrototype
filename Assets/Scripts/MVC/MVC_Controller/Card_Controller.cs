@@ -61,8 +61,13 @@ namespace Hearthstone
         public void ActivateBattleCry(Card card) //активация боевых кличей
         {
             _soundEffect_Controller.PlaySound(_soundEffect_Controller.PutCardInBoard);
-            _battleCryController.IsActiveCry = true;            
-            var card_model = card.GetComponent<Card_Model>().NameCard;
+
+            //_battleCryController.IsActiveCry = true;
+            Card_Model card_Model = card.GetComponent<Card_Model>();
+            if (card_Model._battleCryTargets == Target.Single || card_Model._battleCryTargets == Target.SingleFriend)
+                _battleCryController.IsActiveCry = true;
+
+            var card_model = card.GetComponent<Card_Model>().NameCard;            
             Card my_Card = GetComponent<Card>();
 
             if (card != my_Card) return;
@@ -129,6 +134,10 @@ namespace Hearthstone
             {
                 _battleCryController._curentAbilityInTarget.Add(abilityInTarget);
             }
+
+            //if (_card_Model._battleCryTargets != Target.Single || _card_Model._battleCryTargets != Target.SingleFriend)
+            //    _battleCryController.IsActiveCry = false;
+
         }
 
         #region //Ability Сondition
