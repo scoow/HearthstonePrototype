@@ -12,26 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee55dcfac7782f4e8d1e916ede3753f, type: 3}
   m_Name: 408_Dogman
   m_EditorClassIdentifier: 
+  _spriteCard: {fileID: 21300000, guid: 7a621732812187c42bb4b5d8e9d117d9, type: 3}
+  _idCard: 408
   _nameCard: "\u041F\u0441\u0430\u0440\u044C"
   _descriptionCard: "\u0411\u043E\u0435\u0432\u043E\u0439 \u043A\u043B\u0438\u0447:
     \u0432\u0430\u0448 \u0437\u0432\u0435\u0440\u044C \u043F\u043E\u043B\u0443\u0447\u0430\u0435\u0442
     +2/+2 \u0438 \xAB\u041F\u0440\u043E\u0432\u043E\u043A\u0430\u0446\u0438\u044E\xBB."
-  _idCard: 408
-  _spriteCard: {fileID: 21300000, guid: 7a621732812187c42bb4b5d8e9d117d9, type: 3}
   _manaCostCard: 4
   _atackDamageCard: 4
   _healthCard: 3
+  _abilityChangeHealth: 2
+  _abilityChangeAtack: 2
   _cardClass: 1
   _battleCryTypes: 0207
   _abilityInTargetBattleCry: 030000000700000008000000
-  _targets: 2
+  _targets: 3
   _targetsType: 2
   _minionType: 0
   _isProvocation: 0
-  _isDivineShield: 0
   _isPermanentEffect: 0
   _isCharge: 0
   _isBerserk: 0
   _isTakeCard: 0
-  _abilityChangeHealth: 2
-  _abilityChangeAtack: 2

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63123a2aa9c459e489ccad425db90b5f, type: 3}
+  m_Name: ShamanVoice
+  m_EditorClassIdentifier: 
+  cardClasses: 6
+  _atackNextTurn: {fileID: 8300000, guid: a511159061fbedc4a85e09ad09b49183, type: 3}
+  _errorUseCard: {fileID: 8300000, guid: 8edf4f4ffcc3cd5488b4fa2d75ed7d5b, type: 3}
+  _atackTaunt: {fileID: 8300000, guid: 2ef30b5288bdc634f8c1700a4cacfde6, type: 3}
+  _errorNoCard: {fileID: 8300000, guid: 798a51307e1f0d045a0b16e682e9ac85, type: 3}

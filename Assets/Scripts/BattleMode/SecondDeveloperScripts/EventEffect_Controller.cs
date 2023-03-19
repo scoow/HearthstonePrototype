@@ -31,6 +31,8 @@ namespace Hearthstone
         /// </summary>
         private List<int> _activeEventEffectPlayerSecond = new();
 
+       
+
         private void OnEnable()
         {
 /*            _pageBook_Model = FindObjectOfType<PageBook_Model>();
@@ -42,6 +44,19 @@ namespace Hearthstone
         {
             _manaController.OnChangeTurn -= ParseChangeTurnEvent;
         }
+
+        /// <summary>
+        /// обновляем списки карт на доске
+        /// </summary>
+        public void FillListMinion()
+        {
+            _cardInBoardFirst.Clear();
+            _cardInBoardSecond.Clear();
+            _cardInBoardFirst = _playerFirstBoard.GetComponentsInChildren<Card_Controller>().ToList(); //все карты на столе первого игрока
+            _cardInBoardSecond = _playerSecondBoard.GetComponentsInChildren<Card_Controller>().ToList(); //все карты на столе второго игрока
+        }
+        public List<Card_Controller> GetCardInBoardFirst() => _cardInBoardFirst;
+        public List<Card_Controller> GetCardInBoardSecond() => _cardInBoardSecond;
 
         public void AddEventEffect(Card_Controller card) //добавить эффект в список
         {
@@ -61,18 +76,7 @@ namespace Hearthstone
                 _activeEventEffectPlayerFirst.Remove(card_model.IdCard);
             else
                 _activeEventEffectPlayerSecond.Remove(card_model.IdCard);
-        }
-
-        /// <summary>
-        /// обновляем списки карт на доске
-        /// </summary>
-        private void FillListMinion()
-        {
-            _cardInBoardFirst.Clear();
-            _cardInBoardSecond.Clear();
-            _cardInBoardFirst = _playerFirstBoard.GetComponentsInChildren<Card_Controller>().ToList(); //все карты на столе первого игрока
-            _cardInBoardSecond = _playerSecondBoard.GetComponentsInChildren<Card_Controller>().ToList(); //все карты на столе второго игрока
-        }
+        }       
 
         /// <summary>
         /// проверка очерёдности хода

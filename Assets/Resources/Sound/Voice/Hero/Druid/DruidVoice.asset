@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63123a2aa9c459e489ccad425db90b5f, type: 3}
+  m_Name: DruidVoice
+  m_EditorClassIdentifier: 
+  cardClasses: 0
+  _atackNextTurn: {fileID: 8300000, guid: 3f0cc5e455f6d92429d7ff4f5c7a8c1b, type: 3}
+  _errorUseCard: {fileID: 8300000, guid: edcbf43721b327842b3aff445c7ae74b, type: 3}
+  _atackTaunt: {fileID: 8300000, guid: 375aa7281a1a8c642a34958cdb2c171d, type: 3}
+  _errorNoCard: {fileID: 8300000, guid: 88db15b22a338c040951a64774b7b1ff, type: 3}

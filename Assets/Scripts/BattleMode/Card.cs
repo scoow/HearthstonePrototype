@@ -15,6 +15,7 @@ namespace Hearthstone
         private float _scaleСoefficient;
         private SoundEffect_Controller _soundEffect_Controller;
         private BattleCry_Controller _battleCry_Controller;
+        private VoiceHero_Controller _voiceHero_Controller;
 
         [Inject]
         private Mana_Controller _mana_Controller;
@@ -39,6 +40,7 @@ namespace Hearthstone
             _indicatorTarget = FindObjectOfType<IndicatorTarget>();
             _soundEffect_Controller = FindObjectOfType<SoundEffect_Controller>();
             _battleCry_Controller = FindObjectOfType<BattleCry_Controller>();
+            _voiceHero_Controller = FindObjectOfType<VoiceHero_Controller>();
         }
         public void EnableAttack()
         {
@@ -63,6 +65,7 @@ namespace Hearthstone
             _cancelDrag = _side != _mana_Controller.WhoMovesNow() || GetComponent<Card_Model>().GetManaCostCard() > _mana_Controller.GetManaCount(_mana_Controller.WhoMovesNow());
             if (_cancelDrag)//Если не наш ход - нельзя схватить карту
             {
+                _voiceHero_Controller.PlayVoiceHero(TalkExample.ErrorUseCard, _side);
                 Debug.Log("Нельзя сыграть эту карту");
                 return;
             }

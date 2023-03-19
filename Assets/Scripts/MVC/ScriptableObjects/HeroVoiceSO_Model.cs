@@ -9,10 +9,16 @@ namespace Hearthstone
     {
         [SerializeField] private CardClasses cardClasses;
         //private AudioSource voiceHero;
-        [SerializeField] private AudioClip _atackTaunt;        
-        [SerializeField] private AudioClip _errorTakeCard;
+        [SerializeField] private AudioClip _atackNextTurn;
+        [SerializeField] private AudioClip _errorUseCard;
+        [SerializeField] private AudioClip _atackTaunt;
         [SerializeField] private AudioClip _errorNoCard;
-        [SerializeField] private AudioClip _errorAtackCard;
+
+        public AudioClip AtackNextTurn { get => _atackNextTurn; }
+        public AudioClip ErrorUseCard { get => _errorUseCard; }
+        public AudioClip AtackTaunt { get => _atackTaunt; }
+        public AudioClip ErrorNoCard { get => _errorNoCard; }
+
 
         public CardClasses CardClasses { get => cardClasses;}
 

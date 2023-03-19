@@ -14,13 +14,25 @@ namespace Hearthstone
         [SerializeField] private int _idBattleCry;        
         [SerializeField] private int _battleCryChangeHealth;
         [SerializeField] private int _battleCryChangeAtackDamage;
-        
+        [SerializeField] private Players _sideBattleCryCreator;
+
+        ///// <summary>
+        ///// коллекция карт на столе первого игрока
+        ///// </summary>
+        //private List<Card_Controller> _cardInBoardFirst = new();
+        ///// <summary>
+        ///// коллекция карт на столе второго игрока
+        ///// </summary>
+        //private List<Card_Controller> _cardInBoardSecond = new();
+
+
 
         public IndicatorTarget CursorBattleCry { get => _cursorBattleCry; }
         public Transform ParentCardInBattle { get => _parentCardInBattle; }
         public GameObject BattleCryCreator { get => _battleCryCreator; set => _battleCryCreator = value; }
         public bool IsActiveCry { get => _isActiveCry; set => _isActiveCry = value; }
-        public int IdBattleCry { get => _idBattleCry; set => _idBattleCry = value; }        
+        public int IdBattleCry { get => _idBattleCry; set => _idBattleCry = value; }      
+        public Players SideBattleCryCreator { get => _sideBattleCryCreator; set => _sideBattleCryCreator = value; }      
         public int BattleCryChangeHealth { get => _battleCryChangeHealth; set => _battleCryChangeHealth = value; }
         public int BattleCryChangeAtackDamage { get => _battleCryChangeAtackDamage; set => _battleCryChangeAtackDamage = value; }
         

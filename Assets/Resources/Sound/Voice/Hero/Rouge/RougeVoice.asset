@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63123a2aa9c459e489ccad425db90b5f, type: 3}
+  m_Name: RougeVoice
+  m_EditorClassIdentifier: 
+  cardClasses: 5
+  _atackNextTurn: {fileID: 8300000, guid: 211e2debbb2e88546acff749f63504ce, type: 3}
+  _errorUseCard: {fileID: 8300000, guid: 2f2ee608d79748441ad42d867cbdaf0b, type: 3}
+  _atackTaunt: {fileID: 8300000, guid: adf3f2b750014a9448f04a51749672a7, type: 3}
+  _errorNoCard: {fileID: 8300000, guid: eafd70a10494fc44b85faa6091f06783, type: 3}

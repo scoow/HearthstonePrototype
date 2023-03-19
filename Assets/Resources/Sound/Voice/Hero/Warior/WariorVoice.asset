@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63123a2aa9c459e489ccad425db90b5f, type: 3}
+  m_Name: WariorVoice
+  m_EditorClassIdentifier: 
+  cardClasses: 8
+  _atackNextTurn: {fileID: 8300000, guid: ab003b28eac549247a2c68f3f5aea2de, type: 3}
+  _errorUseCard: {fileID: 8300000, guid: 367c6334b7722524097d4b1918b00633, type: 3}
+  _atackTaunt: {fileID: 8300000, guid: dae704b8e5d7be34a84f668e5721d746, type: 3}
+  _errorNoCard: {fileID: 8300000, guid: a284686d905507241856d1ea29754ad7, type: 3}

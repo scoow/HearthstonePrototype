@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.ProBuilder.MeshOperations;
 using Zenject;
 
 namespace Hearthstone
@@ -57,16 +58,16 @@ namespace Hearthstone
         //применить боевой клич
         public void ApplyNewBattleCry()
         {
+
             foreach (AbilityCurrentCard abilityInTarget in _battleCryController._curentAbilityInTarget)
             {
-                if ((_battleCryController._battleCryTargetsType_Active == _card_Model._minionType) || _battleCryController._battleCryTargetsType_Active == MinionType.None)
-                {
-                    if (abilityInTarget == AbilityCurrentCard.Provocation)
+                if((_battleCryController._battleCryTargetsType_Active == _card_Model._minionType) || _battleCryController._battleCryTargetsType_Active == MinionType.None )
+                {   
+                    //боевой клич псаря
+                    if(abilityInTarget == AbilityCurrentCard.Provocation /*&& _battleCryController.SideBattleCryCreator == GetComponent<Card>()._side*/)
                     {
                         _card_Controller.ProvocationAbility(true);
                     }
-
-
                     //изменяем атаку
                     if (abilityInTarget == AbilityCurrentCard.ChangeAtack)
                     {
@@ -82,10 +83,8 @@ namespace Hearthstone
 
                                 _eventEffectController.ParseDamageEvent(this);
                                 _card_Controller.ChangeHealthValue(_battleCryController.BattleCryChangeHealth, ChangeHealthType.DealDamage);
-                                _singleEffectController.ApplyEffect(this); //переделать в дженерики
-                                /*if (_card_Model._healthCard <= 0)
-                                    _card_Controller.DiedCreature(); //событие смерти*/
-                            }
+                                _singleEffectController.ApplyEffect(this);                               
+                            }                                
 
                             if (cryType == BattleCryType.Heal)//лечим себя
                             {

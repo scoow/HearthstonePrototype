@@ -123,6 +123,7 @@ namespace Hearthstone
             _battleCryController._battleCryTargetsType_Active = _card_Model._battleCryTargetsType;
             _battleCryController.BattleCryChangeAtackDamage = _card_Model.ChangeAtackValue;
             _battleCryController.BattleCryChangeHealth = _card_Model.ChangeHealthValue;
+            _battleCryController.SideBattleCryCreator = _card_Model.GetComponent<Card>()._side;
 
             _battleCryController._currentBattleCryTypes.Clear();
             foreach (BattleCryType cryType in _card_Model._battleCryTypes)
@@ -133,10 +134,7 @@ namespace Hearthstone
             foreach (AbilityCurrentCard abilityInTarget in _card_Model._abilityInTargetBattleCry)
             {
                 _battleCryController._curentAbilityInTarget.Add(abilityInTarget);
-            }
-
-            //if (_card_Model._battleCryTargets != Target.Single || _card_Model._battleCryTargets != Target.SingleFriend)
-            //    _battleCryController.IsActiveCry = false;
+            }        
 
         }
 
