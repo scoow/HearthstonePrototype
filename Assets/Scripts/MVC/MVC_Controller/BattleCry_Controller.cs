@@ -37,13 +37,13 @@ namespace Hearthstone
         public MinionType _battleCryTargetsType_Active;
         public MinionType _battleCryMinionType_Active;
 
-        private void LateUpdate() //отображение прицела
+/*        private void LateUpdate() //отображение прицела
         {
             if (СonditionsTargetBattleCry())
             {          
-                _cursorBattleCry.SetWatcher(_battleCryCreator.transform);
+                _cursorBattleCry.SetWatcher(_battleCryCreator.GetComponent<Card_Model>());
             }          
-        }
+        }*/
 
         //условия применения боевого клича
         public bool СonditionsTargetBattleCry()
@@ -67,7 +67,7 @@ namespace Hearthstone
 
             if (СonditionsTargetBattleCry()) //условие появления прицела 
             {
-                _cursorBattleCry.SetWatcher(transform);
+                _cursorBattleCry.SetWatcher(_battleCryCreator.GetComponent<Card_Model>());
                 _cursorBattleCry.ChangeCursorState(true);
             }
                 

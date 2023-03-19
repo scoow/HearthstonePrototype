@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,7 +36,7 @@ namespace Hearthstone
             _battleModeCard_View = GetComponent<BattleModeCard_View>();
         }
 
-        public void OnPointerClick(PointerEventData eventData)
+        public async void OnPointerClick(PointerEventData eventData)
         {
             if (transform.parent.gameObject.GetComponent<Board>() && _isListen && _battleCryController.IsActiveCry
                 && (_battleCryController._battleCryTargets_Active != Target.Self))//определяем цель боевого клича
@@ -42,6 +44,7 @@ namespace Hearthstone
                 if (_battleCryController.BattleCryCreator == eventData.pointerClick) return;//исключаем применение боевого клича на себя
                 if (_battleCryController._battleCryTargets_Active == Target.SingleFriend && _battleCryController.BattleCryCreator.GetComponent<Card>().GetSide() != GetComponent<Card>().GetSide()) return;
                 ApplyNewBattleCry();
+                await UniTask.Delay(TimeSpan.FromSeconds(1));
                 _isListen = false;
                 _battleCryController.IsActiveCry = false;
                 _battleCryController.UpdateBattleCry();
